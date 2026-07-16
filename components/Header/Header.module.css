@@ -1,0 +1,357 @@
+.header {
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  right: 0;
+  left: 0;
+  color: #ffffff;
+}
+
+.inner {
+  display: grid;
+  min-height: 96px;
+  grid-template-columns: 110px minmax(0, 1fr) auto;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Logo */
+
+.logo {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.logoImage {
+  display: block;
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+  transition:
+    transform 200ms ease,
+    filter 200ms ease;
+}
+
+.logo:hover .logoImage {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.38));
+}
+
+/* Desktop-Navigation */
+
+.desktopNav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 2.3vw, 38px);
+}
+
+.desktopNav a {
+  position: relative;
+  padding: 14px 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.045em;
+  white-space: nowrap;
+  transition: color 180ms ease;
+}
+
+.desktopNav a::after {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  left: 0;
+  height: 1px;
+  background: var(--accent);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms ease;
+}
+
+.desktopNav a:hover {
+  color: #ffffff;
+}
+
+.desktopNav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Rechte Header-Seite */
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+.language,
+.login,
+.listingButton,
+.menuButton {
+  color: inherit;
+  border: 0;
+  background: transparent;
+}
+
+.language {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.login {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.74rem;
+  font-weight: 600;
+  transition: color 180ms ease;
+}
+
+.login:hover {
+  color: #ffffff;
+}
+
+/* Klar sichtbarer Inserieren-Button */
+
+.listingButton {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border: 1px solid #d2b08e;
+  color: #171914;
+  background: #d2b08e;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.listingButton:hover {
+  border-color: #ffffff;
+  color: #171914;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  transform: translateY(-1px);
+}
+
+.menuButton {
+  display: none;
+  padding: 0;
+}
+
+/* Fokus */
+
+.logo:focus-visible,
+.desktopNav a:focus-visible,
+.language:focus-visible,
+.login:focus-visible,
+.listingButton:focus-visible,
+.menuButton:focus-visible {
+  outline: 2px solid #d2b08e;
+  outline-offset: 5px;
+}
+
+/* Mobiles Panel */
+
+.mobilePanel {
+  display: none;
+}
+
+@media (max-width: 1120px) {
+  .inner {
+    grid-template-columns: 90px minmax(0, 1fr) auto;
+  }
+
+  .desktopNav {
+    gap: 19px;
+  }
+
+  .desktopNav a {
+    font-size: 0.68rem;
+  }
+
+  .actions {
+    gap: 13px;
+  }
+
+  .language,
+  .login {
+    display: none;
+  }
+
+  .listingButton {
+    padding-inline: 16px;
+  }
+}
+
+@media (max-width: 800px) {
+  .inner {
+    min-height: 78px;
+    grid-template-columns: 1fr auto;
+  }
+
+  .logoImage {
+    width: 52px;
+    height: 52px;
+  }
+
+  .desktopNav {
+    display: none;
+  }
+
+  .actions {
+    gap: 9px;
+  }
+
+  .listingButton {
+    display: inline-flex;
+    min-height: 38px;
+    padding: 0 13px;
+    border-color: #d2b08e;
+    color: #171914;
+    background: #d2b08e;
+    font-size: 0.6rem;
+    letter-spacing: 0.055em;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  }
+
+  .menuButton {
+    display: inline-grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    color: #ffffff;
+  }
+
+  .mobilePanel {
+    display: grid;
+    max-height: 0;
+    overflow: hidden;
+    border-top: 1px solid transparent;
+    background: rgba(17, 20, 18, 0.97);
+    opacity: 0;
+    backdrop-filter: blur(18px);
+    transition:
+      max-height 320ms ease,
+      opacity 220ms ease,
+      border-color 220ms ease;
+  }
+
+  .mobilePanelOpen {
+    max-height: 520px;
+    border-color: rgba(255, 255, 255, 0.12);
+    opacity: 1;
+  }
+
+  .mobilePanel nav {
+    display: grid;
+    padding-top: 8px;
+    padding-bottom: 24px;
+  }
+
+  .mobilePanel nav > a {
+    display: flex;
+    min-height: 56px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition:
+      color 180ms ease,
+      padding-left 180ms ease;
+  }
+
+  .mobilePanel nav > a:hover {
+    padding-left: 4px;
+    color: #ffffff;
+  }
+
+  .mobilePanel .mobileCta {
+    min-height: 48px;
+    justify-content: center;
+    margin-top: 18px;
+    padding-inline: 18px;
+    border: 1px solid #d2b08e;
+    color: #171914;
+    background: #d2b08e;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    min-height: 72px;
+  }
+
+  .logoImage {
+    width: 48px;
+    height: 48px;
+  }
+
+  .actions {
+    gap: 6px;
+  }
+
+  .listingButton {
+    min-height: 36px;
+    padding-inline: 11px;
+    font-size: 0.56rem;
+  }
+
+  .menuButton {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 370px) {
+  .listingButton {
+    padding-inline: 9px;
+    font-size: 0.53rem;
+  }
+
+  .logoImage {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoImage,
+  .desktopNav a::after,
+  .listingButton,
+  .mobilePanel,
+  .mobilePanel nav > a {
+    transition: none;
+  }
+}

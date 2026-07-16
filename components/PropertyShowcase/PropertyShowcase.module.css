@@ -1,0 +1,165 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  background: var(--surface-strong);
+}
+
+.section::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: min(28vw, 420px);
+  height: 1px;
+  background: var(--brand-dark);
+  content: "";
+}
+
+.container {
+  position: relative;
+}
+
+.heading {
+  margin-bottom: clamp(48px, 6vw, 82px);
+}
+
+/* Immobilienraster */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(20px, 2.2vw, 34px);
+  row-gap: clamp(52px, 6vw, 86px);
+}
+
+.grid > * {
+  min-width: 0;
+  grid-column: span 4;
+}
+
+/* Link zu allen Immobilien */
+
+.allLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--ink);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.allLink > span:first-child {
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.allLink > span:first-child::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--line-strong);
+  content: "";
+  transform-origin: left center;
+  transition:
+    background 180ms ease,
+    transform 220ms ease;
+}
+
+.linkIcon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 220ms ease;
+}
+
+.allLink:hover {
+  color: var(--brand-dark);
+}
+
+.allLink:hover > span:first-child::after {
+  background: var(--brand-dark);
+  transform: scaleX(0.65);
+}
+
+.allLink:hover .linkIcon {
+  border-color: var(--brand-dark);
+  color: #ffffff;
+  background: var(--brand-dark);
+  transform: translateX(3px);
+}
+
+.allLink:focus-visible {
+  outline: 2px solid var(--brand-dark);
+  outline-offset: 6px;
+}
+
+/* Kleinere Desktop- und Tabletansicht */
+
+@media (max-width: 1100px) {
+  .grid {
+    column-gap: 24px;
+    row-gap: 62px;
+  }
+
+  .grid > * {
+    grid-column: span 6;
+  }
+}
+
+/* Handy */
+
+@media (max-width: 680px) {
+  .heading {
+    margin-bottom: 42px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    row-gap: 48px;
+  }
+
+  .grid > * {
+    grid-column: auto;
+  }
+
+  .allLink {
+    gap: 11px;
+    font-size: 0.64rem;
+  }
+
+  .linkIcon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Sehr kleine Handys */
+
+@media (max-width: 420px) {
+  .grid {
+    row-gap: 42px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .allLink,
+  .allLink > span:first-child::after,
+  .linkIcon {
+    transition: none;
+  }
+}
