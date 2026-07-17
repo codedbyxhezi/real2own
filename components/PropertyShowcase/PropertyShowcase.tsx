@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Icon } from "@/components/Icon/Icon";
 import { PropertyCard } from "@/components/PropertyCard/PropertyCard";
 import { Reveal } from "@/components/Reveal/Reveal";
@@ -20,13 +21,19 @@ export function PropertyShowcase() {
               title="Orte, die mehr aus deinem Leben machen."
               description="Entdecke kuratierte Wohn- und Investmentobjekte – transparent aufbereitet, international vergleichbar und bereit für den nächsten Schritt."
               action={
-                <a className={styles.allLink} href="#kontakt">
+                <Link
+                  className={styles.allLink}
+                  href="/immobilien/kaufen"
+                >
                   <span>Alle Immobilien</span>
 
-                  <span className={styles.linkIcon} aria-hidden="true">
+                  <span
+                    className={styles.linkIcon}
+                    aria-hidden="true"
+                  >
                     <Icon name="arrow" size={16} />
                   </span>
-                </a>
+                </Link>
               }
             />
           </div>

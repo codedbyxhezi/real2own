@@ -1,0 +1,254 @@
+.page {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  place-items: center;
+  overflow: hidden;
+  padding: 24px;
+  background:
+    radial-gradient(
+      circle at 10% 12%,
+      rgba(112, 124, 95, 0.14),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 92% 88%,
+      rgba(180, 157, 112, 0.13),
+      transparent 32%
+    ),
+    var(--surface-strong);
+}
+
+.page::before {
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(35, 38, 31, 0.1);
+  pointer-events: none;
+  content: "";
+}
+
+.backLink {
+  position: absolute;
+  z-index: 2;
+  top: 24px;
+  left: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 0.54rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.backLink span {
+  color: var(--brand-dark);
+  font-size: 0.95rem;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 475px);
+  padding:
+    clamp(28px, 4.5vh, 45px)
+    clamp(22px, 4vw, 43px);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow:
+    0 28px 80px rgba(20, 22, 18, 0.1),
+    0 7px 24px rgba(20, 22, 18, 0.05);
+  backdrop-filter: blur(18px);
+}
+
+.logo {
+  display: block;
+  width: fit-content;
+  margin: 0 auto clamp(18px, 2.7vh, 28px);
+}
+
+.logo img {
+  display: block;
+  width: clamp(50px, 7vh, 64px);
+  height: clamp(50px, 7vh, 64px);
+  object-fit: contain;
+}
+
+.heading {
+  text-align: center;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 clamp(12px, 1.8vh, 17px);
+  color: var(--brand-dark);
+  font-size: 0.51rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  content: "";
+}
+
+.heading h1 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.9rem, 6.2vh, 4.4rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.88;
+  text-wrap: balance;
+}
+
+.heading > p:last-child {
+  max-width: 390px;
+  margin: clamp(14px, 2.2vh, 20px) auto 0;
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.68;
+}
+
+.loginLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: clamp(20px, 3vh, 27px);
+  padding-top: clamp(17px, 2.5vh, 23px);
+  border-top: 1px solid var(--line);
+  font-size: 0.61rem;
+}
+
+.loginLink span {
+  color: var(--muted);
+}
+
+.loginLink a {
+  color: var(--brand-dark);
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.copyright {
+  position: absolute;
+  right: 30px;
+  bottom: 23px;
+  color: #928d84;
+  font-size: 0.49rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .backLink:hover {
+    color: var(--ink);
+    transform: translateX(-3px);
+  }
+
+  .loginLink a:hover {
+    color: var(--night);
+  }
+}
+
+@media (max-width: 620px) {
+  .page {
+    padding: 58px 12px 14px;
+    background: var(--surface-strong);
+  }
+
+  .page::before {
+    display: none;
+  }
+
+  .backLink {
+    top: 20px;
+    left: 18px;
+  }
+
+  .card {
+    width: 100%;
+    padding: 28px 20px;
+    box-shadow: 0 16px 45px rgba(20, 22, 18, 0.08);
+  }
+
+  .logo {
+    margin-bottom: 20px;
+  }
+
+  .logo img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .heading h1 {
+    font-size: clamp(2.8rem, 14vw, 3.9rem);
+  }
+
+  .copyright {
+    display: none;
+  }
+}
+
+@media (max-height: 640px) {
+  .card {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .eyebrow {
+    margin-bottom: 9px;
+  }
+
+  .heading h1 {
+    font-size: 2.8rem;
+  }
+
+  .heading > p:last-child {
+    margin-top: 11px;
+  }
+
+  .loginLink {
+    margin-top: 16px;
+    padding-top: 15px;
+  }
+}
+
+@media (max-width: 370px) {
+  .card {
+    padding-inline: 16px;
+  }
+
+  .loginLink {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backLink {
+    transition: none;
+  }
+}

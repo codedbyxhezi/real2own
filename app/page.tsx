@@ -13,7 +13,8 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+
+      <main id="top">
         <Hero />
         <PropertyShowcase />
         <DestinationGrid />
@@ -23,6 +24,7 @@ export default function Home() {
         <Testimonials />
         <FinalCta />
       </main>
+
       <Footer />
     </>
   );

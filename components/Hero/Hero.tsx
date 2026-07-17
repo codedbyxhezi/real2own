@@ -1,59 +1,122 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { SearchPanel } from "@/components/SearchPanel/SearchPanel";
 import styles from "./Hero.module.css";
 
+const slides = [
+  {
+    src: "/images/hero/hero-01.webp",
+    position: "center 55%",
+  },
+  {
+    src: "/images/hero/hero-02.webp",
+    position: "center 52%",
+  },
+  {
+    src: "/images/hero/hero-03.webp",
+    position: "center 48%",
+  },
+  {
+    src: "/images/hero/hero-04.webp",
+    position: "center 52%",
+  },
+];
+
+const SLIDE_DURATION = 7000;
+
 export function Hero() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+
+    function updateMotionPreference() {
+      setReducedMotion(mediaQuery.matches);
+    }
+
+    updateMotionPreference();
+    mediaQuery.addEventListener("change", updateMotionPreference);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateMotionPreference);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setActiveIndex((currentIndex) => {
+        return (currentIndex + 1) % slides.length;
+      });
+    }, SLIDE_DURATION);
+
+    return () => {
+      window.clearInterval(interval);
+    };
+  }, [reducedMotion]);
+
   return (
-    <section className={styles.hero} id="top">
-      <Image
-        src="/images/hero-real2own.webp"
-        alt="Historische europäische Altstadt"
-        className={styles.background}
-        fill
-        priority
-        quality={90}
-        sizes="100vw"
-      />
+    <section
+      className={styles.hero}
+      id="top"
+      aria-labelledby="hero-title"
+    >
+      <div className={styles.background} aria-hidden="true">
+        {slides.map((slide, index) => (
+          <div
+            className={`${styles.slide} ${
+              activeIndex === index ? styles.activeSlide : ""
+            }`}
+            key={slide.src}
+          >
+            <Image
+              src={slide.src}
+              alt=""
+              fill
+              priority={index < 2}
+              sizes="100vw"
+              className={styles.backgroundImage}
+              style={{
+                objectPosition: slide.position,
+              }}
+            />
+          </div>
+        ))}
 
-      <div className={styles.overlay} />
+        <div className={styles.overlay} />
+      </div>
 
-      <div className={`container ${styles.content}`}>
-        <div className={styles.desktopIntro}>
+      <div className={`container ${styles.container}`}>
+        <div className={styles.content}>
           <p className={styles.eyebrow}>
-            International Real Estate
+            Internationale Immobilienplattform
           </p>
 
-          <h1>
-            Immobilien,
-            <span>die bleiben.</span>
+          <h1 id="hero-title">
+            Immobilien finden.
+            <span>Weltweit zuhause.</span>
           </h1>
 
           <p className={styles.description}>
-            Ausgewählte Häuser, Wohnungen und Grundstücke in internationalen
-            Märkten. Kaufen, mieten oder gemeinsam mit geprüften Partnern bauen.
+            Entdecke Immobilien, Grundstücke und ausgewählte Projektpartner
+            in internationalen Märkten.
           </p>
-        </div>
-
-        <div className={styles.mobileIntro}>
-          <span>Real2Own</span>
-          <h1>Finde dein neues Zuhause.</h1>
         </div>
 
         <div className={styles.search}>
           <SearchPanel />
         </div>
 
-        <div className={styles.footer}>
-          <p>
-            Immobilien kaufen, mieten und bauen.
-          </p>
-
-          <div className={styles.markets}>
-            <span>Berlin</span>
-            <span>Dubai</span>
-            <span>Madrid</span>
-            <span>Lisbon</span>
-          </div>
+        <div className={styles.progress} aria-hidden="true">
+          <span key={activeIndex} />
         </div>
       </div>
     </section>

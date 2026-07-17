@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { ScrollToTop } from "@/components/ScrollToTop/ScrollToTop";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://real2own.com"),
@@ -53,7 +54,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
-      <body>{children}</body>
+      <body>
+        {children} 
+        <ScrollToTop />
+      </body>
     </html>
   );
 }

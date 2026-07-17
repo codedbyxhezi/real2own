@@ -7,28 +7,64 @@ const navigation = [
   {
     title: "Immobilien",
     links: [
-      { label: "Immobilien kaufen", href: "/#immobilien" },
-      { label: "Wohnungen mieten", href: "/#immobilien" },
-      { label: "Grundstücke", href: "/#leistungen" },
-      { label: "Neubauprojekte", href: "/#leistungen" },
+      {
+        label: "Immobilien kaufen",
+        href: "/immobilien/kaufen",
+      },
+      {
+        label: "Wohnungen mieten",
+        href: "/immobilien/mieten",
+      },
+      {
+        label: "Grundstücke",
+        href: "/grundstuecke",
+      },
+      {
+        label: "Neubauprojekte",
+        href: "/neubauprojekte",
+      },
     ],
   },
   {
     title: "Eigentümer & Partner",
     links: [
-      { label: "Immobilie anbieten", href: "/#kontakt" },
-      { label: "Baupartner finden", href: "/#partner" },
-      { label: "Projekt präsentieren", href: "/#partner" },
-      { label: "Partner werden", href: "/#kontakt" },
+      {
+        label: "Immobilie anbieten",
+        href: "/immobilie-anbieten",
+      },
+      {
+        label: "Baupartner finden",
+        href: "/baupartner",
+      },
+      {
+        label: "Projekt präsentieren",
+        href: "/projekt-praesentieren",
+      },
+      {
+        label: "Partner werden",
+        href: "/partner-werden",
+      },
     ],
   },
   {
     title: "Real2Own",
     links: [
-      { label: "Über Real2Own", href: "/#top" },
-      { label: "Internationale Märkte", href: "/#international" },
-      { label: "Kontakt", href: "/#kontakt" },
-      { label: "Impressum", href: "/impressum" },
+      {
+        label: "Über Real2Own",
+        href: "/ueber-uns",
+      },
+      {
+        label: "Internationale Märkte",
+        href: "/international",
+      },
+      {
+        label: "Kontakt",
+        href: "/kontakt",
+      },
+      {
+        label: "Impressum",
+        href: "/impressum",
+      },
     ],
   },
 ];
@@ -42,7 +78,7 @@ export function Footer() {
         <div className={styles.brandRow}>
           <Link
             className={styles.logo}
-            href="/#top"
+            href="/"
             aria-label="Real2Own Startseite"
           >
             <Image
@@ -65,7 +101,10 @@ export function Footer() {
           <a className={styles.backToTop} href="#top">
             <span>Nach oben</span>
 
-            <span className={styles.backToTopIcon} aria-hidden="true">
+            <span
+              className={styles.backToTopIcon}
+              aria-hidden="true"
+            >
               <Icon name="arrow" size={16} />
             </span>
           </a>
@@ -105,11 +144,17 @@ export function Footer() {
             aria-label="Footer Navigation"
           >
             {navigation.map((column) => (
-              <div className={styles.column} key={column.title}>
+              <div
+                className={styles.column}
+                key={column.title}
+              >
                 <h3>{column.title}</h3>
 
                 {column.links.map((link) => (
-                  <Link href={link.href} key={link.label}>
+                  <Link
+                    href={link.href}
+                    key={link.label}
+                  >
                     {link.label}
                   </Link>
                 ))}
@@ -118,7 +163,9 @@ export function Footer() {
           </nav>
 
           <div className={styles.contactCta}>
-            <p className={styles.label}>Persönliche Beratung</p>
+            <p className={styles.label}>
+              Persönliche Beratung
+            </p>
 
             <h2>Ein konkretes Immobilienvorhaben?</h2>
 
@@ -127,10 +174,10 @@ export function Footer() {
               Entwicklung von Immobilien und Grundstücken.
             </p>
 
-            <a href="mailto:info@real2own.com">
+            <Link href="/kontakt">
               <span>Kontakt aufnehmen</span>
               <Icon name="arrow" size={17} />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -142,9 +189,17 @@ export function Footer() {
           </span>
 
           <nav aria-label="Rechtliche Informationen">
-            <Link href="/datenschutz">Datenschutz</Link>
-            <Link href="/impressum">Impressum</Link>
-            <Link href="/datenschutz#cookies">Cookies</Link>
+            <Link href="/datenschutz">
+              Datenschutz
+            </Link>
+
+            <Link href="/impressum">
+              Impressum
+            </Link>
+
+            <Link href="/datenschutz#cookies">
+              Cookie-Hinweise
+            </Link>
           </nav>
         </div>
       </div>
