@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Icon } from "@/components/Icon/Icon";
-import type { ListingProperty } from "@/components/ListingPage/ListingPage";
+import type { ListingProperty } from "@/types/property";
 import styles from "./ListingExplorer.module.css";
 
 type ListingExplorerProps = {
