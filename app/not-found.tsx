@@ -1,100 +1,79 @@
 import Link from "next/link";
-import { Footer } from "@/components/Footer/Footer";
-import { Header } from "@/components/Header/Header";
-import { Icon } from "@/components/Icon/Icon";
-import styles from "./not-found.module.css";
-
-const destinations = [
-  {
-    label: "Immobilien kaufen",
-    href: "/immobilien/kaufen",
-  },
-  {
-    label: "Immobilien mieten",
-    href: "/immobilien/mieten",
-  },
-  {
-    label: "Grundstücke",
-    href: "/grundstuecke",
-  },
-  {
-    label: "Neubauprojekte",
-    href: "/neubauprojekte",
-  },
-];
 
 export default function NotFound() {
   return (
-    <>
-      <Header />
-
-      <main id="top" className={styles.page}>
-        <section
-          className={styles.hero}
-          aria-labelledby="not-found-title"
+    <main
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "40px 24px",
+        background: "#f5f3ef",
+        color: "#171717",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "720px",
+          textAlign: "center",
+        }}
+      >
+        <p
+          style={{
+            margin: "0 0 24px",
+            fontSize: "13px",
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            opacity: 0.6,
+          }}
         >
-          <div className={`container ${styles.container}`}>
-            <div className={styles.number} aria-hidden="true">
-              404
-            </div>
+          Error 404
+        </p>
 
-            <div className={styles.content}>
-              <p className={styles.eyebrow}>
-                Seite nicht gefunden
-              </p>
+        <h1
+          style={{
+            margin: "0",
+            fontSize: "clamp(42px, 8vw, 88px)",
+            fontWeight: 400,
+            lineHeight: 1,
+            letterSpacing: "-0.04em",
+          }}
+        >
+          Seite nicht gefunden.
+        </h1>
 
-              <h1 id="not-found-title">
-                Dieser Ort ist nicht mehr verfügbar.
-              </h1>
+        <p
+          style={{
+            maxWidth: "520px",
+            margin: "28px auto 0",
+            fontSize: "17px",
+            lineHeight: 1.7,
+            opacity: 0.7,
+          }}
+        >
+          Die angeforderte Seite existiert nicht oder wurde verschoben.
+        </p>
 
-              <p className={styles.description}>
-                Die aufgerufene Seite wurde möglicherweise verschoben,
-                umbenannt oder ist nicht mehr erreichbar.
-              </p>
-
-              <div className={styles.actions}>
-                <Link
-                  className={styles.primaryAction}
-                  href="/"
-                >
-                  Zur Startseite
-                  <Icon name="arrow" size={17} />
-                </Link>
-
-                <Link
-                  className={styles.secondaryAction}
-                  href="/kontakt"
-                >
-                  Kontakt aufnehmen
-                </Link>
-              </div>
-            </div>
-
-            <div className={styles.navigation}>
-              <p>Weiter entdecken</p>
-
-              <div className={styles.links}>
-                {destinations.map((destination, index) => (
-                  <Link
-                    href={destination.href}
-                    key={destination.href}
-                  >
-                    <span className={styles.linkNumber}>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    <span>{destination.label}</span>
-
-                    <Icon name="arrow" size={16} />
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-    </>
+        <Link
+          href="/"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "40px",
+            minHeight: "52px",
+            padding: "0 28px",
+            background: "#171717",
+            color: "#ffffff",
+            textDecoration: "none",
+            fontSize: "14px",
+          }}
+        >
+          Zur Startseite
+        </Link>
+      </div>
+    </main>
   );
 }
