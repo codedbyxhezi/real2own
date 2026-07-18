@@ -1,16 +1,35 @@
 import type { ListingProperty } from "@/types/property";
-import { propertyCatalog } from "@/data/propertyCatalog";
+import {
+  getPropertyCatalog,
+  type PropertyCategoryKey,
+} from "@/data/propertyCatalog";
+
+const collectionIds: Record<
+  PropertyCategoryKey,
+  readonly number[]
+> = {
+  buy: [101, 102, 103, 104, 105, 106],
+  rent: [201, 202, 203, 204, 205, 206],
+  land: [301, 302, 303, 304, 305, 306],
+  development: [401, 402, 403, 404, 405, 406],
+};
 
 function selectProperties(
   ids: readonly number[],
-  fallbackType: string
+  locale?: string
 ): ListingProperty[] {
+  const catalog = getPropertyCatalog(locale);
+
   const propertiesById = new Map(
-    propertyCatalog.map((property) => [property.id, property])
+    catalog.map((property) => [
+      property.id,
+      property,
+    ])
   );
 
   return ids.map((id) => {
-    const property = propertiesById.get(id);
+    const property =
+      propertiesById.get(id);
 
     if (!property) {
       throw new Error(
@@ -23,7 +42,7 @@ function selectProperties(
       title: property.title,
       location: property.location,
       price: property.price,
-      type: fallbackType,
+      type: property.propertyType,
       area: property.area,
       rooms: property.rooms,
       image: property.image,
@@ -32,22 +51,56 @@ function selectProperties(
   });
 }
 
-export const propertiesForSale = selectProperties(
-  [101, 102, 103, 104, 105, 106],
-  "Kaufimmobilie"
-);
+export function getPropertiesForSale(
+  locale?: string
+): ListingProperty[] {
+  return selectProperties(
+    collectionIds.buy,
+    locale
+  );
+}
 
-export const propertiesForRent = selectProperties(
-  [201, 202, 203, 204, 205, 206],
-  "Mietimmobilie"
-);
+export function getPropertiesForRent(
+  locale?: string
+): ListingProperty[] {
+  return selectProperties(
+    collectionIds.rent,
+    locale
+  );
+}
 
-export const landProperties = selectProperties(
-  [301, 302, 303, 304, 305, 306],
-  "Grundstück"
-);
+export function getLandProperties(
+  locale?: string
+): ListingProperty[] {
+  return selectProperties(
+    collectionIds.land,
+    locale
+  );
+}
 
-export const newDevelopmentProperties = selectProperties(
-  [401, 402, 403, 404, 405, 406],
-  "Neubauprojekt"
-);
+export function getNewDevelopmentProperties(
+  locale?: string
+): ListingProperty[] {
+  return selectProperties(
+    collectionIds.development,
+    locale
+  );
+}
+
+/**
+ * Deutsche Fallback-Daten für bestehende Komponenten.
+ *
+ * Locale-abhängige Seiten sollten stattdessen
+ * die get...()-Funktionen verwenden.
+ */
+export const propertiesForSale =
+  getPropertiesForSale("de");
+
+export const propertiesForRent =
+  getPropertiesForRent("de");
+
+export const landProperties =
+  getLandProperties("de");
+
+export const newDevelopmentProperties =
+  getNewDevelopmentProperties("de");

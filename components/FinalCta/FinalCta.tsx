@@ -1,8 +1,12 @@
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Icon } from "@/components/Icon/Icon";
 import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./FinalCta.module.css";
 
 export function FinalCta() {
+  const t = useTranslations("FinalCta");
+
   return (
     <section
       className={styles.section}
@@ -13,48 +17,77 @@ export function FinalCta() {
         <Reveal>
           <div className={styles.card}>
             <div className={styles.copy}>
-              <p className={styles.eyebrow}>Der nächste Schritt</p>
+              <p className={styles.eyebrow}>
+                {t("eyebrow")}
+              </p>
 
               <h2 id="final-cta-title">
-                Aus einer Suche wird eine Entscheidung.
+                {t("title")}
               </h2>
 
               <p className={styles.description}>
-                Entdecke internationale Immobilien, finde passende Grundstücke
-                oder werde als geprüfter Bau- und Projektpartner Teil von
-                Real2Own.
+                {t("description")}
               </p>
             </div>
 
             <div className={styles.actions}>
-              <a className={styles.action} href="#top">
-                <span className={styles.actionNumber}>01</span>
-
-                <span className={styles.actionCopy}>
-                  <small>Für Käufer und Mieter</small>
-                  <strong>Immobilien entdecken</strong>
-                </span>
-
-                <span className={styles.actionIcon} aria-hidden="true">
-                  <Icon name="arrow" size={17} />
-                </span>
-              </a>
-
-              <a
+              <Link
                 className={styles.action}
-                href="mailto:partner@real2own.example"
+                href="/immobilien/kaufen"
               >
-                <span className={styles.actionNumber}>02</span>
+                <span className={styles.actionNumber}>
+                  01
+                </span>
 
                 <span className={styles.actionCopy}>
-                  <small>Für Unternehmen</small>
-                  <strong>Partner werden</strong>
+                  <small>
+                    {t("properties.label")}
+                  </small>
+
+                  <strong>
+                    {t("properties.title")}
+                  </strong>
                 </span>
 
-                <span className={styles.actionIcon} aria-hidden="true">
-                  <Icon name="arrow" size={17} />
+                <span
+                  className={styles.actionIcon}
+                  aria-hidden="true"
+                >
+                  <Icon
+                    name="arrow"
+                    size={17}
+                  />
                 </span>
-              </a>
+              </Link>
+
+              <Link
+                className={styles.action}
+                href="/partner-werden"
+              >
+                <span className={styles.actionNumber}>
+                  02
+                </span>
+
+                <span className={styles.actionCopy}>
+                  <small>
+                    {t("partners.label")}
+                  </small>
+
+                  <strong>
+                    {t("partners.title")}
+                  </strong>
+                </span>
+
+                <span
+                  className={styles.actionIcon}
+                  aria-hidden="true"
+                >
+                  <Icon
+                    name="arrow"
+                    size={17}
+                  />
+                </span>
+              </Link>
             </div>
           </div>
         </Reveal>

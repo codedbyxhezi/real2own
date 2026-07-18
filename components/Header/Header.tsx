@@ -6,37 +6,42 @@ import {
   useState,
 } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import {
+  Link,
+  usePathname,
+  useRouter,
+} from "@/i18n/navigation";
 import { Icon } from "@/components/Icon/Icon";
+import type { AppLocale } from "@/i18n/routing";
 import styles from "./Header.module.css";
 
 const navItems = [
   {
-    label: "Kaufen",
+    key: "buy",
     href: "/immobilien/kaufen",
   },
   {
-    label: "Mieten",
+    key: "rent",
     href: "/immobilien/mieten",
   },
   {
-    label: "Grundstücke",
+    key: "land",
     href: "/grundstuecke",
   },
   {
-    label: "Neubauprojekte",
+    key: "developments",
     href: "/neubauprojekte",
   },
   {
-    label: "Baupartner",
+    key: "constructionPartners",
     href: "/baupartner",
   },
   {
-    label: "International",
+    key: "international",
     href: "/international",
   },
-];
+] as const;
 
 const languages = [
   {
@@ -59,39 +64,27 @@ const languages = [
   },
 ] as const;
 
-type LanguageCode = (typeof languages)[number]["code"];
-
-const LANGUAGE_STORAGE_KEY = "real2own:language";
-
-function isLanguageCode(
-  value: unknown
-): value is LanguageCode {
-  return (
-    typeof value === "string" &&
-    languages.some(
-      (language) => language.code === value
-    )
-  );
-}
-
 export function Header() {
   const [open, setOpen] = useState(false);
-  const [languageOpen, setLanguageOpen] = useState(false);
-  const [activeLanguage, setActiveLanguage] =
-    useState<LanguageCode>("de");
+  const [languageOpen, setLanguageOpen] =
+    useState(false);
 
   const languageSwitcherRef =
     useRef<HTMLDivElement>(null);
 
+  const locale = useLocale() as AppLocale;
   const pathname = usePathname();
+  const router = useRouter();
+
+  const t = useTranslations("Header");
 
   const selectedLanguage =
     languages.find(
-      (language) => language.code === activeLanguage
+      (language) => language.code === locale
     ) ?? languages[0];
 
   const availableLanguages = languages.filter(
-    (language) => language.code !== activeLanguage
+    (language) => language.code !== locale
   );
 
   function closeMenu() {
@@ -105,40 +98,16 @@ export function Header() {
     );
   }
 
-  function selectLanguage(code: LanguageCode) {
-    setActiveLanguage(code);
+  function selectLanguage(
+    nextLocale: AppLocale
+  ) {
     setLanguageOpen(false);
+    setOpen(false);
 
-    window.localStorage.setItem(
-      LANGUAGE_STORAGE_KEY,
-      code
-    );
-
-    document.cookie =
-      `NEXT_LOCALE=${code}; path=/; max-age=31536000; SameSite=Lax`;
+    router.replace(pathname, {
+      locale: nextLocale,
+    });
   }
-
-  useEffect(() => {
-    const storedLanguage = window.localStorage.getItem(
-      LANGUAGE_STORAGE_KEY
-    );
-
-    const cookieLanguage = document.cookie
-      .split("; ")
-      .find((cookie) =>
-        cookie.startsWith("NEXT_LOCALE=")
-      )
-      ?.split("=")[1];
-
-    if (isLanguageCode(storedLanguage)) {
-      setActiveLanguage(storedLanguage);
-      return;
-    }
-
-    if (isLanguageCode(cookieLanguage)) {
-      setActiveLanguage(cookieLanguage);
-    }
-  }, []);
 
   useEffect(() => {
     setOpen(false);
@@ -161,16 +130,18 @@ export function Header() {
   }, [open]);
 
   useEffect(() => {
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key !== "Escape") {
-        return;
+    function handleKeyDown(
+      event: KeyboardEvent
+    ) {
+      if (event.key === "Escape") {
+        setOpen(false);
+        setLanguageOpen(false);
       }
-
-      setOpen(false);
-      setLanguageOpen(false);
     }
 
-    function handlePointerDown(event: PointerEvent) {
+    function handlePointerDown(
+      event: PointerEvent
+    ) {
       const target = event.target;
 
       if (!(target instanceof Node)) {
@@ -179,13 +150,19 @@ export function Header() {
 
       if (
         languageSwitcherRef.current &&
-        !languageSwitcherRef.current.contains(target)
+        !languageSwitcherRef.current.contains(
+          target
+        )
       ) {
         setLanguageOpen(false);
       }
     }
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
+
     document.addEventListener(
       "pointerdown",
       handlePointerDown
@@ -206,11 +183,13 @@ export function Header() {
 
   return (
     <header className={styles.header}>
-      <div className={`container ${styles.inner}`}>
+      <div
+        className={`container ${styles.inner}`}
+      >
         <Link
           className={styles.logo}
           href="/"
-          aria-label="Real2Own Startseite"
+          aria-label="Real2Own"
           onClick={closeMenu}
         >
           <Image
@@ -226,10 +205,11 @@ export function Header() {
 
         <nav
           className={styles.desktopNav}
-          aria-label="Hauptnavigation"
+          aria-label={t("mainNavigation")}
         >
           {navItems.map((item) => {
-            const isActive = isActiveRoute(item.href);
+            const isActive =
+              isActiveRoute(item.href);
 
             return (
               <Link
@@ -239,12 +219,14 @@ export function Header() {
                     : undefined
                 }
                 href={item.href}
-                key={item.label}
+                key={item.key}
                 aria-current={
-                  isActive ? "page" : undefined
+                  isActive
+                    ? "page"
+                    : undefined
                 }
               >
-                {item.label}
+                {t(item.key)}
               </Link>
             );
           })}
@@ -253,29 +235,49 @@ export function Header() {
         <div className={styles.actions}>
           <div
             ref={languageSwitcherRef}
-            className={`${styles.languageSwitcher} ${
+            className={`${
+              styles.languageSwitcher
+            } ${
               languageOpen
                 ? styles.languageSwitcherOpen
                 : ""
             }`}
-            onMouseEnter={() => setLanguageOpen(true)}
-            onMouseLeave={() => setLanguageOpen(false)}
+            onMouseEnter={() =>
+              setLanguageOpen(true)
+            }
+            onMouseLeave={() =>
+              setLanguageOpen(false)
+            }
           >
             <button
-              className={styles.languageCurrent}
+              className={
+                styles.languageCurrent
+              }
               type="button"
-              aria-label={`Aktuelle Sprache: ${selectedLanguage.label}`}
+              aria-label={t(
+                "currentLanguage",
+                {
+                  language:
+                    selectedLanguage.label,
+                }
+              )}
               aria-haspopup="menu"
               aria-expanded={languageOpen}
               onClick={() =>
                 setLanguageOpen(
-                  (currentOpen) => !currentOpen
+                  (current) => !current
                 )
               }
             >
-              <span className={styles.languageFlagWrap}>
+              <span
+                className={
+                  styles.languageFlagWrap
+                }
+              >
                 <Image
-                  className={styles.languageFlagImage}
+                  className={
+                    styles.languageFlagImage
+                  }
                   src={selectedLanguage.flag}
                   alt=""
                   width={30}
@@ -283,54 +285,85 @@ export function Header() {
                 />
               </span>
 
-              <span className={styles.languageCode}>
+              <span
+                className={
+                  styles.languageCode
+                }
+              >
                 {selectedLanguage.shortLabel}
               </span>
 
               <span
-                className={styles.languageChevron}
+                className={
+                  styles.languageChevron
+                }
                 aria-hidden="true"
               >
-                <Icon name="chevron" size={13} />
+                <Icon
+                  name="chevron"
+                  size={13}
+                />
               </span>
             </button>
 
             <div
-              className={styles.languageMenu}
+              className={
+                styles.languageMenu
+              }
               role="menu"
-              aria-label="Sprache auswählen"
+              aria-label={t(
+                "languageSelection"
+              )}
             >
-              {availableLanguages.map((language) => (
-                <button
-                  className={styles.languageOption}
-                  type="button"
-                  role="menuitem"
-                  key={language.code}
-                  onClick={() =>
-                    selectLanguage(language.code)
-                  }
-                >
-                  <span
-                    className={styles.languageFlagWrap}
+              {availableLanguages.map(
+                (language) => (
+                  <button
+                    className={
+                      styles.languageOption
+                    }
+                    type="button"
+                    role="menuitem"
+                    key={language.code}
+                    onClick={() =>
+                      selectLanguage(
+                        language.code
+                      )
+                    }
                   >
-                    <Image
-                      className={styles.languageFlagImage}
-                      src={language.flag}
-                      alt=""
-                      width={30}
-                      height={20}
-                    />
-                  </span>
+                    <span
+                      className={
+                        styles.languageFlagWrap
+                      }
+                    >
+                      <Image
+                        className={
+                          styles.languageFlagImage
+                        }
+                        src={language.flag}
+                        alt=""
+                        width={30}
+                        height={20}
+                      />
+                    </span>
 
-                  <span className={styles.languageName}>
-                    {language.label}
-                  </span>
+                    <span
+                      className={
+                        styles.languageName
+                      }
+                    >
+                      {language.label}
+                    </span>
 
-                  <span className={styles.optionCode}>
-                    {language.shortLabel}
-                  </span>
-                </button>
-              ))}
+                    <span
+                      className={
+                        styles.optionCode
+                      }
+                    >
+                      {language.shortLabel}
+                    </span>
+                  </button>
+                )
+              )}
             </div>
           </div>
 
@@ -338,15 +371,17 @@ export function Header() {
             className={styles.login}
             href="/anmelden"
           >
-            Anmelden
+            {t("login")}
           </Link>
 
           <Link
-            className={styles.listingButton}
+            className={
+              styles.listingButton
+            }
             href="/immobilie-anbieten#anfrage"
             onClick={closeMenu}
           >
-            Inserieren
+            {t("listProperty")}
           </Link>
 
           <button
@@ -355,10 +390,15 @@ export function Header() {
             aria-expanded={open}
             aria-controls="mobile-navigation"
             aria-label={
-              open ? "Menü schließen" : "Menü öffnen"
+              open
+                ? t("closeMenu")
+                : t("openMenu")
             }
             onClick={() =>
-              setOpen((currentOpen) => !currentOpen)
+              setOpen(
+                (currentOpen) =>
+                  !currentOpen
+              )
             }
           >
             <Icon
@@ -370,18 +410,25 @@ export function Header() {
       </div>
 
       <div
-        className={`${styles.mobilePanel} ${
-          open ? styles.mobilePanelOpen : ""
+        className={`${
+          styles.mobilePanel
+        } ${
+          open
+            ? styles.mobilePanelOpen
+            : ""
         }`}
         id="mobile-navigation"
         aria-hidden={!open}
       >
         <nav
           className="container"
-          aria-label="Mobile Navigation"
+          aria-label={t(
+            "mobileNavigation"
+          )}
         >
           {navItems.map((item) => {
-            const isActive = isActiveRoute(item.href);
+            const isActive =
+              isActiveRoute(item.href);
 
             return (
               <Link
@@ -391,43 +438,59 @@ export function Header() {
                     : undefined
                 }
                 href={item.href}
-                key={item.label}
+                key={item.key}
                 aria-current={
-                  isActive ? "page" : undefined
+                  isActive
+                    ? "page"
+                    : undefined
                 }
                 tabIndex={open ? 0 : -1}
                 onClick={closeMenu}
               >
-                <span>{item.label}</span>
+                <span>
+                  {t(item.key)}
+                </span>
 
-                <Icon name="chevron" size={18} />
+                <Icon
+                  name="chevron"
+                  size={18}
+                />
               </Link>
             );
           })}
 
           <Link
-            className={styles.mobileLogin}
+            className={
+              styles.mobileLogin
+            }
             href="/anmelden"
             tabIndex={open ? 0 : -1}
             onClick={closeMenu}
           >
-            <span>Anmelden</span>
+            <span>{t("login")}</span>
 
             <span
-              className={styles.mobileLoginIcon}
+              className={
+                styles.mobileLoginIcon
+              }
               aria-hidden="true"
             >
-              <Icon name="arrow" size={16} />
+              <Icon
+                name="arrow"
+                size={16}
+              />
             </span>
           </Link>
 
           <Link
-            className={styles.mobileCta}
+            className={
+              styles.mobileCta
+            }
             href="/immobilie-anbieten#anfrage"
             tabIndex={open ? 0 : -1}
             onClick={closeMenu}
           >
-            Immobilie inserieren
+            {t("listPropertyLong")}
           </Link>
         </nav>
       </div>

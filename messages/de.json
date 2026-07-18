@@ -1,0 +1,1367 @@
+{
+  "Header": {
+    "buy": "Kaufen",
+    "rent": "Mieten",
+    "land": "Grundstücke",
+    "developments": "Neubauprojekte",
+    "constructionPartners": "Baupartner",
+    "international": "International",
+    "login": "Anmelden",
+    "listProperty": "Inserieren",
+    "listPropertyLong": "Immobilie inserieren",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "mainNavigation": "Hauptnavigation",
+    "mobileNavigation": "Mobile Navigation",
+    "languageSelection": "Sprache auswählen",
+    "currentLanguage": "Aktuelle Sprache: {language}"
+  },
+  "Footer": {
+    "homeAria": "Real2Own Startseite",
+    "statement": "Immobilien, Grundstücke und Projektpartner auf einer internationalen Plattform.",
+    "backToTop": "Nach oben",
+    "contactLabel": "Kontakt",
+    "owner": "Inhaber",
+    "navigationAria": "Footer Navigation",
+    "propertiesTitle": "Immobilien",
+    "buyProperties": "Immobilien kaufen",
+    "rentProperties": "Wohnungen mieten",
+    "land": "Grundstücke",
+    "developments": "Neubauprojekte",
+    "ownersPartnersTitle": "Eigentümer & Partner",
+    "offerProperty": "Immobilie anbieten",
+    "findBuildingPartners": "Baupartner finden",
+    "presentProject": "Projekt präsentieren",
+    "becomePartner": "Partner werden",
+    "real2ownTitle": "Real2Own",
+    "about": "Über Real2Own",
+    "internationalMarkets": "Internationale Märkte",
+    "contact": "Kontakt",
+    "legalNotice": "Impressum",
+    "consultationLabel": "Persönliche Beratung",
+    "consultationTitle": "Ein konkretes Immobilienvorhaben?",
+    "consultationText": "Wir unterstützen dich bei der Suche, Vermarktung oder Entwicklung von Immobilien und Grundstücken.",
+    "contactAction": "Kontakt aufnehmen",
+    "platform": "Internationale Immobilienplattform",
+    "legalAria": "Rechtliche Informationen",
+    "privacy": "Datenschutz",
+    "cookies": "Cookie-Hinweise"
+  },
+  "Hero": {
+  "eyebrow": "Internationale Immobilienplattform",
+  "title": "Immobilien finden.",
+  "titleHighlight": "Weltweit zuhause.",
+  "description": "Entdecke Immobilien, Grundstücke und ausgewählte Projektpartner in internationalen Märkten."
+},
+"SearchPanel": {
+  "tabsAria": "Art der Immobiliensuche",
+  "tabs": {
+    "buy": "Kaufen",
+    "rent": "Mieten",
+    "land": "Grundstück",
+    "build": "Bauen"
+  },
+  "locationLabel": "Wo suchst du?",
+  "locationPlaceholder": "Stadt, Region oder Land",
+  "propertyTypeLabel": "Immobilientyp",
+  "propertyTypes": {
+    "all": "Alle Immobilien",
+    "house": "Haus",
+    "apartment": "Wohnung",
+    "land": "Grundstück",
+    "commercial": "Gewerbe"
+  },
+  "budgetLabel": "Budget",
+  "budgets": {
+    "any": "Beliebiges Budget",
+    "upTo250": "Bis 250.000",
+    "upTo500": "Bis 500.000",
+    "upToMillion": "Bis 1.000.000",
+    "fromMillion": "Ab 1.000.000"
+  },
+  "search": "Suchen",
+  "popular": "Beliebt:"
+},
+"PropertyShowcase": {
+  "ariaLabel": "Ausgewählte Immobilien",
+  "eyebrow": "Ausgewählte Immobilien",
+  "title": "Orte, die mehr aus deinem Leben machen.",
+  "description": "Entdecke kuratierte Wohn- und Investmentobjekte – transparent aufbereitet, international vergleichbar und bereit für den nächsten Schritt.",
+  "viewAll": "Alle Immobilien"
+},
+"PropertyCard": {
+  "imageAlt": "{title} in {location}",
+  "favoriteAria": "{title} zu Favoriten hinzufügen",
+  "rooms": "Zimmer",
+  "bathrooms": "Bäder",
+  "perMonth": "Monat",
+  "purposes": {
+    "buy": "Kaufen",
+    "rent": "Mieten",
+    "invest": "Investieren"
+  },
+  "types": {
+    "villa": "Villa",
+    "penthouse": "Penthouse",
+    "house": "Einfamilienhaus",
+    "loft": "Loft",
+    "holidayHome": "Ferienhaus",
+    "apartment": "Wohnung"
+  },
+  "countries": {
+    "spain": "Spanien",
+    "uae": "Vereinigte Arabische Emirate",
+    "germany": "Deutschland",
+    "portugal": "Portugal",
+    "sweden": "Schweden"
+  },
+  "badges": {
+    "new": "Neu",
+    "primeLocation": "Top Lage",
+    "yield52": "Rendite 5,2 %",
+    "readyToMoveIn": "Bezugsfertig"
+  }
+},
+"DestinationGrid": {
+  "ariaLabel": "Internationale Immobilienmärkte",
+  "eyebrow": "International zuhause",
+  "title": "Ein Zugang. Viele Märkte. Grenzenlose Möglichkeiten.",
+  "description": "Vergleiche Standorte, Immobilien und lokale Partner über Ländergrenzen hinweg – übersichtlich kuratiert und persönlich begleitet.",
+  "listingCount": "{count} Objekte",
+  "discover": "Markt entdecken",
+  "discoverAria": "Immobilien in {city} entdecken",
+  "imageAlt": "Immobilien und Architektur in {city}",
+  "destinations": {
+    "berlin": {
+      "city": "Berlin",
+      "country": "Deutschland"
+    },
+    "dubai": {
+      "city": "Dubai",
+      "country": "Vereinigte Arabische Emirate"
+    },
+    "mallorca": {
+      "city": "Mallorca",
+      "country": "Spanien"
+    },
+    "lisbon": {
+      "city": "Lissabon",
+      "country": "Portugal"
+    }
+  }
+},
+"Services": {
+  "ariaLabel": "Leistungen von Real2Own",
+  "eyebrow": "Alles an einem Ort",
+  "title": "Vom ersten Wunsch bis zur Schlüsselübergabe.",
+  "description": "Real2Own verbindet Immobiliensuche, Standortentscheidung und Projektumsetzung in einer internationalen Plattform.",
+  "learnMore": "Mehr erfahren",
+  "learnMoreAria": "Mehr über {title}",
+  "services": {
+    "buy": {
+      "label": "Immobilien",
+      "title": "Haus oder Wohnung kaufen",
+      "text": "Ausgewählte Angebote, nachvollziehbare Daten und direkter Zugang zu regionalen Ansprechpartnern."
+    },
+    "rent": {
+      "label": "Mieten",
+      "title": "Flexibel wohnen",
+      "text": "Langzeitmiete, temporäres Wohnen und hochwertige Residenzen an internationalen Standorten."
+    },
+    "land": {
+      "label": "Grundstücke",
+      "title": "Flächen mit Potenzial finden",
+      "text": "Bauland und Investmentflächen mit wichtigen Standort-, Entwicklungs- und Potenzialdaten."
+    },
+    "build": {
+      "label": "Neubau",
+      "title": "Mit geprüften Partnern bauen",
+      "text": "Architekturbüros, Bauunternehmen und Projektentwickler transparent vergleichen und kontaktieren."
+    }
+  }
+},
+"PartnerShowcase": {
+  "ariaLabel": "Baupartner und Projektpartner",
+  "imageAlt": "Architektur- und Baupartner bei der Projektplanung",
+  "partnerNetwork": "Partnernetzwerk",
+  "verifiedTitle": "Real2Own Verified",
+  "verifiedText": "Identität, Referenzen und Leistungen geprüft",
+  "activePartners": "aktive Bau- und Projektpartner",
+  "eyebrow": "Planen. Bauen. Realisieren.",
+  "title": "Die richtigen Partner für ein Projekt, das Bestand hat.",
+  "description": "Real2Own verbindet Eigentümer, Investoren und Bauherren mit ausgewählten Unternehmen aus Architektur, Bau und technischer Planung. Regional erfahren und transparent vergleichbar.",
+  "partnerTypes": {
+    "generalContractors": "Generalunternehmer",
+    "architects": "Architekturbüros",
+    "construction": "Holz- und Massivbau",
+    "smartHome": "Smart-Home-Technik",
+    "energyConsulting": "Energieberatung",
+    "projectDevelopment": "Projektentwicklung"
+  },
+  "advantages": {
+    "directContact": {
+      "title": "Direkter Kontakt",
+      "description": "Ohne unnötige Vermittlungswege zum passenden Ansprechpartner."
+    },
+    "selectedPartners": {
+      "title": "Geprüfte Partner",
+      "description": "Nachvollziehbare Profile, Referenzen und Leistungsbereiche."
+    }
+  },
+  "cta": "Baupartner entdecken"
+},
+"Process": {
+  "ariaLabel": "So funktioniert Real2Own",
+  "eyebrow": "So funktioniert Real2Own",
+  "title": "Ein klarer Weg zu deinem nächsten Zuhause.",
+  "description": "Von der ersten Suche bis zur erfolgreichen Übergabe bleibt jeder Schritt transparent, nachvollziehbar und persönlich begleitet.",
+  "steps": {
+    "discover": {
+      "title": "Entdecken",
+      "text": "Suche international nach Immobilien, Grundstücken und geeigneten Projektpartnern."
+    },
+    "compare": {
+      "title": "Vergleichen",
+      "text": "Bewerte Angebote anhand einheitlicher Daten, Preise und Standortinformationen."
+    },
+    "connect": {
+      "title": "Verbinden",
+      "text": "Plane Besichtigungen und sprich direkt mit Maklern, Eigentümern oder Baupartnern."
+    },
+    "realize": {
+      "title": "Realisieren",
+      "text": "Begleite Kauf, Miete oder Bauprojekt über einen klar strukturierten Prozess."
+    }
+  }
+},
+"Testimonials": {
+  "eyebrow": "Kundenstimmen",
+  "title": "Erfahrungen, auf die es ankommt.",
+  "description": "Käufer, Bauherren und Projektpartner über ihre Zusammenarbeit mit Real2Own.",
+  "outOfFive": "von 5",
+  "starsAria": "{score} von 5 Sternen",
+  "ratingText": "Basierend auf verifizierten Rückmeldungen",
+  "carouselRole": "Karussell",
+  "carouselAria": "Erfahrungen unserer Kunden",
+  "verified": "Verifiziert",
+  "selectReview": "Kundenstimme auswählen",
+  "showReview": "Kundenstimme {number} anzeigen",
+  "previous": "Vorherige Kundenstimme",
+  "next": "Nächste Kundenstimme",
+  "reviews": {
+    "buyers": {
+      "quote": "Wir konnten Immobilien in Deutschland, Portugal und Spanien erstmals sinnvoll miteinander vergleichen. Das hat unsere Entscheidung deutlich vereinfacht.",
+      "role": "Private Käufer",
+      "location": "München"
+    },
+    "builder": {
+      "quote": "Grundstückssuche und passende Baupartner an einem Ort zu finden, war für unser Projekt ein entscheidender Vorteil.",
+      "role": "Privater Bauherr",
+      "location": "Hamburg"
+    },
+    "developer": {
+      "quote": "Unsere Projekte lassen sich international professionell präsentieren. Gleichzeitig erreichen wir gezielter passende Interessenten.",
+      "role": "Projektentwicklerin",
+      "location": "Mailand"
+    }
+  }
+},
+"FinalCta": {
+  "eyebrow": "Der nächste Schritt",
+  "title": "Aus einer Suche wird eine Entscheidung.",
+  "description": "Entdecke internationale Immobilien, finde passende Grundstücke oder werde als ausgewählter Bau- und Projektpartner Teil von Real2Own.",
+  "properties": {
+    "label": "Für Käufer und Mieter",
+    "title": "Immobilien entdecken"
+  },
+  "partners": {
+    "label": "Für Unternehmen",
+    "title": "Partner werden"
+  }
+},
+"ContactForm": {
+  "requestSection": "Dein Anliegen",
+  "topicLabel": "Thema",
+  "selectPlaceholder": "Bitte auswählen",
+  "contactSection": "Kontaktdaten",
+  "nameLabel": "Name",
+  "namePlaceholder": "Vor- und Nachname",
+  "emailLabel": "E-Mail-Adresse",
+  "phoneLabel": "Telefonnummer",
+  "contactPreferenceLabel": "Bevorzugte Kontaktart",
+  "messageLabel": "Nachricht",
+  "messagePlaceholder": "Beschreibe dein Anliegen, den gewünschten Standort, dein Budget oder weitere wichtige Informationen ...",
+  "privacyBefore": "Ich habe die",
+  "privacyLink": "Datenschutzerklärung",
+  "privacyAfter": "gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage zu.",
+  "submit": "Nachricht vorbereiten",
+  "note": "Nach dem Absenden öffnet sich dein E-Mail-Programm mit einer vorbereiteten Nachricht. Die Angaben werden nicht automatisch auf dieser Website gespeichert.",
+  "topics": {
+    "buy": "Immobilie kaufen",
+    "rent": "Immobilie mieten",
+    "sell": "Immobilie verkaufen",
+    "let": "Immobilie vermieten",
+    "land": "Grundstück",
+    "development": "Neubauprojekt",
+    "buildingPartner": "Baupartner",
+    "becomePartner": "Partner werden",
+    "general": "Allgemeine Anfrage"
+  },
+  "contactPreferences": {
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "none": "Keine Präferenz"
+  },
+  "mail": {
+    "subject": "Kontaktanfrage: {topic}",
+    "heading": "Neue Kontaktanfrage über real2own.com",
+    "topic": "Thema",
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "contactPreference": "Bevorzugte Kontaktart",
+    "message": "Nachricht",
+    "noInformation": "Keine Angabe",
+    "noMessage": "Keine Nachricht"
+  }
+},
+"ForgotPasswordForm": {
+  "emailLabel": "E-Mail-Adresse",
+  "submit": "Passwort-Reset folgt",
+  "status": "Der sichere Versand des Zurücksetzungslinks wird mit dem Backend aktiviert."
+},
+"ListingExplorer": {
+  "filterAria": "Immobilien filtern",
+  "locationLabel": "Standort",
+  "locationPlaceholder": "Ort, Region oder Land",
+  "propertyTypeLabel": "Objektart",
+  "allPropertyTypes": "Alle Objektarten",
+  "maximumPriceLabel": "Maximaler Preis",
+  "maximumPricePlaceholder": "z. B. 2.500.000",
+  "minimumRoomsLabel": "Zimmer ab",
+  "anyRooms": "Beliebig",
+  "roomOption": "{count, plural, one {# Zimmer} other {# Zimmer}}",
+  "resultCount": "{count, plural, =0 {Keine Angebote gefunden} one {# Angebot gefunden} other {# Angebote gefunden}}",
+  "resetFilters": "Filter zurücksetzen",
+  "currentSelection": "Aktuelle Auswahl",
+  "sortLabel": "Sortieren",
+  "sortOptions": {
+    "recommended": "Empfohlen",
+    "priceAscending": "Preis aufsteigend",
+    "priceDescending": "Preis absteigend",
+    "areaDescending": "Größte Fläche"
+  },
+  "viewPropertyAria": "{title} ansehen",
+  "facts": {
+    "propertyType": "Objektart",
+    "area": "Fläche",
+    "rooms": "Zimmer"
+  },
+  "details": "Details",
+  "loadMore": "Weitere Angebote laden",
+  "empty": {
+    "title": "Keine passenden Angebote gefunden.",
+    "description": "Ändere den Standort, den Preis oder die Objektart, um weitere Ergebnisse zu sehen.",
+    "reset": "Alle Filter zurücksetzen"
+  }
+},
+"LoginForm": {
+  "emailLabel": "E-Mail-Adresse",
+  "passwordLabel": "Passwort",
+  "passwordPlaceholder": "Dein Passwort",
+  "remember": "Angemeldet bleiben",
+  "forgotPassword": "Passwort vergessen?",
+  "submit": "Anmeldung folgt",
+  "status": "Der sichere Kundenlogin wird zusammen mit dem Backend aktiviert.",
+  "noAccount": "Noch kein Konto?",
+  "register": "Jetzt registrieren"
+},
+"ListingPage": {
+  "ctaAria": "Persönliche Immobiliensuche",
+  "ctaEyebrow": "Persönliche Immobiliensuche",
+  "ctaTitle": "Noch nicht das passende Angebot gefunden?",
+  "ctaDescription": "Teile uns Standort, Budget und Anforderungen mit. Wir unterstützen dich bei der gezielten Suche.",
+  "ctaAction": "Suchauftrag starten"
+},
+"PartnerApplicationForm": {
+  "companySection": "Unternehmen",
+  "companyNameLabel": "Unternehmensname",
+  "categoryLabel": "Partnerkategorie",
+  "selectPlaceholder": "Bitte auswählen",
+  "websiteLabel": "Website",
+  "locationLabel": "Unternehmensstandort",
+  "locationPlaceholder": "Ort, Land",
+  "marketsLabel": "Tätigkeitsregionen",
+  "marketsPlaceholder": "z. B. München, Mallorca, Dubai",
+  "companySizeLabel": "Unternehmensgröße",
+  "noInformation": "Keine Angabe",
+  "contactSection": "Kontakt und Leistungen",
+  "contactPersonLabel": "Ansprechperson",
+  "emailLabel": "E-Mail-Adresse",
+  "phoneLabel": "Telefonnummer",
+  "servicesLabel": "Leistungen und ausgewählte Referenzen",
+  "servicesPlaceholder": "Beschreibe deine Leistungen, Spezialisierungen und ausgewählte Projekte ...",
+  "privacyBefore": "Ich habe die",
+  "privacyLink": "Datenschutzerklärung",
+  "privacyAfter": "gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Partneranfrage zu.",
+  "submit": "Partneranfrage vorbereiten",
+  "note": "Nach dem Absenden öffnet sich dein E-Mail-Programm mit einer vorbereiteten Nachricht.",
+  "categories": {
+    "constructionCompany": "Bauunternehmen",
+    "architectureFirm": "Architekturbüro",
+    "projectDeveloper": "Projektentwickler",
+    "generalContractor": "Generalunternehmer",
+    "realEstateAgent": "Immobilienmakler",
+    "financeSpecialist": "Finanzierungs- oder Fachpartner",
+    "other": "Sonstiges"
+  },
+  "companySizes": {
+    "size1to5": "1–5 Mitarbeitende",
+    "size6to20": "6–20 Mitarbeitende",
+    "size21to50": "21–50 Mitarbeitende",
+    "size51to100": "51–100 Mitarbeitende",
+    "sizeOver100": "Mehr als 100 Mitarbeitende"
+  },
+  "mail": {
+    "subject": "Partneranfrage für das Real2Own-Netzwerk",
+    "heading": "Neue Partneranfrage über real2own.com",
+    "company": "Unternehmen",
+    "category": "Partnerkategorie",
+    "website": "Website",
+    "location": "Standort",
+    "markets": "Tätigkeitsregionen",
+    "companySize": "Unternehmensgröße",
+    "contactPerson": "Ansprechperson",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "services": "Leistungen und Referenzen",
+    "noInformation": "Keine Angabe",
+    "noFurtherInformation": "Keine weiteren Angaben"
+  }
+},
+"PropertyOfferForm": {
+  "propertySection": "Objekt und Vorhaben",
+  "personalSection": "Persönliche Angaben",
+  "propertyTypeLabel": "Objektart",
+  "selectPlaceholder": "Bitte auswählen",
+  "locationLabel": "Standort",
+  "locationPlaceholder": "Ort, Region oder Land",
+  "areaLabel": "Wohn- oder Nutzfläche",
+  "areaPlaceholder": "z. B. 180 m²",
+  "plotAreaLabel": "Grundstücksfläche",
+  "plotAreaPlaceholder": "z. B. 1.200 m²",
+  "roomsLabel": "Zimmer",
+  "roomsPlaceholder": "z. B. 5",
+  "priceLabel": "Preisvorstellung",
+  "pricePlaceholder": "z. B. 1.250.000 €",
+  "nameLabel": "Name",
+  "namePlaceholder": "Vor- und Nachname",
+  "emailLabel": "E-Mail-Adresse",
+  "phoneLabel": "Telefonnummer",
+  "additionalInformationLabel": "Weitere Informationen",
+  "additionalInformationPlaceholder": "Besonderheiten, Zustand, gewünschter Zeitraum oder weitere Informationen zum Objekt ...",
+  "privacyBefore": "Ich habe die",
+  "privacyLink": "Datenschutzerklärung",
+  "privacyAfter": "gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage zu.",
+  "submit": "E-Mail-Anfrage vorbereiten",
+  "note": "Nach dem Absenden wird dein E-Mail-Programm mit einer vorbereiteten Nachricht geöffnet. Die Angaben werden nicht automatisch auf dieser Website gespeichert.",
+  "transactions": {
+    "sell": "Verkaufen",
+    "rent": "Vermieten",
+    "presentProject": "Projekt präsentieren"
+  },
+  "propertyTypes": {
+    "apartment": "Wohnung",
+    "house": "Haus",
+    "villa": "Villa",
+    "multiFamilyHouse": "Mehrfamilienhaus",
+    "land": "Grundstück",
+    "development": "Neubauprojekt",
+    "commercial": "Gewerbeimmobilie",
+    "other": "Sonstiges"
+  },
+  "mail": {
+    "propertySubject": "Immobilie bei Real2Own anbieten",
+    "projectSubject": "Projekt bei Real2Own präsentieren",
+    "heading": "Neue Anfrage über real2own.com",
+    "transaction": "Vorhaben",
+    "propertyType": "Objektart",
+    "location": "Standort",
+    "area": "Wohn-/Nutzfläche",
+    "plotArea": "Grundstücksfläche",
+    "rooms": "Zimmer",
+    "price": "Preisvorstellung",
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "additionalInformation": "Weitere Informationen",
+    "noInformation": "Keine Angabe",
+    "noFurtherInformation": "Keine weiteren Angaben"
+  }
+},
+"RegisterForm": {
+  "firstNameLabel": "Vorname",
+  "firstNamePlaceholder": "Vorname",
+  "lastNameLabel": "Nachname",
+  "lastNamePlaceholder": "Nachname",
+  "emailLabel": "E-Mail-Adresse",
+  "passwordLabel": "Passwort",
+  "passwordPlaceholder": "Mindestens 8 Zeichen",
+  "passwordConfirmationLabel": "Passwort wiederholen",
+  "passwordConfirmationPlaceholder": "Passwort wiederholen",
+  "privacyBefore": "Ich habe die",
+  "privacyLink": "Datenschutzerklärung",
+  "privacyAfter": "gelesen und akzeptiere die Verarbeitung meiner Angaben.",
+  "submit": "Registrierung folgt",
+  "status": "Die Kontoerstellung wird zusammen mit dem sicheren Backend aktiviert.",
+  "alreadyRegistered": "Bereits registriert?",
+  "login": "Jetzt anmelden"
+},
+"ScrollToTop": {
+  "ariaLabel": "Nach oben scrollen"
+},
+"BuyPage": {
+  "metadata": {
+    "title": "Immobilien kaufen",
+    "description": "Ausgewählte Immobilien zum Kauf in Deutschland und internationalen Märkten entdecken."
+  },
+  "eyebrow": "Immobilien kaufen",
+  "title": "Räume für neue Perspektiven.",
+  "description": "Entdecke ausgewählte Wohnungen, Häuser und Villen in Deutschland, Europa und internationalen Märkten.",
+  "resultLabel": "Immobilien zum Kauf"
+},
+"RentPage": {
+  "metadata": {
+    "title": "Immobilien mieten",
+    "description": "Ausgewählte Wohnungen, Häuser und internationale Immobilien zur Miete entdecken."
+  },
+  "eyebrow": "Immobilien mieten",
+  "title": "Ankommen, ohne sich festzulegen.",
+  "description": "Finde hochwertige Mietwohnungen, Häuser und besondere Wohnangebote an ausgewählten Standorten.",
+  "resultLabel": "Immobilien zur Miete"
+},
+"LandPage": {
+  "metadata": {
+    "title": "Grundstücke",
+    "description": "Ausgewählte Baugrundstücke und Entwicklungsflächen in Deutschland und internationalen Regionen."
+  },
+  "eyebrow": "Grundstücke",
+  "title": "Der Anfang jeder großen Idee.",
+  "description": "Entdecke ausgewählte Grundstücke für private Bauvorhaben, Projektentwicklungen und langfristige Investitionen.",
+  "resultLabel": "Verfügbare Grundstücke"
+},
+"NewDevelopmentsPage": {
+  "metadata": {
+    "title": "Neubauprojekte",
+    "description": "Aktuelle Neubauprojekte, Projektentwicklungen und moderne Wohnkonzepte entdecken."
+  },
+  "eyebrow": "Neubauprojekte",
+  "title": "Heute entdecken, was morgen entsteht.",
+  "description": "Ausgewählte Neubauprojekte und moderne Wohnkonzepte für Eigennutzer, Investoren und Projektpartner.",
+  "resultLabel": "Aktuelle Neubauprojekte"
+},
+"BuildingPartnersPage": {
+  "metadata": {
+    "title": "Baupartner",
+    "description": "Geprüfte Bauunternehmen, Architekturbüros und Projektpartner für Immobilien- und Bauvorhaben finden."
+  },
+  "hero": {
+    "eyebrow": "Bau- und Projektpartner",
+    "title": "Gute Projekte beginnen mit den richtigen Partnern.",
+    "description": "Finde geprüfte Bauunternehmen, Architekturbüros und Projektentwickler für private und professionelle Immobilienvorhaben.",
+    "primaryAction": "Partner finden",
+    "secondaryAction": "Als Partner registrieren",
+    "facts": {
+      "international": {
+        "title": "International",
+        "text": "Partner in ausgewählten Märkten"
+      },
+      "verified": {
+        "title": "Geprüft",
+        "text": "Klare Profile und Referenzen"
+      },
+      "direct": {
+        "title": "Direkt",
+        "text": "Kontakt ohne Umwege"
+      }
+    }
+  },
+  "categories": {
+    "eyebrow": "Partnernetzwerk",
+    "title": "Kompetenz für jede Projektphase.",
+    "description": "Von der ersten Idee über Planung und Genehmigung bis zur vollständigen Realisierung findest du passende Partner für dein Vorhaben.",
+    "action": "Partner entdecken",
+    "items": {
+      "constructionCompanies": {
+        "title": "Bauunternehmen",
+        "description": "Erfahrene Unternehmen für Neubau, Sanierung, Ausbau und schlüsselfertige Bauvorhaben."
+      },
+      "architectureFirms": {
+        "title": "Architekturbüros",
+        "description": "Architekten für individuelle Wohnkonzepte, Genehmigungsplanung und anspruchsvolle Architektur."
+      },
+      "projectDevelopers": {
+        "title": "Projektentwickler",
+        "description": "Partner für Grundstücksentwicklung, Planung, Finanzierung und Realisierung komplexer Projekte."
+      },
+      "generalContractors": {
+        "title": "Generalunternehmer",
+        "description": "Zentrale Ansprechpartner für die koordinierte und vollständige Umsetzung eines Bauvorhabens."
+      }
+    }
+  },
+  "process": {
+    "eyebrow": "So funktioniert es",
+    "title": "Vom Vorhaben zum passenden Team.",
+    "description": "Real2Own bringt Anforderungen, Standorte und geeignete Projektpartner übersichtlich zusammen.",
+    "steps": {
+      "describe": {
+        "title": "Vorhaben beschreiben",
+        "description": "Teile uns Standort, Projektart, Grundstücksdaten und deine wichtigsten Anforderungen mit."
+      },
+      "compare": {
+        "title": "Partner vergleichen",
+        "description": "Entdecke passende Unternehmen und verschaffe dir einen Überblick über Leistungen und Referenzen."
+      },
+      "contact": {
+        "title": "Direkt Kontakt aufnehmen",
+        "description": "Besprich dein Projekt mit ausgewählten Partnern und plane gemeinsam die nächsten Schritte."
+      }
+    }
+  },
+  "cta": {
+    "eyebrow": "Projekt starten",
+    "title": "Du planst ein Bau- oder Immobilienprojekt?",
+    "description": "Beschreibe dein Vorhaben und wir unterstützen dich bei der Suche nach geeigneten Bau- und Projektpartnern.",
+    "primaryAction": "Projekt besprechen",
+    "secondaryAction": "Partner werden"
+  }
+},
+"InternationalPage": {
+  "metadata": {
+    "title": "Internationale Immobilien",
+    "description": "Ausgewählte Immobilienmärkte in Deutschland, Spanien, Portugal und den Vereinigten Arabischen Emiraten entdecken."
+  },
+  "hero": {
+    "eyebrow": "Internationale Märkte",
+    "title": "Immobilien kennen keine Grenzen.",
+    "description": "Entdecke ausgewählte Immobilien, Grundstücke und Neubauprojekte in internationalen Märkten – zentral auf einer Plattform.",
+    "action": "Märkte entdecken",
+    "marketCountFirst": "ausgewählte",
+    "marketCountSecond": "Märkte"
+  },
+  "markets": {
+    "eyebrow": "Standorte",
+    "title": "Märkte mit eigener Perspektive.",
+    "description": "Jeder Immobilienmarkt folgt eigenen Strukturen. Real2Own verbindet ausgewählte Standorte mit passenden Objekten und lokalen Projektpartnern.",
+    "discoverAria": "Immobilien in {city} entdecken",
+    "openAria": "Zu den Immobilien in {city}",
+    "imageAlt": "{city}, {country}",
+    "items": {
+      "mallorca": {
+        "city": "Mallorca",
+        "country": "Spanien",
+        "description": "Mediterrane Villen, Apartments und Grundstücke in ausgewählten Küsten- und Bergregionen.",
+        "facts": {
+          "fact1": "Villen",
+          "fact2": "Apartments",
+          "fact3": "Grundstücke"
+        }
+      },
+      "dubai": {
+        "city": "Dubai",
+        "country": "Vereinigte Arabische Emirate",
+        "description": "Moderne Residenzen, internationale Neubauprojekte und Immobilien in gefragten Stadtlagen.",
+        "facts": {
+          "fact1": "Residenzen",
+          "fact2": "Neubau",
+          "fact3": "Investments"
+        }
+      },
+      "lisbon": {
+        "city": "Lissabon",
+        "country": "Portugal",
+        "description": "Stadthäuser, Apartments und Wohnprojekte zwischen historischer Architektur und Atlantikküste.",
+        "facts": {
+          "fact1": "Stadthäuser",
+          "fact2": "Apartments",
+          "fact3": "Projekte"
+        }
+      },
+      "berlin": {
+        "city": "Berlin",
+        "country": "Deutschland",
+        "description": "Eigentumswohnungen, Stadtvillen und Entwicklungsprojekte in einer internationalen Metropole.",
+        "facts": {
+          "fact1": "Wohnungen",
+          "fact2": "Stadtvillen",
+          "fact3": "Entwicklung"
+        }
+      }
+    }
+  },
+  "approach": {
+    "eyebrow": "International suchen",
+    "title": "Ein Zugang zu unterschiedlichen Märkten.",
+    "benefits": {
+      "compare": {
+        "title": "Märkte vergleichen",
+        "description": "Objekte, Standorte und unterschiedliche Immobilienarten übersichtlich miteinander vergleichen."
+      },
+      "localPartners": {
+        "title": "Lokale Partner finden",
+        "description": "Zugang zu Ansprechpartnern, Maklern und Projektpartnern mit Kenntnis des jeweiligen Marktes."
+      },
+      "targetedSearch": {
+        "title": "Gezielter suchen",
+        "description": "Suchkriterien nach Standort, Objektart, Budget und Nutzung individuell eingrenzen."
+      }
+    }
+  },
+  "propertyTypes": {
+    "eyebrow": "Unterschiedliche Anforderungen",
+    "title": "Vom Stadtapartment bis zum Entwicklungsgrundstück.",
+    "description": "Real2Own verbindet private Immobiliensuche, Grundstücke, Neubauprojekte und professionelle Projektpartnerschaften.",
+    "links": {
+      "buy": "Immobilien kaufen",
+      "rent": "Immobilien mieten",
+      "land": "Grundstücke",
+      "developments": "Neubauprojekte"
+    }
+  },
+  "cta": {
+    "eyebrow": "Persönliche Immobiliensuche",
+    "title": "Du suchst in einem bestimmten Land oder einer Region?",
+    "description": "Teile uns Standort, Budget und Anforderungen mit. Wir unterstützen dich bei der gezielten internationalen Suche.",
+    "action": "Suchauftrag starten"
+  }
+},
+"OfferPropertyPage": {
+  "metadata": {
+    "title": "Immobilie anbieten",
+    "description": "Immobilie, Grundstück oder Neubauprojekt bei Real2Own anbieten und eine persönliche Vermarktungsanfrage stellen."
+  },
+  "hero": {
+    "eyebrow": "Immobilie anbieten",
+    "title": "Deine Immobilie verdient den richtigen Auftritt.",
+    "description": "Teile uns die wichtigsten Informationen mit. Wir besprechen persönlich, wie deine Immobilie, dein Grundstück oder dein Projekt präsentiert werden kann.",
+    "action": "Anfrage starten",
+    "facts": {
+      "personal": {
+        "title": "Persönlich",
+        "text": "Direkter Austausch zu deinem Vorhaben"
+      },
+      "individual": {
+        "title": "Individuell",
+        "text": "Vermarktung passend zum Objekt"
+      },
+      "international": {
+        "title": "International",
+        "text": "Zugang zu unterschiedlichen Zielmärkten"
+      }
+    }
+  },
+  "formSection": {
+    "eyebrow": "Objektanfrage",
+    "title": "Erzähl uns von deinem Objekt.",
+    "description": "Trage die verfügbaren Informationen ein. Fehlende Details können wir später gemeinsam ergänzen.",
+    "directContact": "Direkter Kontakt"
+  },
+  "process": {
+    "eyebrow": "Der weitere Ablauf",
+    "title": "Klar, persönlich und ohne Umwege.",
+    "description": "Eine gute Vermarktung beginnt nicht mit einem Standardinserat, sondern mit einem klaren Verständnis für Objekt, Standort und Zielgruppe.",
+    "steps": {
+      "describe": {
+        "title": "Objekt beschreiben",
+        "description": "Übermittle uns die wichtigsten Angaben zu deiner Immobilie, dem Grundstück oder dem Projekt."
+      },
+      "review": {
+        "title": "Anfrage prüfen",
+        "description": "Wir prüfen die Angaben und besprechen anschließend die passende Vorgehensweise mit dir."
+      },
+      "marketing": {
+        "title": "Vermarktung planen",
+        "description": "Gemeinsam definieren wir Zielgruppe, Positionierung und die nächsten Schritte der Vermarktung."
+      }
+    }
+  },
+  "bottomCta": {
+    "eyebrow": "Noch Fragen?",
+    "title": "Lass uns dein Vorhaben persönlich besprechen.",
+    "action": "Kontakt aufnehmen"
+  }
+},
+"PresentProjectPage": {
+  "metadata": {
+    "title": "Projekt präsentieren",
+    "description": "Neubauprojekt oder Immobilienentwicklung bei Real2Own präsentieren und internationale Interessenten erreichen."
+  },
+  "hero": {
+    "eyebrow": "Für Projektentwickler",
+    "title": "Projekte sichtbar machen. Potenziale klar vermitteln.",
+    "description": "Präsentiere Neubauprojekte, Wohnentwicklungen und geplante Immobilienvorhaben professionell auf Real2Own.",
+    "action": "Projekt einreichen"
+  },
+  "intro": {
+    "eyebrow": "Projektvermarktung",
+    "title": "Mehr als eine gewöhnliche Projektanzeige.",
+    "description": "Eine überzeugende Präsentation verbindet Architektur, Standortqualität, Projektdaten und die Geschichte hinter der Entwicklung zu einem verständlichen Gesamtbild."
+  },
+  "advantages": {
+    "positioning": {
+      "title": "Klare Positionierung",
+      "description": "Projekt, Architektur, Standort und Zielgruppe werden strukturiert und hochwertig präsentiert."
+    },
+    "visibility": {
+      "title": "Internationale Sichtbarkeit",
+      "description": "Das Projekt kann Interessenten aus unterschiedlichen Märkten zugänglich gemacht werden."
+    },
+    "enquiries": {
+      "title": "Direkte Anfragen",
+      "description": "Interessenten und mögliche Partner erhalten einen klaren Zugang zu den wichtigsten Projektdaten."
+    }
+  },
+  "formSection": {
+    "eyebrow": "Projekt einreichen",
+    "title": "Stell uns dein Vorhaben vor.",
+    "description": "Sende uns zunächst die wichtigsten Eckdaten. Unterlagen, Grundrisse, Visualisierungen und Exposés können anschließend direkt per E-Mail ergänzt werden.",
+    "directContact": "Direkter Kontakt"
+  },
+  "bottomCta": {
+    "eyebrow": "Projektpartnerschaften",
+    "title": "Du suchst zusätzlich Bau- oder Vertriebspartner?",
+    "action": "Baupartner entdecken"
+  }
+},
+"BecomePartnerPage": {
+  "metadata": {
+    "title": "Partner werden",
+    "description": "Als Bauunternehmen, Architekturbüro, Projektentwickler oder Immobilienpartner Teil des Real2Own-Netzwerks werden."
+  },
+  "hero": {
+    "eyebrow": "Real2Own Partnernetzwerk",
+    "title": "Gemeinsam bessere Immobilienprojekte realisieren.",
+    "description": "Werde Teil eines Netzwerks aus Bauunternehmen, Architekturbüros, Projektentwicklern und spezialisierten Immobilienpartnern.",
+    "action": "Partnerschaft anfragen",
+    "suitableFor": "Geeignet für"
+  },
+  "partnerGroups": {
+    "constructionCompanies": "Bauunternehmen",
+    "architectureFirms": "Architekturbüros",
+    "projectDevelopers": "Projektentwickler",
+    "generalContractors": "Generalunternehmer",
+    "realEstateAgents": "Immobilienmakler",
+    "financeSpecialists": "Finanzierungs- und Fachpartner"
+  },
+  "network": {
+    "eyebrow": "Das Netzwerk",
+    "title": "Unterschiedliche Kompetenzen. Ein gemeinsames Ziel.",
+    "description": "Real2Own verbindet Immobilienangebote, Bauvorhaben und professionelle Dienstleistungen. Partnerprofile schaffen dabei einen direkten Zugang zu relevanten Projekten und Auftraggebern."
+  },
+  "benefits": {
+    "eyebrow": "Vorteile",
+    "title": "Sichtbarkeit dort, wo neue Projekte entstehen.",
+    "description": "Die Partnerschaft richtet sich an etablierte Unternehmen und spezialisierte Anbieter mit nachvollziehbaren Leistungen und professionellem Marktauftritt.",
+    "items": {
+      "profile": {
+        "title": "Professionelles Profil",
+        "description": "Präsentiere Leistungen, Märkte, Referenzen und Spezialisierungen in einem klar strukturierten Partnerprofil."
+      },
+      "enquiries": {
+        "title": "Passende Projektanfragen",
+        "description": "Erhalte Anfragen von Eigentümern, Bauherren und Projektentwicklern mit konkretem Immobilienbezug."
+      },
+      "visibility": {
+        "title": "Internationale Sichtbarkeit",
+        "description": "Positioniere dein Unternehmen in ausgewählten deutschen und internationalen Immobilienmärkten."
+      }
+    }
+  },
+  "formSection": {
+    "eyebrow": "Partneranfrage",
+    "title": "Stell uns dein Unternehmen vor.",
+    "description": "Übermittle die wichtigsten Angaben zu deinem Unternehmen, deinen Leistungen und den Märkten, in denen du tätig bist.",
+    "directContact": "Direkter Kontakt"
+  },
+  "bottomCta": {
+    "eyebrow": "Projektpartner suchen",
+    "title": "Du möchtest zuerst das bestehende Netzwerk kennenlernen?",
+    "action": "Baupartner entdecken"
+  }
+},
+"ContactPage": {
+  "metadata": {
+    "title": "Kontakt",
+    "description": "Real2Own kontaktieren und Immobilien-, Grundstücks- oder Projektanfragen persönlich besprechen."
+  },
+  "hero": {
+    "eyebrow": "Kontakt",
+    "title": "Lass uns über dein Immobilienvorhaben sprechen.",
+    "description": "Ob Kauf, Miete, Verkauf, Grundstück, Neubauprojekt oder Partnerschaft – wir freuen uns auf den persönlichen Austausch.",
+    "action": "Nachricht senden"
+  },
+  "address": {
+    "country": "Deutschland"
+  },
+  "topics": {
+    "eyebrow": "Dein Anliegen",
+    "title": "Der direkte Weg zum passenden Bereich.",
+    "description": "Wähle den Bereich, der zu deinem Vorhaben passt, oder sende uns direkt eine allgemeine Nachricht über das Kontaktformular.",
+    "action": "Zum Bereich",
+    "items": {
+      "search": {
+        "title": "Immobilie suchen",
+        "description": "Teile uns Standort, Budget und deine Anforderungen für Kauf oder Miete mit."
+      },
+      "offer": {
+        "title": "Immobilie anbieten",
+        "description": "Besprich mit uns den Verkauf oder die Vermietung deiner Immobilie."
+      },
+      "project": {
+        "title": "Projekt vorstellen",
+        "description": "Präsentiere ein Grundstück, Neubauprojekt oder eine Immobilienentwicklung."
+      },
+      "partner": {
+        "title": "Partner werden",
+        "description": "Stell uns dein Unternehmen und deine Leistungen für Bauprojekte vor."
+      }
+    }
+  },
+  "formSection": {
+    "eyebrow": "Persönliche Nachricht",
+    "title": "Wie können wir dich unterstützen?",
+    "description": "Beschreibe dein Anliegen kurz. Je genauer die ersten Angaben sind, desto gezielter können wir auf deine Anfrage eingehen.",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "address": "Anschrift"
+  },
+  "availability": {
+    "eyebrow": "Persönlicher Austausch",
+    "title": "Ein gutes Gespräch schafft Klarheit.",
+    "description": "Termine für persönliche Gespräche oder Videokonferenzen werden individuell vereinbart.",
+    "action": "Jetzt anrufen"
+  }
+},
+"AboutPage": {
+  "metadata": {
+    "title": "Über uns",
+    "description": "Real2Own verbindet Immobilien, Grundstücke, Neubauprojekte und professionelle Partner in deutschen und internationalen Märkten."
+  },
+  "hero": {
+    "eyebrow": "Über Real2Own",
+    "title": "Immobilien verbinden Menschen, Orte und Möglichkeiten.",
+    "description": "Real2Own ist eine Plattform für Immobilien, Grundstücke, Neubauprojekte und professionelle Partner in deutschen und internationalen Märkten.",
+    "action": "Persönlich kennenlernen",
+    "note": "Persönliche Immobilienvermittlung mit internationaler Perspektive."
+  },
+  "story": {
+    "eyebrow": "Unsere Idee",
+    "title": "Ein zentraler Ort für unterschiedliche Immobilienvorhaben.",
+    "paragraph1": "Die Suche nach einer Immobilie, einem Grundstück oder einem geeigneten Projektpartner ist häufig auf viele unterschiedliche Plattformen und Ansprechpartner verteilt.",
+    "paragraph2": "Real2Own führt diese Bereiche zusammen. Käufer, Mieter, Eigentümer, Projektentwickler und Baupartner erhalten einen übersichtlichen Zugang zu passenden Angeboten und Kontakten.",
+    "paragraph3": "Dabei steht nicht die größtmögliche Anzahl von Inseraten im Mittelpunkt, sondern eine klare, hochwertige und persönliche Präsentation."
+  },
+  "principles": {
+    "eyebrow": "Unsere Haltung",
+    "title": "Klarheit, Qualität und persönlicher Kontakt.",
+    "description": "Immobilien sind mehr als Daten und Quadratmeter. Gute Entscheidungen benötigen verständliche Informationen, passende Ansprechpartner und Vertrauen.",
+    "items": {
+      "personal": {
+        "title": "Persönlicher Austausch",
+        "description": "Immobilienentscheidungen sind individuell. Deshalb setzen wir auf direkten Kontakt und klare Kommunikation."
+      },
+      "international": {
+        "title": "Internationale Perspektive",
+        "description": "Wir verbinden Immobilienangebote und Projekte über regionale Grenzen hinweg mit passenden Interessenten."
+      },
+      "quality": {
+        "title": "Qualität vor Masse",
+        "description": "Im Mittelpunkt stehen ausgewählte Angebote, professionelle Präsentationen und nachvollziehbare Informationen."
+      }
+    }
+  },
+  "areas": {
+    "eyebrow": "Unsere Bereiche",
+    "title": "Immobilien und Projekte aus verschiedenen Perspektiven.",
+    "description": "Real2Own verbindet private Immobiliensuche mit Grundstücken, Neubauprojekten und professionellen Projektpartnerschaften.",
+    "items": {
+      "buy": {
+        "title": "Immobilien kaufen",
+        "description": "Ausgewählte Wohnungen, Häuser und Villen in Deutschland und internationalen Märkten."
+      },
+      "rent": {
+        "title": "Immobilien mieten",
+        "description": "Wohnungen und Häuser für langfristiges Wohnen oder einen neuen Lebensmittelpunkt."
+      },
+      "land": {
+        "title": "Grundstücke",
+        "description": "Baugrundstücke und Entwicklungsflächen für private und professionelle Vorhaben."
+      },
+      "developments": {
+        "title": "Neubauprojekte",
+        "description": "Moderne Wohnprojekte, Residenzen und Immobilienentwicklungen in ausgewählten Lagen."
+      },
+      "partners": {
+        "title": "Baupartner",
+        "description": "Zugang zu Bauunternehmen, Architekten und Projektpartnern für die Realisierung neuer Ideen."
+      },
+      "international": {
+        "title": "Internationale Märkte",
+        "description": "Immobilien und Projekte in unterschiedlichen Ländern über eine zentrale Plattform entdecken."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Real2Own kennenlernen",
+    "title": "Lass uns über deine Immobilienpläne sprechen.",
+    "description": "Ob Kauf, Miete, Verkauf, Grundstück oder Projektpartnerschaft: Wir freuen uns auf den persönlichen Austausch.",
+    "action": "Kontakt aufnehmen"
+  }
+},
+"LoginPage": {
+  "metadata": {
+    "title": "Anmelden",
+    "description": "Im persönlichen Real2Own-Bereich anmelden."
+  },
+  "backAria": "Zurück zur Startseite",
+  "back": "Zurück",
+  "homeAria": "Real2Own Startseite",
+  "eyebrow": "Persönlicher Bereich",
+  "title": "Willkommen zurück.",
+  "description": "Melde dich an, um Favoriten, Suchaufträge und deine Immobilienanfragen zu verwalten.",
+  "noAccount": "Noch kein Konto?",
+  "createAccount": "Konto erstellen",
+  "legalBefore": "Mit der Anmeldung akzeptierst du unsere",
+  "privacy": "Datenschutzerklärung",
+  "legalAfter": "."
+},
+"RegisterPage": {
+  "metadata": {
+    "title": "Konto erstellen",
+    "description": "Ein persönliches Real2Own-Konto erstellen und Immobilienfavoriten sowie Suchaufträge verwalten."
+  },
+  "backAria": "Zurück zur Anmeldung",
+  "back": "Zur Anmeldung",
+  "homeAria": "Real2Own Startseite",
+  "eyebrow": "Persönlicher Bereich",
+  "title": "Konto erstellen.",
+  "description": "Speichere Immobilien, verwalte Suchaufträge und behalte deine Anfragen zentral im Blick.",
+  "alreadyRegistered": "Bereits registriert?",
+  "login": "Jetzt anmelden"
+},
+"ForgotPasswordPage": {
+  "metadata": {
+    "title": "Passwort vergessen",
+    "description": "Passwort für den persönlichen Real2Own-Bereich zurücksetzen."
+  },
+  "backAria": "Zurück zur Anmeldung",
+  "back": "Zur Anmeldung",
+  "homeAria": "Real2Own Startseite",
+  "eyebrow": "Kontozugang",
+  "title": "Passwort vergessen?",
+  "description": "Gib die E-Mail-Adresse deines Kontos ein. Du erhältst später einen sicheren Link zum Festlegen eines neuen Passworts.",
+  "rememberedPassword": "Passwort wieder eingefallen?",
+  "login": "Jetzt anmelden"
+},
+"ImprintPage": {
+  "metadata": {
+    "title": "Impressum | Real2Own",
+    "description": "Anbieterkennzeichnung und rechtliche Informationen von Real2Own."
+  },
+  "back": "Zurück zur Startseite",
+  "eyebrow": "Rechtliche Informationen",
+  "title": "Impressum",
+  "updated": "Stand: Juli 2026",
+  "navigation": {
+    "ariaLabel": "Inhalt des Impressums",
+    "title": "Inhalt",
+    "items": {
+      "provider": "Anbieter",
+      "contact": "Kontakt",
+      "activity": "Tätigkeit",
+      "authority": "Aufsichtsbehörde",
+      "responsible": "Inhaltlich verantwortlich"
+    }
+  },
+  "provider": {
+    "title": "Angaben gemäß § 5 DDG",
+    "owner": "Inhaber",
+    "country": "Deutschland"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "phone": "Telefon",
+    "email": "E-Mail"
+  },
+  "activity": {
+    "title": "Berufliche Tätigkeit",
+    "description": "Immobilienmakler gemäß § 34c Gewerbeordnung (GewO).",
+    "regulationTitle": "Berufsrechtliche Regelung",
+    "regulation": "§ 34c Gewerbeordnung"
+  },
+  "authority": {
+    "title": "Zuständige Aufsichtsbehörde"
+  },
+  "responsible": {
+    "title": "Inhaltlich verantwortlich",
+    "description": "Verantwortlich für journalistisch-redaktionelle Inhalte gemäß § 18 Abs. 2 Medienstaatsvertrag:"
+  }
+},
+"PrivacyPage": {
+  "metadata": {
+    "title": "Datenschutzerklärung | Real2Own",
+    "description": "Informationen zur Verarbeitung personenbezogener Daten durch Real2Own."
+  },
+  "back": "Zurück zur Startseite",
+  "eyebrow": "Rechtliche Informationen",
+  "title": "Datenschutzerklärung",
+  "updated": "Stand: Juli 2026",
+  "common": {
+    "owner": "Inhaber",
+    "country": "Deutschland",
+    "phone": "Telefon",
+    "email": "E-Mail"
+  },
+  "navigation": {
+    "ariaLabel": "Inhalt der Datenschutzerklärung",
+    "title": "Inhalt",
+    "items": {
+      "general": "Allgemeine Hinweise",
+      "controller": "Verantwortlicher",
+      "hosting": "Hosting",
+      "contact": "Kontaktaufnahme",
+      "cookies": "Cookies",
+      "rights": "Ihre Rechte",
+      "authority": "Aufsichtsbehörde"
+    }
+  },
+  "general": {
+    "title": "1. Allgemeine Hinweise",
+    "paragraph1": "Der Schutz Ihrer personenbezogenen Daten ist uns ein besonderes Anliegen. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften, insbesondere der Datenschutz-Grundverordnung, sowie dieser Datenschutzerklärung.",
+    "paragraph2": "Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person beziehen. Dazu gehören beispielsweise Name, Anschrift, E-Mail-Adresse, Telefonnummer, IP-Adresse sowie Informationen über die Nutzung dieser Website."
+  },
+  "controller": {
+    "title": "2. Verantwortlicher",
+    "intro": "Verantwortlicher im Sinne der Datenschutz-Grundverordnung ist:"
+  },
+  "hosting": {
+    "title": "3. Hosting und Website-Betrieb über Vercel",
+    "intro": "Diese Website wird bei folgendem Dienstleister gehostet:",
+    "description": "Vercel verarbeitet technisch notwendige Daten, um diese Website bereitzustellen, Inhalte an Ihr Endgerät auszuliefern und die Sicherheit, Stabilität und Funktionsfähigkeit der technischen Infrastruktur zu gewährleisten.",
+    "dataIntro": "Dabei können insbesondere folgende Daten verarbeitet werden:",
+    "dataItems": {
+      "ip": "IP-Adresse des aufrufenden Endgeräts,",
+      "dateTime": "Datum und Uhrzeit des Zugriffs,",
+      "page": "aufgerufene Seite oder Datei,",
+      "http": "HTTP-Methode und HTTP-Statuscode,",
+      "browser": "Browsertyp und Browserversion,",
+      "operatingSystem": "verwendetes Betriebssystem,",
+      "referrer": "Referrer-URL,",
+      "device": "Geräte-, Netzwerk- und Verbindungsinformationen,",
+      "security": "technische Fehler- und Sicherheitsinformationen."
+    },
+    "legalBasis": "Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse besteht in der sicheren, stabilen und effizienten Bereitstellung unseres Onlineangebots sowie in der Erkennung und Abwehr technischer Angriffe.",
+    "processing": {
+      "title": "Auftragsverarbeitung",
+      "paragraph1": "Soweit Vercel personenbezogene Daten in unserem Auftrag verarbeitet, erfolgt dies auf Grundlage eines Vertrags zur Auftragsverarbeitung gemäß Art. 28 DSGVO.",
+      "paragraph2": "Vercel kann zur Bereitstellung seiner Dienste weitere vertraglich verpflichtete Unterauftragsverarbeiter einsetzen. Diese können insbesondere Leistungen in den Bereichen Cloud-Infrastruktur, Netzwerkauslieferung, Sicherheit und technische Unterstützung erbringen."
+    },
+    "international": {
+      "title": "Internationale Datenübermittlung",
+      "paragraph1": "Vercel verwendet eine global verteilte technische Infrastruktur. Daher können technische Daten auch außerhalb Deutschlands und außerhalb des Europäischen Wirtschaftsraums verarbeitet werden.",
+      "paragraph2": "Im Rahmen der Nutzung von Vercel können personenbezogene Daten insbesondere in die Vereinigten Staaten übermittelt werden.",
+      "paragraph3": "Vercel ist nach eigenen Angaben unter dem EU-US Data Privacy Framework zertifiziert. Soweit eine Übermittlung nicht auf Grundlage dieses Angemessenheitsmechanismus erfolgt, können insbesondere die Standardvertragsklauseln der Europäischen Kommission oder andere geeignete Garantien verwendet werden."
+    },
+    "retention": {
+      "title": "Speicherdauer",
+      "paragraph1": "Technische Protokoll- und Sicherheitsdaten werden nur so lange verarbeitet, wie dies für die Bereitstellung, Sicherheit und Stabilität der Website erforderlich ist.",
+      "paragraph2": "Die konkrete Speicherdauer kann von der Art des Protokolls, dem verwendeten Vercel-Tarif und der jeweiligen technischen Konfiguration abhängen. Eine längere Speicherung kann erfolgen, wenn dies zur Untersuchung eines Sicherheitsvorfalls, zur Erfüllung gesetzlicher Verpflichtungen oder zur Durchsetzung beziehungsweise Abwehr von Rechtsansprüchen erforderlich ist."
+    }
+  },
+  "contact": {
+    "title": "4. Kontaktformulare und Kontaktaufnahme",
+    "paragraph1": "Wenn Sie uns per E-Mail, telefonisch oder über ein auf dieser Website bereitgestelltes Formular kontaktieren, verarbeiten wir die von Ihnen übermittelten Angaben zur Bearbeitung Ihrer Anfrage.",
+    "dataIntro": "Dies kann insbesondere folgende Angaben betreffen:",
+    "dataItems": {
+      "name": "Vor- und Nachname,",
+      "email": "E-Mail-Adresse,",
+      "phone": "Telefonnummer,",
+      "message": "Inhalt der Nachricht,",
+      "property": "Angaben zu einer Immobilie oder einem Grundstück,",
+      "recommendation": "Angaben zu einer Immobilienempfehlung,",
+      "valuation": "Angaben im Rahmen einer Bewertungs- oder Vermittlungsanfrage,",
+      "searchCriteria": "Angaben zu gewünschten Immobilien oder Suchkriterien,",
+      "exclusiveOffers": "Angaben im Rahmen einer Anfrage zu exklusiven Immobilienangeboten."
+    },
+    "contractBasis": "Erfolgt die Kontaktaufnahme zur Anbahnung oder Durchführung eines Vertrags, ist Art. 6 Abs. 1 lit. b DSGVO die Rechtsgrundlage.",
+    "otherBasis": "Bei sonstigen Anfragen erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse besteht in der sachgerechten Bearbeitung und Beantwortung Ihrer Anfrage.",
+    "consentBasis": "Soweit wir für eine bestimmte Verarbeitung ausdrücklich Ihre Einwilligung einholen, erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO.",
+    "serviceProvider": "Formulardaten werden ausschließlich zur Bearbeitung der jeweiligen Anfrage verarbeitet. Sofern hierfür ein externer technischer Dienstleister eingesetzt wird, erfolgt die Verarbeitung auf Grundlage einer entsprechenden vertraglichen und datenschutzrechtlichen Grundlage."
+  },
+  "purposes": {
+    "title": "5. Zwecke der Datenverarbeitung",
+    "intro": "Wir verarbeiten personenbezogene Daten insbesondere zu folgenden Zwecken:",
+    "items": {
+      "website": "Bereitstellung und Absicherung dieser Website,",
+      "enquiries": "Bearbeitung und Beantwortung von Anfragen,",
+      "communication": "Kontaktaufnahme mit Interessenten und Kunden,",
+      "contracts": "Anbahnung und Durchführung von Vertragsverhältnissen,",
+      "brokerage": "Vermittlung von Immobilien und Grundstücken,",
+      "recommendations": "Bearbeitung von Immobilienempfehlungen,",
+      "valuations": "Durchführung von Immobilienbewertungen,",
+      "mediation": "Vermittlung zwischen Interessenten, Eigentümern und Projektpartnern,",
+      "legalObligations": "Erfüllung gesetzlicher Verpflichtungen."
+    }
+  },
+  "legalBases": {
+    "title": "6. Rechtsgrundlagen",
+    "intro": "Abhängig von der jeweiligen Verarbeitung kommen insbesondere folgende Rechtsgrundlagen zur Anwendung:",
+    "items": {
+      "consent": "Art. 6 Abs. 1 lit. a DSGVO, wenn Sie in eine Verarbeitung eingewilligt haben,",
+      "contract": "Art. 6 Abs. 1 lit. b DSGVO, wenn die Verarbeitung zur Durchführung eines Vertrags oder vorvertraglicher Maßnahmen erforderlich ist,",
+      "legalObligation": "Art. 6 Abs. 1 lit. c DSGVO, wenn die Verarbeitung zur Erfüllung einer gesetzlichen Verpflichtung erforderlich ist,",
+      "legitimateInterest": "Art. 6 Abs. 1 lit. f DSGVO, wenn die Verarbeitung zur Wahrung unserer berechtigten Interessen oder der Interessen eines Dritten erforderlich ist und Ihre Interessen oder Grundrechte nicht überwiegen."
+    }
+  },
+  "retention": {
+    "title": "7. Speicherdauer",
+    "paragraph1": "Wir speichern personenbezogene Daten nur so lange, wie dies für den jeweiligen Verarbeitungszweck erforderlich ist.",
+    "paragraph2": "Daten aus Kontakt-, Bewertungs- und Vermittlungsanfragen werden grundsätzlich gelöscht, wenn die Anfrage abschließend bearbeitet wurde und keine weitere Speicherung erforderlich ist.",
+    "paragraph3": "Eine längere Speicherung kann insbesondere erfolgen, wenn gesetzliche Aufbewahrungspflichten bestehen, die Daten zur Erfüllung eines Vertrags erforderlich sind oder berechtigte Interessen, beispielsweise zur Geltendmachung oder Abwehr von Rechtsansprüchen, einer Löschung entgegenstehen.",
+    "paragraph4": "Bestehen gesetzliche Aufbewahrungspflichten, werden die betroffenen Daten nach Ablauf der jeweiligen Aufbewahrungsfrist gelöscht, sofern kein weiterer Rechtsgrund für die Speicherung besteht."
+  },
+  "cookies": {
+    "title": "8. Cookies und ähnliche Technologien",
+    "intro": "Diese Website kann Cookies und ähnliche Technologien verwenden. Cookies sind kleine Dateien oder Informationen, die auf Ihrem Endgerät gespeichert oder von diesem ausgelesen werden können.",
+    "necessary": {
+      "title": "Technisch notwendige Technologien",
+      "paragraph1": "Technisch notwendige Cookies und vergleichbare Technologien werden nur eingesetzt, soweit sie erforderlich sind, um die Website sicher und funktionsfähig bereitzustellen oder eine von Ihnen ausdrücklich gewünschte Funktion auszuführen.",
+      "paragraph2": "Die Speicherung von Informationen in Ihrem Endgerät oder der Zugriff auf bereits gespeicherte Informationen erfolgt in diesen Fällen auf Grundlage von § 25 Abs. 2 TDDDG.",
+      "paragraph3": "Soweit dabei personenbezogene Daten verarbeitet werden, erfolgt dies auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse besteht in der sicheren und funktionsfähigen Bereitstellung der Website."
+    },
+    "optional": {
+      "title": "Nicht notwendige Technologien",
+      "paragraph1": "Analyse-, Marketing- oder Personalisierungstechnologien werden derzeit nicht eingesetzt. Sollten solche Technologien künftig eingesetzt werden, erfolgt dies nur, soweit hierfür eine wirksame Einwilligung erforderlich ist und Sie diese zuvor erteilt haben.",
+      "paragraph2": "In diesem Fall erfolgt die Speicherung oder der Zugriff auf Grundlage von § 25 Abs. 1 TDDDG. Die anschließende Verarbeitung personenbezogener Daten erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.",
+      "paragraph3": "Eine erteilte Einwilligung kann jederzeit mit Wirkung für die Zukunft über die jeweils bereitgestellten Einwilligungseinstellungen widerrufen oder geändert werden."
+    },
+    "browser": {
+      "title": "Browser-Einstellungen",
+      "paragraph1": "Sie können Ihren Browser so konfigurieren, dass Sie über das Setzen von Cookies informiert werden, Cookies nur im Einzelfall zulassen oder Cookies generell ablehnen.",
+      "paragraph2": "Bei der Deaktivierung technisch notwendiger Cookies oder vergleichbarer Speichertechnologien kann die Funktionalität der Website eingeschränkt sein."
+    }
+  },
+  "recipients": {
+    "title": "9. Empfänger und Weitergabe von Daten",
+    "paragraph1": "Personenbezogene Daten werden von uns nicht verkauft.",
+    "paragraph2": "Eine Weitergabe oder Offenlegung erfolgt nur, soweit dies zur Erfüllung eines Vertrags oder einer Anfrage erforderlich ist, eine gesetzliche Verpflichtung besteht, ein berechtigtes Interesse vorliegt oder Sie zuvor eingewilligt haben.",
+    "paragraph3": "Im Rahmen einer konkret angefragten Immobilienvermittlung können personenbezogene Daten insbesondere an Eigentümer, Immobilienanbieter, Makler, Projektentwickler, Baupartner oder andere an der angefragten Leistung beteiligte Stellen übermittelt werden. Eine solche Übermittlung erfolgt nur, soweit sie zur Bearbeitung Ihrer Anfrage, zur Durchführung vorvertraglicher Maßnahmen oder zur Erfüllung eines Vertrags erforderlich ist oder Sie in die Übermittlung eingewilligt haben.",
+    "paragraph4": "Technische Dienstleister können im Rahmen einer Auftragsverarbeitung Zugriff auf personenbezogene Daten erhalten. Dazu gehört insbesondere der Hostinganbieter Vercel."
+  },
+  "rights": {
+    "title": "10. Ihre Datenschutzrechte",
+    "intro": "Sie haben im Rahmen der gesetzlichen Voraussetzungen insbesondere folgende Rechte:",
+    "items": {
+      "access": "Recht auf Auskunft über die von uns verarbeiteten personenbezogenen Daten,",
+      "correction": "Recht auf Berichtigung unrichtiger Daten,",
+      "deletion": "Recht auf Löschung Ihrer personenbezogenen Daten,",
+      "restriction": "Recht auf Einschränkung der Verarbeitung,",
+      "portability": "Recht auf Datenübertragbarkeit,",
+      "objection": "Recht auf Widerspruch gegen bestimmte Verarbeitungen,",
+      "withdrawal": "Recht auf Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft,",
+      "complaint": "Recht auf Beschwerde bei einer Datenschutzaufsichtsbehörde."
+    },
+    "contact": "Zur Ausübung Ihrer Rechte können Sie sich an folgende E-Mail-Adresse wenden:"
+  },
+  "revocation": {
+    "title": "11. Widerruf und Widerspruch",
+    "consent": {
+      "title": "Widerruf einer Einwilligung",
+      "description": "Sie können eine erteilte Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Die Rechtmäßigkeit der bis zum Widerruf auf Grundlage der Einwilligung erfolgten Verarbeitung bleibt unberührt."
+    },
+    "objection": {
+      "title": "Widerspruch gegen die Verarbeitung",
+      "paragraph1": "Erfolgt eine Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. e oder lit. f DSGVO, haben Sie das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten einzulegen.",
+      "paragraph2": "Nach einem Widerspruch verarbeiten wir die betroffenen personenbezogenen Daten grundsätzlich nicht mehr, es sei denn, wir können zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die Ihre Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen."
+    }
+  },
+  "authority": {
+    "title": "12. Beschwerderecht bei einer Aufsichtsbehörde",
+    "paragraph1": "Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren.",
+    "paragraph2": "Für nicht öffentliche Unternehmen mit Sitz in Bayern ist insbesondere folgende Aufsichtsbehörde zuständig:",
+    "paragraph3": "Sie können sich auch an eine andere zuständige Datenschutzaufsichtsbehörde wenden, insbesondere an die Aufsichtsbehörde Ihres gewöhnlichen Aufenthaltsortes, Ihres Arbeitsplatzes oder des Ortes des mutmaßlichen Verstoßes."
+  },
+  "encryption": {
+    "title": "13. SSL- beziehungsweise TLS-Verschlüsselung",
+    "paragraph1": "Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- beziehungsweise TLS-Verschlüsselung.",
+    "paragraph2": "Eine verschlüsselte Verbindung erkennen Sie in der Regel an der Verwendung von „https://“ in der Adresszeile Ihres Browsers."
+  },
+  "automated": {
+    "title": "14. Automatisierte Entscheidungsfindung und Profiling",
+    "paragraph1": "Es findet keine ausschließlich automatisierte Entscheidungsfindung im Sinne von Art. 22 DSGVO statt.",
+    "paragraph2": "Personenbezogene Daten werden nicht für ein Profiling verwendet, das Ihnen gegenüber rechtliche Wirkung entfaltet oder Sie in ähnlich erheblicher Weise beeinträchtigt."
+  },
+  "privacyContact": {
+    "title": "15. Kontakt zum Datenschutz",
+    "description": "Bei Fragen zum Datenschutz, zur Verarbeitung Ihrer personenbezogenen Daten oder zur Ausübung Ihrer Rechte wenden Sie sich bitte an:"
+  },
+  "updates": {
+    "title": "16. Aktualisierung dieser Datenschutzerklärung",
+    "paragraph1": "Wir können diese Datenschutzerklärung anpassen, wenn sich gesetzliche Anforderungen, Funktionen dieser Website, die Art der Datenverarbeitung oder die eingesetzten technischen Dienstleister ändern.",
+    "paragraph2": "Es gilt die jeweils auf dieser Website veröffentlichte Fassung."
+  }
+},
+"PropertyDetailPage": {
+  "metadata": {
+    "notFoundTitle": "Immobilie nicht gefunden",
+    "description": "{title} in {location}. {price}."
+  },
+  "categories": {
+    "buy": "Kaufen",
+    "rent": "Mieten",
+    "land": "Grundstück",
+    "development": "Neubauprojekt"
+  },
+  "breadcrumbs": {
+    "home": "Startseite"
+  },
+  "hero": {
+    "offerPrice": "Angebotspreis"
+  },
+  "summary": {
+    "propertyType": "Objektart",
+    "area": "Fläche",
+    "units": "Einheiten",
+    "propertyNumber": "Objektnummer",
+    "primaryAction": "Immobilie anfragen",
+    "secondaryAction": "Beratung anfragen"
+  },
+  "gallery": {
+    "ariaLabel": "Bilder der Immobilie",
+    "imageAlt": "{title} – Ansicht {number}"
+  },
+  "information": {
+    "eyebrow": "Das Angebot",
+    "title": "Raum für neue Perspektiven.",
+    "disclaimer": "Die dargestellten Informationen dienen als unverbindliche Vorabinformation. Flächen, Preise, Verfügbarkeiten und Ausstattungsmerkmale können sich ändern und werden vor einer Vermittlung gesondert bestätigt."
+  },
+  "features": {
+    "eyebrow": "Leistungen und Merkmale"
+  },
+  "contact": {
+    "eyebrow": "Persönliche Beratung",
+    "title": "Interesse an diesem Angebot?",
+    "description": "Wir senden dir weitere Informationen und stimmen einen persönlichen Gesprächstermin oder eine Besichtigung mit dir ab.",
+    "action": "Anfrage senden"
+  },
+  "email": {
+    "subject": "Anfrage zur Immobilie {id}: {title}",
+    "greeting": "Guten Tag,",
+    "interest": "ich interessiere mich für folgendes Angebot:",
+    "propertyNumber": "Objektnummer: R2O-{id}",
+    "moreInformation": "Bitte senden Sie mir weitere Informationen.",
+    "closing": "Freundliche Grüße"
+  }
+}
+}

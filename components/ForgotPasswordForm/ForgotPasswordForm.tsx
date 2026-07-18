@@ -1,20 +1,23 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import styles from "./ForgotPasswordForm.module.css";
 
 export function ForgotPasswordForm() {
+  const t = useTranslations("ForgotPasswordForm");
+
   return (
     <form
       className={styles.form}
       onSubmit={(event) => event.preventDefault()}
     >
       <label className={styles.field}>
-        <span>E-Mail-Adresse</span>
+        <span>{t("emailLabel")}</span>
 
         <input
           type="email"
           name="email"
-          placeholder="name@beispiel.de"
+          placeholder="name@example.com"
           autoComplete="email"
           required
         />
@@ -26,13 +29,15 @@ export function ForgotPasswordForm() {
         disabled
         aria-describedby="password-reset-status"
       >
-        Passwort-Reset folgt
+        {t("submit")}
         <span aria-hidden="true">→</span>
       </button>
 
-      <p className={styles.status} id="password-reset-status">
-        Der sichere Versand des Zurücksetzungslinks wird mit dem Backend
-        aktiviert.
+      <p
+        className={styles.status}
+        id="password-reset-status"
+      >
+        {t("status")}
       </p>
     </form>
   );

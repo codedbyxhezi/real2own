@@ -1,33 +1,36 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import styles from "./LoginForm.module.css";
 
 export function LoginForm() {
+  const t = useTranslations("LoginForm");
+
   return (
     <form
       className={styles.form}
       onSubmit={(event) => event.preventDefault()}
     >
       <label className={styles.field}>
-        <span>E-Mail-Adresse</span>
+        <span>{t("emailLabel")}</span>
 
         <input
           type="email"
           name="email"
-          placeholder="name@beispiel.de"
+          placeholder="name@example.com"
           autoComplete="email"
           required
         />
       </label>
 
       <label className={styles.field}>
-        <span>Passwort</span>
+        <span>{t("passwordLabel")}</span>
 
         <input
           type="password"
           name="password"
-          placeholder="Dein Passwort"
+          placeholder={t("passwordPlaceholder")}
           autoComplete="current-password"
           required
         />
@@ -35,12 +38,18 @@ export function LoginForm() {
 
       <div className={styles.options}>
         <label className={styles.remember}>
-          <input type="checkbox" name="remember" />
-          <span>Angemeldet bleiben</span>
+          <input
+            type="checkbox"
+            name="remember"
+          />
+
+          <span>
+            {t("remember")}
+          </span>
         </label>
 
         <Link href="/passwort-vergessen">
-          Passwort vergessen?
+          {t("forgotPassword")}
         </Link>
       </div>
 
@@ -50,19 +59,27 @@ export function LoginForm() {
         disabled
         aria-describedby="login-status"
       >
-        Anmeldung folgt
-        <span aria-hidden="true">→</span>
+        {t("submit")}
+
+        <span aria-hidden="true">
+          →
+        </span>
       </button>
 
-      <p className={styles.status} id="login-status">
-        Der sichere Kundenlogin wird zusammen mit dem Backend aktiviert.
+      <p
+        className={styles.status}
+        id="login-status"
+      >
+        {t("status")}
       </p>
 
       <div className={styles.register}>
-        <span>Noch kein Konto?</span>
+        <span>
+          {t("noAccount")}
+        </span>
 
         <Link href="/registrieren">
-          Jetzt registrieren
+          {t("register")}
         </Link>
       </div>
     </form>

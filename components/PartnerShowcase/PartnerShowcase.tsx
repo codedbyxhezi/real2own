@@ -1,43 +1,51 @@
 import Image from "next/image";
-import { Icon } from "@/components/Icon/Icon";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import {
+  Icon,
+  type IconName,
+} from "@/components/Icon/Icon";
 import { Reveal } from "@/components/Reveal/Reveal";
 import styles from "./PartnerShowcase.module.css";
 
 const partnerTypes = [
-  "Generalunternehmer",
-  "Architekturbüros",
-  "Holz- und Massivbau",
-  "Smart-Home-Technik",
-  "Energieberatung",
-  "Projektentwicklung",
-];
+  "generalContractors",
+  "architects",
+  "construction",
+  "smartHome",
+  "energyConsulting",
+  "projectDevelopment",
+] as const;
 
-const advantages = [
+const advantages: Array<{
+  key: "directContact" | "selectedPartners";
+  icon: IconName;
+}> = [
   {
-    icon: "users" as const,
-    title: "Direkter Kontakt",
-    description: "Ohne unnötige Vermittlungswege zum passenden Ansprechpartner.",
+    key: "directContact",
+    icon: "users",
   },
   {
-    icon: "shield" as const,
-    title: "Geprüfte Partner",
-    description: "Nachvollziehbare Profile, Referenzen und Leistungsbereiche.",
+    key: "selectedPartners",
+    icon: "shield",
   },
 ];
 
 export function PartnerShowcase() {
+  const t = useTranslations("PartnerShowcase");
+
   return (
     <section
       className={styles.section}
       id="partner"
-      aria-label="Baupartner und Projektpartner"
+      aria-label={t("ariaLabel")}
     >
       <div className={`container ${styles.container}`}>
         <div className={styles.layout}>
           <Reveal className={styles.visual}>
             <Image
               src="/images/partner-build.png"
-              alt="Architektur- und Baupartner bei der Projektplanung"
+              alt={t("imageAlt")}
               fill
               quality={90}
               sizes="
@@ -50,79 +58,137 @@ export function PartnerShowcase() {
             <div className={styles.visualShade} />
 
             <div className={styles.visualTop}>
-              <span className={styles.index}>01</span>
+              <span className={styles.index}>
+                01
+              </span>
 
               <span className={styles.network}>
-                Partnernetzwerk
+                {t("partnerNetwork")}
               </span>
             </div>
 
             <div className={styles.verification}>
               <span className={styles.verifiedIcon}>
-                <Icon name="shield" size={18} />
+                <Icon
+                  name="shield"
+                  size={18}
+                />
               </span>
 
               <span>
-                <strong>Real2Own Verified</strong>
+                <strong>
+                  {t("verifiedTitle")}
+                </strong>
+
                 <small>
-                  Identität, Referenzen und Leistungen geprüft
+                  {t("verifiedText")}
                 </small>
               </span>
             </div>
 
             <div className={styles.metric}>
               <strong>180+</strong>
-              <span>aktive Bau- und Projektpartner</span>
+
+              <span>
+                {t("activePartners")}
+              </span>
             </div>
           </Reveal>
 
-          <Reveal className={styles.copy} delay={100}>
-            <p className={styles.eyebrow}>Planen. Bauen. Realisieren.</p>
+          <Reveal
+            className={styles.copy}
+            delay={100}
+          >
+            <p className={styles.eyebrow}>
+              {t("eyebrow")}
+            </p>
 
             <h2>
-              Die richtigen Partner für ein Projekt, das Bestand hat.
+              {t("title")}
             </h2>
 
             <p className={styles.lead}>
-              Real2Own verbindet Eigentümer, Investoren und Bauherren mit
-              ausgewählten Unternehmen aus Architektur, Bau und technischer
-              Planung. Regional erfahren und transparent vergleichbar.
+              {t("description")}
             </p>
 
             <div className={styles.partnerTypes}>
-              {partnerTypes.map((type, index) => (
-                <div className={styles.partnerType} key={type}>
-                  <span>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+              {partnerTypes.map(
+                (type, index) => (
+                  <div
+                    className={styles.partnerType}
+                    key={type}
+                  >
+                    <span>
+                      {String(index + 1).padStart(
+                        2,
+                        "0"
+                      )}
+                    </span>
 
-                  <strong>{type}</strong>
-                </div>
-              ))}
+                    <strong>
+                      {t(
+                        `partnerTypes.${type}`
+                      )}
+                    </strong>
+                  </div>
+                )
+              )}
             </div>
 
             <div className={styles.points}>
-              {advantages.map((advantage) => (
-                <div className={styles.point} key={advantage.title}>
-                  <span className={styles.pointIcon}>
-                    <Icon name={advantage.icon} size={19} />
-                  </span>
+              {advantages.map(
+                (advantage) => (
+                  <div
+                    className={styles.point}
+                    key={advantage.key}
+                  >
+                    <span
+                      className={
+                        styles.pointIcon
+                      }
+                    >
+                      <Icon
+                        name={advantage.icon}
+                        size={19}
+                      />
+                    </span>
 
-                  <span>
-                    <strong>{advantage.title}</strong>
-                    <small>{advantage.description}</small>
-                  </span>
-                </div>
-              ))}
+                    <span>
+                      <strong>
+                        {t(
+                          `advantages.${advantage.key}.title`
+                        )}
+                      </strong>
+
+                      <small>
+                        {t(
+                          `advantages.${advantage.key}.description`
+                        )}
+                      </small>
+                    </span>
+                  </div>
+                )
+              )}
             </div>
 
-            <a className={styles.cta} href="#kontakt">
-              <span>Baupartner entdecken</span>
-
-              <span className={styles.ctaIcon}>
-                <Icon name="arrow" size={17} />
+            <Link
+              className={styles.cta}
+              href="/baupartner"
+            >
+              <span>
+                {t("cta")}
               </span>
-            </a>
+
+              <span
+                className={styles.ctaIcon}
+                aria-hidden="true"
+              >
+                <Icon
+                  name="arrow"
+                  size={17}
+                />
+              </span>
+            </Link>
           </Reveal>
         </div>
       </div>

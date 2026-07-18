@@ -1,51 +1,149 @@
 "use client";
 
 import type { FormEvent } from "react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Icon } from "@/components/Icon/Icon";
 import styles from "./PartnerApplicationForm.module.css";
 
+const categories = [
+  "constructionCompany",
+  "architectureFirm",
+  "projectDeveloper",
+  "generalContractor",
+  "realEstateAgent",
+  "financeSpecialist",
+  "other",
+] as const;
+
+const companySizes = [
+  "size1to5",
+  "size6to20",
+  "size21to50",
+  "size51to100",
+  "sizeOver100",
+] as const;
+
 export function PartnerApplicationForm() {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const t = useTranslations("PartnerApplicationForm");
+
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(
+      event.currentTarget
+    );
 
-    const subject = "Partneranfrage für das Real2Own-Netzwerk";
+    const noInformation = t(
+      "mail.noInformation"
+    );
+
+    const company =
+      String(
+        formData.get("company") || ""
+      ) || noInformation;
+
+    const categoryKey = String(
+      formData.get("category") || ""
+    );
+
+    const category = categoryKey
+      ? t(`categories.${categoryKey}`)
+      : noInformation;
+
+    const website =
+      String(
+        formData.get("website") || ""
+      ) || noInformation;
+
+    const location =
+      String(
+        formData.get("location") || ""
+      ) || noInformation;
+
+    const markets =
+      String(
+        formData.get("markets") || ""
+      ) || noInformation;
+
+    const companySizeKey = String(
+      formData.get("companySize") || ""
+    );
+
+    const companySize = companySizeKey
+      ? t(`companySizes.${companySizeKey}`)
+      : noInformation;
+
+    const name =
+      String(
+        formData.get("name") || ""
+      ) || noInformation;
+
+    const email =
+      String(
+        formData.get("email") || ""
+      ) || noInformation;
+
+    const phone =
+      String(
+        formData.get("phone") || ""
+      ) || noInformation;
+
+    const message =
+      String(
+        formData.get("message") || ""
+      ) || t("mail.noFurtherInformation");
+
+    const subject = t(
+      "mail.subject"
+    );
 
     const body = [
-      "Neue Partneranfrage über real2own.com",
+      t("mail.heading"),
       "",
-      `Unternehmen: ${formData.get("company") || "Keine Angabe"}`,
-      `Partnerkategorie: ${formData.get("category") || "Keine Angabe"}`,
-      `Website: ${formData.get("website") || "Keine Angabe"}`,
-      `Standort: ${formData.get("location") || "Keine Angabe"}`,
-      `Tätigkeitsregionen: ${formData.get("markets") || "Keine Angabe"}`,
-      `Unternehmensgröße: ${formData.get("companySize") || "Keine Angabe"}`,
+      `${t("mail.company")}: ${company}`,
+      `${t("mail.category")}: ${category}`,
+      `${t("mail.website")}: ${website}`,
+      `${t("mail.location")}: ${location}`,
+      `${t("mail.markets")}: ${markets}`,
+      `${t("mail.companySize")}: ${companySize}`,
       "",
-      `Ansprechperson: ${formData.get("name") || "Keine Angabe"}`,
-      `E-Mail: ${formData.get("email") || "Keine Angabe"}`,
-      `Telefon: ${formData.get("phone") || "Keine Angabe"}`,
+      `${t("mail.contactPerson")}: ${name}`,
+      `${t("mail.email")}: ${email}`,
+      `${t("mail.phone")}: ${phone}`,
       "",
-      "Leistungen und Referenzen:",
-      `${formData.get("message") || "Keine weiteren Angaben"}`,
+      `${t("mail.services")}:`,
+      message,
     ].join("\n");
 
     window.location.href =
-      `mailto:info@real2own.com?subject=${encodeURIComponent(subject)}` +
-      `&body=${encodeURIComponent(body)}`;
+      `mailto:info@real2own.com?subject=${encodeURIComponent(
+        subject
+      )}` +
+      `&body=${encodeURIComponent(
+        body
+      )}`;
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit}
+    >
       <fieldset>
         <legend>
           <span>01</span>
-          Unternehmen
+          {t("companySection")}
         </legend>
 
         <div className={styles.grid}>
           <label>
-            <span>Unternehmensname *</span>
+            <span>
+              {t("companyNameLabel")} *
+            </span>
+
             <input
               type="text"
               name="company"
@@ -55,23 +153,42 @@ export function PartnerApplicationForm() {
           </label>
 
           <label>
-            <span>Partnerkategorie *</span>
-            <select name="category" defaultValue="" required>
-              <option value="" disabled>
-                Bitte auswählen
+            <span>
+              {t("categoryLabel")} *
+            </span>
+
+            <select
+              name="category"
+              defaultValue=""
+              required
+            >
+              <option
+                value=""
+                disabled
+              >
+                {t("selectPlaceholder")}
               </option>
-              <option>Bauunternehmen</option>
-              <option>Architekturbüro</option>
-              <option>Projektentwickler</option>
-              <option>Generalunternehmer</option>
-              <option>Immobilienmakler</option>
-              <option>Finanzierungs- oder Fachpartner</option>
-              <option>Sonstiges</option>
+
+              {categories.map(
+                (category) => (
+                  <option
+                    value={category}
+                    key={category}
+                  >
+                    {t(
+                      `categories.${category}`
+                    )}
+                  </option>
+                )
+              )}
             </select>
           </label>
 
           <label>
-            <span>Website</span>
+            <span>
+              {t("websiteLabel")}
+            </span>
+
             <input
               type="url"
               name="website"
@@ -81,33 +198,59 @@ export function PartnerApplicationForm() {
           </label>
 
           <label>
-            <span>Unternehmensstandort *</span>
+            <span>
+              {t("locationLabel")} *
+            </span>
+
             <input
               type="text"
               name="location"
-              placeholder="Ort, Land"
+              placeholder={t(
+                "locationPlaceholder"
+              )}
               required
             />
           </label>
 
           <label>
-            <span>Tätigkeitsregionen</span>
+            <span>
+              {t("marketsLabel")}
+            </span>
+
             <input
               type="text"
               name="markets"
-              placeholder="z. B. München, Mallorca, Dubai"
+              placeholder={t(
+                "marketsPlaceholder"
+              )}
             />
           </label>
 
           <label>
-            <span>Unternehmensgröße</span>
-            <select name="companySize" defaultValue="">
-              <option value="">Keine Angabe</option>
-              <option>1–5 Mitarbeitende</option>
-              <option>6–20 Mitarbeitende</option>
-              <option>21–50 Mitarbeitende</option>
-              <option>51–100 Mitarbeitende</option>
-              <option>Mehr als 100 Mitarbeitende</option>
+            <span>
+              {t("companySizeLabel")}
+            </span>
+
+            <select
+              name="companySize"
+              defaultValue=""
+            >
+              <option value="">
+                {t("noInformation")}
+              </option>
+
+              {companySizes.map(
+                (size) => (
+                  <option
+                    value={size}
+                    key={size}
+                  >
+                    {t(
+                      `companySizes.${size}`
+                    )}
+                  </option>
+                )
+              )}
             </select>
           </label>
         </div>
@@ -116,12 +259,15 @@ export function PartnerApplicationForm() {
       <fieldset>
         <legend>
           <span>02</span>
-          Kontakt und Leistungen
+          {t("contactSection")}
         </legend>
 
         <div className={styles.grid}>
           <label>
-            <span>Ansprechperson *</span>
+            <span>
+              {t("contactPersonLabel")} *
+            </span>
+
             <input
               type="text"
               name="name"
@@ -131,7 +277,10 @@ export function PartnerApplicationForm() {
           </label>
 
           <label>
-            <span>E-Mail-Adresse *</span>
+            <span>
+              {t("emailLabel")} *
+            </span>
+
             <input
               type="email"
               name="email"
@@ -141,7 +290,10 @@ export function PartnerApplicationForm() {
           </label>
 
           <label>
-            <span>Telefonnummer</span>
+            <span>
+              {t("phoneLabel")}
+            </span>
+
             <input
               type="tel"
               name="phone"
@@ -149,12 +301,21 @@ export function PartnerApplicationForm() {
             />
           </label>
 
-          <label className={styles.fullWidth}>
-            <span>Leistungen und ausgewählte Referenzen *</span>
+          <label
+            className={
+              styles.fullWidth
+            }
+          >
+            <span>
+              {t("servicesLabel")} *
+            </span>
+
             <textarea
               name="message"
               rows={7}
-              placeholder="Beschreibe deine Leistungen, Spezialisierungen und ausgewählte Projekte ..."
+              placeholder={t(
+                "servicesPlaceholder"
+              )}
               required
             />
           </label>
@@ -163,27 +324,38 @@ export function PartnerApplicationForm() {
 
       <div className={styles.footer}>
         <label className={styles.consent}>
-          <input type="checkbox" required />
+          <input
+            type="checkbox"
+            required
+          />
 
           <span>
-            Ich habe die{" "}
-            <a href="/datenschutz" target="_blank" rel="noreferrer">
-              Datenschutzerklärung
-            </a>{" "}
-            gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung
-            der Partneranfrage zu.
+            {t("privacyBefore")}{" "}
+
+            <Link
+              href="/datenschutz"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {t("privacyLink")}
+            </Link>{" "}
+
+            {t("privacyAfter")}
           </span>
         </label>
 
         <button type="submit">
-          Partneranfrage vorbereiten
-          <Icon name="arrow" size={17} />
+          {t("submit")}
+
+          <Icon
+            name="arrow"
+            size={17}
+          />
         </button>
       </div>
 
       <p className={styles.note}>
-        Nach dem Absenden öffnet sich dein E-Mail-Programm mit einer
-        vorbereiteten Nachricht.
+        {t("note")}
       </p>
     </form>
   );

@@ -1,75 +1,77 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Icon } from "@/components/Icon/Icon";
 import styles from "./Footer.module.css";
 
 const navigation = [
   {
-    title: "Immobilien",
+    titleKey: "propertiesTitle",
     links: [
       {
-        label: "Immobilien kaufen",
+        labelKey: "buyProperties",
         href: "/immobilien/kaufen",
       },
       {
-        label: "Wohnungen mieten",
+        labelKey: "rentProperties",
         href: "/immobilien/mieten",
       },
       {
-        label: "Grundstücke",
+        labelKey: "land",
         href: "/grundstuecke",
       },
       {
-        label: "Neubauprojekte",
+        labelKey: "developments",
         href: "/neubauprojekte",
       },
     ],
   },
   {
-    title: "Eigentümer & Partner",
+    titleKey: "ownersPartnersTitle",
     links: [
       {
-        label: "Immobilie anbieten",
+        labelKey: "offerProperty",
         href: "/immobilie-anbieten",
       },
       {
-        label: "Baupartner finden",
+        labelKey: "findBuildingPartners",
         href: "/baupartner",
       },
       {
-        label: "Projekt präsentieren",
+        labelKey: "presentProject",
         href: "/projekt-praesentieren",
       },
       {
-        label: "Partner werden",
+        labelKey: "becomePartner",
         href: "/partner-werden",
       },
     ],
   },
   {
-    title: "Real2Own",
+    titleKey: "real2ownTitle",
     links: [
       {
-        label: "Über Real2Own",
+        labelKey: "about",
         href: "/ueber-uns",
       },
       {
-        label: "Internationale Märkte",
+        labelKey: "internationalMarkets",
         href: "/international",
       },
       {
-        label: "Kontakt",
+        labelKey: "contact",
         href: "/kontakt",
       },
       {
-        label: "Impressum",
+        labelKey: "legalNotice",
         href: "/impressum",
       },
     ],
   },
-];
+] as const;
 
 export function Footer() {
+  const t = useTranslations("Footer");
   const currentYear = new Date().getFullYear();
 
   return (
@@ -79,7 +81,7 @@ export function Footer() {
           <Link
             className={styles.logo}
             href="/"
-            aria-label="Real2Own Startseite"
+            aria-label={t("homeAria")}
           >
             <Image
               src="/images/real2own-logo-transparent.png"
@@ -94,12 +96,11 @@ export function Footer() {
           </Link>
 
           <p className={styles.statement}>
-            Immobilien, Grundstücke und Projektpartner auf einer
-            internationalen Plattform.
+            {t("statement")}
           </p>
 
           <a className={styles.backToTop} href="#top">
-            <span>Nach oben</span>
+            <span>{t("backToTop")}</span>
 
             <span
               className={styles.backToTopIcon}
@@ -112,7 +113,9 @@ export function Footer() {
 
         <div className={styles.main}>
           <div className={styles.contact}>
-            <p className={styles.label}>Kontakt</p>
+            <p className={styles.label}>
+              {t("contactLabel")}
+            </p>
 
             <a
               className={styles.contactMail}
@@ -131,7 +134,7 @@ export function Footer() {
             <address>
               real2own
               <br />
-              Inhaber: Hüseyin Bayram
+              {t("owner")}: Hüseyin Bayram
               <br />
               Landsberger Str. 455
               <br />
@@ -141,21 +144,23 @@ export function Footer() {
 
           <nav
             className={styles.navigation}
-            aria-label="Footer Navigation"
+            aria-label={t("navigationAria")}
           >
             {navigation.map((column) => (
               <div
                 className={styles.column}
-                key={column.title}
+                key={column.titleKey}
               >
-                <h3>{column.title}</h3>
+                <h3>
+                  {t(column.titleKey)}
+                </h3>
 
                 {column.links.map((link) => (
                   <Link
                     href={link.href}
-                    key={link.label}
+                    key={link.labelKey}
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </Link>
                 ))}
               </div>
@@ -164,41 +169,47 @@ export function Footer() {
 
           <div className={styles.contactCta}>
             <p className={styles.label}>
-              Persönliche Beratung
+              {t("consultationLabel")}
             </p>
 
-            <h2>Ein konkretes Immobilienvorhaben?</h2>
+            <h2>
+              {t("consultationTitle")}
+            </h2>
 
             <p>
-              Wir unterstützen dich bei der Suche, Vermarktung oder
-              Entwicklung von Immobilien und Grundstücken.
+              {t("consultationText")}
             </p>
 
             <Link href="/kontakt">
-              <span>Kontakt aufnehmen</span>
+              <span>
+                {t("contactAction")}
+              </span>
+
               <Icon name="arrow" size={17} />
             </Link>
           </div>
         </div>
 
         <div className={styles.bottom}>
-          <span>© {currentYear} real2own</span>
-
-          <span className={styles.platform}>
-            International Real Estate Platform
+          <span>
+            © {currentYear} real2own
           </span>
 
-          <nav aria-label="Rechtliche Informationen">
+          <span className={styles.platform}>
+            {t("platform")}
+          </span>
+
+          <nav aria-label={t("legalAria")}>
             <Link href="/datenschutz">
-              Datenschutz
+              {t("privacy")}
             </Link>
 
             <Link href="/impressum">
-              Impressum
+              {t("legalNotice")}
             </Link>
 
             <Link href="/datenschutz#cookies">
-              Cookie-Hinweise
+              {t("cookies")}
             </Link>
           </nav>
         </div>

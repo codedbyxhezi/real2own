@@ -1,13 +1,40 @@
+export type PropertyPurpose =
+  | "buy"
+  | "rent"
+  | "invest";
+
+export type PropertyType =
+  | "villa"
+  | "penthouse"
+  | "house"
+  | "loft"
+  | "holidayHome"
+  | "apartment";
+
+export type PropertyCountry =
+  | "spain"
+  | "uae"
+  | "germany"
+  | "portugal"
+  | "sweden";
+
+export type PropertyBadge =
+  | "new"
+  | "primeLocation"
+  | "yield52"
+  | "readyToMoveIn";
+
 export type Property = {
   id: number;
   title: string;
   location: string;
-  country: string;
-  price: string;
-  type: string;
-  purpose: "Kaufen" | "Mieten" | "Investieren";
+  country: PropertyCountry;
+  price: number;
+  pricePeriod?: "month";
+  type: PropertyType;
+  purpose: PropertyPurpose;
   image: string;
-  badge?: string;
+  badge?: PropertyBadge;
   beds: number;
   baths: number;
   area: number;
@@ -18,12 +45,12 @@ export const properties: Property[] = [
     id: 1,
     title: "Cliffside Villa Aurora",
     location: "Calvià, Mallorca",
-    country: "Spanien",
-    price: "€ 2.450.000",
-    type: "Villa",
-    purpose: "Kaufen",
+    country: "spain",
+    price: 2450000,
+    type: "villa",
+    purpose: "buy",
     image: "/images/modern-villa.png",
-    badge: "Neu",
+    badge: "new",
     beds: 4,
     baths: 3,
     area: 312,
@@ -32,12 +59,13 @@ export const properties: Property[] = [
     id: 2,
     title: "Skyline Residence 28",
     location: "Dubai Marina, Dubai",
-    country: "VAE",
-    price: "€ 8.900 / Monat",
-    type: "Penthouse",
-    purpose: "Mieten",
+    country: "uae",
+    price: 8900,
+    pricePeriod: "month",
+    type: "penthouse",
+    purpose: "rent",
     image: "/images/villa-pool.png",
-    badge: "Top Lage",
+    badge: "primeLocation",
     beds: 3,
     baths: 3,
     area: 241,
@@ -46,10 +74,10 @@ export const properties: Property[] = [
     id: 3,
     title: "Green Courtyard House",
     location: "Potsdam, Brandenburg",
-    country: "Deutschland",
-    price: "€ 1.180.000",
-    type: "Einfamilienhaus",
-    purpose: "Kaufen",
+    country: "germany",
+    price: 1180000,
+    type: "house",
+    purpose: "buy",
     image: "/images/house-dusk.png",
     beds: 5,
     baths: 2,
@@ -59,12 +87,12 @@ export const properties: Property[] = [
     id: 4,
     title: "Alfama Design Loft",
     location: "Lissabon, Lisboa",
-    country: "Portugal",
-    price: "€ 745.000",
-    type: "Loft",
-    purpose: "Investieren",
+    country: "portugal",
+    price: 745000,
+    type: "loft",
+    purpose: "invest",
     image: "/images/old-town.png",
-    badge: "Rendite 5,2 %",
+    badge: "yield52",
     beds: 2,
     baths: 2,
     area: 126,
@@ -73,10 +101,10 @@ export const properties: Property[] = [
     id: 5,
     title: "Nordic Lake Retreat",
     location: "Stockholm Archipelago",
-    country: "Schweden",
-    price: "€ 1.620.000",
-    type: "Ferienhaus",
-    purpose: "Kaufen",
+    country: "sweden",
+    price: 1620000,
+    type: "holidayHome",
+    purpose: "buy",
     image: "/images/coastal-house.png",
     beds: 4,
     baths: 2,
@@ -86,12 +114,13 @@ export const properties: Property[] = [
     id: 6,
     title: "Urban Garden Apartment",
     location: "Berlin-Mitte, Berlin",
-    country: "Deutschland",
-    price: "€ 2.950 / Monat",
-    type: "Wohnung",
-    purpose: "Mieten",
+    country: "germany",
+    price: 2950,
+    pricePeriod: "month",
+    type: "apartment",
+    purpose: "rent",
     image: "/images/luxury-interior.png",
-    badge: "Bezugsfertig",
+    badge: "readyToMoveIn",
     beds: 2,
     baths: 1,
     area: 98,

@@ -1,90 +1,141 @@
 "use client";
 
 import type { FormEvent } from "react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Icon } from "@/components/Icon/Icon";
 import styles from "./ContactForm.module.css";
 
+const topics = [
+  "buy",
+  "rent",
+  "sell",
+  "let",
+  "land",
+  "development",
+  "buildingPartner",
+  "becomePartner",
+  "general",
+] as const;
+
+const contactPreferences = [
+  "email",
+  "phone",
+  "none",
+] as const;
+
 export function ContactForm() {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const t = useTranslations("ContactForm");
+
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(
+      event.currentTarget
+    );
 
-    const subject = `Kontaktanfrage: ${
-      formData.get("topic") || "Allgemeine Anfrage"
-    }`;
+    const topicKey =
+      String(
+        formData.get("topic") || "general"
+      );
+
+    const contactPreferenceKey =
+      String(
+        formData.get(
+          "contactPreference"
+        ) || "none"
+      );
+
+    const topic = t(
+      `topics.${topicKey}`
+    );
+
+    const contactPreference = t(
+      `contactPreferences.${contactPreferenceKey}`
+    );
+
+    const name =
+      String(formData.get("name") || "") ||
+      t("mail.noInformation");
+
+    const email =
+      String(formData.get("email") || "") ||
+      t("mail.noInformation");
+
+    const phone =
+      String(formData.get("phone") || "") ||
+      t("mail.noInformation");
+
+    const message =
+      String(formData.get("message") || "") ||
+      t("mail.noMessage");
+
+    const subject = t("mail.subject", {
+      topic,
+    });
 
     const body = [
-      "Neue Kontaktanfrage über real2own.com",
+      t("mail.heading"),
       "",
-      `Thema: ${formData.get("topic") || "Allgemeine Anfrage"}`,
-      `Name: ${formData.get("name") || "Keine Angabe"}`,
-      `E-Mail: ${formData.get("email") || "Keine Angabe"}`,
-      `Telefon: ${formData.get("phone") || "Keine Angabe"}`,
-      `Bevorzugte Kontaktart: ${
-        formData.get("contactPreference") || "Keine Angabe"
-      }`,
+      `${t("mail.topic")}: ${topic}`,
+      `${t("mail.name")}: ${name}`,
+      `${t("mail.email")}: ${email}`,
+      `${t("mail.phone")}: ${phone}`,
+      `${t(
+        "mail.contactPreference"
+      )}: ${contactPreference}`,
       "",
-      "Nachricht:",
-      `${formData.get("message") || "Keine Nachricht"}`,
+      `${t("mail.message")}:`,
+      message,
     ].join("\n");
 
     window.location.href =
-      `mailto:info@real2own.com?subject=${encodeURIComponent(subject)}` +
-      `&body=${encodeURIComponent(body)}`;
+      `mailto:info@real2own.com?subject=${encodeURIComponent(
+        subject
+      )}` +
+      `&body=${encodeURIComponent(
+        body
+      )}`;
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit}
+    >
       <fieldset>
         <legend>
           <span>01</span>
-          Dein Anliegen
+          {t("requestSection")}
         </legend>
 
         <label className={styles.field}>
-          <span>Thema *</span>
+          <span>
+            {t("topicLabel")} *
+          </span>
 
-          <select name="topic" defaultValue="" required>
-            <option value="" disabled>
-              Bitte auswählen
+          <select
+            name="topic"
+            defaultValue=""
+            required
+          >
+            <option
+              value=""
+              disabled
+            >
+              {t("selectPlaceholder")}
             </option>
 
-            <option value="Immobilie kaufen">
-              Immobilie kaufen
-            </option>
-
-            <option value="Immobilie mieten">
-              Immobilie mieten
-            </option>
-
-            <option value="Immobilie verkaufen">
-              Immobilie verkaufen
-            </option>
-
-            <option value="Immobilie vermieten">
-              Immobilie vermieten
-            </option>
-
-            <option value="Grundstück">
-              Grundstück
-            </option>
-
-            <option value="Neubauprojekt">
-              Neubauprojekt
-            </option>
-
-            <option value="Baupartner">
-              Baupartner
-            </option>
-
-            <option value="Partner werden">
-              Partner werden
-            </option>
-
-            <option value="Allgemeine Anfrage">
-              Allgemeine Anfrage
-            </option>
+            {topics.map((topic) => (
+              <option
+                value={topic}
+                key={topic}
+              >
+                {t(`topics.${topic}`)}
+              </option>
+            ))}
           </select>
         </label>
       </fieldset>
@@ -92,36 +143,44 @@ export function ContactForm() {
       <fieldset>
         <legend>
           <span>02</span>
-          Kontaktdaten
+          {t("contactSection")}
         </legend>
 
         <div className={styles.grid}>
           <label className={styles.field}>
-            <span>Name *</span>
+            <span>
+              {t("nameLabel")} *
+            </span>
 
             <input
               type="text"
               name="name"
-              placeholder="Vor- und Nachname"
+              placeholder={t(
+                "namePlaceholder"
+              )}
               autoComplete="name"
               required
             />
           </label>
 
           <label className={styles.field}>
-            <span>E-Mail-Adresse *</span>
+            <span>
+              {t("emailLabel")} *
+            </span>
 
             <input
               type="email"
               name="email"
-              placeholder="name@beispiel.de"
+              placeholder="name@example.com"
               autoComplete="email"
               required
             />
           </label>
 
           <label className={styles.field}>
-            <span>Telefonnummer</span>
+            <span>
+              {t("phoneLabel")}
+            </span>
 
             <input
               type="tel"
@@ -132,27 +191,44 @@ export function ContactForm() {
           </label>
 
           <label className={styles.field}>
-            <span>Bevorzugte Kontaktart</span>
+            <span>
+              {t(
+                "contactPreferenceLabel"
+              )}
+            </span>
 
             <select
               name="contactPreference"
-              defaultValue="E-Mail"
+              defaultValue="email"
             >
-              <option value="E-Mail">E-Mail</option>
-              <option value="Telefon">Telefon</option>
-              <option value="Keine Präferenz">
-                Keine Präferenz
-              </option>
+              {contactPreferences.map(
+                (preference) => (
+                  <option
+                    value={preference}
+                    key={preference}
+                  >
+                    {t(
+                      `contactPreferences.${preference}`
+                    )}
+                  </option>
+                )
+              )}
             </select>
           </label>
 
-          <label className={`${styles.field} ${styles.fullWidth}`}>
-            <span>Nachricht *</span>
+          <label
+            className={`${styles.field} ${styles.fullWidth}`}
+          >
+            <span>
+              {t("messageLabel")} *
+            </span>
 
             <textarea
               name="message"
               rows={8}
-              placeholder="Beschreibe dein Anliegen, den gewünschten Standort, dein Budget oder weitere wichtige Informationen ..."
+              placeholder={t(
+                "messagePlaceholder"
+              )}
               required
             />
           </label>
@@ -161,32 +237,38 @@ export function ContactForm() {
 
       <div className={styles.footer}>
         <label className={styles.consent}>
-          <input type="checkbox" required />
+          <input
+            type="checkbox"
+            required
+          />
 
           <span>
-            Ich habe die{" "}
-            <a
+            {t("privacyBefore")}{" "}
+
+            <Link
               href="/datenschutz"
               target="_blank"
               rel="noreferrer"
             >
-              Datenschutzerklärung
-            </a>{" "}
-            gelesen und stimme der Verarbeitung meiner Angaben zur
-            Bearbeitung der Anfrage zu.
+              {t("privacyLink")}
+            </Link>{" "}
+
+            {t("privacyAfter")}
           </span>
         </label>
 
         <button type="submit">
-          Nachricht vorbereiten
-          <Icon name="arrow" size={17} />
+          {t("submit")}
+
+          <Icon
+            name="arrow"
+            size={17}
+          />
         </button>
       </div>
 
       <p className={styles.note}>
-        Nach dem Absenden öffnet sich dein E-Mail-Programm mit einer
-        vorbereiteten Nachricht. Die Angaben werden nicht automatisch auf
-        dieser Website gespeichert.
+        {t("note")}
       </p>
     </form>
   );

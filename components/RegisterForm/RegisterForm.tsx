@@ -1,9 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import styles from "./RegisterForm.module.css";
 
 export function RegisterForm() {
+  const t = useTranslations("RegisterForm");
+
   return (
     <form
       className={styles.form}
@@ -11,24 +14,24 @@ export function RegisterForm() {
     >
       <div className={styles.nameGrid}>
         <label className={styles.field}>
-          <span>Vorname</span>
+          <span>{t("firstNameLabel")}</span>
 
           <input
             type="text"
             name="firstName"
-            placeholder="Vorname"
+            placeholder={t("firstNamePlaceholder")}
             autoComplete="given-name"
             required
           />
         </label>
 
         <label className={styles.field}>
-          <span>Nachname</span>
+          <span>{t("lastNameLabel")}</span>
 
           <input
             type="text"
             name="lastName"
-            placeholder="Nachname"
+            placeholder={t("lastNamePlaceholder")}
             autoComplete="family-name"
             required
           />
@@ -36,24 +39,24 @@ export function RegisterForm() {
       </div>
 
       <label className={styles.field}>
-        <span>E-Mail-Adresse</span>
+        <span>{t("emailLabel")}</span>
 
         <input
           type="email"
           name="email"
-          placeholder="name@beispiel.de"
+          placeholder="name@example.com"
           autoComplete="email"
           required
         />
       </label>
 
       <label className={styles.field}>
-        <span>Passwort</span>
+        <span>{t("passwordLabel")}</span>
 
         <input
           type="password"
           name="password"
-          placeholder="Mindestens 8 Zeichen"
+          placeholder={t("passwordPlaceholder")}
           autoComplete="new-password"
           minLength={8}
           required
@@ -61,12 +64,12 @@ export function RegisterForm() {
       </label>
 
       <label className={styles.field}>
-        <span>Passwort wiederholen</span>
+        <span>{t("passwordConfirmationLabel")}</span>
 
         <input
           type="password"
           name="passwordConfirmation"
-          placeholder="Passwort wiederholen"
+          placeholder={t("passwordConfirmationPlaceholder")}
           autoComplete="new-password"
           minLength={8}
           required
@@ -74,14 +77,20 @@ export function RegisterForm() {
       </label>
 
       <label className={styles.consent}>
-        <input type="checkbox" name="privacy" required />
+        <input
+          type="checkbox"
+          name="privacy"
+          required
+        />
 
         <span>
-          Ich habe die{" "}
+          {t("privacyBefore")}{" "}
+
           <Link href="/datenschutz">
-            Datenschutzerklärung
+            {t("privacyLink")}
           </Link>{" "}
-          gelesen und akzeptiere die Verarbeitung meiner Angaben.
+
+          {t("privacyAfter")}
         </span>
       </label>
 
@@ -91,19 +100,27 @@ export function RegisterForm() {
         disabled
         aria-describedby="registration-status"
       >
-        Registrierung folgt
-        <span aria-hidden="true">→</span>
+        {t("submit")}
+
+        <span aria-hidden="true">
+          →
+        </span>
       </button>
 
-      <p className={styles.status} id="registration-status">
-        Die Kontoerstellung wird zusammen mit dem sicheren Backend aktiviert.
+      <p
+        className={styles.status}
+        id="registration-status"
+      >
+        {t("status")}
       </p>
 
       <div className={styles.login}>
-        <span>Bereits registriert?</span>
+        <span>
+          {t("alreadyRegistered")}
+        </span>
 
         <Link href="/anmelden">
-          Jetzt anmelden
+          {t("login")}
         </Link>
       </div>
     </form>

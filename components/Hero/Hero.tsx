@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { SearchPanel } from "@/components/SearchPanel/SearchPanel";
 import styles from "./Hero.module.css";
 
@@ -27,12 +28,14 @@ const slides = [
 const SLIDE_DURATION = 7000;
 
 export function Hero() {
+  const t = useTranslations("Hero");
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
+      "(prefers-reduced-motion: reduce)"
     );
 
     function updateMotionPreference() {
@@ -40,10 +43,17 @@ export function Hero() {
     }
 
     updateMotionPreference();
-    mediaQuery.addEventListener("change", updateMotionPreference);
+
+    mediaQuery.addEventListener(
+      "change",
+      updateMotionPreference
+    );
 
     return () => {
-      mediaQuery.removeEventListener("change", updateMotionPreference);
+      mediaQuery.removeEventListener(
+        "change",
+        updateMotionPreference
+      );
     };
   }, []);
 
@@ -69,11 +79,16 @@ export function Hero() {
       id="top"
       aria-labelledby="hero-title"
     >
-      <div className={styles.background} aria-hidden="true">
+      <div
+        className={styles.background}
+        aria-hidden="true"
+      >
         {slides.map((slide, index) => (
           <div
             className={`${styles.slide} ${
-              activeIndex === index ? styles.activeSlide : ""
+              activeIndex === index
+                ? styles.activeSlide
+                : ""
             }`}
             key={slide.src}
           >
@@ -94,20 +109,21 @@ export function Hero() {
         <div className={styles.overlay} />
       </div>
 
-      <div className={`container ${styles.container}`}>
+      <div
+        className={`container ${styles.container}`}
+      >
         <div className={styles.content}>
           <p className={styles.eyebrow}>
-            Internationale Immobilienplattform
+            {t("eyebrow")}
           </p>
 
           <h1 id="hero-title">
-            Immobilien finden.
-            <span>Weltweit zuhause.</span>
+            {t("title")}
+            <span>{t("titleHighlight")}</span>
           </h1>
 
           <p className={styles.description}>
-            Entdecke Immobilien, Grundstücke und ausgewählte Projektpartner
-            in internationalen Märkten.
+            {t("description")}
           </p>
         </div>
 
@@ -115,7 +131,10 @@ export function Hero() {
           <SearchPanel />
         </div>
 
-        <div className={styles.progress} aria-hidden="true">
+        <div
+          className={styles.progress}
+          aria-hidden="true"
+        >
           <span key={activeIndex} />
         </div>
       </div>

@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Icon } from "@/components/Icon/Icon";
 import { PropertyCard } from "@/components/PropertyCard/PropertyCard";
 import { Reveal } from "@/components/Reveal/Reveal";
@@ -7,25 +8,27 @@ import { properties } from "@/data/properties";
 import styles from "./PropertyShowcase.module.css";
 
 export function PropertyShowcase() {
+  const t = useTranslations("PropertyShowcase");
+
   return (
     <section
       className={`section ${styles.section}`}
       id="immobilien"
-      aria-label="Ausgewählte Immobilien"
+      aria-label={t("ariaLabel")}
     >
       <div className={`container ${styles.container}`}>
         <Reveal>
           <div className={styles.heading}>
             <SectionHeading
-              eyebrow="Ausgewählte Immobilien"
-              title="Orte, die mehr aus deinem Leben machen."
-              description="Entdecke kuratierte Wohn- und Investmentobjekte – transparent aufbereitet, international vergleichbar und bereit für den nächsten Schritt."
+              eyebrow={t("eyebrow")}
+              title={t("title")}
+              description={t("description")}
               action={
                 <Link
                   className={styles.allLink}
                   href="/immobilien/kaufen"
                 >
-                  <span>Alle Immobilien</span>
+                  <span>{t("viewAll")}</span>
 
                   <span
                     className={styles.linkIcon}

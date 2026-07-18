@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Icon } from "@/components/Icon/Icon";
 import { ListingExplorer } from "@/components/ListingExplorer/ListingExplorer";
 import type { ListingProperty } from "@/types/property";
@@ -19,6 +20,8 @@ export function ListingPage({
   resultLabel,
   properties,
 }: ListingPageProps) {
+  const t = useTranslations("ListingPage");
+
   return (
     <>
       <section
@@ -26,9 +29,13 @@ export function ListingPage({
         aria-labelledby="listing-page-title"
       >
         <div className={`container ${styles.heroContainer}`}>
-          <p className={styles.eyebrow}>{eyebrow}</p>
+          <p className={styles.eyebrow}>
+            {eyebrow}
+          </p>
 
-          <h1 id="listing-page-title">{title}</h1>
+          <h1 id="listing-page-title">
+            {title}
+          </h1>
 
           <p className={styles.description}>
             {description}
@@ -41,27 +48,33 @@ export function ListingPage({
         properties={properties}
       />
 
-      <section className={styles.cta}>
+      <section
+        className={styles.cta}
+        aria-label={t("ctaAria")}
+      >
         <div className={`container ${styles.ctaContainer}`}>
           <div>
             <p className={styles.ctaEyebrow}>
-              Persönliche Immobiliensuche
+              {t("ctaEyebrow")}
             </p>
 
             <h2>
-              Noch nicht das passende Angebot gefunden?
+              {t("ctaTitle")}
             </h2>
           </div>
 
           <div className={styles.ctaCopy}>
             <p>
-              Teile uns Standort, Budget und Anforderungen mit. Wir
-              unterstützen dich bei der gezielten Suche.
+              {t("ctaDescription")}
             </p>
 
             <Link href="/kontakt#kontaktformular">
-              Suchauftrag starten
-              <Icon name="arrow" size={17} />
+              {t("ctaAction")}
+
+              <Icon
+                name="arrow"
+                size={17}
+              />
             </Link>
           </div>
         </div>

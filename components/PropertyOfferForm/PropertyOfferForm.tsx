@@ -1,50 +1,206 @@
 "use client";
 
 import type { FormEvent } from "react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Icon } from "@/components/Icon/Icon";
 import styles from "./PropertyOfferForm.module.css";
 
+type Transaction =
+  | "sell"
+  | "rent"
+  | "presentProject";
+
+type LegacyTransaction =
+  | "Verkaufen"
+  | "Vermieten"
+  | "Projekt präsentieren";
+
 type PropertyOfferFormProps = {
-  defaultTransaction?: "Verkaufen" | "Vermieten" | "Projekt präsentieren";
+  defaultTransaction?:
+    | Transaction
+    | LegacyTransaction;
 };
 
+const transactions: Transaction[] = [
+  "sell",
+  "rent",
+  "presentProject",
+];
+
+const propertyTypes = [
+  "apartment",
+  "house",
+  "villa",
+  "multiFamilyHouse",
+  "land",
+  "development",
+  "commercial",
+  "other",
+] as const;
+
+function normalizeTransaction(
+  transaction:
+    | Transaction
+    | LegacyTransaction
+): Transaction {
+  switch (transaction) {
+    case "Verkaufen":
+      return "sell";
+
+    case "Vermieten":
+      return "rent";
+
+    case "Projekt präsentieren":
+      return "presentProject";
+
+    default:
+      return transaction;
+  }
+}
+
 export function PropertyOfferForm({
-  defaultTransaction = "Verkaufen",
+  defaultTransaction = "sell",
 }: PropertyOfferFormProps) {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const t = useTranslations(
+    "PropertyOfferForm"
+  );
+
+  const normalizedDefaultTransaction =
+    normalizeTransaction(
+      defaultTransaction
+    );
+
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(
+      event.currentTarget
+    );
+
+    const noInformation = t(
+      "mail.noInformation"
+    );
+
+    const transactionKey = String(
+      formData.get("transaction") ||
+        normalizedDefaultTransaction
+    );
+
+    const propertyTypeKey = String(
+      formData.get("propertyType") || ""
+    );
+
+    const transaction = t(
+      `transactions.${transactionKey}`
+    );
+
+    const propertyType =
+      propertyTypeKey
+        ? t(
+            `propertyTypes.${propertyTypeKey}`
+          )
+        : noInformation;
+
+    const location =
+      String(
+        formData.get("location") || ""
+      ) || noInformation;
+
+    const area =
+      String(
+        formData.get("area") || ""
+      ) || noInformation;
+
+    const plotArea =
+      String(
+        formData.get("plotArea") || ""
+      ) || noInformation;
+
+    const rooms =
+      String(
+        formData.get("rooms") || ""
+      ) || noInformation;
+
+    const price =
+      String(
+        formData.get("price") || ""
+      ) || noInformation;
+
+    const name =
+      String(
+        formData.get("name") || ""
+      ) || noInformation;
+
+    const email =
+      String(
+        formData.get("email") || ""
+      ) || noInformation;
+
+    const phone =
+      String(
+        formData.get("phone") || ""
+      ) || noInformation;
+
+    const message =
+      String(
+        formData.get("message") || ""
+      ) ||
+      t(
+        "mail.noFurtherInformation"
+      );
 
     const subject =
-      defaultTransaction === "Projekt präsentieren"
-        ? "Projekt bei Real2Own präsentieren"
-        : "Immobilie bei Real2Own anbieten";
+      transactionKey ===
+      "presentProject"
+        ? t(
+            "mail.projectSubject"
+          )
+        : t(
+            "mail.propertySubject"
+          );
 
     const body = [
-      "Neue Anfrage über real2own.com",
+      t("mail.heading"),
       "",
-      `Vorhaben: ${formData.get("transaction") || "Keine Angabe"}`,
-      `Objektart: ${formData.get("propertyType") || "Keine Angabe"}`,
-      `Standort: ${formData.get("location") || "Keine Angabe"}`,
-      `Wohn-/Nutzfläche: ${formData.get("area") || "Keine Angabe"}`,
-      `Grundstücksfläche: ${formData.get("plotArea") || "Keine Angabe"}`,
-      `Zimmer: ${formData.get("rooms") || "Keine Angabe"}`,
-      `Preisvorstellung: ${formData.get("price") || "Keine Angabe"}`,
+      `${t(
+        "mail.transaction"
+      )}: ${transaction}`,
+      `${t(
+        "mail.propertyType"
+      )}: ${propertyType}`,
+      `${t(
+        "mail.location"
+      )}: ${location}`,
+      `${t("mail.area")}: ${area}`,
+      `${t(
+        "mail.plotArea"
+      )}: ${plotArea}`,
+      `${t("mail.rooms")}: ${rooms}`,
+      `${t("mail.price")}: ${price}`,
       "",
-      `Name: ${formData.get("name") || "Keine Angabe"}`,
-      `E-Mail: ${formData.get("email") || "Keine Angabe"}`,
-      `Telefon: ${formData.get("phone") || "Keine Angabe"}`,
+      `${t("mail.name")}: ${name}`,
+      `${t("mail.email")}: ${email}`,
+      `${t("mail.phone")}: ${phone}`,
       "",
-      "Weitere Informationen:",
-      `${formData.get("message") || "Keine weiteren Angaben"}`,
+      `${t(
+        "mail.additionalInformation"
+      )}:`,
+      message,
     ].join("\n");
 
     const mailtoUrl =
-      `mailto:info@real2own.com?subject=${encodeURIComponent(subject)}` +
-      `&body=${encodeURIComponent(body)}`;
+      `mailto:info@real2own.com?subject=${encodeURIComponent(
+        subject
+      )}` +
+      `&body=${encodeURIComponent(
+        body
+      )}`;
 
-    window.location.href = mailtoUrl;
+    window.location.href =
+      mailtoUrl;
   }
 
   return (
@@ -52,165 +208,240 @@ export function PropertyOfferForm({
       className={styles.form}
       onSubmit={handleSubmit}
     >
-      <fieldset className={styles.fieldset}>
+      <fieldset
+        className={
+          styles.fieldset
+        }
+      >
         <legend>
           <span>01</span>
-          Objekt und Vorhaben
+          {t("propertySection")}
         </legend>
 
-        <div className={styles.choiceGroup}>
-          <label>
-            <input
-              type="radio"
-              name="transaction"
-              value="Verkaufen"
-              defaultChecked={defaultTransaction === "Verkaufen"}
-            />
+        <div
+          className={
+            styles.choiceGroup
+          }
+        >
+          {transactions.map(
+            (transaction) => (
+              <label
+                key={
+                  transaction
+                }
+              >
+                <input
+                  type="radio"
+                  name="transaction"
+                  value={
+                    transaction
+                  }
+                  defaultChecked={
+                    normalizedDefaultTransaction ===
+                    transaction
+                  }
+                />
 
-            <span>Verkaufen</span>
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="transaction"
-              value="Vermieten"
-              defaultChecked={defaultTransaction === "Vermieten"}
-            />
-
-            <span>Vermieten</span>
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="transaction"
-              value="Projekt präsentieren"
-              defaultChecked={defaultTransaction === "Projekt präsentieren"}
-            />
-
-            <span>Projekt präsentieren</span>
-          </label>
+                <span>
+                  {t(
+                    `transactions.${transaction}`
+                  )}
+                </span>
+              </label>
+            )
+          )}
         </div>
 
-        <div className={styles.grid}>
-          <label className={styles.field}>
-            <span>Objektart *</span>
+        <div
+          className={styles.grid}
+        >
+          <label
+            className={styles.field}
+          >
+            <span>
+              {t(
+                "propertyTypeLabel"
+              )}{" "}
+              *
+            </span>
 
             <select
               name="propertyType"
               defaultValue=""
               required
             >
-              <option value="" disabled>
-                Bitte auswählen
+              <option
+                value=""
+                disabled
+              >
+                {t(
+                  "selectPlaceholder"
+                )}
               </option>
-              <option value="Wohnung">Wohnung</option>
-              <option value="Haus">Haus</option>
-              <option value="Villa">Villa</option>
-              <option value="Mehrfamilienhaus">
-                Mehrfamilienhaus
-              </option>
-              <option value="Grundstück">Grundstück</option>
-              <option value="Neubauprojekt">
-                Neubauprojekt
-              </option>
-              <option value="Gewerbeimmobilie">
-                Gewerbeimmobilie
-              </option>
-              <option value="Sonstiges">Sonstiges</option>
+
+              {propertyTypes.map(
+                (propertyType) => (
+                  <option
+                    value={
+                      propertyType
+                    }
+                    key={
+                      propertyType
+                    }
+                  >
+                    {t(
+                      `propertyTypes.${propertyType}`
+                    )}
+                  </option>
+                )
+              )}
             </select>
           </label>
 
-          <label className={styles.field}>
-            <span>Standort *</span>
+          <label
+            className={styles.field}
+          >
+            <span>
+              {t(
+                "locationLabel"
+              )}{" "}
+              *
+            </span>
 
             <input
               type="text"
               name="location"
-              placeholder="Ort, Region oder Land"
+              placeholder={t(
+                "locationPlaceholder"
+              )}
               autoComplete="street-address"
               required
             />
           </label>
 
-          <label className={styles.field}>
-            <span>Wohn- oder Nutzfläche</span>
+          <label
+            className={styles.field}
+          >
+            <span>
+              {t("areaLabel")}
+            </span>
 
             <input
               type="text"
               name="area"
-              placeholder="z. B. 180 m²"
+              placeholder={t(
+                "areaPlaceholder"
+              )}
             />
           </label>
 
-          <label className={styles.field}>
-            <span>Grundstücksfläche</span>
+          <label
+            className={styles.field}
+          >
+            <span>
+              {t(
+                "plotAreaLabel"
+              )}
+            </span>
 
             <input
               type="text"
               name="plotArea"
-              placeholder="z. B. 1.200 m²"
+              placeholder={t(
+                "plotAreaPlaceholder"
+              )}
             />
           </label>
 
-          <label className={styles.field}>
-            <span>Zimmer</span>
+          <label
+            className={styles.field}
+          >
+            <span>
+              {t("roomsLabel")}
+            </span>
 
             <input
               type="text"
               name="rooms"
-              placeholder="z. B. 5"
+              placeholder={t(
+                "roomsPlaceholder"
+              )}
               inputMode="decimal"
             />
           </label>
 
-          <label className={styles.field}>
-            <span>Preisvorstellung</span>
+          <label
+            className={styles.field}
+          >
+            <span>
+              {t("priceLabel")}
+            </span>
 
             <input
               type="text"
               name="price"
-              placeholder="z. B. 1.250.000 €"
+              placeholder={t(
+                "pricePlaceholder"
+              )}
               inputMode="decimal"
             />
           </label>
         </div>
       </fieldset>
 
-      <fieldset className={styles.fieldset}>
+      <fieldset
+        className={
+          styles.fieldset
+        }
+      >
         <legend>
           <span>02</span>
-          Persönliche Angaben
+          {t("personalSection")}
         </legend>
 
-        <div className={styles.grid}>
-          <label className={styles.field}>
-            <span>Name *</span>
+        <div
+          className={styles.grid}
+        >
+          <label
+            className={styles.field}
+          >
+            <span>
+              {t("nameLabel")} *
+            </span>
 
             <input
               type="text"
               name="name"
-              placeholder="Vor- und Nachname"
+              placeholder={t(
+                "namePlaceholder"
+              )}
               autoComplete="name"
               required
             />
           </label>
 
-          <label className={styles.field}>
-            <span>E-Mail-Adresse *</span>
+          <label
+            className={styles.field}
+          >
+            <span>
+              {t("emailLabel")} *
+            </span>
 
             <input
               type="email"
               name="email"
-              placeholder="name@beispiel.de"
+              placeholder="name@example.com"
               autoComplete="email"
               required
             />
           </label>
 
-          <label className={styles.field}>
-            <span>Telefonnummer</span>
+          <label
+            className={styles.field}
+          >
+            <span>
+              {t("phoneLabel")}
+            </span>
 
             <input
               type="tel"
@@ -220,20 +451,36 @@ export function PropertyOfferForm({
             />
           </label>
 
-          <label className={`${styles.field} ${styles.fullWidth}`}>
-            <span>Weitere Informationen</span>
+          <label
+            className={`${styles.field} ${styles.fullWidth}`}
+          >
+            <span>
+              {t(
+                "additionalInformationLabel"
+              )}
+            </span>
 
             <textarea
               name="message"
               rows={6}
-              placeholder="Besonderheiten, Zustand, gewünschter Zeitraum oder weitere Informationen zum Objekt ..."
+              placeholder={t(
+                "additionalInformationPlaceholder"
+              )}
             />
           </label>
         </div>
       </fieldset>
 
-      <div className={styles.formFooter}>
-        <label className={styles.consent}>
+      <div
+        className={
+          styles.formFooter
+        }
+      >
+        <label
+          className={
+            styles.consent
+          }
+        >
           <input
             type="checkbox"
             name="privacy"
@@ -241,29 +488,42 @@ export function PropertyOfferForm({
           />
 
           <span>
-            Ich habe die{" "}
-            <a
+            {t(
+              "privacyBefore"
+            )}{" "}
+
+            <Link
               href="/datenschutz"
               target="_blank"
               rel="noreferrer"
             >
-              Datenschutzerklärung
-            </a>{" "}
-            gelesen und stimme der Verarbeitung meiner Angaben zur
-            Bearbeitung der Anfrage zu.
+              {t(
+                "privacyLink"
+              )}
+            </Link>{" "}
+
+            {t(
+              "privacyAfter"
+            )}
           </span>
         </label>
 
         <button type="submit">
-          <span>E-Mail-Anfrage vorbereiten</span>
-          <Icon name="arrow" size={17} />
+          <span>
+            {t("submit")}
+          </span>
+
+          <Icon
+            name="arrow"
+            size={17}
+          />
         </button>
       </div>
 
-      <p className={styles.note}>
-        Nach dem Absenden wird dein E-Mail-Programm mit einer vorbereiteten
-        Nachricht geöffnet. Die Angaben werden nicht automatisch auf dieser
-        Website gespeichert.
+      <p
+        className={styles.note}
+      >
+        {t("note")}
       </p>
     </form>
   );

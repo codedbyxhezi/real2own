@@ -1,4 +1,8 @@
 import Image from "next/image";
+import {
+  useLocale,
+  useTranslations,
+} from "next-intl";
 import { Icon } from "@/components/Icon/Icon";
 import type { Property } from "@/data/properties";
 import styles from "./PropertyCard.module.css";
@@ -8,16 +12,44 @@ type PropertyCardProps = {
   priority?: boolean;
 };
 
+const localeMap = {
+  de: "de-DE",
+  en: "en-GB",
+  es: "es-ES",
+} as const;
+
 export function PropertyCard({
   property,
   priority = false,
 }: PropertyCardProps) {
+  const t = useTranslations("PropertyCard");
+  const locale = useLocale();
+
+  const numberLocale =
+    localeMap[
+      locale as keyof typeof localeMap
+    ] ?? "de-DE";
+
+  const formattedPrice =
+    new Intl.NumberFormat(numberLocale, {
+      style: "currency",
+      currency: "EUR",
+      maximumFractionDigits: 0,
+    }).format(property.price);
+
+  const country = t(
+    `countries.${property.country}`
+  );
+
   return (
     <article className={styles.card}>
       <div className={styles.imageWrap}>
         <Image
           src={property.image}
-          alt={`${property.title} in ${property.location}`}
+          alt={t("imageAlt", {
+            title: property.title,
+            location: property.location,
+          })}
           fill
           priority={priority}
           quality={88}
@@ -33,52 +65,94 @@ export function PropertyCard({
 
         <div className={styles.topRow}>
           <span className={styles.purpose}>
-            {property.purpose}
+            {t(
+              `purposes.${property.purpose}`
+            )}
           </span>
 
           <button
             className={styles.favoriteButton}
             type="button"
-            aria-label={`${property.title} zu Favoriten hinzufügen`}
+            aria-label={t("favoriteAria", {
+              title: property.title,
+            })}
           >
-            <Icon name="heart" size={18} />
+            <Icon
+              name="heart"
+              size={18}
+            />
           </button>
         </div>
 
         {property.badge ? (
           <span className={styles.badge}>
-            {property.badge}
+            {t(
+              `badges.${property.badge}`
+            )}
           </span>
         ) : null}
       </div>
 
       <div className={styles.body}>
         <div className={styles.location}>
-          <Icon name="location" size={14} />
+          <Icon
+            name="location"
+            size={14}
+          />
 
           <span>
-            {property.location}, {property.country}
+            {property.location}, {country}
           </span>
         </div>
 
         <div className={styles.titleRow}>
-          <h3>{property.title}</h3>
-          <p className={styles.price}>{property.price}</p>
+          <div>
+            <span className={styles.type}>
+              {t(
+                `types.${property.type}`
+              )}
+            </span>
+
+            <h3>
+              {property.title}
+            </h3>
+          </div>
+
+          <p className={styles.price}>
+            {formattedPrice}
+
+            {property.pricePeriod ===
+              "month" && (
+              <small>
+                {" "}
+                / {t("perMonth")}
+              </small>
+            )}
+          </p>
         </div>
 
         <div className={styles.details}>
           <span>
-            <strong>{property.beds}</strong>
-            Zimmer
+            <strong>
+              {property.beds}
+            </strong>
+
+            {t("rooms")}
           </span>
 
           <span>
-            <strong>{property.baths}</strong>
-            Bäder
+            <strong>
+              {property.baths}
+            </strong>
+
+            {t("bathrooms")}
           </span>
 
           <span>
-            <strong>{property.area}</strong>
+            <strong>
+              {property.area}
+            </strong>
+
             m²
           </span>
         </div>
