@@ -429,6 +429,10 @@
    MOBILE — EDITORIAL STAGGERED SERVICES
    ========================================================= */
 
+/* =========================================================
+   MOBILE — SERVICES
+   ========================================================= */
+
 @media (max-width: 680px) {
   .section {
     overflow: clip;
@@ -440,20 +444,18 @@
 
   .grid {
     display: block;
-
-    padding-inline: 6px;
+    padding-inline: 0;
   }
 
   .card {
-    width: 86%;
-
+    width: 100%;
     min-height: 0;
+
+    margin: 0 0 18px;
 
     padding:
       22px
       20px;
-
-    margin-bottom: 18px;
 
     border-radius:
       var(--glass-radius-md);
@@ -463,25 +465,11 @@
       0 12px 30px rgba(50, 43, 34, 0.06);
   }
 
-
-  /* Klarer, sauberer Versatz */
-
-  .grid > *:nth-child(odd) {
-    margin-left: 2%;
-    margin-right: auto;
-  }
-
+  .grid > *:nth-child(odd),
   .grid > *:nth-child(even) {
-    margin-left: auto;
-    margin-right: 2%;
+    margin-left: 0;
+    margin-right: 0;
   }
-
-  .grid > * + * {
-    margin-top: 0;
-  }
-
-
-  /* Unterschiedlicher Glass-Ton */
 
   .grid > *:nth-child(even) {
     background:
@@ -492,19 +480,13 @@
       );
   }
 
-
-  /* Top */
-
   .cardTop {
-    justify-content:
-      flex-start;
-
+    justify-content: flex-start;
     gap: 12px;
   }
 
   .number {
     order: 2;
-
     font-size: 0.67rem;
   }
 
@@ -529,18 +511,13 @@
       0 7px 18px rgba(79, 58, 39, 0.13);
   }
 
-
-  /* Content */
-
   .cardCopy {
     margin-top: 0;
-
     padding-top: 26px;
   }
 
   .label {
     margin-bottom: 10px;
-
     font-size: 0.55rem;
   }
 
@@ -559,18 +536,12 @@
     margin-top: 13px;
 
     font-size: 0.75rem;
-
     line-height: 1.62;
   }
 
-
-  /* Link */
-
   .link {
     margin-top: 20px;
-
     padding-top: 14px;
-
     font-size: 0.56rem;
   }
 
@@ -582,7 +553,7 @@
 
 
 /* =========================================================
-   MOBILE — SUBTLE SCROLL REVEAL
+   MOBILE — SCROLL REVEAL
    ========================================================= */
 
 @media (max-width: 680px) {
@@ -610,17 +581,17 @@
         view();
 
       animation-range:
-        entry 5%
-        cover 30%;
+        entry 0%
+        cover 32%;
     }
 
     @keyframes serviceRevealLeft {
       from {
-        opacity: 0.7;
+        opacity: 0.55;
 
         transform:
-          translateX(-22px)
-          scale(0.985);
+          translateX(-52px)
+          scale(0.97);
       }
 
       to {
@@ -634,11 +605,11 @@
 
     @keyframes serviceRevealRight {
       from {
-        opacity: 0.7;
+        opacity: 0.55;
 
         transform:
-          translateX(22px)
-          scale(0.985);
+          translateX(52px)
+          scale(0.97);
       }
 
       to {
@@ -658,24 +629,12 @@
    ========================================================= */
 
 @media (max-width: 390px) {
-  .grid {
-    padding-inline: 4px;
-  }
-
   .card {
-    width: 88%;
+    width: 100%;
 
     padding:
       20px
       17px;
-  }
-
-  .grid > *:nth-child(odd) {
-    margin-left: 1%;
-  }
-
-  .grid > *:nth-child(even) {
-    margin-right: 1%;
   }
 
   .icon {
@@ -695,7 +654,6 @@
     font-size: 0.72rem;
   }
 }
-
 
 /* =========================================================
    REDUCED MOTION
