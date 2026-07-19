@@ -35,43 +35,32 @@
 .section::after {
   position: absolute;
   z-index: 0;
-
   border-radius: 50%;
-
   content: "";
-
   pointer-events: none;
-
   filter: blur(90px);
-
   opacity: 0.9;
 }
 
 .section::before {
   top: -170px;
   left: -130px;
-
   width: 480px;
   height: 480px;
-
-  background:
-    rgba(210, 176, 142, 0.25);
+  background: rgba(210, 176, 142, 0.25);
 }
 
 .section::after {
   right: -160px;
   bottom: -180px;
-
   width: 520px;
   height: 520px;
-
-  background:
-    rgba(167, 122, 79, 0.16);
+  background: rgba(167, 122, 79, 0.16);
 }
 
 
 /* =========================================================
-   CONTENT CONTAINER
+   CONTENT
    ========================================================= */
 
 .container {
@@ -79,17 +68,10 @@
   z-index: 1;
 }
 
-
-/* =========================================================
-   SECTION HEADING
-   ========================================================= */
-
 .heading {
   position: relative;
   z-index: 1;
-
-  margin-bottom:
-    clamp(48px, 6vw, 82px);
+  margin-bottom: clamp(48px, 6vw, 82px);
 }
 
 
@@ -120,7 +102,7 @@
 
 
 /* =========================================================
-   ALL PROPERTIES LINK — GLASS
+   ALL PROPERTIES LINK
    ========================================================= */
 
 .allLink {
@@ -128,11 +110,9 @@
   z-index: 1;
 
   display: inline-flex;
-
   min-height: 48px;
 
   align-items: center;
-
   gap: 14px;
 
   padding:
@@ -161,13 +141,9 @@
 
   font-size: 0.66rem;
   font-weight: 800;
-
   letter-spacing: 0.09em;
-
   line-height: 1;
-
   white-space: nowrap;
-
   text-transform: uppercase;
 
   -webkit-backdrop-filter:
@@ -188,7 +164,6 @@
 
 .allLink > span:first-child {
   position: relative;
-
   padding-bottom: 2px;
 }
 
@@ -204,7 +179,6 @@
   height: 38px;
 
   flex: 0 0 auto;
-
   place-items: center;
 
   border:
@@ -273,8 +247,7 @@
   outline:
     2px solid var(--brand-dark);
 
-  outline-offset:
-    5px;
+  outline-offset: 5px;
 }
 
 
@@ -305,11 +278,13 @@
 
 
 /* =========================================================
-   MOBILE
+   MOBILE — STICKY PROPERTY CARD STACK
    ========================================================= */
 
 @media (max-width: 680px) {
   .section {
+    overflow: clip;
+
     background:
       radial-gradient(
         circle at 8% 14%,
@@ -327,6 +302,11 @@
         #eee8df 52%,
         #f5f1ea 100%
       );
+  }
+
+  .container,
+  .grid {
+    overflow: visible;
   }
 
   .section::before {
@@ -353,23 +333,75 @@
     margin-bottom: 42px;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
 
-    row-gap: 34px;
+  /* Stack Container */
+
+  .grid {
+    display: block;
+    padding-bottom: 6vh;
   }
+
+
+  /* Sticky Cards */
 
   .grid > * {
+    position: sticky;
+
+    top: 104px;
+
+    width: 100%;
+
+    margin-bottom: 18vh;
+
     grid-column: auto;
+
+    transform-origin:
+      center top;
+
+    will-change:
+      transform,
+      opacity,
+      filter;
   }
+
+  .grid > *:last-child {
+    margin-bottom: 0;
+  }
+
+
+  /* Stack Reihenfolge */
+
+  .grid > *:nth-child(1) {
+    z-index: 1;
+  }
+
+  .grid > *:nth-child(2) {
+    z-index: 2;
+  }
+
+  .grid > *:nth-child(3) {
+    z-index: 3;
+  }
+
+  .grid > *:nth-child(4) {
+    z-index: 4;
+  }
+
+  .grid > *:nth-child(5) {
+    z-index: 5;
+  }
+
+  .grid > *:nth-child(6) {
+    z-index: 6;
+  }
+
+
+  /* Link */
 
   .allLink {
     min-height: 46px;
-
     gap: 10px;
-
     padding-left: 15px;
-
     font-size: 0.61rem;
   }
 
@@ -381,12 +413,72 @@
 
 
 /* =========================================================
+   MOBILE — SCROLL DEPTH EFFECT
+   ========================================================= */
+
+@media (max-width: 680px) {
+  @supports (animation-timeline: view()) {
+    .grid > * {
+      animation-name:
+        propertyCardStack;
+
+      animation-duration: 1ms;
+
+      animation-timing-function:
+        linear;
+
+      animation-fill-mode:
+        both;
+
+      animation-timeline:
+        view();
+
+      animation-range:
+        exit-crossing 0%
+        exit-crossing 85%;
+    }
+
+    @keyframes propertyCardStack {
+      from {
+        transform:
+          scale(1)
+          translateY(0);
+
+        opacity: 1;
+
+        filter:
+          brightness(1)
+          saturate(1);
+      }
+
+      to {
+        transform:
+          scale(0.91)
+          translateY(-12px);
+
+        opacity: 0.72;
+
+        filter:
+          brightness(0.76)
+          saturate(0.82);
+      }
+    }
+  }
+}
+
+
+/* =========================================================
    VERY SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 420px) {
-  .grid {
-    row-gap: 30px;
+  .grid > * {
+    top: 96px;
+    margin-bottom: 16vh;
+  }
+
+  .grid > *:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -415,5 +507,45 @@
   .allLink,
   .linkIcon {
     transition: none;
+  }
+}
+
+
+/* =========================================================
+   MOBILE — REDUCED MOTION FALLBACK
+   ========================================================= */
+
+@media (max-width: 680px)
+  and (prefers-reduced-motion: reduce) {
+  .section {
+    overflow: hidden;
+  }
+
+  .grid {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 34px;
+
+    padding-bottom: 0;
+  }
+
+  .grid > * {
+    position: relative;
+
+    top: auto;
+
+    margin-bottom: 0;
+
+    grid-column: auto;
+
+    animation: none;
+
+    transform: none;
+
+    opacity: 1;
+
+    filter: none;
   }
 }

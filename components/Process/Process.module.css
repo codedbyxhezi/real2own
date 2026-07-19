@@ -60,7 +60,9 @@
 }
 
 
-/* Prozessraster */
+/* =========================================================
+   DESKTOP PROCESS GRID
+   ========================================================= */
 
 .steps {
   display: grid;
@@ -69,18 +71,28 @@
 }
 
 
-/* Einzelner Schritt */
+/* =========================================================
+   STEP
+   ========================================================= */
 
 .step {
   position: relative;
   display: flex;
   min-height: 360px;
   flex-direction: column;
-  padding: 30px clamp(22px, 2.5vw, 36px) 28px;
+
+  padding:
+    30px
+    clamp(22px, 2.5vw, 36px)
+    28px;
+
   overflow: hidden;
 
-  border: 1px solid var(--glass-border-light);
-  border-radius: var(--glass-radius-lg);
+  border:
+    1px solid var(--glass-border-light);
+
+  border-radius:
+    var(--glass-radius-lg);
 
   background:
     linear-gradient(
@@ -108,7 +120,9 @@
 }
 
 
-/* Header */
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .stepHeader {
   display: flex;
@@ -131,11 +145,15 @@
   flex: 0 0 auto;
   place-items: center;
 
-  border: 1px solid rgba(120, 83, 51, 0.24);
+  border:
+    1px solid rgba(120, 83, 51, 0.24);
+
   border-radius: 12px;
 
   color: var(--brand-dark);
-  background: rgba(255, 255, 255, 0.26);
+
+  background:
+    rgba(255, 255, 255, 0.26);
 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -147,7 +165,9 @@
 }
 
 
-/* Text */
+/* =========================================================
+   COPY
+   ========================================================= */
 
 .copy {
   margin-top: auto;
@@ -157,8 +177,13 @@
 .step h3 {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 2.8vw, 3.2rem);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(2rem, 2.8vw, 3.2rem);
+
   font-weight: 400;
   letter-spacing: -0.045em;
   line-height: 0.98;
@@ -166,64 +191,99 @@
 
 .step p {
   max-width: 300px;
-  margin: 20px 0 0;
+
+  margin:
+    20px 0 0;
+
   color: var(--muted);
+
   font-size: 0.82rem;
   line-height: 1.72;
 }
 
 
-/* Fortschrittslinie */
+/* =========================================================
+   PROGRESS
+   ========================================================= */
 
 .progress {
   position: absolute;
+
   right: 24px;
   bottom: 0;
   left: 24px;
+
   height: 2px;
+
   overflow: hidden;
+
   border-radius: 999px;
 }
 
 .progress::after {
   position: absolute;
   inset: 0;
+
   border-radius: inherit;
-  background: var(--brand-dark);
+
+  background:
+    var(--brand-dark);
+
   content: "";
-  transform: scaleX(0);
-  transform-origin: left center;
+
+  transform:
+    scaleX(0);
+
+  transform-origin:
+    left center;
+
   transition:
-    transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+    transform 360ms
+    cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
-/* Hover */
+/* =========================================================
+   HOVER
+   ========================================================= */
 
 @media (hover: hover) and (pointer: fine) {
   .step:hover {
-    border-color: rgba(255, 255, 255, 0.72);
-    box-shadow: var(--glass-shadow-medium);
-    transform: translateY(-4px);
+    border-color:
+      rgba(255, 255, 255, 0.72);
+
+    box-shadow:
+      var(--glass-shadow-medium);
+
+    transform:
+      translateY(-4px);
   }
 
   .step:hover .icon {
-    border-color: var(--brand-dark);
+    border-color:
+      var(--brand-dark);
+
     color: #ffffff;
-    background: var(--brand-dark);
+
+    background:
+      var(--brand-dark);
   }
 
   .step:hover .progress::after {
-    transform: scaleX(1);
+    transform:
+      scaleX(1);
   }
 }
 
 
-/* Tablet */
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 1000px) {
   .steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
 
   .step {
@@ -240,68 +300,327 @@
 }
 
 
-/* Mobile */
+/* =========================================================
+   MOBILE — VERTICAL PROCESS TIMELINE
+   ========================================================= */
 
 @media (max-width: 650px) {
   .heading {
-    margin-bottom: 44px;
+    margin-bottom: 46px;
   }
 
   .steps {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    position: relative;
+
+    display: block;
+
+    padding:
+      4px
+      0
+      6px;
   }
+
+
+  /* Vertikale Timeline */
+
+  .steps::before {
+    position: absolute;
+
+    z-index: 0;
+
+    top: 28px;
+    bottom: 28px;
+    left: 23px;
+
+    width: 1px;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(120, 83, 51, 0.08),
+        rgba(120, 83, 51, 0.42) 18%,
+        rgba(120, 83, 51, 0.42) 82%,
+        rgba(120, 83, 51, 0.08)
+      );
+
+    content: "";
+  }
+
+
+  /* Einzelner Timeline-Schritt */
 
   .step {
+    position: relative;
+
+    display: block;
+
     min-height: 0;
-    padding: 24px 20px 28px;
-    border-radius: var(--glass-radius-md);
+
+    margin-bottom: 18px;
+
+    padding:
+      24px
+      20px
+      24px
+      76px;
+
+    overflow: visible;
+
+    border:
+      1px solid rgba(255, 255, 255, 0.58);
+
+    border-radius:
+      var(--glass-radius-md);
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.55),
+        rgba(255, 255, 255, 0.2)
+      );
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.7),
+      0 14px 34px rgba(50, 43, 34, 0.07);
+
+    backdrop-filter:
+      blur(18px)
+      saturate(130%);
+
+    -webkit-backdrop-filter:
+      blur(18px)
+      saturate(130%);
+
+    transform-origin:
+      center center;
   }
 
-  .copy {
-    padding-top: 48px;
+  .step:last-child {
+    margin-bottom: 0;
   }
 
-  .step h3 {
-    font-size: clamp(2.2rem, 10vw, 3rem);
+
+  /* Timeline-Knoten */
+
+  .stepHeader {
+    position: absolute;
+
+    z-index: 2;
+
+    top: 22px;
+    left: 0;
+
+    display: flex;
+
+    width: 48px;
+
+    align-items: center;
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+    gap: 8px;
   }
 
-  .step p {
-    max-width: 520px;
-    margin-top: 16px;
-  }
+  .number {
+    display: grid;
 
-  .progress {
-    right: 20px;
-    left: 20px;
-  }
-}
+    width: 32px;
+    height: 24px;
 
+    place-items: center;
 
-/* Small Mobile */
+    border:
+      1px solid rgba(120, 83, 51, 0.16);
 
-@media (max-width: 390px) {
-  .copy {
-    padding-top: 40px;
+    border-radius: 999px;
+
+    color:
+      var(--brand-dark);
+
+    background:
+      rgba(248, 245, 239, 0.88);
+
+    box-shadow:
+      0 5px 16px rgba(50, 43, 34, 0.08);
+
+    font-size: 0.62rem;
+
+    backdrop-filter:
+      blur(12px);
+
+    -webkit-backdrop-filter:
+      blur(12px);
   }
 
   .icon {
-    width: 39px;
-    height: 39px;
+    position: relative;
+
+    width: 46px;
+    height: 46px;
+
+    border:
+      1px solid rgba(210, 176, 142, 0.5);
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    background:
+      linear-gradient(
+        145deg,
+        var(--brand-dark),
+        #67503d
+      );
+
+    box-shadow:
+      0 0 0 6px rgba(246, 242, 234, 0.84),
+      0 10px 28px rgba(66, 48, 34, 0.18);
+  }
+
+
+  /* Text kompakter */
+
+  .copy {
+    margin-top: 0;
+    padding-top: 0;
   }
 
   .step h3 {
-    font-size: 2.2rem;
+    max-width: 420px;
+
+    font-size:
+      clamp(2rem, 9vw, 2.8rem);
+
+    line-height: 0.98;
+  }
+
+  .step p {
+    max-width: 500px;
+
+    margin-top: 13px;
+
+    font-size: 0.76rem;
+    line-height: 1.65;
+  }
+
+
+  /* Desktop-Progress auf Mobile nicht nötig */
+
+  .progress {
+    display: none;
   }
 }
 
 
-/* Reduced Motion */
+/* =========================================================
+   MOBILE — SCROLL REVEAL
+   ========================================================= */
+
+@media (max-width: 650px) {
+  @supports (animation-timeline: view()) {
+    .step {
+      animation-name:
+        processTimelineReveal;
+
+      animation-duration: 1ms;
+
+      animation-timing-function:
+        linear;
+
+      animation-fill-mode:
+        both;
+
+      animation-timeline:
+        view();
+
+      animation-range:
+        entry 0%
+        cover 32%;
+    }
+
+    @keyframes processTimelineReveal {
+      from {
+        opacity: 0.48;
+
+        transform:
+          translateY(22px)
+          scale(0.975);
+
+        filter:
+          saturate(0.72);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+
+        filter:
+          saturate(1);
+      }
+    }
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 390px) {
+  .steps::before {
+    left: 21px;
+  }
+
+  .step {
+    padding:
+      22px
+      16px
+      22px
+      68px;
+  }
+
+  .stepHeader {
+    width: 44px;
+    left: 0;
+  }
+
+  .icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .number {
+    width: 30px;
+  }
+
+  .step h3 {
+    font-size: 2.1rem;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .step,
   .icon,
   .progress::after {
     transition: none;
+  }
+}
+
+@media (max-width: 650px)
+  and (prefers-reduced-motion: reduce) {
+  .step {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 }
