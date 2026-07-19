@@ -63,9 +63,10 @@ export function Hero() {
     }
 
     const interval = window.setInterval(() => {
-      setActiveIndex((currentIndex) => {
-        return (currentIndex + 1) % slides.length;
-      });
+      setActiveIndex(
+        (currentIndex) =>
+          (currentIndex + 1) % slides.length
+      );
     }, SLIDE_DURATION);
 
     return () => {
@@ -96,7 +97,8 @@ export function Hero() {
               src={slide.src}
               alt=""
               fill
-              priority={index < 2}
+              priority={index === 0}
+              quality={95}
               sizes="100vw"
               className={styles.backgroundImage}
               style={{
@@ -119,7 +121,9 @@ export function Hero() {
 
           <h1 id="hero-title">
             {t("title")}
-            <span>{t("titleHighlight")}</span>
+            <span>
+              {t("titleHighlight")}
+            </span>
           </h1>
 
           <p className={styles.description}>

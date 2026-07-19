@@ -8,9 +8,7 @@
 }
 
 
-/* =========================================================
-   BACKGROUND / AUTOMATISCHER BILDWECHSEL
-   ========================================================= */
+/* Hintergrund */
 
 .background {
   position: absolute;
@@ -41,7 +39,9 @@
 
 .backgroundImage {
   object-fit: cover;
-  transform: scale(1.015);
+  image-rendering: auto;
+
+  transform: scale(1.01);
 
   transition:
     transform 9s cubic-bezier(0.2, 0.55, 0.25, 1);
@@ -50,13 +50,11 @@
 }
 
 .activeSlide .backgroundImage {
-  transform: scale(1.075);
+  transform: scale(1.05);
 }
 
 
-/* =========================================================
-   HERO OVERLAY
-   ========================================================= */
+/* Overlay */
 
 .overlay {
   position: absolute;
@@ -86,9 +84,7 @@
 }
 
 
-/* =========================================================
-   HERO CONTAINER
-   ========================================================= */
+/* Container */
 
 .container {
   position: relative;
@@ -105,18 +101,11 @@
 }
 
 
-/* =========================================================
-   HERO CONTENT
-   ========================================================= */
+/* Inhalt */
 
-/*
- * Kein Glass-Background.
- * Der Text steht direkt und frei über dem Hero-Bild.
- */
 .content {
   position: relative;
   z-index: 4;
-
   width: 100%;
   max-width: 980px;
 
@@ -125,35 +114,25 @@
 }
 
 
-/* =========================================================
-   EYEBROW
-   ========================================================= */
+/* Eyebrow */
 
 .eyebrow {
   display: flex;
   align-items: center;
   gap: 14px;
 
-  margin:
-    0
-    0
-    22px;
+  margin: 0 0 22px;
 
   color:
     rgba(255, 255, 255, 0.74);
 
   font-size: 0.62rem;
   font-weight: 800;
-
-  letter-spacing:
-    0.18em;
-
-  text-transform:
-    uppercase;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 
   text-shadow:
-    0 2px 12px
-      rgba(0, 0, 0, 0.24);
+    0 2px 12px rgba(0, 0, 0, 0.24);
 }
 
 .eyebrow::before {
@@ -172,9 +151,7 @@
 }
 
 
-/* =========================================================
-   HERO TITLE
-   ========================================================= */
+/* Titel */
 
 .content h1 {
   max-width: 980px;
@@ -189,19 +166,13 @@
     clamp(4rem, 7.5vw, 8.8rem);
 
   font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.86;
 
-  letter-spacing:
-    -0.065em;
-
-  line-height:
-    0.86;
-
-  text-wrap:
-    balance;
+  text-wrap: balance;
 
   text-shadow:
-    0 5px 30px
-      rgba(0, 0, 0, 0.3);
+    0 5px 30px rgba(0, 0, 0, 0.3);
 }
 
 .content h1 span {
@@ -212,9 +183,7 @@
 }
 
 
-/* =========================================================
-   DESCRIPTION
-   ========================================================= */
+/* Beschreibung */
 
 .description {
   max-width: 610px;
@@ -230,23 +199,15 @@
   font-size:
     clamp(0.82rem, 1.1vw, 0.95rem);
 
-  line-height:
-    1.8;
+  line-height: 1.8;
 
   text-shadow:
-    0 2px 18px
-      rgba(0, 0, 0, 0.3);
+    0 2px 18px rgba(0, 0, 0, 0.3);
 }
 
 
-/* =========================================================
-   SEARCH
-   ========================================================= */
+/* Suche */
 
-/*
- * Das Glassmorphism kommt anschließend
- * direkt in SearchPanel.module.css.
- */
 .search {
   position: relative;
   z-index: 5;
@@ -256,9 +217,7 @@
 }
 
 
-/* =========================================================
-   HERO PROGRESS
-   ========================================================= */
+/* Fortschritt */
 
 .progress {
   position: absolute;
@@ -280,14 +239,10 @@
     rgba(255, 255, 255, 0.2);
 
   box-shadow:
-    inset 0 1px 1px
-      rgba(0, 0, 0, 0.12);
+    inset 0 1px 1px rgba(0, 0, 0, 0.12);
 
-  -webkit-backdrop-filter:
-    blur(8px);
-
-  backdrop-filter:
-    blur(8px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .progress span {
@@ -305,14 +260,10 @@
     );
 
   box-shadow:
-    0 0 10px
-      rgba(210, 176, 142, 0.32);
+    0 0 10px rgba(210, 176, 142, 0.32);
 
   animation:
-    heroProgress
-    7000ms
-    linear
-    forwards;
+    heroProgress 7000ms linear forwards;
 
   transform-origin:
     left center;
@@ -320,20 +271,16 @@
 
 @keyframes heroProgress {
   from {
-    transform:
-      scaleX(0);
+    transform: scaleX(0);
   }
 
   to {
-    transform:
-      scaleX(1);
+    transform: scaleX(1);
   }
 }
 
 
-/* =========================================================
-   TABLET
-   ========================================================= */
+/* Tablet */
 
 @media (max-width: 1000px) {
   .container {
@@ -358,9 +305,7 @@
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* Mobile */
 
 @media (max-width: 680px) {
   .hero,
@@ -370,36 +315,54 @@
 
   .container {
     justify-content: flex-end;
-
     padding-top: 100px;
     padding-bottom: 22px;
   }
 
 
-  /* =======================================================
-     MOBILE IMAGE POSITION
-     ======================================================= */
+  /*
+   * Wichtig für Bildschärfe:
+   * Auf Mobile wird das Bild nicht zusätzlich
+   * stark per CSS vergrößert.
+   */
 
-.slide:nth-child(1) .backgroundImage {
-  object-position: 78% center !important;
-}
+  .backgroundImage {
+    transform: scale(1);
+  }
 
-.slide:nth-child(2) .backgroundImage {
-  object-position: 82% center !important;
-}
-
-.slide:nth-child(3) .backgroundImage {
-  object-position: 76% center !important;
-}
-
-.slide:nth-child(4) .backgroundImage {
-  object-position: 80% center !important;
-}
+  .activeSlide .backgroundImage {
+    transform: scale(1.015);
+  }
 
 
-  /* =======================================================
-     MOBILE OVERLAY
-     ======================================================= */
+  /* Bildausschnitte */
+
+  .slide:nth-child(1)
+    .backgroundImage {
+    object-position:
+      78% center !important;
+  }
+
+  .slide:nth-child(2)
+    .backgroundImage {
+    object-position:
+      82% center !important;
+  }
+
+  .slide:nth-child(3)
+    .backgroundImage {
+    object-position:
+      76% center !important;
+  }
+
+  .slide:nth-child(4)
+    .backgroundImage {
+    object-position:
+      80% center !important;
+  }
+
+
+  /* Mobile Overlay */
 
   .overlay {
     background:
@@ -423,31 +386,18 @@
   }
 
 
-  /* =======================================================
-     MOBILE CONTENT
-     ======================================================= */
+  /* Content */
 
   .content {
     width: 100%;
     max-width: 540px;
-
     margin-bottom: 23px;
-
     padding: 0;
-
     border: 0;
-
-    background:
-      transparent;
-
-    box-shadow:
-      none;
-
-    -webkit-backdrop-filter:
-      none;
-
-    backdrop-filter:
-      none;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .eyebrow,
@@ -464,18 +414,14 @@
     letter-spacing:
       -0.055em;
 
-    line-height:
-      0.91;
+    line-height: 0.91;
 
     text-shadow:
-      0 4px 24px
-        rgba(0, 0, 0, 0.34);
+      0 4px 24px rgba(0, 0, 0, 0.34);
   }
 
 
-  /* =======================================================
-     MOBILE SEARCH
-     ======================================================= */
+  /* Search */
 
   .search {
     width: 100%;
@@ -483,22 +429,17 @@
   }
 
 
-  /* =======================================================
-     MOBILE PROGRESS
-     ======================================================= */
+  /* Progress */
 
   .progress {
     right: 0;
     bottom: 21px;
-
     width: 58px;
   }
 }
 
 
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
+/* Kleine Handys */
 
 @media (max-width: 390px) {
   .container {
@@ -525,9 +466,7 @@
 }
 
 
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
+/* Reduced Motion */
 
 @media (prefers-reduced-motion: reduce) {
   .slide {
@@ -535,8 +474,7 @@
   }
 
   .backgroundImage,
-  .activeSlide
-    .backgroundImage {
+  .activeSlide .backgroundImage {
     transform: none;
     transition: none;
   }
