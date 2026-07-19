@@ -1090,10 +1090,10 @@ const features: Record<
 };
 
 const standardGallery = [
-  "/images/hero/hero-01.webp",
-  "/images/hero/hero-02.webp",
-  "/images/hero/hero-03.webp",
-  "/images/hero/hero-04.webp",
+  "/images/hero/luxus-penthouse-dubai-skyline-infinity-pool.webp",
+  "/images/hero/luxusvilla-mittelmeer-infinity-pool-sonnenuntergang.webp",
+  "/images/hero/luxusvilla-mittelmeer-meerblick-sonnenuntergang.webp",
+  "/images/hero/luxusvilla-portugal-meerblick-sonnenuntergang.webp",
 ];
 
 const plotGallery = [
