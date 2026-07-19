@@ -1,101 +1,288 @@
+/* =========================================================
+   REAL2OWN — ANMELDEN
+   ========================================================= */
+
 .page {
   position: fixed;
   inset: 0;
+
   display: grid;
+
+  width: 100%;
   height: 100vh;
   height: 100dvh;
+
   place-items: center;
+
   overflow: hidden;
-  padding: clamp(18px, 3vh, 34px) 24px;
+
+  padding:
+    clamp(18px, 3vh, 34px)
+    24px;
+
   background:
     radial-gradient(
-      circle at 10% 10%,
-      rgba(112, 124, 95, 0.13),
+      circle at 12% 12%,
+      rgba(210, 176, 142, 0.2),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 88% 84%,
+      rgba(96, 119, 89, 0.16),
       transparent 34%
     ),
     radial-gradient(
-      circle at 92% 88%,
-      rgba(180, 157, 112, 0.12),
-      transparent 32%
+      circle at 68% 8%,
+      rgba(255, 255, 255, 0.5),
+      transparent 25%
     ),
-    var(--surface-strong);
+    linear-gradient(
+      145deg,
+      #f4f0e8 0%,
+      #e9e4da 52%,
+      #ddd8ce 100%
+    );
+
+  isolation: isolate;
+}
+
+.page::before,
+.page::after {
+  position: absolute;
+
+  border-radius: 50%;
+
+  content: "";
+
+  pointer-events: none;
+
+  filter: blur(4px);
 }
 
 .page::before {
-  position: absolute;
-  inset: 16px;
-  border: 1px solid rgba(35, 38, 31, 0.1);
-  pointer-events: none;
-  content: "";
+  top: -18%;
+  left: -10%;
+
+  width: min(46vw, 650px);
+  aspect-ratio: 1;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(210, 176, 142, 0.2),
+      transparent 68%
+    );
 }
+
+.page::after {
+  right: -12%;
+  bottom: -22%;
+
+  width: min(50vw, 720px);
+  aspect-ratio: 1;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(71, 91, 66, 0.15),
+      transparent 68%
+    );
+}
+
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
 
 .backLink {
   position: absolute;
-  z-index: 2;
-  top: 24px;
+  z-index: 3;
+
+  top: 26px;
   left: 30px;
+
   display: inline-flex;
+
+  min-height: 40px;
+
   align-items: center;
+
   gap: 9px;
-  color: var(--muted);
-  font-size: 0.54rem;
+
+  padding-inline: 14px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.52);
+
+  border-radius: 999px;
+
+  color: var(--night);
+
+  background:
+    rgba(255, 255, 255, 0.28);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  backdrop-filter:
+    blur(var(--glass-blur-sm));
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-sm));
+
+  font-size: 0.51rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+
+  letter-spacing: 0.11em;
+
   text-transform: uppercase;
+
   transition:
     color 180ms ease,
+    background 180ms ease,
     transform 180ms ease;
 }
 
 .backLink span {
   color: var(--brand-dark);
+
   font-size: 0.95rem;
 }
 
+
+/* =========================================================
+   LOGIN GLASS CARD
+   ========================================================= */
+
 .login {
   position: relative;
-  z-index: 1;
-  width: min(100%, 470px);
-  max-height: calc(100dvh - 36px);
+  z-index: 2;
+
+  width:
+    min(100%, 470px);
+
+  max-height:
+    calc(100dvh - 36px);
+
   overflow: hidden;
+
   padding:
     clamp(24px, 4vh, 40px)
     clamp(22px, 4vw, 42px);
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.84);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.58);
+
+  border-radius:
+    var(--glass-radius-xl);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.68),
+      rgba(255, 255, 255, 0.28)
+    );
+
   box-shadow:
-    0 28px 80px rgba(20, 22, 18, 0.1),
-    0 7px 24px rgba(20, 22, 18, 0.05);
-  backdrop-filter: blur(18px);
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 34px 90px rgba(42, 38, 31, 0.13),
+    0 8px 28px rgba(42, 38, 31, 0.06);
+
+  backdrop-filter:
+    blur(var(--glass-blur-xl))
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-xl))
+    saturate(135%);
 }
 
+.login::before {
+  position: absolute;
+
+  top: -110px;
+  right: -100px;
+
+  width: 240px;
+  height: 240px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(210, 176, 142, 0.1);
+
+  content: "";
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
 .logo {
+  position: relative;
+  z-index: 1;
+
   display: block;
+
   width: fit-content;
-  margin: 0 auto clamp(17px, 2.7vh, 27px);
+
+  margin:
+    0 auto
+    clamp(17px, 2.7vh, 27px);
 }
 
 .logo img {
   display: block;
-  width: clamp(52px, 7vh, 66px);
-  height: clamp(52px, 7vh, 66px);
+
+  width:
+    clamp(52px, 7vh, 66px);
+
+  height:
+    clamp(52px, 7vh, 66px);
+
   object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 8px 20px
+      rgba(31, 34, 27, 0.08)
+    );
 }
 
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
 .heading {
+  position: relative;
+  z-index: 1;
+
   text-align: center;
 }
 
 .eyebrow {
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   gap: 10px;
-  margin: 0 0 clamp(12px, 2vh, 18px);
+
+  margin:
+    0 0
+    clamp(12px, 2vh, 18px);
+
   color: var(--brand-dark);
-  font-size: 0.52rem;
+
+  font-size: 0.51rem;
   font-weight: 800;
+
   letter-spacing: 0.16em;
+
   text-transform: uppercase;
 }
 
@@ -103,37 +290,70 @@
 .eyebrow::after {
   width: 24px;
   height: 1px;
+
   background: currentColor;
+
   content: "";
 }
 
 .heading h1 {
   margin: 0;
+
   color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(2.8rem, 6.3vh, 4.25rem);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(2.8rem, 6.3vh, 4.25rem);
+
   font-weight: 400;
+
   letter-spacing: -0.06em;
+
   line-height: 0.88;
 }
 
 .heading > p:last-child {
   max-width: 380px;
-  margin: clamp(13px, 2vh, 19px) auto 0;
+
+  margin:
+    clamp(13px, 2vh, 19px)
+    auto 0;
+
   color: var(--muted);
-  font-size: 0.68rem;
-  line-height: 1.65;
+
+  font-size: 0.67rem;
+
+  line-height: 1.67;
 }
 
+
+/* =========================================================
+   REGISTER
+   ========================================================= */
+
 .register {
+  position: relative;
+  z-index: 1;
+
   display: flex;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 18px;
-  margin-top: clamp(16px, 2.5vh, 23px);
-  padding-top: clamp(15px, 2.4vh, 21px);
-  border-top: 1px solid var(--line);
-  font-size: 0.61rem;
+
+  margin-top:
+    clamp(16px, 2.5vh, 23px);
+
+  padding-top:
+    clamp(15px, 2.4vh, 21px);
+
+  border-top:
+    1px solid rgba(23, 23, 19, 0.09);
+
+  font-size: 0.6rem;
 }
 
 .register span {
@@ -142,39 +362,82 @@
 
 .register a {
   color: var(--brand-dark);
+
   font-weight: 800;
+
   letter-spacing: 0.07em;
+
   text-transform: uppercase;
+
+  transition:
+    color 180ms ease;
 }
 
+
+/* =========================================================
+   LEGAL
+   ========================================================= */
+
 .legal {
-  margin: clamp(17px, 2.5vh, 25px) 0 0;
+  position: relative;
+  z-index: 1;
+
+  margin:
+    clamp(17px, 2.5vh, 25px)
+    0 0;
+
   color: #928d84;
-  font-size: 0.52rem;
+
+  font-size: 0.51rem;
+
   line-height: 1.55;
+
   text-align: center;
 }
 
 .legal a {
   color: var(--brand-dark);
+
   text-decoration: underline;
+
   text-underline-offset: 3px;
 }
 
+
+/* =========================================================
+   COPYRIGHT
+   ========================================================= */
+
 .copyright {
   position: absolute;
+  z-index: 2;
+
   right: 30px;
-  bottom: 23px;
+  bottom: 24px;
+
   color: #928d84;
-  font-size: 0.49rem;
+
+  font-size: 0.48rem;
+
   letter-spacing: 0.08em;
+
   text-transform: uppercase;
 }
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
 
 @media (hover: hover) and (pointer: fine) {
   .backLink:hover {
     color: var(--ink);
-    transform: translateX(-3px);
+
+    background:
+      rgba(255, 255, 255, 0.5);
+
+    transform:
+      translateX(-3px);
   }
 
   .register a:hover {
@@ -182,28 +445,59 @@
   }
 }
 
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 620px) {
   .page {
-    padding: 58px 12px 16px;
-    background: var(--surface-strong);
-  }
+    padding:
+      62px 12px 14px;
 
-  .page::before {
-    display: none;
+    background:
+      radial-gradient(
+        circle at 15% 8%,
+        rgba(210, 176, 142, 0.18),
+        transparent 36%
+      ),
+      radial-gradient(
+        circle at 90% 90%,
+        rgba(96, 119, 89, 0.14),
+        transparent 36%
+      ),
+      linear-gradient(
+        145deg,
+        #f3efe7,
+        #e5dfd5
+      );
   }
 
   .backLink {
-    top: 20px;
-    left: 18px;
+    top: 16px;
+    left: 14px;
+
+    min-height: 38px;
+
+    padding-inline: 12px;
   }
 
   .login {
     width: 100%;
-    max-height: calc(100dvh - 72px);
+
+    max-height:
+      calc(100dvh - 76px);
+
     padding:
       clamp(22px, 3.5vh, 30px)
-      19px;
-    box-shadow: 0 16px 45px rgba(20, 22, 18, 0.08);
+      18px;
+
+    border-radius:
+      var(--glass-radius-lg);
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.7),
+      0 22px 55px rgba(42, 38, 31, 0.11);
   }
 
   .logo {
@@ -216,16 +510,19 @@
   }
 
   .heading h1 {
-    font-size: clamp(2.8rem, 13vw, 3.8rem);
+    font-size:
+      clamp(2.8rem, 13vw, 3.8rem);
   }
 
   .heading > p:last-child {
     margin-top: 13px;
+
     font-size: 0.65rem;
   }
 
   .register {
     margin-top: 17px;
+
     padding-top: 16px;
   }
 
@@ -237,6 +534,11 @@
     display: none;
   }
 }
+
+
+/* =========================================================
+   LOW HEIGHT
+   ========================================================= */
 
 @media (max-height: 720px) {
   .login {
@@ -263,6 +565,7 @@
 
   .heading > p:last-child {
     margin-top: 10px;
+
     line-height: 1.5;
   }
 
@@ -282,13 +585,19 @@
 
   .register {
     margin-top: 13px;
+
     padding-top: 13px;
   }
 }
 
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
 @media (max-width: 370px) {
   .login {
-    padding-inline: 16px;
+    padding-inline: 15px;
   }
 
   .heading h1 {
@@ -296,8 +605,35 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+
+/* =========================================================
+   FALLBACK
+   ========================================================= */
+
+@supports not (
+  (backdrop-filter: blur(1px))
+  or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .login {
+    background:
+      rgba(248, 245, 239, 0.98);
+  }
+
   .backLink {
+    background:
+      rgba(248, 245, 239, 0.92);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .backLink,
+  .register a {
     transition: none;
   }
 }

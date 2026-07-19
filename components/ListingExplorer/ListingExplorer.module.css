@@ -1,39 +1,139 @@
+/* =========================================================
+   REAL2OWN — LISTING EXPLORER
+   ========================================================= */
+
+
+/* =========================================================
+   FILTER SECTION
+   ========================================================= */
+
 .searchSection {
   position: relative;
   z-index: 4;
-  background: var(--surface-strong);
+  overflow: hidden;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(210, 176, 142, 0.15),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 92% 80%,
+      rgba(101, 123, 94, 0.11),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      #f3f0e9 0%,
+      #ebe6dd 100%
+    );
 }
 
 .searchContainer {
-  padding-block: 30px;
-  border-bottom: 1px solid var(--line);
+  position: relative;
+  z-index: 1;
+
+  margin-block: 34px;
+
+  padding:
+    18px;
+
+  border:
+    1px solid var(--glass-border-light);
+
+  border-radius:
+    var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.52),
+      rgba(255, 255, 255, 0.2)
+    );
+
+  box-shadow:
+    var(--glass-highlight),
+    var(--glass-shadow-light);
+
+  backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(135%);
 }
+
+
+/* =========================================================
+   FILTER GRID
+   ========================================================= */
 
 .searchGrid {
   display: grid;
+
   grid-template-columns:
     minmax(220px, 1.3fr)
     repeat(3, minmax(150px, 0.75fr));
-  border-top: 1px solid var(--line-strong);
-  border-left: 1px solid var(--line);
+
+  gap: 10px;
 }
 
 .field {
   display: grid;
+
   min-width: 0;
+
   gap: 8px;
-  padding: 17px 19px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+
+  padding:
+    14px
+    16px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.58);
+
+  border-radius: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.28);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.58);
+
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.field:focus-within {
+  border-color:
+    rgba(120, 83, 51, 0.38);
+
+  background:
+    rgba(255, 255, 255, 0.48);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 8px 24px rgba(48, 42, 34, 0.06);
 }
 
 .field > span,
 .sort > span {
-  color: var(--muted);
+  color:
+    var(--muted);
+
   font-size: 0.49rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+
+  letter-spacing:
+    0.12em;
+
+  text-transform:
+    uppercase;
 }
 
 .field input,
@@ -42,61 +142,122 @@
   width: 100%;
   min-width: 0;
   height: 30px;
+
   border: 0;
   border-radius: 0;
+
   outline: 0;
-  color: var(--ink);
-  background: transparent;
+
+  color:
+    var(--ink);
+
+  background:
+    transparent;
+
   font: inherit;
   font-size: 0.72rem;
 }
 
 .field input::placeholder {
-  color: #9b968e;
+  color:
+    #9b968e;
 }
 
-.field input:focus,
-.field select:focus,
-.sort select:focus {
-  outline: 1px solid var(--brand-dark);
-  outline-offset: 5px;
+.field select,
+.sort select {
+  cursor: pointer;
 }
+
+.field select option,
+.sort select option {
+  color:
+    var(--ink);
+
+  background:
+    #f5f2ec;
+}
+
+
+/* =========================================================
+   FILTER FOOTER
+   ========================================================= */
 
 .searchFooter {
   display: flex;
-  min-height: 52px;
+
+  min-height: 48px;
+
   align-items: center;
-  justify-content: space-between;
+
+  justify-content:
+    space-between;
+
   gap: 25px;
-  padding-top: 16px;
+
+  padding:
+    15px
+    4px
+    0;
 }
 
 .searchFooter p {
   margin: 0;
-  color: var(--muted);
+
+  color:
+    var(--muted);
+
   font-size: 0.6rem;
 }
 
 .searchFooter strong {
-  color: var(--ink);
-  font-family: var(--font-display);
+  color:
+    var(--ink);
+
+  font-family:
+    var(--font-display);
+
   font-size: 1rem;
   font-weight: 400;
 }
 
 .searchFooter button {
   display: inline-flex;
+
+  min-height: 36px;
+
   align-items: center;
-  gap: 10px;
-  padding: 0;
-  border: 0;
-  color: var(--brand-dark);
+
+  gap: 9px;
+
+  padding-inline:
+    12px;
+
+  border:
+    1px solid rgba(120, 83, 51, 0.16);
+
+  border-radius:
+    999px;
+
+  color:
+    var(--brand-dark);
+
   cursor: pointer;
-  background: transparent;
-  font-size: 0.51rem;
+
+  background:
+    rgba(255, 255, 255, 0.28);
+
+  font-size: 0.5rem;
   font-weight: 800;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+
+  letter-spacing:
+    0.09em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    background 180ms ease,
+    border-color 180ms ease;
 }
 
 .searchFooter button span {
@@ -104,363 +265,946 @@
   font-weight: 400;
 }
 
-/* Ergebnisse */
+
+/* =========================================================
+   RESULTS SECTION
+   ========================================================= */
 
 .results {
-  padding-block: clamp(80px, 9vw, 135px);
-  background: var(--surface-strong);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  padding-block:
+    clamp(80px, 9vw, 135px);
+
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(210, 176, 142, 0.15),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 90% 70%,
+      rgba(100, 121, 93, 0.11),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #f5f2ec 0%,
+      #ebe6dd 54%,
+      #f3efe8 100%
+    );
 }
 
+
+/* =========================================================
+   RESULTS HEADER
+   ========================================================= */
+
 .resultsHeader {
+  position: relative;
+  z-index: 1;
+
   display: flex;
+
   align-items: end;
-  justify-content: space-between;
+
+  justify-content:
+    space-between;
+
   gap: 50px;
-  margin-bottom: clamp(42px, 6vw, 68px);
+
+  margin-bottom:
+    clamp(42px, 6vw, 68px);
 }
 
 .eyebrow {
   display: flex;
+
   align-items: center;
+
   gap: 12px;
-  margin: 0 0 17px;
-  color: var(--brand-dark);
+
+  margin:
+    0 0 17px;
+
+  color:
+    var(--brand-dark);
+
   font-size: 0.54rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+
+  letter-spacing:
+    0.16em;
+
+  text-transform:
+    uppercase;
 }
 
 .eyebrow::before {
   width: 35px;
   height: 1px;
-  background: currentColor;
+
+  background:
+    currentColor;
+
   content: "";
 }
 
 .resultsHeader h2 {
   max-width: 830px;
+
   margin: 0;
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 5.2vw, 5.8rem);
+
+  color:
+    var(--ink);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(3rem, 5.2vw, 5.8rem);
+
   font-weight: 400;
-  letter-spacing: -0.057em;
+
+  letter-spacing:
+    -0.057em;
+
   line-height: 0.92;
 }
 
+
+/* =========================================================
+   SORT
+   ========================================================= */
+
 .sort {
   display: grid;
-  width: min(100%, 210px);
-  gap: 9px;
-  padding-bottom: 7px;
-  border-bottom: 1px solid var(--line-strong);
+
+  width:
+    min(100%, 230px);
+
+  gap: 7px;
+
+  padding:
+    11px
+    14px;
+
+  border:
+    1px solid var(--glass-border-light);
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 255, 255, 0.3);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.58);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
 }
 
-.sort select {
-  cursor: pointer;
-}
+
+/* =========================================================
+   LISTING GRID
+   ========================================================= */
 
 .grid {
+  position: relative;
+  z-index: 1;
+
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(34px, 5vw, 70px) clamp(18px, 2.4vw, 34px);
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap:
+    clamp(28px, 4vw, 54px)
+    clamp(18px, 2.2vw, 30px);
 }
+
+
+/* =========================================================
+   LISTING CARD
+   ========================================================= */
 
 .card {
   min-width: 0;
+
+  overflow: hidden;
+
+  border:
+    1px solid var(--glass-border-light);
+
+  border-radius:
+    var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.52),
+      rgba(255, 255, 255, 0.2)
+    );
+
+  box-shadow:
+    var(--glass-highlight),
+    0 18px 48px rgba(44, 39, 31, 0.09);
+
+  backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(130%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(130%);
+
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms ease,
+    border-color 320ms ease;
 }
+
+
+/* =========================================================
+   CARD IMAGE
+   ========================================================= */
 
 .imageLink {
   position: relative;
+
   display: block;
-  aspect-ratio: 4 / 3.4;
+
+  aspect-ratio:
+    1.35 / 1;
+
   overflow: hidden;
-  background: #cbc7bd;
+
+  background:
+    #cbc7bd;
 }
 
 .image {
   object-fit: cover;
-  transition: transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  transition:
+    transform 750ms
+    cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .imageOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(9, 11, 9, 0.08),
-    transparent 55%,
-    rgba(9, 11, 9, 0.35)
-  );
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(9, 11, 9, 0.1) 0%,
+      transparent 52%,
+      rgba(9, 11, 9, 0.34) 100%
+    );
 }
+
+
+/* =========================================================
+   IMAGE LABEL
+   ========================================================= */
 
 .label {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  padding: 8px 11px;
-  color: var(--night);
-  background: var(--accent);
+
+  top: 16px;
+  left: 16px;
+
+  display: inline-flex;
+
+  min-height: 35px;
+
+  align-items: center;
+
+  padding-inline:
+    13px;
+
+  border:
+    1px solid rgba(232, 211, 179, 0.38);
+
+  border-radius:
+    999px;
+
+  color:
+    #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(147, 132, 65, 0.76),
+      rgba(101, 89, 37, 0.64)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.14);
+
   font-size: 0.47rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+
+  letter-spacing:
+    0.1em;
+
+  text-transform:
+    uppercase;
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
 }
+
+
+/* =========================================================
+   IMAGE ARROW
+   ========================================================= */
 
 .cardArrow {
   position: absolute;
-  right: 15px;
-  bottom: 15px;
+
+  right: 16px;
+  bottom: 16px;
+
   display: grid;
-  width: 40px;
-  height: 40px;
+
+  width: 42px;
+  height: 42px;
+
   place-items: center;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.4);
+
   border-radius: 50%;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.9);
-  transition: transform 180ms ease;
+
+  color:
+    #ffffff;
+
+  background:
+    rgba(20, 24, 19, 0.3);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
 }
 
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
 .cardContent {
-  padding-top: 21px;
+  padding:
+    22px
+    22px
+    20px;
 }
 
 .cardLocation {
-  color: var(--brand-dark);
+  color:
+    var(--brand-dark);
+
   font-size: 0.5rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+
+  letter-spacing:
+    0.12em;
+
+  text-transform:
+    uppercase;
 }
 
 .card h3 {
-  min-height: 2.15em;
-  margin: 13px 0 23px;
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.3vw, 2.5rem);
+  min-height: 2.05em;
+
+  margin:
+    12px 0 20px;
+
+  color:
+    var(--ink);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(1.55rem, 2.15vw, 2.3rem);
+
   font-weight: 400;
-  letter-spacing: -0.045em;
+
+  letter-spacing:
+    -0.045em;
+
   line-height: 1.02;
 }
 
+.card h3 a {
+  transition:
+    color 180ms ease;
+}
+
+
+/* =========================================================
+   CARD FACTS
+   ========================================================= */
+
 .cardFacts {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 5px;
+
   margin: 0;
-  padding-block: 17px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+
+  padding:
+    6px;
+
+  border:
+    1px solid rgba(23, 23, 19, 0.07);
+
+  border-radius:
+    13px;
+
+  background:
+    rgba(255, 255, 255, 0.25);
 }
 
 .cardFacts div {
   min-width: 0;
-  padding-inline: 12px;
-  border-left: 1px solid var(--line);
-}
 
-.cardFacts div:first-child {
-  padding-left: 0;
-  border-left: 0;
+  padding:
+    10px
+    9px;
+
+  border-radius:
+    9px;
+
+  background:
+    rgba(255, 255, 255, 0.2);
 }
 
 .cardFacts dt {
-  margin-bottom: 7px;
-  color: var(--muted);
-  font-size: 0.44rem;
+  margin-bottom:
+    6px;
+
+  color:
+    var(--muted);
+
+  font-size: 0.42rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+
+  letter-spacing:
+    0.09em;
+
+  text-transform:
+    uppercase;
 }
 
 .cardFacts dd {
   overflow: hidden;
+
   margin: 0;
-  color: var(--ink);
+
+  color:
+    var(--ink);
+
   font-size: 0.62rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-weight: 650;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
 }
+
+
+/* =========================================================
+   CARD FOOTER
+   ========================================================= */
 
 .cardFooter {
   display: flex;
-  min-height: 64px;
+
+  min-height: 65px;
+
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+
+  justify-content:
+    space-between;
+
+  gap: 18px;
+
+  margin-top: 13px;
+
+  padding-top: 13px;
+
+  border-top:
+    1px solid rgba(23, 23, 19, 0.09);
 }
 
 .cardFooter strong {
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-size: 1.18rem;
+  color:
+    var(--ink);
+
+  font-family:
+    var(--font-display);
+
+  font-size: 1.25rem;
   font-weight: 400;
-  letter-spacing: -0.025em;
+
+  letter-spacing:
+    -0.025em;
 }
 
 .cardFooter a {
   display: inline-flex;
+
+  min-height: 38px;
+
   align-items: center;
+
   gap: 8px;
-  color: var(--brand-dark);
-  font-size: 0.49rem;
+
+  padding-inline:
+    13px;
+
+  border:
+    1px solid rgba(120, 83, 51, 0.18);
+
+  border-radius:
+    999px;
+
+  color:
+    var(--brand-dark);
+
+  background:
+    rgba(255, 255, 255, 0.3);
+
+  font-size: 0.48rem;
   font-weight: 800;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+
+  letter-spacing:
+    0.09em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
 }
 
 .cardFooter svg {
-  transition: transform 180ms ease;
+  transition:
+    transform 180ms ease;
 }
 
-/* Weitere Ergebnisse */
+
+/* =========================================================
+   LOAD MORE
+   ========================================================= */
 
 .loadMore {
   display: flex;
-  justify-content: center;
-  margin-top: clamp(55px, 7vw, 85px);
+
+  justify-content:
+    center;
+
+  margin-top:
+    clamp(55px, 7vw, 85px);
 }
 
 .loadMore button {
   display: inline-flex;
+
   min-width: 245px;
-  min-height: 53px;
+  min-height: 52px;
+
   align-items: center;
-  justify-content: space-between;
+
+  justify-content:
+    space-between;
+
   gap: 30px;
-  padding-inline: 20px;
-  border: 1px solid var(--line-strong);
-  color: var(--ink);
+
+  padding:
+    5px
+    7px
+    5px
+    18px;
+
+  border:
+    1px solid var(--glass-border-light);
+
+  border-radius:
+    999px;
+
+  color:
+    var(--ink);
+
   cursor: pointer;
-  background: transparent;
-  font-size: 0.54rem;
+
+  background:
+    rgba(255, 255, 255, 0.32);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.64),
+    0 12px 30px rgba(44, 39, 31, 0.06);
+
+  font-size: 0.53rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+
+  letter-spacing:
+    0.1em;
+
+  text-transform:
+    uppercase;
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
 }
 
 .loadMore button span {
-  color: var(--brand-dark);
-  font-size: 1.1rem;
+  display: grid;
+
+  width: 38px;
+  height: 38px;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  color:
+    var(--night);
+
+  background:
+    var(--accent);
+
+  font-size: 1.05rem;
   font-weight: 400;
 }
 
-/* Keine Ergebnisse */
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
 
 .empty {
   display: grid;
-  grid-template-columns: minmax(100px, 0.25fr) minmax(0, 1fr);
+
+  grid-template-columns:
+    minmax(100px, 0.25fr)
+    minmax(0, 1fr);
+
   align-items: center;
-  gap: clamp(35px, 7vw, 95px);
+
+  gap:
+    clamp(35px, 7vw, 95px);
+
   min-height: 340px;
-  padding: clamp(32px, 5vw, 65px);
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.3);
+
+  padding:
+    clamp(32px, 5vw, 65px);
+
+  border:
+    1px solid var(--glass-border-light);
+
+  border-radius:
+    var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.48),
+      rgba(255, 255, 255, 0.2)
+    );
+
+  box-shadow:
+    var(--glass-highlight),
+    var(--glass-shadow-light);
+
+  backdrop-filter:
+    blur(var(--glass-blur-md));
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md));
 }
 
 .emptyNumber {
-  color: rgba(34, 39, 31, 0.09);
-  font-family: var(--font-display);
-  font-size: clamp(6rem, 13vw, 12rem);
-  letter-spacing: -0.08em;
+  color:
+    rgba(34, 39, 31, 0.09);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(6rem, 13vw, 12rem);
+
+  letter-spacing:
+    -0.08em;
+
   line-height: 0.7;
 }
 
 .empty h3 {
   margin: 0;
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 4rem);
+
+  color:
+    var(--ink);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(2rem, 4vw, 4rem);
+
   font-weight: 400;
-  letter-spacing: -0.05em;
+
+  letter-spacing:
+    -0.05em;
 }
 
 .empty p {
   max-width: 550px;
-  margin: 18px 0 27px;
-  color: var(--muted);
+
+  margin:
+    18px 0 27px;
+
+  color:
+    var(--muted);
+
   font-size: 0.74rem;
+
   line-height: 1.75;
 }
 
 .empty button {
   display: inline-flex;
-  min-height: 49px;
+
+  min-height: 48px;
+
   align-items: center;
+
   gap: 14px;
-  padding-inline: 18px;
+
+  padding-inline:
+    18px;
+
   border: 0;
-  color: #ffffff;
+
+  border-radius:
+    999px;
+
+  color:
+    #ffffff;
+
   cursor: pointer;
-  background: var(--brand-dark);
+
+  background:
+    var(--brand-dark);
+
   font-size: 0.52rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+
+  letter-spacing:
+    0.1em;
+
+  text-transform:
+    uppercase;
 }
 
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
 @media (hover: hover) and (pointer: fine) {
+  .searchFooter button:hover {
+    border-color:
+      rgba(120, 83, 51, 0.3);
+
+    background:
+      rgba(255, 255, 255, 0.52);
+  }
+
+  .card:hover {
+    border-color:
+      rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+      var(--glass-highlight),
+      0 28px 68px rgba(44, 39, 31, 0.14);
+
+    transform:
+      translateY(-5px);
+  }
+
   .card:hover .image {
-    transform: scale(1.04);
+    transform:
+      scale(1.04);
   }
 
   .card:hover .cardArrow {
-    transform: translateX(3px);
+    color:
+      var(--night);
+
+    background:
+      var(--accent);
+
+    transform:
+      translateX(3px);
+  }
+
+  .card:hover h3 a {
+    color:
+      var(--brand-dark);
+  }
+
+  .cardFooter a:hover {
+    border-color:
+      var(--brand-dark);
+
+    color:
+      #ffffff;
+
+    background:
+      var(--brand-dark);
   }
 
   .cardFooter a:hover svg {
-    transform: translateX(3px);
+    transform:
+      translateX(3px);
   }
 
   .loadMore button:hover {
-    color: #ffffff;
-    background: var(--night);
+    color:
+      #ffffff;
+
+    background:
+      var(--night);
+
+    transform:
+      translateY(-2px);
   }
 }
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 1020px) {
   .searchGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
 
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .imageLink {
+    aspect-ratio:
+      1.3 / 1;
   }
 }
 
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 680px) {
   .searchContainer {
-    padding-block: 22px;
+    margin-block: 20px;
+
+    padding: 12px;
+
+    border-radius:
+      var(--glass-radius-md);
   }
 
   .searchGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
   }
 
   .field {
-    padding: 15px 16px;
+    padding:
+      13px
+      12px;
+
+    border-radius: 12px;
+  }
+
+  .field:first-child {
+    grid-column:
+      1 / 3;
   }
 
   .searchFooter {
+    min-height: 0;
+
     align-items: flex-start;
+
     flex-direction: column;
-    gap: 13px;
-    padding-top: 17px;
+
+    gap: 12px;
+
+    padding-top: 14px;
   }
 
   .results {
-    padding-block: 75px;
+    padding-block:
+      70px;
   }
 
   .resultsHeader {
     align-items: stretch;
+
     flex-direction: column;
+
     gap: 28px;
   }
 
   .resultsHeader h2 {
-    font-size: clamp(2.8rem, 13vw, 4.2rem);
+    font-size:
+      clamp(2.8rem, 13vw, 4.2rem);
   }
 
   .sort {
@@ -468,13 +1212,42 @@
   }
 
   .grid {
-    grid-template-columns: 1fr;
-    gap: 52px;
+    grid-template-columns:
+      1fr;
+
+    gap: 28px;
+  }
+
+  .card {
+    border-radius:
+      var(--glass-radius-md);
+  }
+
+  .imageLink {
+    aspect-ratio:
+      1.25 / 1;
+  }
+
+  .cardContent {
+    padding:
+      20px
+      18px
+      17px;
   }
 
   .card h3 {
     min-height: auto;
-    font-size: 2rem;
+
+    font-size:
+      clamp(1.8rem, 7vw, 2.2rem);
+  }
+
+  .cardFacts {
+    gap: 4px;
+  }
+
+  .cardFooter {
+    min-height: 60px;
   }
 
   .loadMore button {
@@ -482,7 +1255,9 @@
   }
 
   .empty {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
+
     min-height: auto;
   }
 
@@ -491,24 +1266,75 @@
   }
 }
 
-@media (max-width: 390px) {
-  .cardFacts {
-    grid-template-columns: 1fr;
-    gap: 12px;
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+  .searchGrid {
+    grid-template-columns:
+      1fr;
   }
 
-  .cardFacts div,
-  .cardFacts div:first-child {
-    padding: 0 0 11px;
-    border: 0;
-    border-bottom: 1px solid var(--line);
+  .field:first-child {
+    grid-column: auto;
+  }
+
+  .imageLink {
+    aspect-ratio:
+      1.08 / 1;
+  }
+
+  .cardFacts {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .cardFacts div {
+    padding:
+      9px
+      6px;
+  }
+
+  .cardFacts dt {
+    font-size: 0.39rem;
+  }
+
+  .cardFacts dd {
+    font-size: 0.57rem;
+  }
+
+  .cardFooter {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding-top: 16px;
+  }
+
+  .cardFooter a {
+    width: 100%;
+
+    justify-content:
+      space-between;
   }
 }
 
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
+  .card,
   .image,
   .cardArrow,
-  .cardFooter svg {
+  .cardFooter a,
+  .cardFooter svg,
+  .loadMore button {
     transition: none;
   }
 }

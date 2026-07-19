@@ -2,109 +2,202 @@
   position: fixed;
   z-index: 9999;
   inset: 0;
+
   display: grid;
   width: 100%;
   height: 100vh;
   height: 100dvh;
+
   place-items: center;
+
   overflow: hidden;
+
   color: var(--ink);
+
   background:
     radial-gradient(
-      circle at 12% 12%,
-      rgba(112, 124, 95, 0.13),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 90% 88%,
-      rgba(180, 157, 112, 0.12),
+      circle at 16% 16%,
+      rgba(184, 158, 112, 0.16),
       transparent 30%
     ),
-    var(--surface-strong);
+    radial-gradient(
+      circle at 86% 82%,
+      rgba(112, 124, 95, 0.13),
+      transparent 32%
+    ),
+    linear-gradient(
+      145deg,
+      #f5f1ea,
+      #ebe7df 55%,
+      #f7f4ef
+    );
+
+  isolation: isolate;
 }
 
 .frame {
   position: absolute;
   inset: 16px;
-  border: 1px solid rgba(35, 38, 31, 0.1);
+
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: var(--glass-radius-xl);
+
   pointer-events: none;
 }
 
 .content {
   position: relative;
   z-index: 1;
+
   display: grid;
+  width: min(100% - 32px, 360px);
+
   justify-items: center;
+
+  padding: 44px 34px;
+
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: var(--glass-radius-xl);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.62),
+      rgba(255, 255, 255, 0.24)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 28px 75px rgba(42, 38, 31, 0.09);
+
+  backdrop-filter:
+    blur(var(--glass-blur-xl))
+    saturate(125%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-xl))
+    saturate(125%);
 }
 
 .logo {
-  width: clamp(58px, 8vw, 78px);
-  height: clamp(58px, 8vw, 78px);
+  width: clamp(58px, 8vw, 76px);
+  height: clamp(58px, 8vw, 76px);
+
   object-fit: contain;
-  animation: logoReveal 700ms ease both;
+
+  filter:
+    drop-shadow(
+      0 8px 18px rgba(35, 38, 31, 0.08)
+    );
+
+  animation:
+    logoReveal 700ms ease both;
 }
 
 .loader {
   position: relative;
-  width: min(220px, 48vw);
-  height: 1px;
-  margin-top: 34px;
+
+  width: min(210px, 50vw);
+  height: 2px;
+
+  margin-top: 30px;
+
   overflow: hidden;
-  background: rgba(35, 38, 31, 0.14);
+
+  border-radius: 999px;
+
+  background:
+    rgba(35, 38, 31, 0.1);
 }
 
 .loader span {
   position: absolute;
   inset: 0;
-  background: var(--brand-dark);
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--brand-dark),
+      var(--accent)
+    );
+
   transform-origin: left;
-  animation: loadingLine 1.5s cubic-bezier(0.65, 0, 0.35, 1)
+
+  animation:
+    loadingLine
+    1.5s
+    cubic-bezier(0.65, 0, 0.35, 1)
     infinite;
 }
 
 .content p {
-  margin: 17px 0 0;
+  margin: 16px 0 0;
+
   color: var(--muted);
-  font-size: 0.52rem;
+
+  font-size: 0.51rem;
   font-weight: 800;
+
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  animation: textPulse 1.5s ease-in-out infinite;
+
+  animation:
+    textPulse 1.5s ease-in-out infinite;
 }
 
 .brand {
   position: absolute;
+
   right: 30px;
   bottom: 24px;
-  color: #928d84;
+
+  color:
+    rgba(42, 38, 31, 0.36);
+
   font-family: var(--font-display);
+
   font-size: 0.8rem;
+
   letter-spacing: 0.04em;
 }
 
 @keyframes loadingLine {
   0% {
-    transform: translateX(-100%) scaleX(0.45);
+    transform:
+      translateX(-100%)
+      scaleX(0.4);
   }
 
   50% {
-    transform: translateX(20%) scaleX(0.7);
+    transform:
+      translateX(20%)
+      scaleX(0.72);
   }
 
   100% {
-    transform: translateX(110%) scaleX(0.4);
+    transform:
+      translateX(110%)
+      scaleX(0.4);
   }
 }
 
 @keyframes logoReveal {
   from {
     opacity: 0;
-    transform: translateY(8px);
+
+    transform:
+      translateY(7px)
+      scale(0.97);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
 }
 
@@ -122,16 +215,41 @@
 @media (max-width: 620px) {
   .frame {
     inset: 10px;
+
+    border-radius:
+      var(--glass-radius-lg);
+  }
+
+  .content {
+    width:
+      min(100% - 28px, 330px);
+
+    padding:
+      38px 24px;
+
+    border-radius:
+      var(--glass-radius-lg);
   }
 
   .loader {
     width: 170px;
-    margin-top: 27px;
+
+    margin-top: 26px;
   }
 
   .brand {
-    right: 20px;
-    bottom: 18px;
+    display: none;
+  }
+}
+
+@supports not (
+  (backdrop-filter: blur(1px))
+  or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .content {
+    background:
+      rgba(248, 245, 239, 0.97);
   }
 }
 

@@ -1,9 +1,19 @@
+/* =========================================================
+   REAL2OWN — PARTNER WERDEN
+   ========================================================= */
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
 .hero {
   position: relative;
   min-height: 92svh;
   overflow: hidden;
-  color: #fff;
+  color: #ffffff;
   background: var(--night);
+  isolation: isolate;
 }
 
 .heroImage {
@@ -15,46 +25,72 @@
   position: absolute;
   z-index: 1;
   inset: 0;
+
   background:
+    radial-gradient(
+      circle at 76% 24%,
+      rgba(210, 176, 142, 0.1),
+      transparent 31%
+    ),
     linear-gradient(
       90deg,
-      rgba(9, 11, 9, 0.9) 0%,
-      rgba(9, 11, 9, 0.68) 45%,
+      rgba(9, 11, 9, 0.91) 0%,
+      rgba(9, 11, 9, 0.68) 44%,
       rgba(9, 11, 9, 0.2) 78%
     ),
     linear-gradient(
       180deg,
-      rgba(9, 11, 9, 0.4),
-      transparent 44%,
-      rgba(9, 11, 9, 0.68)
+      rgba(9, 11, 9, 0.42),
+      transparent 42%,
+      rgba(9, 11, 9, 0.72)
     );
 }
 
 .heroContainer {
   position: relative;
   z-index: 2;
+
   display: grid;
+
   min-height: 92svh;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.35fr);
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(260px, 0.38fr);
+
   align-items: end;
-  gap: clamp(60px, 10vw, 160px);
+
+  gap:
+    clamp(55px, 9vw, 145px);
+
   padding-top: 150px;
-  padding-bottom: clamp(48px, 7vw, 90px);
+
+  padding-bottom:
+    clamp(48px, 7vw, 86px);
 }
 
 .heroCopy {
   max-width: 980px;
 }
 
+
+/* =========================================================
+   EYEBROWS
+   ========================================================= */
+
 .eyebrow,
 .darkEyebrow {
   display: flex;
   align-items: center;
   gap: 13px;
+
   margin: 0 0 22px;
-  font-size: 0.6rem;
+
+  font-size: 0.58rem;
   font-weight: 800;
+
   letter-spacing: 0.18em;
+
   text-transform: uppercase;
 }
 
@@ -70,88 +106,214 @@
 .darkEyebrow::before {
   width: 40px;
   height: 1px;
+
   background: currentColor;
+
   content: "";
 }
 
+
+/* =========================================================
+   HERO COPY
+   ========================================================= */
+
 .hero h1 {
   max-width: 970px;
+
   margin: 0;
+
   font-family: var(--font-display);
-  font-size: clamp(4rem, 7.1vw, 8.2rem);
+
+  font-size:
+    clamp(4rem, 7.1vw, 8.2rem);
+
   font-weight: 400;
+
   letter-spacing: -0.065em;
+
   line-height: 0.88;
+
   text-wrap: balance;
+
+  text-shadow:
+    0 8px 36px rgba(0, 0, 0, 0.24);
 }
 
 .heroDescription {
   max-width: 650px;
-  margin: 30px 0 0;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.9rem;
-  line-height: 1.8;
+
+  margin:
+    30px 0 0;
+
+  color:
+    rgba(255, 255, 255, 0.66);
+
+  font-size: 0.88rem;
+
+  line-height: 1.82;
 }
 
 .heroAction {
   display: inline-flex;
+
   min-height: 52px;
+
   align-items: center;
+  justify-content: center;
+
   gap: 14px;
-  margin-top: 36px;
-  padding-inline: 22px;
+
+  margin-top: 34px;
+
+  padding-inline: 21px;
+
+  border:
+    1px solid rgba(239, 213, 186, 0.44);
+
+  border-radius: 999px;
+
   color: var(--night);
-  background: var(--accent);
-  font-size: 0.6rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(244, 221, 197, 0.98),
+      rgba(210, 176, 142, 0.94)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 15px 36px rgba(0, 0, 0, 0.15);
+
+  font-size: 0.57rem;
   font-weight: 800;
+
   letter-spacing: 0.1em;
+
   text-transform: uppercase;
+
   transition:
     background 180ms ease,
     transform 180ms ease;
 }
 
+
+/* =========================================================
+   HERO PARTNER INDEX
+   ========================================================= */
+
 .partnerIndex {
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding:
+    10px 20px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.18);
+
+  border-radius:
+    var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.025)
+    ),
+    rgba(17, 22, 17, 0.28);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 24px 60px rgba(0, 0, 0, 0.16);
+
+  backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(130%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(130%);
 }
 
 .partnerIndex > span {
   display: block;
-  padding-block: 18px;
-  color: rgba(255, 255, 255, 0.42);
-  font-size: 0.55rem;
+
+  padding-block: 15px;
+
+  color:
+    rgba(255, 255, 255, 0.42);
+
+  font-size: 0.52rem;
   font-weight: 800;
+
   letter-spacing: 0.14em;
+
   text-transform: uppercase;
 }
 
 .partnerIndex ul {
   margin: 0;
   padding: 0;
+
   list-style: none;
 }
 
 .partnerIndex li {
-  padding-block: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  color: rgba(255, 255, 255, 0.78);
+  padding-block: 13px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  color:
+    rgba(255, 255, 255, 0.82);
+
   font-family: var(--font-display);
-  font-size: 1.15rem;
+
+  font-size: 1.12rem;
 }
 
-/* Netzwerk */
+
+/* =========================================================
+   NETWORK
+   ========================================================= */
 
 .network {
-  padding-block: clamp(90px, 10vw, 150px);
-  background: var(--surface-strong);
+  position: relative;
+  overflow: hidden;
+
+  padding-block:
+    clamp(90px, 10vw, 150px);
+
+  background:
+    radial-gradient(
+      circle at 10% 16%,
+      rgba(210, 176, 142, 0.17),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 92% 78%,
+      rgba(101, 123, 94, 0.1),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #f5f1ea 0%,
+      #e9e4db 100%
+    );
 }
 
 .networkHeading {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.52fr);
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(300px, 0.52fr);
+
   align-items: end;
-  gap: clamp(50px, 9vw, 145px);
-  margin-bottom: clamp(52px, 7vw, 88px);
+
+  gap:
+    clamp(50px, 9vw, 145px);
+
+  margin-bottom:
+    clamp(50px, 7vw, 82px);
 }
 
 .networkHeading h2,
@@ -159,70 +321,203 @@
 .formIntro h2,
 .bottomCta h2 {
   margin: 0;
+
   font-family: var(--font-display);
+
   font-weight: 400;
+
   letter-spacing: -0.057em;
+
   line-height: 0.92;
 }
 
 .networkHeading h2 {
   max-width: 880px;
+
   color: var(--ink);
-  font-size: clamp(3rem, 5.3vw, 6rem);
+
+  font-size:
+    clamp(3rem, 5.3vw, 6rem);
 }
 
 .networkHeading > p {
   margin: 0;
+
   color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.8;
+
+  font-size: 0.81rem;
+
+  line-height: 1.85;
 }
+
+
+/* =========================================================
+   PARTNER GROUPS
+   ========================================================= */
 
 .partnerGroups {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--line-strong);
-  border-left: 1px solid var(--line);
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
 }
 
 .partnerGroups article {
-  min-height: 230px;
-  padding: clamp(24px, 3vw, 38px);
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  position: relative;
+
+  min-height: 220px;
+
+  padding:
+    clamp(24px, 3vw, 34px);
+
+  overflow: hidden;
+
+  border:
+    1px solid var(--glass-border-light);
+
+  border-radius:
+    var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.54),
+      rgba(255, 255, 255, 0.18)
+    );
+
+  box-shadow:
+    var(--glass-highlight),
+    0 20px 50px rgba(44, 39, 31, 0.08);
+
+  backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(130%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(130%);
+
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms ease;
+}
+
+.partnerGroups article::before {
+  position: absolute;
+
+  top: -65px;
+  right: -65px;
+
+  width: 155px;
+  height: 155px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(210, 176, 142, 0.12);
+
+  content: "";
+
+  pointer-events: none;
 }
 
 .partnerGroups span {
-  color: #969087;
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+
+  width: 36px;
+  height: 36px;
+
+  place-items: center;
+
+  border:
+    1px solid rgba(120, 83, 51, 0.15);
+
+  border-radius: 50%;
+
+  color: var(--brand-dark);
+
+  background:
+    rgba(255, 255, 255, 0.34);
+
   font-family: var(--font-display);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
+
+  font-size: 0.6rem;
+
+  letter-spacing: 0.07em;
 }
 
 .partnerGroups h3 {
-  max-width: 260px;
-  margin: 75px 0 0;
+  position: relative;
+  z-index: 1;
+
+  max-width: 270px;
+
+  margin:
+    62px 0 0;
+
   color: var(--ink);
+
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.1vw, 2.25rem);
+
+  font-size:
+    clamp(1.45rem, 2.1vw, 2.25rem);
+
   font-weight: 400;
+
   letter-spacing: -0.04em;
+
   line-height: 1;
 }
 
-/* Vorteile */
+
+/* =========================================================
+   BENEFITS
+   ========================================================= */
 
 .benefits {
-  padding-block: clamp(90px, 10vw, 150px);
-  color: #fff;
-  background: var(--night);
+  position: relative;
+  overflow: hidden;
+
+  padding-block:
+    clamp(90px, 10vw, 150px);
+
+  color: #ffffff;
+
+  background:
+    radial-gradient(
+      circle at 8% 16%,
+      rgba(210, 176, 142, 0.13),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 92% 82%,
+      rgba(94, 119, 87, 0.15),
+      transparent 34%
+    ),
+    linear-gradient(
+      145deg,
+      #171b16 0%,
+      #20271d 48%,
+      #121510 100%
+    );
 }
 
 .benefitsContainer {
   display: grid;
-  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.28fr);
+
+  grid-template-columns:
+    minmax(320px, 0.72fr)
+    minmax(0, 1.28fr);
+
   align-items: start;
-  gap: clamp(60px, 10vw, 160px);
+
+  gap:
+    clamp(60px, 10vw, 160px);
 }
 
 .benefitsIntro {
@@ -232,65 +527,169 @@
 
 .benefitsIntro h2 {
   max-width: 680px;
-  font-size: clamp(3rem, 5vw, 5.8rem);
+
+  font-size:
+    clamp(3rem, 5vw, 5.8rem);
 }
 
 .benefitsIntro > p:last-child {
   max-width: 520px;
-  margin: 26px 0 0;
-  color: rgba(255, 255, 255, 0.48);
+
+  margin:
+    26px 0 0;
+
+  color:
+    rgba(255, 255, 255, 0.5);
+
   font-size: 0.8rem;
-  line-height: 1.8;
+
+  line-height: 1.82;
 }
 
+
+/* =========================================================
+   BENEFIT LIST
+   ========================================================= */
+
 .benefitList {
-  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  display: grid;
+
+  gap: 12px;
 }
 
 .benefitList article {
   display: grid;
-  grid-template-columns: 55px minmax(0, 1fr);
-  gap: 25px;
-  padding-block: clamp(35px, 5vw, 58px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+  grid-template-columns:
+    48px
+    minmax(0, 1fr);
+
+  gap: 22px;
+
+  padding:
+    clamp(25px, 4vw, 38px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius:
+    var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(125%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(125%);
 }
 
 .benefitList article > span {
-  color: rgba(255, 255, 255, 0.34);
+  display: grid;
+
+  width: 38px;
+  height: 38px;
+
+  place-items: center;
+
+  border:
+    1px solid rgba(210, 176, 142, 0.22);
+
+  border-radius: 50%;
+
+  color: var(--accent);
+
+  background:
+    rgba(255, 255, 255, 0.045);
+
   font-family: var(--font-display);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
+
+  font-size: 0.62rem;
+
+  letter-spacing: 0.07em;
 }
 
 .benefitList h3 {
   margin: 0;
+
   font-family: var(--font-display);
-  font-size: clamp(1.7rem, 2.7vw, 3rem);
+
+  font-size:
+    clamp(1.7rem, 2.7vw, 3rem);
+
   font-weight: 400;
+
   letter-spacing: -0.04em;
 }
 
 .benefitList p {
   max-width: 610px;
-  margin: 16px 0 0;
-  color: rgba(255, 255, 255, 0.48);
-  font-size: 0.76rem;
-  line-height: 1.75;
+
+  margin:
+    15px 0 0;
+
+  color:
+    rgba(255, 255, 255, 0.48);
+
+  font-size: 0.75rem;
+
+  line-height: 1.78;
 }
 
-/* Formular */
+
+/* =========================================================
+   FORM SECTION
+   ========================================================= */
 
 .formSection {
-  padding-block: clamp(90px, 10vw, 150px);
-  background: #eae7df;
+  position: relative;
+
+  overflow: hidden;
+
+  padding-block:
+    clamp(90px, 10vw, 150px);
+
   scroll-margin-top: 90px;
+
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(210, 176, 142, 0.17),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 92% 78%,
+      rgba(101, 123, 94, 0.1),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #f1ece4 0%,
+      #e6e0d7 100%
+    );
 }
 
 .formContainer {
   display: grid;
-  grid-template-columns: minmax(280px, 0.58fr) minmax(0, 1.42fr);
+
+  grid-template-columns:
+    minmax(280px, 0.58fr)
+    minmax(0, 1.42fr);
+
   align-items: start;
-  gap: clamp(60px, 10vw, 150px);
+
+  gap:
+    clamp(60px, 10vw, 150px);
 }
 
 .formIntro {
@@ -300,93 +699,254 @@
 
 .formIntro h2 {
   max-width: 620px;
+
   color: var(--ink);
-  font-size: clamp(3rem, 5vw, 5.7rem);
+
+  font-size:
+    clamp(3rem, 5vw, 5.7rem);
 }
 
 .formIntro > p {
   max-width: 510px;
-  margin: 26px 0 0;
+
+  margin:
+    26px 0 0;
+
   color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.8;
+
+  font-size: 0.81rem;
+
+  line-height: 1.85;
 }
+
+
+/* =========================================================
+   DIRECT CONTACT
+   ========================================================= */
 
 .directContact {
   display: flex;
+
   align-items: flex-start;
+
   flex-direction: column;
-  margin-top: 42px;
-  padding-top: 25px;
-  border-top: 1px solid var(--line);
+
+  margin-top: 38px;
+
+  padding: 21px;
+
+  border:
+    1px solid var(--glass-border-light);
+
+  border-radius:
+    var(--glass-radius-md);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.54),
+      rgba(255, 255, 255, 0.2)
+    );
+
+  box-shadow:
+    var(--glass-highlight),
+    0 16px 40px rgba(44, 39, 31, 0.07);
+
+  backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(130%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(130%);
 }
 
 .directContact span {
   margin-bottom: 14px;
+
   color: var(--muted);
-  font-size: 0.55rem;
+
+  font-size: 0.52rem;
   font-weight: 800;
+
   letter-spacing: 0.14em;
+
   text-transform: uppercase;
 }
 
 .directContact a {
-  margin-bottom: 8px;
+  margin-bottom: 7px;
+
   color: var(--ink);
+
   font-family: var(--font-display);
-  font-size: 1.2rem;
+
+  font-size: 1.18rem;
+
+  transition:
+    color 180ms ease;
 }
 
-/* CTA */
+
+/* =========================================================
+   BOTTOM CTA
+   ========================================================= */
 
 .bottomCta {
-  padding-block: clamp(82px, 9vw, 135px);
-  color: #fff;
-  background: var(--night);
+  position: relative;
+
+  overflow: hidden;
+
+  padding-block:
+    clamp(65px, 8vw, 110px);
+
+  color: #ffffff;
+
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(210, 176, 142, 0.16),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 82%,
+      rgba(96, 116, 89, 0.14),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      #eee9e1 0%,
+      #e4ded4 100%
+    );
 }
 
 .bottomCtaInner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
   align-items: end;
-  gap: clamp(50px, 9vw, 145px);
+
+  gap:
+    clamp(50px, 9vw, 145px);
+
+  padding:
+    clamp(42px, 6vw, 72px);
+
+  border:
+    1px solid var(--glass-border-dark);
+
+  border-radius:
+    var(--glass-radius-xl);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.018)
+    ),
+    rgba(19, 23, 18, 0.78);
+
+  box-shadow:
+    var(--glass-shadow-dark);
+
+  backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(135%);
 }
 
 .bottomCta h2 {
   max-width: 850px;
-  font-size: clamp(3rem, 5.3vw, 6rem);
+
+  font-size:
+    clamp(3rem, 5.3vw, 6rem);
 }
 
 .bottomCtaInner > a {
   display: inline-flex;
-  min-width: 240px;
-  min-height: 54px;
+
+  min-width: 235px;
+  min-height: 52px;
+
   align-items: center;
-  justify-content: space-between;
+
+  justify-content:
+    space-between;
+
   gap: 20px;
-  padding-inline: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.29);
-  color: #fff;
-  font-size: 0.58rem;
+
+  padding:
+    5px 7px 5px 18px;
+
+  border:
+    1px solid rgba(210, 176, 142, 0.4);
+
+  border-radius: 999px;
+
+  color: var(--night);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(244, 221, 197, 0.98),
+      rgba(210, 176, 142, 0.93)
+    );
+
+  font-size: 0.55rem;
   font-weight: 800;
+
   letter-spacing: 0.1em;
+
   text-transform: uppercase;
+
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
 }
 
-/* Responsive */
+
+/* =========================================================
+   HOVER
+   ========================================================= */
 
 @media (hover: hover) and (pointer: fine) {
-  .heroAction:hover {
-    background: #fff;
-    transform: translateY(-2px);
+  .heroAction:hover,
+  .bottomCtaInner > a:hover {
+    background:
+      linear-gradient(
+        135deg,
+        #ffffff,
+        #e7c5a2
+      );
+
+    transform:
+      translateY(-2px);
   }
 
-  .bottomCtaInner > a:hover {
-    border-color: var(--accent);
-    color: var(--night);
-    background: var(--accent);
+  .partnerGroups article:hover {
+    box-shadow:
+      var(--glass-highlight),
+      0 28px 65px rgba(44, 39, 31, 0.13);
+
+    transform:
+      translateY(-5px);
+  }
+
+  .directContact a:hover {
+    color: var(--brand-dark);
   }
 }
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 980px) {
   .heroContainer,
@@ -397,7 +957,7 @@
   }
 
   .heroContainer {
-    gap: 50px;
+    gap: 48px;
   }
 
   .partnerIndex {
@@ -410,9 +970,15 @@
   }
 
   .partnerGroups {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
 }
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 680px) {
   .hero,
@@ -421,60 +987,260 @@
   }
 
   .heroContainer {
-    padding-top: 125px;
-    padding-bottom: 35px;
+    padding-top: 120px;
+
+    padding-bottom: 34px;
+  }
+
+  .heroImage {
+    object-position:
+      58% center;
   }
 
   .hero h1 {
-    font-size: clamp(3.15rem, 15vw, 4.8rem);
+    font-size:
+      clamp(3.15rem, 15vw, 4.8rem);
   }
 
   .heroDescription {
     margin-top: 22px;
-    font-size: 0.83rem;
+
+    font-size: 0.82rem;
   }
 
   .heroAction {
     width: 100%;
-    justify-content: space-between;
+
+    justify-content:
+      space-between;
   }
+
+
+  /* Network */
 
   .network,
   .benefits,
   .formSection {
-    padding-block: 80px;
+    padding-block: 76px;
   }
 
   .networkHeading h2,
   .benefitsIntro h2,
   .formIntro h2,
   .bottomCta h2 {
-    font-size: clamp(2.8rem, 13vw, 4.2rem);
+    font-size:
+      clamp(2.8rem, 13vw, 4.2rem);
+  }
+
+  .networkHeading {
+    gap: 28px;
   }
 
   .partnerGroups {
     grid-template-columns: 1fr;
+
+    gap: 10px;
   }
 
   .partnerGroups article {
-    min-height: 190px;
+    min-height: 165px;
+
+    padding:
+      21px 19px;
+
+    border-radius:
+      var(--glass-radius-md);
   }
 
   .partnerGroups h3 {
-    margin-top: 55px;
+    margin-top: 45px;
+  }
+
+
+  /* Benefits */
+
+  .benefitsContainer {
+    gap: 42px;
+  }
+
+  .benefitList {
+    gap: 10px;
   }
 
   .benefitList article {
-    grid-template-columns: 40px minmax(0, 1fr);
+    grid-template-columns:
+      40px
+      minmax(0, 1fr);
+
     gap: 15px;
+
+    padding:
+      22px 19px;
+
+    border-radius:
+      var(--glass-radius-md);
+  }
+
+  .benefitList article > span {
+    width: 34px;
+    height: 34px;
+  }
+
+
+  /* Form */
+
+  .formContainer {
+    gap: 42px;
+  }
+
+  .directContact {
+    margin-top: 30px;
+
+    padding: 18px;
+  }
+
+
+  /* CTA */
+
+  .bottomCta {
+    overflow: clip;
+
+    padding-block: 58px;
   }
 
   .bottomCtaInner {
     grid-template-columns: 1fr;
-    gap: 38px;
+
+    gap: 34px;
+
+    padding:
+      36px 22px 28px;
+
+    border-radius:
+      var(--glass-radius-lg);
+
+    transform-origin: center;
+
+    will-change:
+      transform,
+      opacity;
   }
 
   .bottomCtaInner > a {
     width: 100%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE CTA SCROLL ZOOM
+   ========================================================= */
+
+@media (max-width: 680px) {
+  @supports (animation-timeline: view()) {
+    .bottomCtaInner {
+      animation-name:
+        becomePartnerCtaZoom;
+
+      animation-duration: 1ms;
+
+      animation-timing-function:
+        linear;
+
+      animation-fill-mode: both;
+
+      animation-timeline: view();
+
+      animation-range:
+        entry 0%
+        cover 42%;
+    }
+
+    @keyframes becomePartnerCtaZoom {
+      from {
+        opacity: 0.5;
+
+        transform:
+          translateY(28px)
+          scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 390px) {
+  .hero h1 {
+    font-size: 3.05rem;
+  }
+
+  .partnerGroups article {
+    padding-inline: 17px;
+  }
+
+  .bottomCtaInner {
+    padding-inline: 18px;
+  }
+}
+
+
+/* =========================================================
+   FALLBACK
+   ========================================================= */
+
+@supports not (
+  (backdrop-filter: blur(1px))
+  or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .partnerIndex,
+  .benefitList article {
+    background:
+      rgba(25, 31, 23, 0.96);
+  }
+
+  .partnerGroups article,
+  .directContact {
+    background:
+      rgba(248, 245, 239, 0.97);
+  }
+
+  .bottomCtaInner {
+    background:
+      rgba(19, 23, 18, 0.96);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .heroAction,
+  .partnerGroups article,
+  .directContact a,
+  .bottomCtaInner > a {
+    transition: none;
+  }
+
+  .bottomCtaInner {
+    animation: none;
+
+    opacity: 1;
+
+    transform: none;
   }
 }

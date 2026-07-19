@@ -1,79 +1,49 @@
 import Link from "next/link";
+import styles from "./not-found.module.css";
 
 export default function NotFound() {
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "40px 24px",
-        background: "#f5f3ef",
-        color: "#171717",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "720px",
-          textAlign: "center",
-        }}
+    <main className={styles.page}>
+      <div className={styles.glow} aria-hidden="true" />
+
+      <section
+        className={styles.card}
+        aria-labelledby="not-found-title"
       >
-        <p
-          style={{
-            margin: "0 0 24px",
-            fontSize: "13px",
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            opacity: 0.6,
-          }}
-        >
+        <p className={styles.eyebrow}>
           Error 404
         </p>
 
-        <h1
-          style={{
-            margin: "0",
-            fontSize: "clamp(42px, 8vw, 88px)",
-            fontWeight: 400,
-            lineHeight: 1,
-            letterSpacing: "-0.04em",
-          }}
-        >
+        <div className={styles.number} aria-hidden="true">
+          404
+        </div>
+
+        <h1 id="not-found-title">
           Seite nicht gefunden.
         </h1>
 
-        <p
-          style={{
-            maxWidth: "520px",
-            margin: "28px auto 0",
-            fontSize: "17px",
-            lineHeight: 1.7,
-            opacity: 0.7,
-          }}
-        >
-          Die angeforderte Seite existiert nicht oder wurde verschoben.
+        <p className={styles.description}>
+          Die angeforderte Seite existiert nicht,
+          wurde verschoben oder ist nicht mehr verfügbar.
         </p>
 
         <Link
+          className={styles.homeLink}
           href="/"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: "40px",
-            minHeight: "52px",
-            padding: "0 28px",
-            background: "#171717",
-            color: "#ffffff",
-            textDecoration: "none",
-            fontSize: "14px",
-          }}
         >
-          Zur Startseite
+          <span>Zur Startseite</span>
+          <span
+            className={styles.arrow}
+            aria-hidden="true"
+          >
+            →
+          </span>
         </Link>
-      </div>
+      </section>
+
+      <span className={styles.brand}>
+        REAL2OWN
+      </span>
     </main>
   );
 }

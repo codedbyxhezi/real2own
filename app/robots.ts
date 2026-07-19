@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://real2own.com";
+const baseUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://real2own.com"
+).replace(/\/$/, "");
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -10,12 +13,11 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: [
           "/konto",
-          "/anmelden",
-          "/registrieren",
-          "/passwort-vergessen",
+          "/api/",
         ],
       },
     ],
+
     sitemap: `${baseUrl}/sitemap.xml`,
     host: baseUrl,
   };

@@ -32,6 +32,20 @@ export default async function PasswortVergessenPage() {
 
   return (
     <main className={styles.page}>
+      <Image
+        src="/images/auth/login-background.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className={styles.backgroundImage}
+      />
+
+      <div
+        className={styles.backgroundOverlay}
+        aria-hidden="true"
+      />
+
       <Link
         className={styles.backLink}
         href="/anmelden"

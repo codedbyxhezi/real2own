@@ -10,6 +10,7 @@ import styles from "./PropertyCard.module.css";
 type PropertyCardProps = {
   property: Property;
   priority?: boolean;
+  variant?: "showcase" | "listing";
 };
 
 const localeMap = {
@@ -21,6 +22,7 @@ const localeMap = {
 export function PropertyCard({
   property,
   priority = false,
+  variant = "showcase",
 }: PropertyCardProps) {
   const t = useTranslations("PropertyCard");
   const locale = useLocale();
@@ -41,8 +43,17 @@ export function PropertyCard({
     `countries.${property.country}`
   );
 
+  const isListing =
+    variant === "listing";
+
   return (
-    <article className={styles.card}>
+    <article
+      className={`${styles.card} ${
+        isListing
+          ? styles.listingCard
+          : styles.showcaseCard
+      }`}
+    >
       <div className={styles.imageWrap}>
         <Image
           src={property.image}
@@ -52,12 +63,20 @@ export function PropertyCard({
           })}
           fill
           priority={priority}
-          quality={88}
-          sizes="
-            (max-width: 650px) calc(100vw - 28px),
-            (max-width: 1000px) calc(50vw - 34px),
-            33vw
-          "
+          quality={90}
+          sizes={
+            isListing
+              ? `
+                (max-width: 650px) calc(100vw - 32px),
+                (max-width: 1000px) calc(50vw - 32px),
+                31vw
+              `
+              : `
+                (max-width: 650px) calc(100vw - 28px),
+                (max-width: 1000px) calc(50vw - 34px),
+                33vw
+              `
+          }
           className={styles.image}
         />
 
@@ -101,7 +120,8 @@ export function PropertyCard({
           />
 
           <span>
-            {property.location}, {country}
+            {property.location},{" "}
+            {country}
           </span>
         </div>
 

@@ -25,7 +25,9 @@ type CategoryKey =
   | "land"
   | "development";
 
-function getCategoryKey(category: string): CategoryKey {
+function getCategoryKey(
+  category: string
+): CategoryKey {
   switch (category) {
     case "Miete":
       return "rent";
@@ -64,140 +66,221 @@ function getCategoryHref(
 }
 
 export function generateStaticParams() {
-  return propertyCatalog.map((property) => ({
-    id: String(property.id),
-  }));
+  return propertyCatalog.map(
+    (property) => ({
+      id: String(property.id),
+    })
+  );
 }
 
 export async function generateMetadata({
   params,
 }: PropertyPageProps): Promise<Metadata> {
-  const { id, locale } = await params;
-  const property = getPropertyById(id);
+  const { id, locale } =
+    await params;
 
-  const t = await getTranslations({
-    locale,
-    namespace: "PropertyDetailPage",
-  });
+  const property =
+    getPropertyById(
+      id,
+      locale
+    );
+
+  const t =
+    await getTranslations({
+      locale,
+      namespace:
+        "PropertyDetailPage",
+    });
 
   if (!property) {
     return {
-      title: t("metadata.notFoundTitle"),
+      title: t(
+        "metadata.notFoundTitle"
+      ),
     };
   }
 
   return {
     title: property.title,
-    description: t("metadata.description", {
-      title: property.title,
-      location: property.location,
-      price: property.price,
-    }),
+
+    description: t(
+      "metadata.description",
+      {
+        title:
+          property.title,
+
+        location:
+          property.location,
+
+        price:
+          property.price,
+      }
+    ),
   };
 }
 
 export default async function PropertyPage({
   params,
 }: PropertyPageProps) {
-  const { id } = await params;
-  const property = getPropertyById(id);
+  const { id, locale } =
+    await params;
+
+  const property =
+    getPropertyById(
+      id,
+      locale
+    );
 
   if (!property) {
     notFound();
   }
 
-  const t = await getTranslations(
-    "PropertyDetailPage"
-  );
+  const t =
+    await getTranslations({
+      locale,
+      namespace:
+        "PropertyDetailPage",
+    });
 
-  const categoryKey = getCategoryKey(
-    property.category
-  );
+  const categoryKey =
+    getCategoryKey(
+      property.category
+    );
 
   const categoryHref =
-    getCategoryHref(categoryKey);
+    getCategoryHref(
+      categoryKey
+    );
 
-  const categoryLabel = t(
-    `categories.${categoryKey}`
-  );
+  const categoryLabel =
+    t(
+      `categories.${categoryKey}`
+    );
 
-  const mailSubject = encodeURIComponent(
-    t("email.subject", {
-      id: property.id,
-      title: property.title,
-    })
-  );
-
-  const mailBody = encodeURIComponent(
-    [
-      t("email.greeting"),
-      "",
-      t("email.interest"),
-      "",
-      property.title,
-      property.location,
-      t("email.propertyNumber", {
+  const mailSubject =
+    encodeURIComponent(
+      t("email.subject", {
         id: property.id,
-      }),
-      "",
-      t("email.moreInformation"),
-      "",
-      t("email.closing"),
-    ].join("\n")
-  );
+        title:
+          property.title,
+      })
+    );
+
+  const mailBody =
+    encodeURIComponent(
+      [
+        t("email.greeting"),
+        "",
+        t("email.interest"),
+        "",
+        property.title,
+        property.location,
+
+        t(
+          "email.propertyNumber",
+          {
+            id: property.id,
+          }
+        ),
+
+        "",
+        t(
+          "email.moreInformation"
+        ),
+        "",
+        t("email.closing"),
+      ].join("\n")
+    );
 
   return (
     <>
       <Header />
 
       <main id="top">
-        <section className={styles.hero}>
+        {/* =====================================================
+            HERO
+            ===================================================== */}
+
+        <section
+          className={styles.hero}
+        >
           <Image
             src={property.image}
             alt={property.title}
             fill
             priority
             sizes="100vw"
-            className={styles.heroImage}
+            className={
+              styles.heroImage
+            }
           />
 
-          <div className={styles.heroOverlay} />
+          <div
+            className={
+              styles.heroOverlay
+            }
+          />
 
           <div
             className={`container ${styles.heroContainer}`}
           >
-            <div className={styles.breadcrumbs}>
+            <div
+              className={
+                styles.breadcrumbs
+              }
+            >
               <Link href="/">
-                {t("breadcrumbs.home")}
+                {t(
+                  "breadcrumbs.home"
+                )}
               </Link>
 
               <span>/</span>
 
-              <Link href={categoryHref}>
+              <Link
+                href={
+                  categoryHref
+                }
+              >
                 {categoryLabel}
               </Link>
 
               <span>/</span>
 
               <span>
-                R2O-{property.id}
+                R2O-
+                {property.id}
               </span>
             </div>
 
-            <div className={styles.heroContent}>
+            <div
+              className={
+                styles.heroContent
+              }
+            >
               <div>
-                <div className={styles.meta}>
+                <div
+                  className={
+                    styles.meta
+                  }
+                >
                   <span>
-                    {categoryLabel}
+                    {
+                      categoryLabel
+                    }
                   </span>
 
                   <span>
-                    {property.location}
+                    {
+                      property.location
+                    }
                   </span>
 
                   {property.label && (
                     <span>
-                      {property.label}
+                      {
+                        property.label
+                      }
                     </span>
                   )}
                 </div>
@@ -207,9 +290,15 @@ export default async function PropertyPage({
                 </h1>
               </div>
 
-              <div className={styles.heroPrice}>
+              <div
+                className={
+                  styles.heroPrice
+                }
+              >
                 <span>
-                  {t("hero.offerPrice")}
+                  {t(
+                    "hero.offerPrice"
+                  )}
                 </span>
 
                 <strong>
@@ -220,24 +309,42 @@ export default async function PropertyPage({
           </div>
         </section>
 
-        <section className={styles.summary}>
+        {/* =====================================================
+            SUMMARY
+            ===================================================== */}
+
+        <section
+          className={
+            styles.summary
+          }
+        >
           <div
             className={`container ${styles.summaryContainer}`}
           >
-            <dl className={styles.facts}>
+            <dl
+              className={
+                styles.facts
+              }
+            >
               <div>
                 <dt>
-                  {t("summary.propertyType")}
+                  {t(
+                    "summary.propertyType"
+                  )}
                 </dt>
 
                 <dd>
-                  {property.propertyType}
+                  {
+                    property.propertyType
+                  }
                 </dd>
               </div>
 
               <div>
                 <dt>
-                  {t("summary.area")}
+                  {t(
+                    "summary.area"
+                  )}
                 </dt>
 
                 <dd>
@@ -247,7 +354,9 @@ export default async function PropertyPage({
 
               <div>
                 <dt>
-                  {t("summary.units")}
+                  {t(
+                    "summary.units"
+                  )}
                 </dt>
 
                 <dd>
@@ -263,12 +372,17 @@ export default async function PropertyPage({
                 </dt>
 
                 <dd>
-                  R2O-{property.id}
+                  R2O-
+                  {property.id}
                 </dd>
               </div>
             </dl>
 
-            <div className={styles.actions}>
+            <div
+              className={
+                styles.actions
+              }
+            >
               <a
                 className={
                   styles.primaryAction
@@ -299,15 +413,26 @@ export default async function PropertyPage({
           </div>
         </section>
 
+        {/* =====================================================
+            GALLERY
+            ===================================================== */}
+
         <section
-          className={styles.gallery}
-          aria-label={t("gallery.ariaLabel")}
+          className={
+            styles.gallery
+          }
+          aria-label={t(
+            "gallery.ariaLabel"
+          )}
         >
           <div
             className={`container ${styles.galleryGrid}`}
           >
             {property.gallery.map(
-              (image, index) => (
+              (
+                image,
+                index
+              ) => (
                 <div
                   className={
                     index === 0
@@ -323,6 +448,7 @@ export default async function PropertyPage({
                       {
                         title:
                           property.title,
+
                         number:
                           index + 1,
                       }
@@ -343,14 +469,28 @@ export default async function PropertyPage({
           </div>
         </section>
 
+        {/* =====================================================
+            INFORMATION
+            ===================================================== */}
+
         <section
-          className={styles.information}
+          className={
+            styles.information
+          }
         >
           <div
             className={`container ${styles.informationContainer}`}
           >
-            <div className={styles.description}>
-              <p className={styles.eyebrow}>
+            <div
+              className={
+                styles.description
+              }
+            >
+              <p
+                className={
+                  styles.eyebrow
+                }
+              >
                 {t(
                   "information.eyebrow"
                 )}
@@ -362,8 +502,14 @@ export default async function PropertyPage({
                 )}
               </h2>
 
-              <p className={styles.location}>
-                {property.location}
+              <p
+                className={
+                  styles.location
+                }
+              >
+                {
+                  property.location
+                }
               </p>
 
               <p
@@ -371,7 +517,9 @@ export default async function PropertyPage({
                   styles.descriptionText
                 }
               >
-                {property.description}
+                {
+                  property.description
+                }
               </p>
 
               <p
@@ -390,15 +538,26 @@ export default async function PropertyPage({
                 styles.featureSection
               }
             >
-              <p className={styles.eyebrow}>
+              <p
+                className={
+                  styles.eyebrow
+                }
+              >
                 {t(
                   "features.eyebrow"
                 )}
               </p>
 
-              <ul className={styles.features}>
+              <ul
+                className={
+                  styles.features
+                }
+              >
                 {property.features.map(
-                  (feature, index) => (
+                  (
+                    feature,
+                    index
+                  ) => (
                     <li
                       key={`${feature}-${index}`}
                     >
@@ -420,7 +579,15 @@ export default async function PropertyPage({
           </div>
         </section>
 
-        <section className={styles.contact}>
+        {/* =====================================================
+            CONTACT
+            ===================================================== */}
+
+        <section
+          className={
+            styles.contact
+          }
+        >
           <div
             className={`container ${styles.contactContainer}`}
           >
@@ -453,15 +620,21 @@ export default async function PropertyPage({
                 )}
               </p>
 
-              <a href="tel:+491791415281">
+              <a
+                href="tel:+491791415281"
+              >
                 +49 179 14 15 281
               </a>
 
-              <a href="mailto:info@real2own.com">
+              <a
+                href="mailto:info@real2own.com"
+              >
                 info@real2own.com
               </a>
 
-              <Link href="/kontakt#kontaktformular">
+              <Link
+                href="/kontakt#kontaktformular"
+              >
                 {t(
                   "contact.action"
                 )}

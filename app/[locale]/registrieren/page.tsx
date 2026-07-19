@@ -32,6 +32,20 @@ export default async function RegistrierenPage() {
 
   return (
     <main className={styles.page}>
+      <Image
+        src="/images/auth/login-background.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className={styles.backgroundImage}
+      />
+
+      <div
+        className={styles.backgroundOverlay}
+        aria-hidden="true"
+      />
+
       <Link
         className={styles.backLink}
         href="/anmelden"
@@ -74,16 +88,6 @@ export default async function RegistrierenPage() {
         </div>
 
         <RegisterForm />
-
-        <div className={styles.loginLink}>
-          <span>
-            {t("alreadyRegistered")}
-          </span>
-
-          <Link href="/anmelden">
-            {t("login")}
-          </Link>
-        </div>
       </section>
 
       <span className={styles.copyright}>

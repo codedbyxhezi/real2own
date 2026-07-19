@@ -1,89 +1,172 @@
 import type { MetadataRoute } from "next";
 import { propertyCatalog } from "@/data/propertyCatalog";
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://real2own.com";
+const baseUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://real2own.com"
+).replace(/\/$/, "");
 
-const staticRoutes: MetadataRoute.Sitemap = [
+const locales = ["de", "en", "es"] as const;
+
+type Locale = (typeof locales)[number];
+
+type ChangeFrequency =
+  NonNullable<
+    MetadataRoute.Sitemap[number]["changeFrequency"]
+  >;
+
+type RouteDefinition = {
+  path: string;
+  changeFrequency: ChangeFrequency;
+  priority: number;
+};
+
+const staticRoutes: RouteDefinition[] = [
   {
-    url: baseUrl,
+    path: "/",
     changeFrequency: "weekly",
     priority: 1,
   },
   {
-    url: `${baseUrl}/immobilien/kaufen`,
+    path: "/immobilien/kaufen",
     changeFrequency: "daily",
     priority: 0.9,
   },
   {
-    url: `${baseUrl}/immobilien/mieten`,
+    path: "/immobilien/mieten",
     changeFrequency: "daily",
     priority: 0.9,
   },
   {
-    url: `${baseUrl}/grundstuecke`,
+    path: "/grundstuecke",
     changeFrequency: "daily",
     priority: 0.85,
   },
   {
-    url: `${baseUrl}/neubauprojekte`,
+    path: "/neubauprojekte",
     changeFrequency: "weekly",
     priority: 0.85,
   },
   {
-    url: `${baseUrl}/international`,
+    path: "/international",
     changeFrequency: "weekly",
     priority: 0.8,
   },
   {
-    url: `${baseUrl}/baupartner`,
+    path: "/baupartner",
     changeFrequency: "monthly",
     priority: 0.75,
   },
   {
-    url: `${baseUrl}/immobilie-anbieten`,
+    path: "/immobilie-anbieten",
     changeFrequency: "monthly",
     priority: 0.8,
   },
   {
-    url: `${baseUrl}/projekt-praesentieren`,
+    path: "/projekt-praesentieren",
     changeFrequency: "monthly",
     priority: 0.7,
   },
   {
-    url: `${baseUrl}/partner-werden`,
+    path: "/partner-werden",
     changeFrequency: "monthly",
     priority: 0.7,
   },
   {
-    url: `${baseUrl}/ueber-uns`,
+    path: "/ueber-uns",
     changeFrequency: "monthly",
     priority: 0.65,
   },
   {
-    url: `${baseUrl}/kontakt`,
+    path: "/kontakt",
     changeFrequency: "monthly",
     priority: 0.7,
   },
   {
-    url: `${baseUrl}/impressum`,
+    path: "/impressum",
     changeFrequency: "yearly",
     priority: 0.2,
   },
   {
-    url: `${baseUrl}/datenschutz`,
+    path: "/datenschutz",
     changeFrequency: "yearly",
     priority: 0.2,
   },
 ];
 
-const propertyRoutes: MetadataRoute.Sitemap =
-  propertyCatalog.map((property) => ({
-    url: `${baseUrl}/immobilien/${property.id}`,
-    changeFrequency: "weekly",
-    priority: 0.75,
-  }));
+function getLocalizedUrl(
+  path: string,
+  locale: Locale
+) {
+  const normalizedPath =
+    path === "/" ? "" : path;
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [...staticRoutes, ...propertyRoutes];
+  // Deutsch ist die Standardsprache:
+  // /kontakt statt /de/kontakt
+  if (locale === "de") {
+    return `${baseUrl}${normalizedPath}`;
+  }
+
+  return `${baseUrl}/${locale}${normalizedPath}`;
+}
+
+function getAlternates(path: string) {
+  return {
+    de: getLocalizedUrl(path, "de"),
+    en: getLocalizedUrl(path, "en"),
+    es: getLocalizedUrl(path, "es"),
+
+    // Standardversion ohne Sprachpräferenz
+    "x-default": getLocalizedUrl(path, "de"),
+  };
+}
+
+function createLocalizedEntries(
+  route: RouteDefinition
+): MetadataRoute.Sitemap {
+  return locales.map((locale) => ({
+    url: getLocalizedUrl(
+      route.path,
+      locale
+    ),
+
+    changeFrequency:
+      route.changeFrequency,
+
+    priority:
+      route.priority,
+
+    alternates: {
+      languages:
+        getAlternates(route.path),
+    },
+  }));
+}
+
+export default function sitemap():
+  MetadataRoute.Sitemap {
+  const localizedStaticRoutes =
+    staticRoutes.flatMap(
+      createLocalizedEntries
+    );
+
+  const localizedPropertyRoutes =
+    propertyCatalog.flatMap(
+      (property) =>
+        createLocalizedEntries({
+          path:
+            `/immobilien/${property.id}`,
+
+          changeFrequency:
+            "weekly",
+
+          priority:
+            0.75,
+        })
+    );
+
+  return [
+    ...localizedStaticRoutes,
+    ...localizedPropertyRoutes,
+  ];
 }

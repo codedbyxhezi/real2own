@@ -1,10 +1,38 @@
+/* =========================================================
+   REAL2OWN — PROPERTY OFFER FORM
+   ========================================================= */
+
 .form {
   min-width: 0;
-  padding: clamp(28px, 4vw, 50px);
-  border: 1px solid var(--line);
-  background: #ffffff;
-  box-shadow: 0 24px 70px rgba(23, 23, 19, 0.08);
+  padding: clamp(24px, 4vw, 46px);
+
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.58),
+      rgba(255, 255, 255, 0.2)
+    );
+
+  box-shadow:
+    var(--glass-highlight),
+    0 28px 70px rgba(44, 39, 31, 0.1);
+
+  backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(135%);
 }
+
+
+/* =========================================================
+   FIELDSETS
+   ========================================================= */
 
 .fieldset {
   min-width: 0;
@@ -14,36 +42,67 @@
 }
 
 .fieldset + .fieldset {
-  margin-top: 52px;
-  padding-top: 48px;
-  border-top: 1px solid var(--line);
+  margin-top: 46px;
+  padding-top: 42px;
+
+  border-top:
+    1px solid rgba(23, 23, 19, 0.09);
 }
 
 .fieldset legend {
   display: flex;
-  align-items: center;
-  gap: 14px;
   width: 100%;
-  margin-bottom: 30px;
+
+  align-items: center;
+  gap: 13px;
+
+  margin-bottom: 27px;
+
   color: var(--ink);
+
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 2.4vw, 2.3rem);
+
   letter-spacing: -0.035em;
 }
 
 .fieldset legend span {
+  display: grid;
+
+  width: 34px;
+  height: 34px;
+
+  flex: 0 0 auto;
+
+  place-items: center;
+
+  border: 1px solid rgba(120, 83, 51, 0.16);
+  border-radius: 50%;
+
   color: var(--brand-dark);
+
+  background: rgba(255, 255, 255, 0.36);
+
   font-family: inherit;
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
+  font-size: 0.6rem;
+
+  letter-spacing: 0.06em;
 }
+
+
+/* =========================================================
+   CHOICE GROUP
+   ========================================================= */
 
 .choiceGroup {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-bottom: 34px;
-  border-top: 1px solid var(--line-strong);
-  border-left: 1px solid var(--line);
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 8px;
+
+  margin-bottom: 30px;
 }
 
 .choiceGroup label {
@@ -53,209 +112,436 @@
 
 .choiceGroup input {
   position: absolute;
+
   width: 1px;
   height: 1px;
+
   opacity: 0;
+
   pointer-events: none;
 }
 
 .choiceGroup span {
   display: flex;
-  min-height: 58px;
+
+  min-height: 54px;
+
   align-items: center;
   justify-content: center;
-  padding: 10px 14px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+
+  padding:
+    10px
+    13px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.58);
+
+  border-radius: 12px;
+
   color: var(--muted);
+
   cursor: pointer;
-  font-size: 0.59rem;
+
+  background:
+    rgba(255, 255, 255, 0.26);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.52);
+
+  font-size: 0.57rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+
+  letter-spacing: 0.07em;
+
   text-align: center;
   text-transform: uppercase;
+
   transition:
     color 180ms ease,
     border-color 180ms ease,
-    background 180ms ease;
+    background 180ms ease,
+    transform 180ms ease;
 }
 
 .choiceGroup input:checked + span {
+  border-color:
+    rgba(255, 255, 255, 0.14);
+
   color: #ffffff;
-  background: var(--night);
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--brand-dark),
+      var(--night)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 10px 25px rgba(22, 25, 20, 0.14);
 }
 
 .choiceGroup input:focus-visible + span {
-  outline: 2px solid var(--brand-dark);
-  outline-offset: -3px;
+  outline:
+    2px solid var(--brand-dark);
+
+  outline-offset: 2px;
 }
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px 24px;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap:
+    20px
+    16px;
 }
 
 .field {
   display: grid;
+
   min-width: 0;
-  gap: 10px;
+
+  gap: 8px;
 }
 
 .field > span {
   color: var(--muted);
-  font-size: 0.54rem;
+
+  font-size: 0.51rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+
+  letter-spacing: 0.11em;
+
   text-transform: uppercase;
 }
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
 
 .field input,
 .field select,
 .field textarea {
   width: 100%;
   min-width: 0;
-  border: 0;
-  border-bottom: 1px solid var(--line-strong);
-  border-radius: 0;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.6);
+
+  border-radius: 12px;
+
   outline: 0;
+
   color: var(--ink);
-  background: transparent;
+
+  background:
+    rgba(255, 255, 255, 0.3);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.56);
+
   font: inherit;
-  font-size: 0.76rem;
-  transition: border-color 180ms ease;
+  font-size: 0.73rem;
+
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .field input,
 .field select {
-  height: 48px;
+  height: 50px;
+
+  padding-inline: 14px;
 }
 
 .field textarea {
   min-height: 145px;
-  padding: 14px 0;
+
+  padding:
+    14px;
+
   resize: vertical;
+
   line-height: 1.7;
 }
 
 .field input::placeholder,
 .field textarea::placeholder {
-  color: #a19c94;
+  color: #9e9991;
 }
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: var(--brand-dark);
+  border-color:
+    rgba(120, 83, 51, 0.38);
+
+  background:
+    rgba(255, 255, 255, 0.52);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 0 0 3px rgba(120, 83, 51, 0.06);
+}
+
+.field select {
+  cursor: pointer;
+}
+
+.field select option {
+  color: var(--ink);
+  background: #f5f2ec;
 }
 
 .fullWidth {
-  grid-column: 1 / 3;
+  grid-column:
+    1 / 3;
 }
+
+
+/* =========================================================
+   FORM FOOTER
+   ========================================================= */
 
 .formFooter {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
   align-items: end;
-  gap: 34px;
-  margin-top: 44px;
-  padding-top: 32px;
-  border-top: 1px solid var(--line);
+
+  gap: 32px;
+
+  margin-top: 40px;
+
+  padding-top: 28px;
+
+  border-top:
+    1px solid rgba(23, 23, 19, 0.09);
 }
+
+
+/* =========================================================
+   CONSENT
+   ========================================================= */
 
 .consent {
   display: grid;
-  grid-template-columns: 17px minmax(0, 1fr);
+
+  grid-template-columns:
+    18px
+    minmax(0, 1fr);
+
   align-items: start;
+
   gap: 11px;
+
   color: var(--muted);
-  font-size: 0.62rem;
+
+  font-size: 0.61rem;
+
   line-height: 1.65;
 }
 
 .consent input {
-  width: 16px;
-  height: 16px;
-  margin: 2px 0 0;
-  accent-color: var(--brand-dark);
+  width: 17px;
+  height: 17px;
+
+  margin:
+    2px 0 0;
+
+  accent-color:
+    var(--brand-dark);
 }
 
 .consent a {
-  color: var(--brand-dark);
+  color:
+    var(--brand-dark);
+
   text-decoration: underline;
-  text-underline-offset: 3px;
+
+  text-underline-offset:
+    3px;
 }
+
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
 
 .formFooter button {
   display: inline-flex;
+
   min-width: 235px;
-  min-height: 54px;
+  min-height: 52px;
+
   align-items: center;
-  justify-content: space-between;
+
+  justify-content:
+    space-between;
+
   gap: 18px;
-  padding-inline: 20px;
+
+  padding:
+    5px
+    7px
+    5px
+    19px;
+
   border: 0;
+
+  border-radius: 999px;
+
   color: #ffffff;
+
   cursor: pointer;
-  background: var(--brand-dark);
-  font-size: 0.57rem;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--brand-dark),
+      var(--night)
+    );
+
+  box-shadow:
+    0 14px 32px rgba(25, 29, 23, 0.14);
+
+  font-size: 0.55rem;
   font-weight: 800;
+
   letter-spacing: 0.1em;
+
   text-transform: uppercase;
+
   transition:
     background 180ms ease,
+    box-shadow 180ms ease,
     transform 180ms ease;
 }
 
 .formFooter button svg {
   flex: 0 0 auto;
-  transition: transform 180ms ease;
+
+  transition:
+    transform 180ms ease;
 }
 
+
+/* =========================================================
+   NOTE
+   ========================================================= */
+
 .note {
-  margin: 20px 0 0;
+  margin:
+    18px 0 0;
+
   color: #938e86;
-  font-size: 0.57rem;
-  line-height: 1.6;
+
+  font-size: 0.56rem;
+
+  line-height: 1.65;
 }
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
 
 @media (hover: hover) and (pointer: fine) {
   .choiceGroup label:hover span {
-    color: var(--ink);
-    background: var(--surface);
+    border-color:
+      rgba(120, 83, 51, 0.2);
+
+    color:
+      var(--ink);
+
+    background:
+      rgba(255, 255, 255, 0.48);
+
+    transform:
+      translateY(-1px);
   }
 
   .choiceGroup label:hover input:checked + span {
     color: #ffffff;
-    background: var(--night);
+
+    background:
+      linear-gradient(
+        145deg,
+        var(--brand-dark),
+        var(--night)
+      );
   }
 
   .formFooter button:hover {
-    background: var(--night);
-    transform: translateY(-1px);
+    box-shadow:
+      0 18px 38px rgba(25, 29, 23, 0.2);
+
+    transform:
+      translateY(-2px);
   }
 
   .formFooter button:hover svg {
-    transform: translateX(3px);
+    transform:
+      translateX(3px);
   }
 }
 
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 760px) {
   .form {
-    padding: 28px 20px;
+    padding:
+      26px
+      18px;
+
+    border-radius:
+      var(--glass-radius-md);
+  }
+
+  .fieldset + .fieldset {
+    margin-top: 38px;
+
+    padding-top: 35px;
   }
 
   .choiceGroup {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
+
+    gap: 7px;
   }
 
   .choiceGroup span {
-    justify-content: flex-start;
-    min-height: 52px;
+    min-height: 50px;
+
+    justify-content:
+      flex-start;
+
+    padding-inline: 15px;
   }
 
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
+
+    gap: 18px;
   }
 
   .fullWidth {
@@ -263,7 +549,10 @@
   }
 
   .formFooter {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
+
+    gap: 25px;
   }
 
   .formFooter button {
@@ -271,21 +560,54 @@
   }
 }
 
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
 @media (max-width: 390px) {
   .form {
-    padding-inline: 17px;
+    padding-inline: 15px;
   }
 
   .fieldset legend {
-    font-size: 1.55rem;
+    font-size: 1.5rem;
+  }
+
+  .fieldset legend span {
+    width: 31px;
+    height: 31px;
   }
 
   .formFooter button {
     min-width: 0;
-    padding-inline: 16px;
-    font-size: 0.53rem;
+
+    padding-left: 16px;
+
+    font-size: 0.52rem;
   }
 }
+
+
+/* =========================================================
+   FALLBACK
+   ========================================================= */
+
+@supports not (
+  (backdrop-filter: blur(1px))
+  or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .form {
+    background:
+      rgba(248, 245, 239, 0.98);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .choiceGroup span,

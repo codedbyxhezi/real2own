@@ -1,40 +1,60 @@
+/* =========================================================
+   REAL2OWN — PROJEKT PRÄSENTIEREN
+   ========================================================= */
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
 .hero {
   position: relative;
   min-height: 88svh;
   overflow: hidden;
   color: #ffffff;
   background: var(--night);
+  isolation: isolate;
 }
 
 .heroImage {
   object-fit: cover;
+  object-position: center;
 }
 
 .heroOverlay {
   position: absolute;
   z-index: 1;
   inset: 0;
+
   background:
+    radial-gradient(
+      circle at 74% 24%,
+      rgba(210, 176, 142, 0.1),
+      transparent 32%
+    ),
     linear-gradient(
       90deg,
-      rgba(9, 11, 9, 0.88) 0%,
-      rgba(9, 11, 9, 0.62) 48%,
-      rgba(9, 11, 9, 0.18) 100%
+      rgba(9, 11, 9, 0.9) 0%,
+      rgba(9, 11, 9, 0.65) 46%,
+      rgba(9, 11, 9, 0.2) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(9, 11, 9, 0.35),
-      transparent 45%,
-      rgba(9, 11, 9, 0.62)
+      rgba(9, 11, 9, 0.38) 0%,
+      transparent 43%,
+      rgba(9, 11, 9, 0.7) 100%
     );
 }
 
 .heroContainer {
   position: relative;
   z-index: 2;
+
   display: flex;
   min-height: 88svh;
+
   align-items: flex-end;
+
   padding-top: 150px;
   padding-bottom: clamp(55px, 8vw, 100px);
 }
@@ -43,14 +63,22 @@
   max-width: 1050px;
 }
 
+
+/* =========================================================
+   EYEBROWS
+   ========================================================= */
+
 .eyebrow,
 .darkEyebrow {
   display: flex;
   align-items: center;
   gap: 13px;
+
   margin: 0 0 22px;
-  font-size: 0.6rem;
+
+  font-size: 0.58rem;
   font-weight: 800;
+
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -67,127 +95,364 @@
 .darkEyebrow::before {
   width: 40px;
   height: 1px;
+
   background: currentColor;
+
   content: "";
 }
+
+
+/* =========================================================
+   HERO COPY
+   ========================================================= */
 
 .hero h1 {
   max-width: 1020px;
   margin: 0;
+
   font-family: var(--font-display);
-  font-size: clamp(4rem, 7vw, 8rem);
+
+  font-size:
+    clamp(4rem, 7vw, 8rem);
+
   font-weight: 400;
+
   letter-spacing: -0.065em;
   line-height: 0.88;
+
   text-wrap: balance;
+
+  text-shadow:
+    0 8px 34px rgba(0, 0, 0, 0.24);
 }
 
 .heroDescription {
   max-width: 650px;
+
   margin: 30px 0 0;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.9rem;
-  line-height: 1.8;
+
+  color:
+    rgba(255, 255, 255, 0.66);
+
+  font-size: 0.88rem;
+
+  line-height: 1.82;
 }
 
 .heroAction {
   display: inline-flex;
+
   min-height: 52px;
+
   align-items: center;
+  justify-content: center;
+
   gap: 14px;
-  margin-top: 36px;
-  padding-inline: 22px;
+
+  margin-top: 34px;
+
+  padding-inline: 21px;
+
+  border:
+    1px solid rgba(239, 213, 186, 0.44);
+
+  border-radius: 999px;
+
   color: var(--night);
-  background: var(--accent);
-  font-size: 0.6rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(244, 221, 197, 0.98),
+      rgba(210, 176, 142, 0.94)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.48),
+    0 16px 38px rgba(0, 0, 0, 0.16);
+
+  font-size: 0.57rem;
   font-weight: 800;
+
   letter-spacing: 0.1em;
+
   text-transform: uppercase;
+
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
 }
 
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
 .intro {
-  padding-block: clamp(90px, 10vw, 150px);
-  background: var(--surface-strong);
+  position: relative;
+  overflow: hidden;
+
+  padding-block:
+    clamp(90px, 10vw, 150px);
+
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(210, 176, 142, 0.17),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 90% 76%,
+      rgba(101, 123, 94, 0.1),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #f5f1ea 0%,
+      #e9e4db 100%
+    );
 }
 
 .introContainer {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.48fr);
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(300px, 0.48fr);
+
   align-items: end;
-  gap: clamp(50px, 9vw, 145px);
-  margin-bottom: clamp(55px, 7vw, 90px);
+
+  gap:
+    clamp(50px, 9vw, 145px);
+
+  margin-bottom:
+    clamp(50px, 7vw, 82px);
 }
 
 .intro h2 {
   max-width: 850px;
   margin: 0;
+
   color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 5.3vw, 6rem);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(3rem, 5.3vw, 6rem);
+
   font-weight: 400;
+
   letter-spacing: -0.057em;
   line-height: 0.92;
 }
 
 .introContainer > p {
   margin: 0;
+
   color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.8;
+
+  font-size: 0.81rem;
+
+  line-height: 1.85;
 }
+
+
+/* =========================================================
+   ADVANTAGES
+   ========================================================= */
 
 .advantages {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--line-strong);
-  border-left: 1px solid var(--line);
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 14px;
 }
 
 .advantage {
+  position: relative;
+
   display: flex;
-  min-height: 330px;
+
+  min-height: 320px;
+
   flex-direction: column;
-  padding: clamp(24px, 3vw, 38px);
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+
+  padding:
+    clamp(25px, 3vw, 36px);
+
+  overflow: hidden;
+
+  border:
+    1px solid var(--glass-border-light);
+
+  border-radius:
+    var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.52),
+      rgba(255, 255, 255, 0.18)
+    );
+
+  box-shadow:
+    var(--glass-highlight),
+    0 20px 50px rgba(44, 39, 31, 0.08);
+
+  backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(130%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(130%);
+
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms ease;
+}
+
+.advantage::before {
+  position: absolute;
+
+  top: -75px;
+  right: -75px;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(210, 176, 142, 0.14);
+
+  content: "";
+
+  pointer-events: none;
 }
 
 .advantage > span {
-  color: #958f86;
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+
+  width: 38px;
+  height: 38px;
+
+  place-items: center;
+
+  border:
+    1px solid rgba(120, 83, 51, 0.15);
+
+  border-radius: 50%;
+
+  color: var(--brand-dark);
+
+  background:
+    rgba(255, 255, 255, 0.34);
+
+  font-family:
+    var(--font-display);
+
+  font-size: 0.62rem;
+
+  letter-spacing: 0.08em;
 }
 
 .advantage h3 {
-  margin: auto 0 18px;
+  position: relative;
+  z-index: 1;
+
+  margin:
+    auto 0 18px;
+
   color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(1.7rem, 2.5vw, 2.7rem);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(1.7rem, 2.5vw, 2.7rem);
+
   font-weight: 400;
+
   letter-spacing: -0.04em;
+
+  line-height: 1;
 }
 
 .advantage p {
+  position: relative;
+  z-index: 1;
+
   margin: 0;
+
   color: var(--muted);
-  font-size: 0.72rem;
+
+  font-size: 0.71rem;
+
   line-height: 1.75;
 }
 
+
+/* =========================================================
+   FORM SECTION
+   ========================================================= */
+
 .formSection {
-  padding-block: clamp(90px, 10vw, 150px);
+  position: relative;
+  overflow: hidden;
+
+  padding-block:
+    clamp(90px, 10vw, 150px);
+
   color: #ffffff;
-  background: var(--night);
+
   scroll-margin-top: 90px;
+
+  background:
+    radial-gradient(
+      circle at 8% 15%,
+      rgba(210, 176, 142, 0.13),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 92% 80%,
+      rgba(93, 117, 86, 0.14),
+      transparent 34%
+    ),
+    linear-gradient(
+      145deg,
+      #171b16 0%,
+      #20271d 48%,
+      #121510 100%
+    );
 }
 
 .formContainer {
+  position: relative;
+  z-index: 1;
+
   display: grid;
-  grid-template-columns: minmax(280px, 0.58fr) minmax(0, 1.42fr);
+
+  grid-template-columns:
+    minmax(280px, 0.58fr)
+    minmax(0, 1.42fr);
+
   align-items: start;
-  gap: clamp(60px, 10vw, 150px);
+
+  gap:
+    clamp(60px, 10vw, 150px);
 }
+
+
+/* =========================================================
+   FORM INTRO
+   ========================================================= */
 
 .formIntro {
   position: sticky;
@@ -197,89 +462,280 @@
 .formIntro h2 {
   max-width: 620px;
   margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 5vw, 5.7rem);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(3rem, 5vw, 5.7rem);
+
   font-weight: 400;
+
   letter-spacing: -0.055em;
+
   line-height: 0.93;
 }
 
 .formIntro > p {
   max-width: 510px;
+
   margin: 26px 0 0;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.82rem;
-  line-height: 1.8;
+
+  color:
+    rgba(255, 255, 255, 0.52);
+
+  font-size: 0.81rem;
+
+  line-height: 1.82;
 }
+
+
+/* =========================================================
+   DIRECT CONTACT
+   ========================================================= */
 
 .directContact {
   display: flex;
+
   align-items: flex-start;
+
   flex-direction: column;
-  margin-top: 42px;
-  padding-top: 25px;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
+
+  margin-top: 38px;
+
+  padding: 21px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.13);
+
+  border-radius:
+    var(--glass-radius-md);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.02)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  backdrop-filter:
+    blur(var(--glass-blur-md));
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md));
 }
 
 .directContact span {
   margin-bottom: 14px;
-  color: rgba(255, 255, 255, 0.42);
-  font-size: 0.55rem;
+
+  color:
+    rgba(255, 255, 255, 0.42);
+
+  font-size: 0.52rem;
   font-weight: 800;
+
   letter-spacing: 0.14em;
+
   text-transform: uppercase;
 }
 
 .directContact a {
-  margin-bottom: 8px;
+  margin-bottom: 7px;
+
   color: #ffffff;
-  font-family: var(--font-display);
-  font-size: 1.2rem;
+
+  font-family:
+    var(--font-display);
+
+  font-size: 1.18rem;
+
+  transition:
+    color 180ms ease;
 }
 
+
+/* =========================================================
+   BOTTOM CTA
+   ========================================================= */
+
 .bottomCta {
-  padding-block: clamp(80px, 9vw, 135px);
-  background: #eae7df;
+  position: relative;
+  overflow: hidden;
+
+  padding-block:
+    clamp(65px, 8vw, 110px);
+
+  background:
+    radial-gradient(
+      circle at 12% 20%,
+      rgba(210, 176, 142, 0.17),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(101, 123, 94, 0.1),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      #eee9e1 0%,
+      #e4ded4 100%
+    );
 }
 
 .bottomCtaInner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
   align-items: end;
-  gap: clamp(50px, 9vw, 145px);
+
+  gap:
+    clamp(50px, 9vw, 145px);
+
+  padding:
+    clamp(42px, 6vw, 72px);
+
+  border:
+    1px solid var(--glass-border-light);
+
+  border-radius:
+    var(--glass-radius-xl);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.58),
+      rgba(255, 255, 255, 0.2)
+    );
+
+  box-shadow:
+    var(--glass-highlight),
+    var(--glass-shadow-light);
+
+  backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(135%);
 }
 
 .bottomCta h2 {
   max-width: 850px;
   margin: 0;
+
   color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 5.3vw, 6rem);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(3rem, 5.3vw, 6rem);
+
   font-weight: 400;
+
   letter-spacing: -0.057em;
+
   line-height: 0.92;
 }
 
 .bottomCtaInner > a {
   display: inline-flex;
+
   min-width: 235px;
-  min-height: 54px;
+  min-height: 52px;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 20px;
-  padding-inline: 20px;
+
+  padding:
+    5px 7px 5px 18px;
+
+  border-radius: 999px;
+
   color: #ffffff;
-  background: var(--night);
-  font-size: 0.58rem;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--brand-dark),
+      var(--night)
+    );
+
+  box-shadow:
+    0 14px 32px rgba(25, 29, 23, 0.14);
+
+  font-size: 0.55rem;
   font-weight: 800;
+
   letter-spacing: 0.1em;
+
   text-transform: uppercase;
+
+  transition:
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .heroAction:hover {
+    background:
+      linear-gradient(
+        135deg,
+        #ffffff,
+        #e7c5a2
+      );
+
+    transform:
+      translateY(-2px);
+  }
+
+  .advantage:hover {
+    box-shadow:
+      var(--glass-highlight),
+      0 28px 65px rgba(44, 39, 31, 0.13);
+
+    transform:
+      translateY(-5px);
+  }
+
+  .directContact a:hover {
+    color: var(--accent);
+  }
+
+  .bottomCtaInner > a:hover {
+    box-shadow:
+      0 18px 40px rgba(25, 29, 23, 0.2);
+
+    transform:
+      translateY(-2px);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 900px) {
   .introContainer,
   .formContainer {
     grid-template-columns: 1fr;
+
     gap: 50px;
   }
 
@@ -289,9 +745,15 @@
 
   .bottomCtaInner {
     grid-template-columns: 1fr;
+
     gap: 38px;
   }
 }
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 680px) {
   .hero,
@@ -300,39 +762,239 @@
   }
 
   .heroContainer {
-    padding-top: 125px;
-    padding-bottom: 35px;
+    padding-top: 120px;
+    padding-bottom: 34px;
+  }
+
+  .heroImage {
+    object-position:
+      58% center;
   }
 
   .hero h1 {
-    font-size: clamp(3.15rem, 15vw, 4.8rem);
+    font-size:
+      clamp(3.15rem, 15vw, 4.8rem);
+  }
+
+  .heroDescription {
+    margin-top: 22px;
+
+    font-size: 0.82rem;
   }
 
   .heroAction {
     width: 100%;
-    justify-content: space-between;
+
+    justify-content:
+      space-between;
   }
+
+
+  /* Intro */
 
   .intro,
   .formSection {
-    padding-block: 80px;
+    padding-block: 76px;
   }
 
   .intro h2,
   .formIntro h2,
   .bottomCta h2 {
-    font-size: clamp(2.8rem, 13vw, 4.2rem);
+    font-size:
+      clamp(2.8rem, 13vw, 4.2rem);
   }
+
+
+  /* Advantages */
 
   .advantages {
     grid-template-columns: 1fr;
+
+    gap: 12px;
   }
 
   .advantage {
-    min-height: 290px;
+    min-height: 225px;
+
+    padding:
+      23px 21px;
+
+    border-radius:
+      var(--glass-radius-md);
+
+    transform-origin:
+      center;
+
+    will-change:
+      transform,
+      opacity;
+  }
+
+
+  /* Form */
+
+  .formContainer {
+    gap: 42px;
+  }
+
+  .directContact {
+    margin-top: 30px;
+
+    padding: 18px;
+  }
+
+
+  /* CTA */
+
+  .bottomCta {
+    overflow: clip;
+
+    padding-block: 58px;
+  }
+
+  .bottomCtaInner {
+    gap: 32px;
+
+    padding:
+      36px 22px 28px;
+
+    border-radius:
+      var(--glass-radius-lg);
+
+    transform-origin: center;
+
+    will-change:
+      transform,
+      opacity;
   }
 
   .bottomCtaInner > a {
     width: 100%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE SCROLL EFFECTS
+   ========================================================= */
+
+@media (max-width: 680px) {
+  @supports (animation-timeline: view()) {
+    .advantage {
+      animation-name:
+        projectAdvantageReveal;
+
+      animation-duration: 1ms;
+
+      animation-timing-function:
+        linear;
+
+      animation-fill-mode: both;
+
+      animation-timeline: view();
+
+      animation-range:
+        entry 0%
+        cover 36%;
+    }
+
+    .bottomCtaInner {
+      animation-name:
+        projectCtaZoom;
+
+      animation-duration: 1ms;
+
+      animation-timing-function:
+        linear;
+
+      animation-fill-mode: both;
+
+      animation-timeline: view();
+
+      animation-range:
+        entry 0%
+        cover 42%;
+    }
+
+    @keyframes projectAdvantageReveal {
+      from {
+        opacity: 0.48;
+
+        transform:
+          translateY(24px)
+          scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    @keyframes projectCtaZoom {
+      from {
+        opacity: 0.48;
+
+        transform:
+          translateY(30px)
+          scale(0.88);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+  }
+}
+
+
+/* =========================================================
+   FALLBACK
+   ========================================================= */
+
+@supports not (
+  (backdrop-filter: blur(1px))
+  or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .advantage,
+  .bottomCtaInner {
+    background:
+      rgba(248, 245, 239, 0.97);
+  }
+
+  .directContact {
+    background:
+      rgba(29, 35, 27, 0.96);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .heroAction,
+  .advantage,
+  .directContact a,
+  .bottomCtaInner > a {
+    transition: none;
+  }
+
+  .advantage,
+  .bottomCtaInner {
+    animation: none;
+
+    opacity: 1;
+
+    transform: none;
   }
 }

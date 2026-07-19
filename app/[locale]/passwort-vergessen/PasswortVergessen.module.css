@@ -1,100 +1,269 @@
+/* =========================================================
+   REAL2OWN — PASSWORT VERGESSEN
+   Gleicher Auth-Look wie ANMELDEN / REGISTRIEREN
+   ========================================================= */
+
 .page {
   position: fixed;
   inset: 0;
+
   display: grid;
+
   width: 100%;
   height: 100vh;
   height: 100dvh;
+
   place-items: center;
+
   overflow: hidden;
-  padding: 24px;
-  background:
-    radial-gradient(
-      circle at 10% 12%,
-      rgba(112, 124, 95, 0.14),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 92% 88%,
-      rgba(180, 157, 112, 0.13),
-      transparent 32%
-    ),
-    var(--surface-strong);
+
+  padding:
+    clamp(18px, 3vh, 34px)
+    24px;
+
+  background: var(--night);
+
+  isolation: isolate;
 }
 
-.page::before {
-  position: absolute;
-  inset: 16px;
-  border: 1px solid rgba(35, 38, 31, 0.1);
-  pointer-events: none;
-  content: "";
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.backgroundImage {
+  z-index: -3;
+
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1.015);
 }
+
+.backgroundOverlay {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 18% 18%,
+      rgba(210, 176, 142, 0.08),
+      transparent 32%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(9, 12, 9, 0.4) 0%,
+      rgba(9, 12, 9, 0.2) 48%,
+      rgba(9, 12, 9, 0. 0.4) 0%,
+      rgba(9, 12, 9, 0.2) 48%,
+      rgba(42) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(9, 12, 9, 0.2) 0%,
+      rgba(9, 12, 9, 0.05) 45%,
+      rgba(9, 12, 9, 0.42) 100%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
 
 .backLink {
   position: absolute;
-  z-index: 2;
-  top: 24px;
+  z-index: 4;
+
+  top: 26px;
   left: 30px;
+
   display: inline-flex;
+
+  min-height: 40px;
+
   align-items: center;
+
   gap: 9px;
-  color: var(--muted);
-  font-size: 0.54rem;
+
+  padding-inline: 14px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.18);
+
+  border-radius: 999px;
+
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  background:
+    rgba(18, 23, 17, 0.28);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  backdrop-filter:
+    blur(16px);
+
+  -webkit-backdrop-filter:
+    blur(16px);
+
+  font-size: 0.51rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+
+  letter-spacing: 0.11em;
+
   text-transform: uppercase;
+
   transition:
     color 180ms ease,
+    background 180ms ease,
     transform 180ms ease;
 }
 
 .backLink span {
-  color: var(--brand-dark);
+  color: var(--accent);
+
   font-size: 0.95rem;
 }
 
+
+/* =========================================================
+   GLASS CARD
+   ========================================================= */
+
 .card {
   position: relative;
-  z-index: 1;
-  width: min(100%, 475px);
+  z-index: 2;
+
+  width:
+    min(100%, 470px);
+
+  max-height:
+    calc(100dvh - 36px);
+
+  overflow: hidden;
+
   padding:
-    clamp(28px, 4.5vh, 45px)
-    clamp(22px, 4vw, 43px);
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.86);
+    clamp(24px, 4vh, 40px)
+    clamp(22px, 4vw, 42px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.58);
+
+  border-radius:
+    var(--glass-radius-xl);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.68),
+      rgba(255, 255, 255, 0.28)
+    );
+
   box-shadow:
-    0 28px 80px rgba(20, 22, 18, 0.1),
-    0 7px 24px rgba(20, 22, 18, 0.05);
-  backdrop-filter: blur(18px);
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 34px 90px rgba(42, 38, 31, 0.13),
+    0 8px 28px rgba(42, 38, 31, 0.06);
+
+  backdrop-filter:
+    blur(var(--glass-blur-xl))
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-xl))
+    saturate(135%);
 }
 
+.card::before {
+  position: absolute;
+
+  top: -110px;
+  right: -100px;
+
+  width: 240px;
+  height: 240px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(210, 176, 142, 0.1);
+
+  content: "";
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
 .logo {
+  position: relative;
+  z-index: 1;
+
   display: block;
+
   width: fit-content;
-  margin: 0 auto clamp(18px, 2.7vh, 28px);
+
+  margin:
+    0 auto
+    clamp(17px, 2.7vh, 27px);
 }
 
 .logo img {
   display: block;
-  width: clamp(50px, 7vh, 64px);
-  height: clamp(50px, 7vh, 64px);
+
+  width:
+    clamp(52px, 7vh, 66px);
+
+  height:
+    clamp(52px, 7vh, 66px);
+
   object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 8px 20px
+      rgba(31, 34, 27, 0.08)
+    );
 }
 
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
 .heading {
+  position: relative;
+  z-index: 1;
+
   text-align: center;
 }
 
 .eyebrow {
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   gap: 10px;
-  margin: 0 0 clamp(12px, 1.8vh, 17px);
+
+  margin:
+    0 0
+    clamp(12px, 2vh, 18px);
+
   color: var(--brand-dark);
+
   font-size: 0.51rem;
   font-weight: 800;
+
   letter-spacing: 0.16em;
+
   text-transform: uppercase;
 }
 
@@ -102,38 +271,72 @@
 .eyebrow::after {
   width: 24px;
   height: 1px;
+
   background: currentColor;
+
   content: "";
 }
 
 .heading h1 {
   margin: 0;
+
   color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(2.9rem, 6.2vh, 4.4rem);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(2.8rem, 6.3vh, 4.25rem);
+
   font-weight: 400;
+
   letter-spacing: -0.06em;
+
   line-height: 0.88;
+
   text-wrap: balance;
 }
 
 .heading > p:last-child {
-  max-width: 390px;
-  margin: clamp(14px, 2.2vh, 20px) auto 0;
+  max-width: 380px;
+
+  margin:
+    clamp(13px, 2vh, 19px)
+    auto 0;
+
   color: var(--muted);
-  font-size: 0.68rem;
-  line-height: 1.68;
+
+  font-size: 0.67rem;
+
+  line-height: 1.67;
 }
 
+
+/* =========================================================
+   LOGIN LINK
+   ========================================================= */
+
 .loginLink {
+  position: relative;
+  z-index: 1;
+
   display: flex;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 18px;
-  margin-top: clamp(20px, 3vh, 27px);
-  padding-top: clamp(17px, 2.5vh, 23px);
-  border-top: 1px solid var(--line);
-  font-size: 0.61rem;
+
+  margin-top:
+    clamp(16px, 2.5vh, 23px);
+
+  padding-top:
+    clamp(15px, 2.4vh, 21px);
+
+  border-top:
+    1px solid rgba(23, 23, 19, 0.09);
+
+  font-size: 0.6rem;
 }
 
 .loginLink span {
@@ -142,25 +345,53 @@
 
 .loginLink a {
   color: var(--brand-dark);
+
   font-weight: 800;
+
   letter-spacing: 0.07em;
+
   text-transform: uppercase;
+
+  transition:
+    color 180ms ease;
 }
+
+
+/* =========================================================
+   COPYRIGHT
+   ========================================================= */
 
 .copyright {
   position: absolute;
+  z-index: 3;
+
   right: 30px;
-  bottom: 23px;
-  color: #928d84;
-  font-size: 0.49rem;
+  bottom: 24px;
+
+  color:
+    rgba(255, 255, 255, 0.52);
+
+  font-size: 0.48rem;
+
   letter-spacing: 0.08em;
+
   text-transform: uppercase;
 }
 
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
 @media (hover: hover) and (pointer: fine) {
   .backLink:hover {
-    color: var(--ink);
-    transform: translateX(-3px);
+    color: #ffffff;
+
+    background:
+      rgba(18, 23, 17, 0.46);
+
+    transform:
+      translateX(-3px);
   }
 
   .loginLink a:hover {
@@ -168,38 +399,86 @@
   }
 }
 
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 620px) {
   .page {
-    padding: 58px 12px 14px;
-    background: var(--surface-strong);
+    padding:
+      58px 12px
+      14px;
   }
 
-  .page::before {
-    display: none;
+  .backgroundImage {
+    object-position:
+      58% center;
+
+    transform: none;
+  }
+
+  .backgroundOverlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(8, 11, 8, 0.32),
+        rgba(8, 11, 8, 0.18) 42%,
+        rgba(8, 11, 8, 0.46)
+      );
   }
 
   .backLink {
-    top: 20px;
-    left: 18px;
+    top: 15px;
+    left: 14px;
+
+    min-height: 38px;
+
+    padding-inline: 12px;
   }
 
   .card {
     width: 100%;
-    padding: 28px 20px;
-    box-shadow: 0 16px 45px rgba(20, 22, 18, 0.08);
+
+    max-height:
+      calc(100dvh - 72px);
+
+    padding:
+      clamp(22px, 3.5vh, 30px)
+      18px;
+
+    border-radius:
+      var(--glass-radius-lg);
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.7),
+      0 22px 55px rgba(42, 38, 31, 0.11);
   }
 
   .logo {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 
   .logo img {
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
   }
 
   .heading h1 {
-    font-size: clamp(2.8rem, 14vw, 3.9rem);
+    font-size:
+      clamp(2.8rem, 13vw, 3.8rem);
+  }
+
+  .heading > p:last-child {
+    margin-top: 13px;
+
+    font-size: 0.65rem;
+  }
+
+  .loginLink {
+    margin-top: 17px;
+
+    padding-top: 16px;
   }
 
   .copyright {
@@ -207,48 +486,113 @@
   }
 }
 
-@media (max-height: 640px) {
+
+/* =========================================================
+   LOW HEIGHT
+   ========================================================= */
+
+@media (max-height: 720px) {
   .card {
     padding-top: 22px;
     padding-bottom: 22px;
   }
 
   .logo {
-    display: none;
+    margin-bottom: 13px;
+  }
+
+  .logo img {
+    width: 46px;
+    height: 46px;
   }
 
   .eyebrow {
-    margin-bottom: 9px;
+    margin-bottom: 10px;
   }
 
   .heading h1 {
-    font-size: 2.8rem;
+    font-size: 2.7rem;
   }
 
   .heading > p:last-child {
-    margin-top: 11px;
+    margin-top: 10px;
+
+    line-height: 1.5;
   }
 
   .loginLink {
-    margin-top: 16px;
-    padding-top: 15px;
+    margin-top: 13px;
+
+    padding-top: 13px;
   }
 }
 
+@media (max-height: 630px) {
+  .logo {
+    display: none;
+  }
+
+  .heading > p:last-child {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
 @media (max-width: 370px) {
   .card {
-    padding-inline: 16px;
+    padding-inline: 15px;
+  }
+
+  .heading h1 {
+    font-size: 2.7rem;
   }
 
   .loginLink {
     align-items: flex-start;
+
     flex-direction: column;
+
     gap: 8px;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+
+/* =========================================================
+   FALLBACK
+   ========================================================= */
+
+@supports not (
+  (backdrop-filter: blur(1px))
+  or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .card {
+    background:
+      rgba(248, 245, 239, 0.98);
+  }
+
   .backLink {
+    background:
+      rgba(18, 23, 17, 0.88);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .backLink,
+  .loginLink a {
     transition: none;
+  }
+
+  .backgroundImage {
+    transform: none;
   }
 }

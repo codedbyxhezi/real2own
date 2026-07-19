@@ -66,7 +66,7 @@ export default async function KontaktPage() {
           aria-labelledby="contact-title"
         >
           <Image
-            src="/images/hero/hero-02.webp"
+            src="/images/hero/luxusvilla-mittelmeer-meerblick-sonnenuntergang.webp"
             alt=""
             fill
             priority

@@ -60,7 +60,7 @@ export default async function ImmobilieAnbietenPage() {
           aria-labelledby="offer-title"
         >
           <Image
-            src="/images/hero/hero-04.webp"
+            src="/images/hero/luxus-penthouse-dubai-skyline-infinity-pool.webp"
             alt=""
             fill
             priority
