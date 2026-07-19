@@ -1266,6 +1266,54 @@
   }
 }
 
+/* =========================================================
+   MOBILE IMAGE FIX
+   ========================================================= */
+
+@media (max-width: 680px) {
+  .card {
+    isolation: isolate;
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    background:
+      rgba(255, 255, 255, 0.52);
+  }
+
+  .imageLink {
+    position: relative;
+
+    width: 100%;
+    min-height: 260px;
+
+    aspect-ratio: 1.25 / 1;
+
+    overflow: hidden;
+
+    background: #cbc7bd;
+  }
+
+  .image {
+    z-index: 0;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover;
+  }
+
+  .imageOverlay {
+    z-index: 1;
+
+    pointer-events: none;
+  }
+
+  .label,
+  .cardArrow {
+    z-index: 2;
+  }
+}
 
 /* =========================================================
    SMALL MOBILE
@@ -1282,8 +1330,9 @@
   }
 
   .imageLink {
-    aspect-ratio:
-      1.08 / 1;
+    min-height: 280px;
+
+    aspect-ratio: 1.08 / 1;
   }
 
   .cardFacts {
