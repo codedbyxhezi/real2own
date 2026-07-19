@@ -27,6 +27,15 @@ type SortOption =
   | "price-descending"
   | "area-descending";
 
+type ListingImageProps = {
+  src: string;
+  alt: string;
+  priority?: boolean;
+};
+
+const FALLBACK_IMAGE =
+  "/images/hero/luxusvilla-mittelmeer-meerblick-sonnenuntergang.webp";
+
 const propertyTypeAliases = [
   [
     "apartment",
@@ -107,7 +116,39 @@ const propertyTypeAliases = [
   ],
 ];
 
-function extractNumber(value: string) {
+function ListingImage({
+  src,
+  alt,
+  priority = false,
+}: ListingImageProps) {
+  const [imageSrc, setImageSrc] =
+    useState(src);
+
+  useEffect(() => {
+    setImageSrc(src);
+  }, [src]);
+
+  return (
+    <Image
+      src={imageSrc}
+      alt={alt}
+      width={1200}
+      height={900}
+      sizes="(max-width: 680px) 100vw, (max-width: 1020px) 50vw, 33vw"
+      priority={priority}
+      className={styles.image}
+      onError={() => {
+        if (imageSrc !== FALLBACK_IMAGE) {
+          setImageSrc(FALLBACK_IMAGE);
+        }
+      }}
+    />
+  );
+}
+
+function extractNumber(
+  value: string
+) {
   const match = value.match(
     /\d[\d.,]*/
   );
@@ -117,10 +158,7 @@ function extractNumber(value: string) {
   }
 
   const token = match[0];
-
-  const parts = token.split(
-    /[.,]/
-  );
+  const parts = token.split(/[.,]/);
 
   if (parts.length === 1) {
     return Number(parts[0]);
@@ -260,7 +298,6 @@ export function ListingExplorer({
   );
 
   const locale = useLocale();
-
   const searchParams =
     useSearchParams();
 
@@ -308,7 +345,10 @@ export function ListingExplorer({
             locale
           )
       ),
-    [locale, properties]
+    [
+      locale,
+      properties,
+    ]
   );
 
   useEffect(() => {
@@ -410,9 +450,11 @@ export function ListingExplorer({
 
             const matchesRooms =
               !minimumRoomsNumber ||
-              (propertyRooms > 0 &&
+              (
+                propertyRooms > 0 &&
                 propertyRooms >=
-                  minimumRoomsNumber);
+                  minimumRoomsNumber
+              );
 
             return (
               matchesLocation &&
@@ -494,10 +536,10 @@ export function ListingExplorer({
   const hasActiveFilters =
     Boolean(
       location ||
-        propertyType ||
-        maximumPrice ||
-        minimumRooms ||
-        sort !== "recommended"
+      propertyType ||
+      maximumPrice ||
+      minimumRooms ||
+      sort !== "recommended"
     );
 
   function resetFilters() {
@@ -681,12 +723,8 @@ export function ListingExplorer({
                 ].map(
                   (count) => (
                     <option
-                      value={
-                        count
-                      }
-                      key={
-                        count
-                      }
+                      value={count}
+                      key={count}
                     >
                       {t(
                         "roomOption",
@@ -824,7 +862,10 @@ export function ListingExplorer({
                 }
               >
                 {visibleProperties.map(
-                  (property) => (
+                  (
+                    property,
+                    index
+                  ) => (
                     <article
                       className={
                         styles.card
@@ -846,17 +887,15 @@ export function ListingExplorer({
                           }
                         )}
                       >
-                        <Image
+                        <ListingImage
                           src={
                             property.image
                           }
                           alt={
                             property.title
                           }
-                          fill
-                          sizes="(max-width: 720px) 100vw, (max-width: 1050px) 50vw, 33vw"
-                          className={
-                            styles.image
+                          priority={
+                            index < 2
                           }
                         />
 

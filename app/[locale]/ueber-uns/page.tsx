@@ -84,7 +84,7 @@ export default async function UeberUnsPage() {
           aria-labelledby="about-title"
         >
           <Image
-            src="/images/hero/hero-03.webp"
+            src="/images/hero/luxusvilla-mittelmeer-meerblick-sonnenuntergang.webp"
             alt=""
             fill
             priority
