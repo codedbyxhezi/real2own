@@ -66,69 +66,69 @@ export function Services() {
             );
 
             return (
-              <Reveal
-                delay={index * 70}
+              <article
+                className={styles.card}
                 key={service.key}
               >
-                <article className={styles.card}>
-                  <div className={styles.cardTop}>
-                    <span className={styles.number}>
-                      {String(index + 1).padStart(
-                        2,
-                        "0"
-                      )}
-                    </span>
+                <div className={styles.cardTop}>
+                  <span className={styles.number}>
+                    {String(index + 1).padStart(
+                      2,
+                      "0"
+                    )}
+                  </span>
 
-                    <span
-                      className={styles.icon}
-                      aria-hidden="true"
-                    >
-                      <Icon
-                        name={service.icon}
-                        size={22}
-                      />
-                    </span>
-                  </div>
-
-                  <div className={styles.cardCopy}>
-                    <p className={styles.label}>
-                      {t(
-                        `services.${service.key}.label`
-                      )}
-                    </p>
-
-                    <h3>{serviceTitle}</h3>
-
-                    <p className={styles.text}>
-                      {t(
-                        `services.${service.key}.text`
-                      )}
-                    </p>
-                  </div>
-
-                  <Link
-                    className={styles.link}
-                    href={service.href}
-                    aria-label={t("learnMoreAria", {
-                      title: serviceTitle,
-                    })}
+                  <span
+                    className={styles.icon}
+                    aria-hidden="true"
                   >
-                    <span>
-                      {t("learnMore")}
-                    </span>
+                    <Icon
+                      name={service.icon}
+                      size={22}
+                    />
+                  </span>
+                </div>
 
-                    <span
-                      className={styles.linkIcon}
-                      aria-hidden="true"
-                    >
-                      <Icon
-                        name="arrow"
-                        size={16}
-                      />
-                    </span>
-                  </Link>
-                </article>
-              </Reveal>
+                <div className={styles.cardCopy}>
+                  <p className={styles.label}>
+                    {t(
+                      `services.${service.key}.label`
+                    )}
+                  </p>
+
+                  <h3>
+                    {serviceTitle}
+                  </h3>
+
+                  <p className={styles.text}>
+                    {t(
+                      `services.${service.key}.text`
+                    )}
+                  </p>
+                </div>
+
+                <Link
+                  className={styles.link}
+                  href={service.href}
+                  aria-label={t("learnMoreAria", {
+                    title: serviceTitle,
+                  })}
+                >
+                  <span>
+                    {t("learnMore")}
+                  </span>
+
+                  <span
+                    className={styles.linkIcon}
+                    aria-hidden="true"
+                  >
+                    <Icon
+                      name="arrow"
+                      size={16}
+                    />
+                  </span>
+                </Link>
+              </article>
             );
           })}
         </div>
