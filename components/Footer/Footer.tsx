@@ -62,10 +62,6 @@ const navigation = [
         labelKey: "contact",
         href: "/kontakt",
       },
-      {
-        labelKey: "legalNotice",
-        href: "/impressum",
-      },
     ],
   },
 ] as const;
@@ -77,7 +73,7 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.container}`}>
-        <div className={styles.brandRow}>
+        <div className={styles.intro}>
           <Link
             className={styles.logo}
             href="/"
@@ -88,7 +84,7 @@ export function Footer() {
               alt=""
               width={128}
               height={128}
-              sizes="(max-width: 600px) 54px, 68px"
+              sizes="(max-width: 600px) 52px, 62px"
               className={styles.logoImage}
             />
 
@@ -98,37 +94,46 @@ export function Footer() {
           <p className={styles.statement}>
             {t("statement")}
           </p>
-
-          <a className={styles.backToTop} href="#top">
-            <span>{t("backToTop")}</span>
-
-            <span
-              className={styles.backToTopIcon}
-              aria-hidden="true"
-            >
-              <Icon name="arrow" size={16} />
-            </span>
-          </a>
         </div>
 
-        <div className={styles.main}>
+        <div className={styles.panel}>
           <div className={styles.contact}>
             <p className={styles.label}>
               {t("contactLabel")}
             </p>
 
             <a
-              className={styles.contactMail}
+              className={styles.contactLink}
               href="mailto:info@real2own.com"
             >
-              info@real2own.com
+              <span>
+                <small>E-Mail</small>
+                <strong>info@real2own.com</strong>
+              </span>
+
+              <span
+                className={styles.contactIcon}
+                aria-hidden="true"
+              >
+                <Icon name="arrow" size={15} />
+              </span>
             </a>
 
             <a
-              className={styles.contactPhone}
+              className={styles.contactLink}
               href="tel:+491791415281"
             >
-              +49 179 14 15 281
+              <span>
+                <small>Telefon</small>
+                <strong>+49 179 14 15 281</strong>
+              </span>
+
+              <span
+                className={styles.contactIcon}
+                aria-hidden="true"
+              >
+                <Icon name="arrow" size={15} />
+              </span>
             </a>
 
             <address>
@@ -155,19 +160,26 @@ export function Footer() {
                   {t(column.titleKey)}
                 </h3>
 
-                {column.links.map((link) => (
-                  <Link
-                    href={link.href}
-                    key={link.labelKey}
-                  >
-                    {t(link.labelKey)}
-                  </Link>
-                ))}
+                <div className={styles.links}>
+                  {column.links.map((link) => (
+                    <Link
+                      href={link.href}
+                      key={link.labelKey}
+                    >
+                      <span>{t(link.labelKey)}</span>
+
+                      <Icon
+                        name="chevron"
+                        size={12}
+                      />
+                    </Link>
+                  ))}
+                </div>
               </div>
             ))}
           </nav>
 
-          <div className={styles.contactCta}>
+          <div className={styles.consultation}>
             <p className={styles.label}>
               {t("consultationLabel")}
             </p>
@@ -176,28 +188,38 @@ export function Footer() {
               {t("consultationTitle")}
             </h2>
 
-            <p>
+            <p className={styles.consultationText}>
               {t("consultationText")}
             </p>
 
-            <Link href="/kontakt">
+            <Link
+              className={styles.consultationButton}
+              href="/kontakt"
+            >
               <span>
                 {t("contactAction")}
               </span>
 
-              <Icon name="arrow" size={17} />
+              <span
+                className={styles.consultationIcon}
+                aria-hidden="true"
+              >
+                <Icon name="arrow" size={16} />
+              </span>
             </Link>
           </div>
         </div>
 
         <div className={styles.bottom}>
-          <span>
-            © {currentYear} real2own
-          </span>
+          <div className={styles.copyright}>
+            <span>
+              © {currentYear} real2own
+            </span>
 
-          <span className={styles.platform}>
-            {t("platform")}
-          </span>
+            <span className={styles.platform}>
+              {t("platform")}
+            </span>
+          </div>
 
           <nav aria-label={t("legalAria")}>
             <Link href="/datenschutz">

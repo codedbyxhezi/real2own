@@ -1,9 +1,25 @@
 .section {
   position: relative;
-  padding-block: clamp(72px, 8vw, 120px);
   overflow: hidden;
-  border-top: 1px solid var(--line);
-  background: #f0ede6;
+  padding-block: clamp(72px, 8vw, 120px);
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 12% 20%,
+      rgba(210, 176, 142, 0.18),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 88% 78%,
+      rgba(96, 116, 89, 0.14),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #f4f0e9 0%,
+      #e9e4db 100%
+    );
 }
 
 .card {
@@ -15,33 +31,57 @@
   min-height: 520px;
   padding: clamp(42px, 6vw, 82px);
   overflow: hidden;
+
+  border: 1px solid var(--glass-border-dark);
+  border-radius: var(--glass-radius-xl);
+
   color: #ffffff;
-  background: var(--night);
-  box-shadow: 0 30px 90px rgba(20, 20, 17, 0.18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.02)
+    ),
+    rgba(20, 24, 18, 0.72);
+
+  box-shadow: var(--glass-shadow-dark);
+
+  backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(135%);
 }
 
 .card::before {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 34%;
-  height: 2px;
-  background: var(--accent);
-  content: "";
-}
-
-.card::after {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 58%;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.08);
+  top: -140px;
+  left: -100px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: rgba(210, 176, 142, 0.12);
+  filter: blur(80px);
   content: "";
   pointer-events: none;
 }
 
-/* Textbereich */
+.card::after {
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 58%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  content: "";
+  pointer-events: none;
+}
+
+
+/* Text */
 
 .copy {
   position: relative;
@@ -82,17 +122,19 @@
 .description {
   max-width: 610px;
   margin: 28px 0 0;
-  color: rgba(255, 255, 255, 0.57);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
   line-height: 1.8;
 }
 
-/* Aktionen */
+
+/* Actions */
 
 .actions {
   position: relative;
   z-index: 1;
-  border-top: 1px solid rgba(255, 255, 255, 0.26);
+  display: grid;
+  gap: 12px;
 }
 
 .action {
@@ -100,16 +142,26 @@
   grid-template-columns: 30px minmax(0, 1fr) 42px;
   align-items: center;
   gap: 16px;
-  min-height: 112px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  min-height: 104px;
+  padding: 0 18px;
+
+  border: 1px solid var(--glass-border-dark);
+  border-radius: var(--glass-radius-md);
+
   color: #ffffff;
+  background: rgba(255, 255, 255, 0.055);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
   transition:
-    padding-inline 200ms ease,
-    background 200ms ease;
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
 }
 
 .actionNumber {
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255, 255, 255, 0.4);
   font-family: var(--font-display);
   font-size: 0.69rem;
   letter-spacing: 0.1em;
@@ -121,7 +173,7 @@
 }
 
 .actionCopy small {
-  color: rgba(255, 255, 255, 0.46);
+  color: rgba(255, 255, 255, 0.48);
   font-size: 0.54rem;
   font-weight: 700;
   letter-spacing: 0.13em;
@@ -141,13 +193,10 @@
   width: 40px;
   height: 40px;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.36);
   border-radius: 50%;
-  transition:
-    color 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease,
-    transform 200ms ease;
+  color: var(--night);
+  background: var(--accent);
+  transition: transform 180ms ease;
 }
 
 .action:focus-visible {
@@ -155,19 +204,21 @@
   outline-offset: 5px;
 }
 
+
+/* Hover */
+
 @media (hover: hover) and (pointer: fine) {
   .action:hover {
-    padding-inline: 14px;
-    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(210, 176, 142, 0.48);
+    background: rgba(255, 255, 255, 0.09);
+    transform: translateX(4px);
   }
 
   .action:hover .actionIcon {
-    border-color: var(--accent);
-    color: var(--night);
-    background: var(--accent);
     transform: translateX(3px);
   }
 }
+
 
 /* Tablet */
 
@@ -192,6 +243,7 @@
   }
 }
 
+
 /* Mobile */
 
 @media (max-width: 680px) {
@@ -202,11 +254,7 @@
   .card {
     gap: 44px;
     padding: 38px 22px 28px;
-    box-shadow: 0 20px 55px rgba(20, 20, 17, 0.16);
-  }
-
-  .card::before {
-    width: 48%;
+    border-radius: var(--glass-radius-lg);
   }
 
   .eyebrow {
@@ -226,7 +274,8 @@
   .action {
     grid-template-columns: 24px minmax(0, 1fr) 38px;
     gap: 12px;
-    min-height: 96px;
+    min-height: 92px;
+    padding-inline: 14px;
   }
 
   .actionCopy strong {
@@ -238,6 +287,9 @@
     height: 37px;
   }
 }
+
+
+/* Small Mobile */
 
 @media (max-width: 390px) {
   .card {
@@ -252,6 +304,9 @@
     font-size: 0.49rem;
   }
 }
+
+
+/* Reduced Motion */
 
 @media (prefers-reduced-motion: reduce) {
   .action,

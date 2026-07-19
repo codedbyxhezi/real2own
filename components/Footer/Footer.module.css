@@ -1,432 +1,706 @@
 .footer {
   position: relative;
   overflow: hidden;
+  padding-top: clamp(56px, 7vw, 96px);
   color: #ffffff;
-  background: #11130f;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 8% 12%,
+      rgba(210, 176, 142, 0.12),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 92% 76%,
+      rgba(97, 119, 89, 0.15),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #151812 0%,
+      #10120e 100%
+    );
+}
+
+.footer::before,
+.footer::after {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+  filter: blur(110px);
 }
 
 .footer::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: min(34vw, 540px);
-  height: 1px;
-  background: var(--accent);
-  content: "";
+  top: -220px;
+  left: -180px;
+  width: 440px;
+  height: 440px;
+  background: rgba(210, 176, 142, 0.14);
+}
+
+.footer::after {
+  right: -200px;
+  bottom: -220px;
+  width: 480px;
+  height: 480px;
+  background: rgba(91, 116, 82, 0.16);
 }
 
 .container {
   position: relative;
+  z-index: 1;
 }
 
-/* Markenbereich */
 
-.brandRow {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.5fr) minmax(0, 1.5fr) auto;
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.intro {
+  display: flex;
   align-items: center;
-  gap: clamp(36px, 7vw, 110px);
-  min-height: 220px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+  justify-content: space-between;
+  gap: clamp(40px, 8vw, 140px);
+  padding-bottom: clamp(36px, 5vw, 58px);
 }
 
 .logo {
   display: inline-flex;
-  width: fit-content;
+  flex: 0 0 auto;
   align-items: center;
-  gap: 13px;
-  color: #ffffff;
+  gap: 12px;
 }
 
 .logoImage {
   display: block;
-  width: 68px;
-  height: 68px;
+  width: 62px;
+  height: 62px;
   object-fit: contain;
-  filter: drop-shadow(0 7px 16px rgba(0, 0, 0, 0.25));
+  filter:
+    drop-shadow(
+      0 8px 18px rgba(0, 0, 0, 0.24)
+    );
 }
 
 .logo > span {
-  font-size: 0.92rem;
-  font-weight: 750;
-  letter-spacing: 0.055em;
-  line-height: 1;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .statement {
-  max-width: 800px;
+  width: min(100%, 780px);
   margin: 0;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.84);
   font-family: var(--font-display);
-  font-size: clamp(1.9rem, 3.4vw, 4.1rem);
+  font-size: clamp(1.8rem, 3.2vw, 3.8rem);
   font-weight: 400;
-  letter-spacing: -0.043em;
-  line-height: 1.02;
+  letter-spacing: -0.045em;
+  line-height: 1;
   text-wrap: balance;
 }
 
-.backToTop {
-  display: inline-flex;
-  align-items: center;
-  gap: 11px;
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.57rem;
-  font-weight: 750;
-  letter-spacing: 0.13em;
-  white-space: nowrap;
-  text-transform: uppercase;
-  transition: color 180ms ease;
-}
 
-.backToTopIcon {
-  display: grid;
-  width: 40px;
-  height: 40px;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
-  transform: rotate(-90deg);
-  transition:
-    color 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease,
-    transform 180ms ease;
-}
+/* =========================================================
+   MAIN GLASS PANEL
+   ========================================================= */
 
-/* Hauptbereich */
-
-.main {
+.panel {
   display: grid;
   grid-template-columns:
-    minmax(220px, 0.72fr)
-    minmax(440px, 1.35fr)
-    minmax(280px, 0.93fr);
-  gap: clamp(48px, 7vw, 108px);
-  padding-block: clamp(68px, 8vw, 108px);
+    minmax(230px, 0.75fr)
+    minmax(500px, 1.55fr)
+    minmax(270px, 0.8fr);
+
+  gap: clamp(40px, 5vw, 76px);
+
+  padding:
+    clamp(32px, 4vw, 54px);
+
+  border:
+    1px solid var(--glass-border-dark);
+
+  border-radius:
+    var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.065),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 28px 80px rgba(0, 0, 0, 0.2);
+
+  backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(125%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(125%);
 }
 
 .label {
-  margin: 0 0 23px;
+  margin: 0 0 20px;
   color: var(--accent);
-  font-size: 0.56rem;
+  font-size: 0.54rem;
   font-weight: 800;
   letter-spacing: 0.17em;
   text-transform: uppercase;
 }
 
-/* Kontakt */
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
 
 .contact {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
+  min-width: 0;
 }
 
-.contactMail {
-  display: inline-block;
-  padding-bottom: 7px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.32);
-  color: #ffffff;
-  font-family: var(--font-display);
-  font-size: clamp(1.3rem, 1.8vw, 1.9rem);
-  letter-spacing: -0.025em;
+.contactLink {
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding:
+    0
+    12px
+    0
+    14px;
+
+  margin-bottom: 8px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.contactLink > span:first-child {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+
+.contactLink small {
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.49rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.contactLink strong {
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.69rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contactIcon {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  place-items: center;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.14);
+
+  border-radius: 50%;
+
+  color:
+    rgba(255, 255, 255, 0.62);
+
   transition:
     color 180ms ease,
-    border-color 180ms ease;
-}
-
-.contactPhone {
-  margin-top: 16px;
-  color: rgba(255, 255, 255, 0.66);
-  font-size: 0.73rem;
-  transition: color 180ms ease;
+    background 180ms ease,
+    transform 180ms ease;
 }
 
 .contact address {
-  margin-top: 28px;
-  color: rgba(255, 255, 255, 0.42);
-  font-size: 0.68rem;
+  margin-top: 22px;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.63rem;
   font-style: normal;
-  line-height: 1.75;
+  line-height: 1.72;
 }
 
-/* Navigation */
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
 .navigation {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(25px, 4vw, 58px);
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap:
+    clamp(22px, 3vw, 46px);
 }
 
 .column {
-  display: flex;
   min-width: 0;
-  align-items: flex-start;
-  flex-direction: column;
 }
 
 .column h3 {
-  margin: 0 0 24px;
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 0.65rem;
-  font-weight: 750;
-  letter-spacing: 0.055em;
+  margin: 0 0 20px;
+
+  color:
+    rgba(255, 255, 255, 0.9);
+
+  font-size: 0.61rem;
+  font-weight: 800;
+
+  letter-spacing:
+    0.04em;
 }
 
-.column a {
-  margin-bottom: 14px;
-  color: rgba(255, 255, 255, 0.47);
-  font-size: 0.7rem;
-  line-height: 1.45;
+.links {
+  display: grid;
+  gap: 4px;
+}
+
+.links a {
+  display: flex;
+  min-height: 35px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  color:
+    rgba(255, 255, 255, 0.46);
+
+  font-size: 0.67rem;
+
   transition:
     color 180ms ease,
     transform 180ms ease;
 }
 
-/* Kontakt-CTA */
+.links a svg {
+  flex: 0 0 auto;
 
-.contactCta h2 {
-  max-width: 350px;
-  margin: 0;
-  color: #ffffff;
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.2vw, 2.45rem);
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 1.08;
-  text-wrap: balance;
-}
+  color:
+    rgba(255, 255, 255, 0.22);
 
-.contactCta > p:not(.label) {
-  max-width: 365px;
-  margin: 20px 0 27px;
-  color: rgba(255, 255, 255, 0.46);
-  font-size: 0.72rem;
-  line-height: 1.72;
-}
-
-.contactCta > a {
-  display: flex;
-  min-height: 52px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 0 18px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  font-size: 0.61rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   transition:
     color 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease;
+    transform 180ms ease;
 }
 
-.contactCta svg {
+
+/* =========================================================
+   CONSULTATION
+   ========================================================= */
+
+.consultation {
+  padding-left:
+    clamp(0px, 2vw, 26px);
+
+  border-left:
+    1px solid rgba(255, 255, 255, 0.1);
+}
+
+.consultation h2 {
+  max-width: 330px;
+  margin: 0;
+
+  color: #ffffff;
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(1.55rem, 2vw, 2.3rem);
+
+  font-weight: 400;
+
+  letter-spacing:
+    -0.035em;
+
+  line-height: 1.05;
+}
+
+.consultationText {
+  max-width: 340px;
+
+  margin:
+    17px
+    0
+    24px;
+
+  color:
+    rgba(255, 255, 255, 0.44);
+
+  font-size: 0.68rem;
+  line-height: 1.65;
+}
+
+.consultationButton {
+  display: flex;
+  min-height: 50px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  padding:
+    5px
+    6px
+    5px
+    16px;
+
+  border:
+    1px solid rgba(210, 176, 142, 0.36);
+
+  border-radius: 999px;
+
+  color: var(--night);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(239, 213, 186, 0.96),
+      rgba(210, 176, 142, 0.88)
+    );
+
+  font-size: 0.58rem;
+  font-weight: 800;
+
+  letter-spacing:
+    0.09em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.consultationIcon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+
   flex: 0 0 auto;
-  transition: transform 180ms ease;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.34);
+
+  transition:
+    transform 180ms ease;
 }
 
-/* Unterer Bereich */
+
+/* =========================================================
+   BOTTOM BAR
+   ========================================================= */
 
 .bottom {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
+
+  min-height: 72px;
+
   align-items: center;
+  justify-content: space-between;
+
   gap: 30px;
-  min-height: 76px;
-  border-top: 1px solid rgba(255, 255, 255, 0.11);
-  color: rgba(255, 255, 255, 0.32);
-  font-size: 0.57rem;
-  letter-spacing: 0.04em;
+
+  color:
+    rgba(255, 255, 255, 0.3);
+
+  font-size:
+    0.54rem;
+}
+
+.copyright {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 
 .platform {
-  text-align: center;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
+  padding-left: 18px;
+
+  border-left:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  letter-spacing:
+    0.11em;
+
+  text-transform:
+    uppercase;
 }
 
 .bottom nav {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
   gap: 22px;
 }
 
 .bottom a {
-  transition: color 180ms ease;
+  transition:
+    color 180ms ease;
 }
 
-/* Hover */
+
+/* =========================================================
+   HOVER
+   ========================================================= */
 
 @media (hover: hover) and (pointer: fine) {
-  .backToTop:hover {
-    color: #ffffff;
+  .contactLink:hover {
+    border-color:
+      rgba(210, 176, 142, 0.32);
+
+    background:
+      rgba(255, 255, 255, 0.065);
+
+    transform:
+      translateX(2px);
   }
 
-  .backToTop:hover .backToTopIcon {
-    border-color: var(--accent);
+  .contactLink:hover
+    .contactIcon {
     color: var(--night);
-    background: var(--accent);
-    transform: translateY(-2px) rotate(-90deg);
+
+    background:
+      var(--accent);
+
+    transform:
+      translateX(2px);
   }
 
-  .contactMail:hover {
-    border-color: var(--accent);
+  .links a:hover {
+    color: #ffffff;
+
+    transform:
+      translateX(3px);
+  }
+
+  .links a:hover svg {
     color: var(--accent);
+
+    transform:
+      translateX(2px);
   }
 
-  .contactPhone:hover,
-  .column a:hover,
+  .consultationButton:hover {
+    background:
+      linear-gradient(
+        135deg,
+        #ffffff,
+        #e7c5a2
+      );
+
+    transform:
+      translateY(-2px);
+  }
+
+  .consultationButton:hover
+    .consultationIcon {
+    transform:
+      translateX(3px);
+  }
+
   .bottom a:hover {
     color: #ffffff;
   }
-
-  .column a:hover {
-    transform: translateX(3px);
-  }
-
-  .contactCta > a:hover {
-    border-color: var(--accent);
-    color: var(--night);
-    background: var(--accent);
-  }
-
-  .contactCta > a:hover svg {
-    transform: translateX(3px);
-  }
 }
 
-/* Tablet */
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 1080px) {
-  .brandRow {
-    grid-template-columns: auto minmax(0, 1fr);
-    padding-block: 48px;
+  .panel {
+    grid-template-columns:
+      minmax(210px, 0.7fr)
+      minmax(0, 1.3fr);
   }
 
-  .backToTop {
-    grid-column: 2;
-    justify-self: start;
-  }
+  .consultation {
+    grid-column:
+      1 / 3;
 
-  .main {
-    grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
-  }
-
-  .contactCta {
-    grid-column: 1 / 3;
     display: grid;
-    grid-template-columns: minmax(260px, 1fr) minmax(300px, 0.8fr);
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(280px, 0.65fr);
+
     align-items: end;
-    column-gap: 60px;
-    padding-top: 48px;
-    border-top: 1px solid rgba(255, 255, 255, 0.11);
+
+    gap:
+      16px
+      50px;
+
+    padding:
+      30px
+      0
+      0;
+
+    border-top:
+      1px solid rgba(255, 255, 255, 0.1);
+
+    border-left:
+      0;
   }
 
-  .contactCta .label,
-  .contactCta h2 {
+  .consultation .label,
+  .consultation h2 {
     grid-column: 1;
   }
 
-  .contactCta > p:not(.label),
-  .contactCta > a {
+  .consultationText {
+    grid-column: 1;
+
+    margin-bottom: 0;
+  }
+
+  .consultationButton {
     grid-column: 2;
-  }
-
-  .contactCta > p:not(.label) {
-    grid-row: 1 / 3;
-    align-self: start;
-    margin-top: 0;
-  }
-
-  .contactCta > a {
-    grid-row: 3;
-    margin-top: 24px;
+    grid-row: 1 / 4;
   }
 }
 
-/* Mobile */
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 720px) {
-  .brandRow {
-    grid-template-columns: 1fr;
-    gap: 34px;
-    padding-block: 54px;
+  .footer {
+    padding-top: 48px;
+  }
+
+  .intro {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 24px;
+
+    padding-bottom: 34px;
   }
 
   .statement {
     max-width: 520px;
-    font-size: clamp(2.15rem, 10vw, 3.4rem);
+
+    font-size:
+      clamp(2rem, 9vw, 3rem);
   }
 
-  .backToTop {
-    grid-column: auto;
-  }
-
-  .main {
+  .panel {
     grid-template-columns: 1fr;
-    gap: 52px;
-    padding-block: 58px;
+
+    gap: 38px;
+
+    padding:
+      26px
+      20px;
+
+    border-radius:
+      var(--glass-radius-md);
   }
 
   .navigation {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 38px 25px;
-    padding-block: 40px;
-    border-top: 1px solid rgba(255, 255, 255, 0.11);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap:
+      34px
+      24px;
+
+    padding-block: 32px;
+
+    border-top:
+      1px solid rgba(255, 255, 255, 0.1);
+
+    border-bottom:
+      1px solid rgba(255, 255, 255, 0.1);
   }
 
   .column:last-child {
-    grid-column: 1 / 3;
+    grid-column:
+      1 / 3;
   }
 
-  .contactCta {
+  .consultation {
     grid-column: auto;
+
     display: block;
-    padding-top: 0;
-    border-top: 0;
+
+    padding: 0;
+
+    border: 0;
   }
 
-  .contactCta > p:not(.label) {
-    margin: 20px 0 26px;
-  }
-
-  .contactCta > a {
+  .consultationButton {
     width: 100%;
-    margin-top: 0;
   }
 
   .bottom {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    padding-block: 25px;
-  }
+    min-height: 0;
 
-  .platform {
-    text-align: left;
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+    padding-block: 24px;
   }
 
   .bottom nav {
-    justify-content: flex-start;
     flex-wrap: wrap;
+
+    gap:
+      10px
+      18px;
   }
 }
 
-/* Kleine Handys */
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
 
 @media (max-width: 440px) {
   .logoImage {
-    width: 54px;
-    height: 54px;
-  }
-
-  .statement {
-    font-size: clamp(2rem, 11vw, 3rem);
+    width: 52px;
+    height: 52px;
   }
 
   .navigation {
@@ -437,23 +711,33 @@
     grid-column: auto;
   }
 
-  .contactCta h2 {
-    font-size: 1.85rem;
+  .copyright {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 7px;
   }
 
-  .bottom nav {
-    gap: 16px;
+  .platform {
+    padding-left: 0;
+
+    border-left: 0;
   }
 }
 
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
-  .backToTop,
-  .backToTopIcon,
-  .contactMail,
-  .contactPhone,
-  .column a,
-  .contactCta > a,
-  .contactCta svg,
+  .contactLink,
+  .contactIcon,
+  .links a,
+  .links a svg,
+  .consultationButton,
+  .consultationIcon,
   .bottom a {
     transition: none;
   }

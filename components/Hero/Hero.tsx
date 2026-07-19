@@ -8,19 +8,19 @@ import styles from "./Hero.module.css";
 
 const slides = [
   {
-    src: "/images/hero/hero-01.webp",
+    src: "/images/hero/luxusvilla-mittelmeer-meerblick-sonnenuntergang.webp",
     position: "center 55%",
   },
   {
-    src: "/images/hero/hero-02.webp",
+    src: "/images/hero/luxus-penthouse-dubai-skyline-infinity-pool.webp",
     position: "center 52%",
   },
   {
-    src: "/images/hero/hero-03.webp",
+    src: "/images/hero/luxusvilla-portugal-meerblick-sonnenuntergang.webp",
     position: "center 48%",
   },
   {
-    src: "/images/hero/hero-04.webp",
+    src: "/images/hero/luxusvilla-mittelmeer-infinity-pool-sonnenuntergang.webp",
     position: "center 52%",
   },
 ];

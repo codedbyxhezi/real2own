@@ -2,21 +2,61 @@
   position: relative;
   overflow: hidden;
   padding-block: clamp(88px, 9vw, 138px);
-  border-top: 1px solid var(--line);
-  background: #f0ede6;
+  isolation: isolate;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.42);
+
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(210, 176, 142, 0.18),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 88% 78%,
+      rgba(167, 122, 79, 0.1),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #f5f1ea 0%,
+      #ebe5dc 52%,
+      #f3eee7 100%
+    );
+}
+
+.section::before,
+.section::after {
+  position: absolute;
+  z-index: 0;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+  filter: blur(90px);
 }
 
 .section::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: min(28vw, 440px);
-  height: 1px;
-  background: var(--brand-dark);
-  content: "";
+  top: -150px;
+  left: -140px;
+  background: rgba(210, 176, 142, 0.22);
 }
 
+.section::after {
+  right: -150px;
+  bottom: -170px;
+  background: rgba(167, 122, 79, 0.12);
+}
+
+
 /* Überschrift */
+
+.heading,
+.carousel {
+  position: relative;
+  z-index: 1;
+}
 
 .heading {
   display: flex;
@@ -69,6 +109,7 @@
   line-height: 1.75;
 }
 
+
 /* Bewertungsübersicht */
 
 .summary {
@@ -76,9 +117,29 @@
   min-width: 310px;
   align-items: center;
   gap: 22px;
-  padding: 22px 0;
-  border-top: 1px solid var(--line-strong);
-  border-bottom: 1px solid var(--line);
+  padding: 20px 22px;
+
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--glass-radius-md);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.24)
+    );
+
+  box-shadow:
+    var(--glass-highlight),
+    var(--glass-shadow-light);
+
+  backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(135%);
 }
 
 .score {
@@ -118,17 +179,13 @@
   line-height: 1.45;
 }
 
-/* Desktop-Raster und Mobile-Track */
 
-.carousel {
-  position: relative;
-}
+/* Cards */
 
 .track {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--line-strong);
-  border-left: 1px solid var(--line);
+  gap: clamp(14px, 1.5vw, 22px);
 }
 
 .slide {
@@ -141,12 +198,33 @@
   flex-direction: column;
   margin: 0;
   padding: clamp(26px, 3vw, 40px);
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.22);
+
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.22)
+    );
+
+  box-shadow:
+    var(--glass-highlight),
+    var(--glass-shadow-light);
+
+  backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(135%);
+
   transition:
-    background 200ms ease,
-    transform 200ms ease;
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .reviewHeader {
@@ -178,8 +256,9 @@
   width: 14px;
   height: 14px;
   padding: 2px;
-  border: 1px solid rgba(120, 83, 51, 0.36);
+  border: 1px solid rgba(120, 83, 51, 0.32);
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
 }
 
 .review blockquote {
@@ -205,7 +284,7 @@
   justify-content: space-between;
   gap: 20px;
   padding-top: 19px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(23, 23, 19, 0.12);
 }
 
 .review figcaption > span:first-child {
@@ -229,26 +308,30 @@
 }
 
 .quoteMark {
-  color: rgba(120, 83, 51, 0.23);
+  color: rgba(120, 83, 51, 0.24);
   font-family: var(--font-display);
   font-size: 3.2rem;
   line-height: 0.65;
 }
 
-/* Mobile-Steuerung bleibt auf Desktop verborgen */
+
+/* Mobile Controls */
 
 .mobileControls {
   display: none;
 }
 
-/* Dezenter Desktop-Hover */
+
+/* Hover */
 
 @media (hover: hover) and (pointer: fine) {
   .review:hover {
-    background: rgba(255, 255, 255, 0.48);
-    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.72);
+    box-shadow: var(--glass-shadow-medium);
+    transform: translateY(-4px);
   }
 }
+
 
 /* Tablet */
 
@@ -280,7 +363,8 @@
   }
 }
 
-/* Echtes Mobile-Karussell */
+
+/* Mobile */
 
 @media (max-width: 680px) {
   .section {
@@ -303,7 +387,7 @@
 
   .summary {
     gap: 17px;
-    padding-block: 17px;
+    padding: 17px 18px;
   }
 
   .score strong {
@@ -311,10 +395,6 @@
   }
 
   .carousel {
-    /*
-     * Das Karussell reicht optisch bis an den rechten Bildschirmrand.
-     * Der linke Abstand bleibt am Container ausgerichtet.
-     */
     width: calc(100% + 14px);
   }
 
@@ -323,9 +403,7 @@
     gap: 12px;
     overflow-x: auto;
     padding-right: 14px;
-    border: 0;
     scroll-behavior: smooth;
-    scroll-padding-left: 0;
     scroll-snap-type: x mandatory;
     overscroll-behavior-inline: contain;
     -webkit-overflow-scrolling: touch;
@@ -341,8 +419,7 @@
   .review {
     min-height: 350px;
     padding: 24px 20px;
-    border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.4);
+    border-radius: var(--glass-radius-md);
   }
 
   .review blockquote {
@@ -396,10 +473,16 @@
     height: 42px;
     padding: 0;
     place-items: center;
-    border: 1px solid var(--line-strong);
+
+    border: 1px solid var(--glass-border-light);
     border-radius: 50%;
+
     color: var(--ink);
-    background: transparent;
+    background: rgba(255, 255, 255, 0.34);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
     transition:
       color 180ms ease,
       border-color 180ms ease,
@@ -417,7 +500,8 @@
   }
 }
 
-/* Kleine Handys */
+
+/* Small Mobile */
 
 @media (max-width: 390px) {
   .slide {
@@ -443,6 +527,9 @@
     height: 39px;
   }
 }
+
+
+/* Reduced Motion */
 
 @media (prefers-reduced-motion: reduce) {
   .track {

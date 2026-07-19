@@ -1,88 +1,206 @@
+/* =========================================================
+   REAL2OWN — IMAGE GLASS PROPERTY CARD
+   ========================================================= */
+
 .card {
-  display: grid;
+  position: relative;
+  display: block;
   min-width: 0;
   overflow: hidden;
-  background: transparent;
+
+  border-radius: var(--glass-radius-lg);
+
+  background: #d8d3c9;
+
+  box-shadow:
+    0 24px 65px rgba(31, 29, 24, 0.13);
+
+  isolation: isolate;
+
+  transition:
+    box-shadow 320ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
 
 .imageWrap {
   position: relative;
-  aspect-ratio: 1.18 / 1;
+
+  width: 100%;
+  aspect-ratio: 1.05 / 1;
+
   overflow: hidden;
+
+  border-radius: inherit;
+
   background: #d8d3c9;
+
   isolation: isolate;
 }
 
 .image {
   object-fit: cover;
+
   transition:
     transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
     filter 500ms ease;
 }
 
+
+/* =========================================================
+   IMAGE SHADE
+   ========================================================= */
+
 .imageShade {
   position: absolute;
   z-index: 1;
   inset: 0;
+
   pointer-events: none;
+
   background:
     linear-gradient(
       180deg,
-      rgba(13, 14, 12, 0.18) 0%,
-      transparent 40%,
-      rgba(13, 14, 12, 0.22) 100%
+      rgba(13, 14, 12, 0.12) 0%,
+      transparent 38%,
+      rgba(13, 14, 12, 0.08) 58%,
+      rgba(13, 14, 12, 0.34) 100%
     );
-  transition: opacity 450ms ease;
+
+  transition:
+    opacity 450ms ease;
 }
 
-/* Oberer Bereich im Bild */
+
+/* =========================================================
+   TOP ROW
+   ========================================================= */
 
 .topRow {
   position: absolute;
-  z-index: 3;
-  top: 16px;
-  right: 16px;
-  left: 16px;
+  z-index: 5;
+
+  top: 22px;
+  right: 22px;
+  left: 22px;
+
   display: flex;
+
   align-items: flex-start;
   justify-content: space-between;
+
   gap: 16px;
+
+  pointer-events: none;
 }
 
-.purpose,
-.badge {
-  display: inline-flex;
-  min-height: 30px;
-  align-items: center;
-  justify-content: center;
-  padding: 0 11px;
-  font-size: 0.58rem;
-  font-weight: 800;
-  letter-spacing: 0.13em;
-  line-height: 1;
-  text-transform: uppercase;
-}
+
+/* =========================================================
+   PURPOSE — GLASS PILL
+   ========================================================= */
 
 .purpose {
-  color: var(--ink);
-  background: rgba(250, 248, 243, 0.94);
-  box-shadow: 0 7px 22px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  display: inline-flex;
+
+  min-height: 46px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding-inline: 20px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.44);
+
+  border-radius: 16px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.24),
+      rgba(255, 255, 255, 0.08)
+    ),
+    rgba(34, 47, 58, 0.2);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    0 10px 28px rgba(0, 0, 0, 0.12);
+
+  font-size: 0.62rem;
+  font-weight: 800;
+
+  letter-spacing: 0.13em;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 1px 9px rgba(0, 0, 0, 0.2);
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(145%);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(145%);
+
+  pointer-events: auto;
 }
+
+
+/* =========================================================
+   FAVORITE BUTTON
+   ========================================================= */
 
 .favoriteButton {
   display: grid;
-  width: 40px;
-  height: 40px;
+
+  width: 54px;
+  height: 54px;
+
   flex: 0 0 auto;
+
   padding: 0;
+
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.56);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.48);
+
   border-radius: 50%;
+
   color: #ffffff;
-  background: rgba(16, 18, 15, 0.26);
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(12px);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.045)
+    ),
+    rgba(32, 43, 49, 0.2);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    0 12px 30px rgba(0, 0, 0, 0.13);
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(145%);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(145%);
+
+  pointer-events: auto;
+
   transition:
     color 180ms ease,
     border-color 180ms ease,
@@ -91,253 +209,636 @@
 }
 
 .favoriteButton:hover {
-  border-color: var(--accent);
+  border-color:
+    rgba(255, 255, 255, 0.75);
+
   color: var(--accent);
-  background: rgba(16, 18, 15, 0.58);
-  transform: translateY(-1px);
+
+  background:
+    rgba(20, 24, 20, 0.36);
+
+  transform:
+    translateY(-2px);
 }
 
 .favoriteButton:active {
-  transform: scale(0.96);
+  transform:
+    scale(0.96);
 }
 
 .favoriteButton:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
+  outline:
+    2px solid var(--accent);
+
+  outline-offset:
+    3px;
 }
+
+
+/* =========================================================
+   BADGE — WARM GLASS
+   ========================================================= */
 
 .badge {
   position: absolute;
-  z-index: 3;
-  bottom: 16px;
-  left: 16px;
+  z-index: 5;
+
+  left: 24px;
+
+  /*
+   * Sitzt direkt oberhalb der Info-Glass-Card.
+   */
+  bottom: 228px;
+
+  display: inline-flex;
+
+  min-height: 43px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding-inline: 17px;
+
+  border:
+    1px solid rgba(232, 211, 179, 0.34);
+
+  border-radius: 13px;
+
   color: #ffffff;
-  background: var(--brand-dark);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(147, 132, 65, 0.74),
+      rgba(101, 89, 37, 0.58)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 10px 28px rgba(0, 0, 0, 0.15);
+
+  font-size: 0.57rem;
+  font-weight: 800;
+
+  letter-spacing: 0.13em;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  -webkit-backdrop-filter:
+    blur(17px)
+    saturate(140%);
+
+  backdrop-filter:
+    blur(17px)
+    saturate(140%);
 }
 
-/* Textbereich */
+
+/* =========================================================
+   MAIN GLASS INFORMATION PANEL
+   ========================================================= */
 
 .body {
+  position: absolute;
+  z-index: 4;
+
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+
   display: grid;
-  padding-top: 20px;
+
+  padding:
+    22px
+    24px
+    21px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.32);
+
+  border-radius: 20px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.025)
+    ),
+    rgba(39, 48, 24, 0.48);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.035),
+    0 22px 55px rgba(0, 0, 0, 0.18);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(145%);
+
+  backdrop-filter:
+    blur(24px)
+    saturate(145%);
 }
 
+
+/* =========================================================
+   GLASS REFLECTION
+   ========================================================= */
+
+.body::before {
+  position: absolute;
+
+  top: 0;
+  right: 12%;
+  left: 12%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.58),
+      transparent
+    );
+
+  content: "";
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   LOCATION
+   ========================================================= */
+
 .location {
+  position: relative;
+  z-index: 1;
+
   display: flex;
+
   min-width: 0;
+
   align-items: center;
-  gap: 7px;
-  color: #7f796f;
-  font-size: 0.64rem;
-  font-weight: 600;
-  letter-spacing: 0.07em;
+
+  gap: 8px;
+
+  color:
+    rgba(255, 255, 255, 0.86);
+
+  font-size: 0.61rem;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
   line-height: 1.4;
+
   text-transform: uppercase;
+
+  text-shadow:
+    0 1px 12px rgba(0, 0, 0, 0.2);
 }
 
 .location svg {
   flex: 0 0 auto;
-  color: var(--brand-dark);
+
+  color: #ffffff;
 }
 
 .location span {
   overflow: hidden;
+
   text-overflow: ellipsis;
+
   white-space: nowrap;
 }
 
+
+/* =========================================================
+   TITLE + PRICE
+   ========================================================= */
+
 .titleRow {
+  position: relative;
+  z-index: 1;
+
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
   align-items: end;
+
   gap: 20px;
-  margin-top: 12px;
+
+  margin-top: 13px;
 }
 
 .titleRow h3 {
   min-width: 0;
+
   margin: 0;
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(1.55rem, 2vw, 2rem);
+
+  color: #ffffff;
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(1.6rem, 2.3vw, 2.25rem);
+
   font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 1.04;
+
+  letter-spacing:
+    -0.04em;
+
+  line-height: 1;
+
   text-wrap: balance;
+
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.18);
 }
+
+
+/* =========================================================
+   PROPERTY TYPE
+   ========================================================= */
+
+.type {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #d8b690;
+
+  font-size: 0.48rem;
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   PRICE
+   ========================================================= */
 
 .price {
   margin: 0;
+
   padding-bottom: 3px;
-  color: var(--ink);
-  font-size: 0.78rem;
+
+  color: #ffffff;
+
+  font-size: 0.8rem;
   font-weight: 800;
+
   letter-spacing: 0.025em;
+
   line-height: 1.2;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.price small {
+  color:
+    rgba(255, 255, 255, 0.68);
+
+  font-family: inherit;
+
+  font-size: 0.5rem;
+  font-weight: 500;
+
   white-space: nowrap;
 }
 
-/* Eckdaten */
+
+/* =========================================================
+   PROPERTY DETAILS
+   ========================================================= */
 
 .details {
+  position: relative;
+  z-index: 1;
+
   display: flex;
+
   align-items: center;
+
   flex-wrap: wrap;
-  gap: 14px 24px;
-  margin-top: 20px;
-  padding-top: 17px;
-  border-top: 1px solid var(--line);
+
+  gap:
+    14px
+    24px;
+
+  margin-top: 19px;
+
+  padding-top: 16px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.3);
 }
 
 .details span {
   position: relative;
+
   display: inline-flex;
+
   align-items: baseline;
+
   gap: 5px;
-  color: #777168;
+
+  color:
+    rgba(255, 255, 255, 0.74);
+
   font-size: 0.65rem;
+
   line-height: 1.4;
 }
 
 .details strong {
-  color: var(--ink);
-  font-size: 0.72rem;
+  color: #ffffff;
+
+  font-size: 0.73rem;
   font-weight: 800;
 }
 
-.details span:not(:last-child)::after {
+.details
+  span:not(:last-child)::after {
   position: absolute;
+
   top: 50%;
   right: -13px;
-  width: 2px;
-  height: 2px;
+
+  width: 3px;
+  height: 3px;
+
   border-radius: 50%;
-  background: #aaa399;
+
+  background:
+    rgba(255, 255, 255, 0.5);
+
   content: "";
-  transform: translateY(-50%);
+
+  transform:
+    translateY(-50%);
 }
 
-.type {
-  display: block;
-  margin-bottom: 7px;
-  color: var(--brand-dark);
-  font-size: 0.47rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
 
-.price small {
-  color: var(--muted);
-  font-family: inherit;
-  font-size: 0.5rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-/* Hover nur auf Geräten mit Maus */
+/* =========================================================
+   DESKTOP HOVER
+   ========================================================= */
 
 @media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    box-shadow:
+      0 34px 85px rgba(31, 29, 24, 0.2);
+
+    transform:
+      translateY(-5px);
+  }
+
   .card:hover .image {
-    transform: scale(1.035);
+    transform:
+      scale(1.035);
   }
 
   .card:hover .imageShade {
-    opacity: 0.7;
+    opacity: 0.72;
+  }
+
+  .card:hover .body {
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.035)
+      ),
+      rgba(39, 48, 24, 0.54);
   }
 }
 
-/* Tablet */
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 1000px) {
   .imageWrap {
-    aspect-ratio: 1.16 / 1;
+    aspect-ratio:
+      1.02 / 1;
   }
 
   .titleRow {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns:
+      1fr;
+
+    gap: 9px;
   }
 
   .price {
     padding-bottom: 0;
   }
+
+  .badge {
+    bottom: 238px;
+  }
 }
 
-/* Handy */
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 650px) {
+  .card {
+    border-radius:
+      22px;
+  }
+
   .imageWrap {
-    aspect-ratio: 1.08 / 1;
+    aspect-ratio:
+      0.94 / 1;
   }
 
   .topRow {
-    top: 14px;
-    right: 14px;
-    left: 14px;
+    top: 16px;
+    right: 16px;
+    left: 16px;
   }
 
-  .badge {
-    bottom: 14px;
-    left: 14px;
-  }
+  .purpose {
+    min-height: 38px;
 
-  .body {
-    padding-top: 18px;
-  }
+    padding-inline: 15px;
 
-  .titleRow {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 16px;
-  }
+    border-radius: 12px;
 
-  .titleRow h3 {
-    font-size: clamp(1.6rem, 7vw, 2rem);
-  }
-
-  .details {
-    margin-top: 17px;
-    padding-top: 15px;
-  }
-}
-
-/* Sehr schmale Handys */
-
-@media (max-width: 420px) {
-  .imageWrap {
-    aspect-ratio: 1 / 1;
-  }
-
-  .titleRow {
-    grid-template-columns: 1fr;
-    gap: 9px;
+    font-size: 0.57rem;
   }
 
   .favoriteButton {
-    width: 38px;
-    height: 38px;
+    width: 46px;
+    height: 46px;
   }
 
-  .purpose,
   .badge {
-    min-height: 28px;
-    font-size: 0.54rem;
+    bottom: 218px;
+    left: 17px;
+
+    min-height: 37px;
+
+    padding-inline: 14px;
+
+    border-radius: 10px;
+  }
+
+  .body {
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+
+    padding:
+      18px
+      18px
+      17px;
+
+    border-radius: 17px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.13),
+        rgba(255, 255, 255, 0.03)
+      ),
+      rgba(39, 48, 24, 0.5);
+
+    -webkit-backdrop-filter:
+      blur(22px)
+      saturate(145%);
+
+    backdrop-filter:
+      blur(22px)
+      saturate(145%);
+  }
+
+  .titleRow {
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto;
+
+    gap: 14px;
+  }
+
+  .titleRow h3 {
+    font-size:
+      clamp(1.55rem, 7vw, 2rem);
   }
 
   .details {
-    gap: 12px 20px;
+    margin-top: 15px;
+
+    padding-top: 14px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .imageWrap {
+    aspect-ratio:
+      0.88 / 1;
   }
 
-  .details span:not(:last-child)::after {
+  .titleRow {
+    grid-template-columns:
+      1fr;
+
+    gap: 8px;
+  }
+
+  .purpose {
+    min-height: 35px;
+
+    padding-inline: 13px;
+
+    font-size: 0.53rem;
+  }
+
+  .favoriteButton {
+    width: 43px;
+    height: 43px;
+  }
+
+  .badge {
+    bottom: 224px;
+
+    min-height: 35px;
+
+    font-size: 0.52rem;
+  }
+
+  .details {
+    gap:
+      11px
+      20px;
+  }
+
+  .details
+    span:not(:last-child)::after {
     right: -11px;
   }
 }
 
+
+/* =========================================================
+   BACKDROP FILTER FALLBACK
+   ========================================================= */
+
+@supports not (
+  (backdrop-filter: blur(1px))
+  or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .purpose,
+  .favoriteButton {
+    background:
+      rgba(35, 40, 34, 0.82);
+  }
+
+  .body {
+    background:
+      rgba(53, 61, 38, 0.9);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
+  .card,
   .image,
   .imageShade,
-  .favoriteButton {
+  .favoriteButton,
+  .body {
     transition: none;
   }
 }

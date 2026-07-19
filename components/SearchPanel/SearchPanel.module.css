@@ -1,21 +1,127 @@
+/* =========================================================
+   REAL2OWN — GLASS SEARCH PANEL
+   ========================================================= */
+
 .wrapper {
+  position: relative;
   width: min(100%, 1280px);
-  color: var(--ink);
+  overflow: hidden;
+
+  color: #ffffff;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius:
+    var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.13),
+      rgba(255, 255, 255, 0.035)
+    ),
+    rgba(14, 17, 13, 0.42);
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0
+      rgba(255, 255, 255, 0.04),
+    0 28px 80px
+      rgba(0, 0, 0, 0.24);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(145%);
+
+  backdrop-filter:
+    blur(var(--glass-blur-lg))
+    saturate(145%);
 }
 
-/* Sucharten */
+
+/* =========================================================
+   GLASS LIGHT REFLECTION
+   ========================================================= */
+
+.wrapper::before {
+  position: absolute;
+  z-index: 0;
+
+  top: -120px;
+  left: -100px;
+
+  width: 420px;
+  height: 260px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  filter:
+    blur(70px);
+
+  content: "";
+
+  pointer-events: none;
+}
+
+.wrapper::after {
+  position: absolute;
+  z-index: 0;
+
+  top: 0;
+  right: 10%;
+  left: 10%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.38),
+      transparent
+    );
+
+  content: "";
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TABS
+   ========================================================= */
 
 .tabs {
+  position: relative;
+  z-index: 1;
+
   display: flex;
-  min-height: 48px;
+
+  min-height: 50px;
+
   align-items: stretch;
-  gap: clamp(22px, 2.4vw, 36px);
+
+  gap:
+    clamp(22px, 2.4vw, 36px);
+
   overflow-x: auto;
-  padding-inline: clamp(20px, 2.2vw, 30px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-bottom: 0;
-  background: rgba(18, 20, 17, 0.8);
-  backdrop-filter: blur(16px);
+
+  padding-inline:
+    clamp(20px, 2.2vw, 30px);
+
+  border: 0;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.13);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
   scrollbar-width: none;
 }
 
@@ -25,34 +131,77 @@
 
 .tabs button {
   position: relative;
+
   flex: 0 0 auto;
+
   padding: 0;
+
   border: 0;
-  color: rgba(255, 255, 255, 0.55);
-  background: transparent;
+
+  color:
+    rgba(255, 255, 255, 0.52);
+
+  background:
+    transparent;
+
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.11em;
-  white-space: nowrap;
-  text-transform: uppercase;
-  transition: color 180ms ease;
+
+  letter-spacing:
+    0.11em;
+
+  white-space:
+    nowrap;
+
+  text-transform:
+    uppercase;
+
+  text-shadow:
+    0 1px 12px
+      rgba(0, 0, 0, 0.14);
+
+  transition:
+    color 180ms ease;
 }
 
 .tabs button::after {
   position: absolute;
+
   right: 0;
   bottom: -1px;
   left: 0;
+
   height: 2px;
-  background: var(--accent);
+
+  border-radius:
+    999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--accent),
+      #ead1b6
+    );
+
+  box-shadow:
+    0 0 12px
+      rgba(210, 176, 142, 0.4);
+
   content: "";
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 220ms ease;
+
+  transform:
+    scaleX(0);
+
+  transform-origin:
+    left center;
+
+  transition:
+    transform 220ms ease;
 }
 
 .tabs button:hover {
-  color: rgba(255, 255, 255, 0.9);
+  color:
+    rgba(255, 255, 255, 0.92);
 }
 
 .tabs .activeTab {
@@ -60,242 +209,540 @@
 }
 
 .tabs .activeTab::after {
-  transform: scaleX(1);
+  transform:
+    scaleX(1);
 }
 
-/* Hauptformular */
 
+/* =========================================================
+   MAIN FORM
+   ========================================================= */
+
+/*
+ * Kein weißer Formularblock mehr.
+ * Die Felder liegen direkt auf dem Glas.
+ */
 .form {
+  position: relative;
+  z-index: 1;
+
   display: grid;
+
   grid-template-columns:
     minmax(240px, 1.45fr)
     minmax(190px, 1fr)
     minmax(180px, 0.9fr)
     minmax(145px, auto);
+
   min-height: 90px;
+
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(250, 248, 243, 0.98);
+
+  border: 0;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
   box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.22),
-    0 2px 8px rgba(0, 0, 0, 0.08);
+    none;
 }
 
-/* Felder */
+
+/* =========================================================
+   FIELDS
+   ========================================================= */
 
 .field {
   position: relative;
+
   display: grid;
+
   min-width: 0;
+
   align-content: center;
-  padding: 18px clamp(18px, 2vw, 28px);
-  border-right: 1px solid rgba(23, 23, 19, 0.13);
+
+  padding:
+    18px
+    clamp(18px, 2vw, 28px);
+
+  border-right:
+    1px solid rgba(255, 255, 255, 0.12);
+
   cursor: text;
+
+  background:
+    transparent;
+
   transition:
     background 180ms ease,
     box-shadow 180ms ease;
 }
 
 .field:hover {
-  background: rgba(255, 255, 255, 0.55);
+  background:
+    rgba(255, 255, 255, 0.055);
 }
 
 .field:focus-within {
   z-index: 2;
-  background: #ffffff;
-  box-shadow: inset 0 -2px 0 var(--brand-dark);
+
+  background:
+    rgba(255, 255, 255, 0.09);
+
+  box-shadow:
+    inset 0 -2px 0
+      var(--accent);
 }
+
+
+/* =========================================================
+   FIELD LABELS
+   ========================================================= */
 
 .field > span:first-child {
   margin-bottom: 8px;
-  color: #777168;
+
+  color:
+    rgba(255, 255, 255, 0.48);
+
   font-size: 0.59rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+
+  letter-spacing:
+    0.14em;
+
   line-height: 1;
-  text-transform: uppercase;
+
+  text-transform:
+    uppercase;
 }
+
+
+/* =========================================================
+   INPUT WRAPPER
+   ========================================================= */
 
 .inputWrap {
   display: flex;
+
   min-width: 0;
+
   align-items: center;
+
   gap: 10px;
-  color: var(--brand-dark);
+
+  color: var(--accent);
 }
 
 .inputWrap svg {
   flex: 0 0 auto;
+
+  color: var(--accent);
+
+  filter:
+    drop-shadow(
+      0 2px 6px
+      rgba(0, 0, 0, 0.15)
+    );
 }
+
+
+/* =========================================================
+   INPUTS / SELECT
+   ========================================================= */
 
 .inputWrap input,
 .inputWrap select {
   width: 100%;
+
   min-width: 0;
+
   height: 28px;
+
   padding: 0;
+
   overflow: hidden;
+
   border: 0;
+
   outline: 0;
-  color: var(--ink);
-  background: transparent;
+
+  color: #ffffff;
+
+  background:
+    transparent;
+
   font-size: 0.86rem;
   font-weight: 500;
+
   line-height: 1.2;
-  text-overflow: ellipsis;
+
+  text-overflow:
+    ellipsis;
+
+  text-shadow:
+    0 1px 10px
+      rgba(0, 0, 0, 0.16);
 }
 
 .inputWrap input::placeholder {
-  color: #8b867e;
+  color:
+    rgba(255, 255, 255, 0.58);
+
   opacity: 1;
 }
 
+
+/* =========================================================
+   SELECT
+   ========================================================= */
+
 .inputWrap select {
-  padding-right: 20px;
+  padding-right: 24px;
+
   appearance: none;
+
   cursor: pointer;
+
   background-image:
-    linear-gradient(45deg, transparent 50%, #777168 50%),
-    linear-gradient(135deg, #777168 50%, transparent 50%);
+    linear-gradient(
+      45deg,
+      transparent 50%,
+      rgba(255, 255, 255, 0.55) 50%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 50%
+    );
+
   background-position:
-    calc(100% - 8px) 11px,
-    calc(100% - 3px) 11px;
-  background-repeat: no-repeat;
-  background-size: 5px 5px;
+    calc(100% - 9px) 11px,
+    calc(100% - 4px) 11px;
+
+  background-repeat:
+    no-repeat;
+
+  background-size:
+    5px 5px;
 }
+
+
+/*
+ * Native Select-Dropdowns benötigen
+ * einen dunklen Hintergrund, damit weiße
+ * Schrift lesbar bleibt.
+ */
+.inputWrap select option {
+  color: #ffffff;
+
+  background:
+    var(--night-soft);
+}
+
+
+/* =========================================================
+   CURRENCY ICON
+   ========================================================= */
 
 .currency {
   display: grid;
+
   width: 19px;
   height: 19px;
+
   flex: 0 0 auto;
+
   place-items: center;
-  border: 1px solid currentColor;
-  border-radius: 50%;
+
+  border:
+    1px solid currentColor;
+
+  border-radius:
+    50%;
+
+  color:
+    var(--accent);
+
+  background:
+    rgba(210, 176, 142, 0.08);
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.1);
+
   font-size: 0.6rem;
   font-weight: 800;
 }
 
-/* Suchbutton */
+
+/* =========================================================
+   SEARCH BUTTON
+   ========================================================= */
 
 .submit {
+  position: relative;
+
   display: inline-flex;
+
   min-width: 155px;
   min-height: 90px;
+
   align-items: center;
   justify-content: center;
+
   gap: 10px;
+
   padding-inline: 28px;
+
   border: 0;
-  color: #171914;
-  background: var(--accent);
+
+  border-left:
+    1px solid rgba(255, 255, 255, 0.14);
+
+  color: var(--night);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(238, 210, 181, 0.96),
+      rgba(210, 176, 142, 0.9)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.52);
+
   font-size: 0.7rem;
   font-weight: 800;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+
+  letter-spacing:
+    0.09em;
+
+  text-transform:
+    uppercase;
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md));
+
+  backdrop-filter:
+    blur(var(--glass-blur-md));
+
   transition:
     color 180ms ease,
     background 180ms ease,
+    box-shadow 180ms ease,
     transform 180ms ease;
 }
 
+.submit svg {
+  flex: 0 0 auto;
+}
+
 .submit:hover {
-  color: #ffffff;
-  background: var(--brand-dark);
+  color: var(--night);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #e8c8a7
+    );
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.72),
+    -10px 0 35px
+      rgba(0, 0, 0, 0.08);
 }
 
 .submit:active {
-  transform: scale(0.985);
+  transform:
+    scale(0.985);
 }
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
 
 .submit:focus-visible,
 .tabs button:focus-visible,
 .quickLinks button:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: -4px;
+  outline:
+    2px solid var(--accent);
+
+  outline-offset:
+    -4px;
 }
 
-/* Beliebte Ziele und Status */
 
+/* =========================================================
+   META ROW
+   ========================================================= */
+
+/*
+ * Auch dieser Bereich liegt innerhalb
+ * derselben Glass-Fläche.
+ */
 .metaRow {
+  position: relative;
+  z-index: 1;
+
   display: flex;
-  min-height: 44px;
+
+  min-height: 48px;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 20px;
-  padding-top: 11px;
+
+  padding:
+    9px
+    clamp(20px, 2.2vw, 30px)
+    10px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  background:
+    rgba(255, 255, 255, 0.018);
 }
 
 .metaRow p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.68);
+
+  color:
+    rgba(255, 255, 255, 0.58);
+
   font-size: 0.68rem;
+
   line-height: 1.5;
+
   text-align: right;
 }
 
+
+/* =========================================================
+   QUICK LINKS
+   ========================================================= */
+
 .quickLinks {
   display: flex;
+
   min-width: 0;
+
   align-items: center;
+
   flex-wrap: wrap;
-  gap: 9px 15px;
-  color: rgba(255, 255, 255, 0.48);
-  font-size: 0.67rem;
+
+  gap:
+    9px
+    15px;
+
+  color:
+    rgba(255, 255, 255, 0.42);
+
+  font-size:
+    0.67rem;
 }
 
 .quickLinks > span {
-  color: rgba(255, 255, 255, 0.5);
+  color:
+    rgba(255, 255, 255, 0.46);
 }
 
 .quickLinks button {
-  padding: 0 0 3px;
+  position: relative;
+
+  padding:
+    0
+    0
+    3px;
+
   border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  color: rgba(255, 255, 255, 0.78);
-  background: transparent;
-  font-size: inherit;
+
+  border-bottom:
+    1px solid
+      rgba(255, 255, 255, 0.24);
+
+  color:
+    rgba(255, 255, 255, 0.76);
+
+  background:
+    transparent;
+
+  font-size:
+    inherit;
+
   transition:
     color 180ms ease,
     border-color 180ms ease;
 }
 
 .quickLinks button:hover {
-  border-color: var(--accent);
-  color: #ffffff;
+  border-color:
+    var(--accent);
+
+  color:
+    #ffffff;
 }
 
-/* Kleine Desktop- und Tabletansicht */
+
+/* =========================================================
+   SMALL DESKTOP
+   ========================================================= */
 
 @media (max-width: 1050px) {
   .form {
-    grid-template-columns: minmax(220px, 1.25fr) 1fr 0.9fr 140px;
+    grid-template-columns:
+      minmax(220px, 1.25fr)
+      1fr
+      0.9fr
+      140px;
   }
 
   .field {
-    padding-inline: 18px;
+    padding-inline:
+      18px;
   }
 
   .submit {
-    min-width: 140px;
-    padding-inline: 20px;
+    min-width:
+      140px;
+
+    padding-inline:
+      20px;
   }
 }
 
-/* Tablet */
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 860px) {
   .wrapper {
     width: 100%;
+
+    border-radius:
+      var(--glass-radius-md);
   }
 
   .form {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
   }
 
   .field {
     min-height: 76px;
-    border-bottom: 1px solid rgba(23, 23, 19, 0.13);
+
+    border-bottom:
+      1px solid rgba(255, 255, 255, 0.1);
   }
 
   .field:nth-child(2) {
@@ -309,38 +756,109 @@
   .submit {
     min-width: 0;
     min-height: 76px;
+
+    border-left:
+      1px solid rgba(255, 255, 255, 0.12);
   }
 
   .metaRow {
-    align-items: flex-start;
+    align-items:
+      flex-start;
   }
 }
 
-/* Handy */
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 620px) {
+  .wrapper {
+    border-radius:
+      16px;
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.13),
+        rgba(255, 255, 255, 0.035)
+      ),
+      rgba(12, 15, 11, 0.5);
+
+    box-shadow:
+      inset 0 1px 0
+        rgba(255, 255, 255, 0.16),
+      0 20px 55px
+        rgba(0, 0, 0, 0.22);
+
+    -webkit-backdrop-filter:
+      blur(24px)
+      saturate(140%);
+
+    backdrop-filter:
+      blur(24px)
+      saturate(140%);
+  }
+
+
+  /* =======================================================
+     MOBILE TABS
+     ======================================================= */
+
   .tabs {
-    min-height: 42px;
+    min-height:
+      44px;
+
     gap: 24px;
-    padding-inline: 16px;
-    background: rgba(17, 19, 16, 0.78);
+
+    padding-inline:
+      16px;
+
+    border-bottom:
+      1px solid
+        rgba(255, 255, 255, 0.12);
+
+    background:
+      rgba(255, 255, 255, 0.025);
   }
 
   .tabs button {
-    font-size: 0.59rem;
-    letter-spacing: 0.09em;
+    font-size:
+      0.59rem;
+
+    letter-spacing:
+      0.09em;
   }
 
+
+  /* =======================================================
+     MOBILE FORM
+     ======================================================= */
+
   .form {
-    grid-template-columns: minmax(0, 1fr) 64px;
+    grid-template-columns:
+      minmax(0, 1fr)
+      64px;
+
     min-height: 68px;
+
     overflow: hidden;
+
+    background:
+      rgba(255, 255, 255, 0.025);
   }
 
   .field {
     min-height: 68px;
-    padding: 11px 15px;
+
+    padding:
+      11px
+      15px;
+
     border: 0;
+
+    background:
+      transparent;
   }
 
   .field:nth-child(2),
@@ -348,10 +866,21 @@
     display: none;
   }
 
+  .field:hover,
+  .field:focus-within {
+    background:
+      rgba(255, 255, 255, 0.055);
+  }
+
   .field > span:first-child {
-    margin-bottom: 5px;
-    font-size: 0.52rem;
-    letter-spacing: 0.12em;
+    margin-bottom:
+      5px;
+
+    font-size:
+      0.52rem;
+
+    letter-spacing:
+      0.12em;
   }
 
   .inputWrap {
@@ -365,15 +894,29 @@
 
   .inputWrap input {
     height: 25px;
-    font-size: 0.79rem;
+
+    font-size:
+      0.79rem;
   }
+
+
+  /* =======================================================
+     MOBILE SEARCH BUTTON
+     ======================================================= */
 
   .submit {
     width: 64px;
     min-width: 64px;
     min-height: 68px;
+
     padding: 0;
+
     gap: 0;
+
+    border-left:
+      1px solid
+        rgba(255, 255, 255, 0.12);
+
     font-size: 0;
   }
 
@@ -382,29 +925,43 @@
     height: 19px;
   }
 
+
+  /* =======================================================
+     MOBILE META
+     ======================================================= */
+
   .metaRow {
     display: none;
   }
 }
 
-/* Sehr kleine Handys */
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
 
 @media (max-width: 370px) {
   .tabs {
     gap: 19px;
-    padding-inline: 13px;
+
+    padding-inline:
+      13px;
   }
 
   .tabs button {
-    font-size: 0.56rem;
+    font-size:
+      0.56rem;
   }
 
   .form {
-    grid-template-columns: minmax(0, 1fr) 58px;
+    grid-template-columns:
+      minmax(0, 1fr)
+      58px;
   }
 
   .field {
-    padding-inline: 13px;
+    padding-inline:
+      13px;
   }
 
   .submit {
@@ -412,6 +969,27 @@
     min-width: 58px;
   }
 }
+
+
+/* =========================================================
+   BACKDROP FILTER FALLBACK
+   ========================================================= */
+
+@supports not (
+  (backdrop-filter: blur(1px))
+  or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .wrapper {
+    background:
+      rgba(20, 23, 18, 0.94);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .tabs button,

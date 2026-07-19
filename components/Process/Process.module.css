@@ -1,18 +1,56 @@
 .section {
   position: relative;
   overflow: hidden;
-  border-top: 1px solid var(--line);
-  background: var(--surface-strong);
+  isolation: isolate;
+  border-top: 1px solid rgba(255, 255, 255, 0.42);
+
+  background:
+    radial-gradient(
+      circle at 14% 18%,
+      rgba(210, 176, 142, 0.18),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 88% 78%,
+      rgba(167, 122, 79, 0.1),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #f7f4ee 0%,
+      #ece7de 52%,
+      #f4f0e9 100%
+    );
+}
+
+.section::before,
+.section::after {
+  position: absolute;
+  z-index: 0;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+  filter: blur(90px);
 }
 
 .section::before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: min(30vw, 460px);
-  height: 1px;
-  background: var(--brand-dark);
-  content: "";
+  top: -150px;
+  left: -140px;
+  background: rgba(210, 176, 142, 0.22);
+}
+
+.section::after {
+  right: -150px;
+  bottom: -170px;
+  background: rgba(167, 122, 79, 0.13);
+}
+
+.heading,
+.steps {
+  position: relative;
+  z-index: 1;
 }
 
 .heading {
@@ -21,24 +59,15 @@
   margin-bottom: clamp(56px, 7vw, 92px);
 }
 
+
 /* Prozessraster */
 
 .steps {
-  position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid var(--line-strong);
+  gap: clamp(14px, 1.5vw, 22px);
 }
 
-.steps::before {
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 25%;
-  height: 1px;
-  background: var(--brand-dark);
-  content: "";
-}
 
 /* Einzelner Schritt */
 
@@ -48,15 +77,38 @@
   min-height: 360px;
   flex-direction: column;
   padding: 30px clamp(22px, 2.5vw, 36px) 28px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: transparent;
-  transition: background 220ms ease;
+  overflow: hidden;
+
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--glass-radius-lg);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.22)
+    );
+
+  box-shadow:
+    var(--glass-highlight),
+    var(--glass-shadow-light);
+
+  backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(var(--glass-blur-md))
+    saturate(135%);
+
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
 }
 
-.steps > *:last-child .step {
-  border-right: 0;
-}
+
+/* Header */
 
 .stepHeader {
   display: flex;
@@ -78,14 +130,24 @@
   height: 42px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(23, 23, 19, 0.22);
+
+  border: 1px solid rgba(120, 83, 51, 0.24);
+  border-radius: 12px;
+
   color: var(--brand-dark);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.26);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
   transition:
     color 180ms ease,
     border-color 180ms ease,
     background 180ms ease;
 }
+
+
+/* Text */
 
 .copy {
   margin-top: auto;
@@ -110,33 +172,39 @@
   line-height: 1.72;
 }
 
-/* Fortschrittslinie unten */
+
+/* Fortschrittslinie */
 
 .progress {
   position: absolute;
-  right: 0;
-  bottom: -1px;
-  left: 0;
+  right: 24px;
+  bottom: 0;
+  left: 24px;
   height: 2px;
   overflow: hidden;
-  background: transparent;
+  border-radius: 999px;
 }
 
 .progress::after {
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   background: var(--brand-dark);
   content: "";
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Ruhiger Hover */
+
+/* Hover */
 
 @media (hover: hover) and (pointer: fine) {
   .step:hover {
-    background: rgba(255, 255, 255, 0.54);
+    border-color: rgba(255, 255, 255, 0.72);
+    box-shadow: var(--glass-shadow-medium);
+    transform: translateY(-4px);
   }
 
   .step:hover .icon {
@@ -150,19 +218,12 @@
   }
 }
 
+
 /* Tablet */
 
 @media (max-width: 1000px) {
   .steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .steps::before {
-    width: 50%;
-  }
-
-  .steps > *:nth-child(2n) .step {
-    border-right: 0;
   }
 
   .step {
@@ -178,7 +239,8 @@
   }
 }
 
-/* Handy */
+
+/* Mobile */
 
 @media (max-width: 650px) {
   .heading {
@@ -187,21 +249,13 @@
 
   .steps {
     grid-template-columns: 1fr;
-    border-top-color: var(--line);
-  }
-
-  .steps::before {
-    width: 100%;
-  }
-
-  .steps > * .step,
-  .steps > *:nth-child(2n) .step {
-    border-right: 0;
+    gap: 16px;
   }
 
   .step {
     min-height: 0;
-    padding: 24px 0 28px;
+    padding: 24px 20px 28px;
+    border-radius: var(--glass-radius-md);
   }
 
   .copy {
@@ -215,15 +269,16 @@
   .step p {
     max-width: 520px;
     margin-top: 16px;
-    font-size: 0.82rem;
   }
 
   .progress {
-    display: none;
+    right: 20px;
+    left: 20px;
   }
 }
 
-/* Kleine Handys */
+
+/* Small Mobile */
 
 @media (max-width: 390px) {
   .copy {
@@ -239,6 +294,9 @@
     font-size: 2.2rem;
   }
 }
+
+
+/* Reduced Motion */
 
 @media (prefers-reduced-motion: reduce) {
   .step,

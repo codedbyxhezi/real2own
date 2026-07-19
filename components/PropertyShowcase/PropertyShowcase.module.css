@@ -1,35 +1,116 @@
+/* =========================================================
+   REAL2OWN — GLASS PROPERTY SHOWCASE
+   ========================================================= */
+
 .section {
   position: relative;
   overflow: hidden;
-  border-top: 1px solid var(--line);
-  background: var(--surface-strong);
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(210, 176, 142, 0.16),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 88% 36%,
+      rgba(167, 122, 79, 0.1),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(248, 245, 239, 0.98) 0%,
+      rgba(239, 234, 225, 0.96) 52%,
+      rgba(245, 241, 234, 0.98) 100%
+    );
+}
+
+
+/* =========================================================
+   BLURRED BACKGROUND LIGHTS
+   ========================================================= */
+
+.section::before,
+.section::after {
+  position: absolute;
+  z-index: 0;
+
+  border-radius: 50%;
+
+  content: "";
+
+  pointer-events: none;
+
+  filter: blur(90px);
+
+  opacity: 0.9;
 }
 
 .section::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: min(28vw, 420px);
-  height: 1px;
-  background: var(--brand-dark);
-  content: "";
+  top: -170px;
+  left: -130px;
+
+  width: 480px;
+  height: 480px;
+
+  background:
+    rgba(210, 176, 142, 0.25);
 }
+
+.section::after {
+  right: -160px;
+  bottom: -180px;
+
+  width: 520px;
+  height: 520px;
+
+  background:
+    rgba(167, 122, 79, 0.16);
+}
+
+
+/* =========================================================
+   CONTENT CONTAINER
+   ========================================================= */
 
 .container {
   position: relative;
+  z-index: 1;
 }
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
 
 .heading {
-  margin-bottom: clamp(48px, 6vw, 82px);
+  position: relative;
+  z-index: 1;
+
+  margin-bottom:
+    clamp(48px, 6vw, 82px);
 }
 
-/* Immobilienraster */
+
+/* =========================================================
+   PROPERTY GRID
+   ========================================================= */
 
 .grid {
+  position: relative;
+  z-index: 1;
+
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: clamp(20px, 2.2vw, 34px);
-  row-gap: clamp(52px, 6vw, 86px);
+
+  grid-template-columns:
+    repeat(12, minmax(0, 1fr));
+
+  column-gap:
+    clamp(20px, 2.2vw, 34px);
+
+  row-gap:
+    clamp(52px, 6vw, 86px);
 }
 
 .grid > * {
@@ -37,49 +118,108 @@
   grid-column: span 4;
 }
 
-/* Link zu allen Immobilien */
+
+/* =========================================================
+   ALL PROPERTIES LINK — GLASS
+   ========================================================= */
 
 .allLink {
+  position: relative;
+  z-index: 1;
+
   display: inline-flex;
+
+  min-height: 48px;
+
   align-items: center;
+
   gap: 14px;
+
+  padding:
+    5px
+    6px
+    5px
+    17px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.58);
+
+  border-radius: 999px;
+
   color: var(--ink);
-  font-size: 0.68rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.48),
+      rgba(255, 255, 255, 0.22)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 12px 34px rgba(31, 29, 24, 0.08);
+
+  font-size: 0.66rem;
   font-weight: 800;
+
   letter-spacing: 0.09em;
+
   line-height: 1;
+
   white-space: nowrap;
+
   text-transform: uppercase;
-  transition: color 180ms ease;
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(135%);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(135%);
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 220ms ease;
 }
 
 .allLink > span:first-child {
   position: relative;
-  padding-bottom: 8px;
+
+  padding-bottom: 2px;
 }
 
-.allLink > span:first-child::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  background: var(--line-strong);
-  content: "";
-  transform-origin: left center;
-  transition:
-    background 180ms ease,
-    transform 220ms ease;
-}
+
+/* =========================================================
+   LINK ICON
+   ========================================================= */
 
 .linkIcon {
   display: grid;
+
   width: 38px;
   height: 38px;
+
   flex: 0 0 auto;
+
   place-items: center;
-  border: 1px solid var(--line-strong);
+
+  border:
+    1px solid rgba(120, 83, 51, 0.26);
+
   border-radius: 50%;
+
+  color: var(--brand-dark);
+
+  background:
+    rgba(255, 255, 255, 0.28);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.62);
+
   transition:
     color 180ms ease,
     border-color 180ms ease,
@@ -87,28 +227,60 @@
     transform 220ms ease;
 }
 
-.allLink:hover {
-  color: var(--brand-dark);
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .allLink:hover {
+    color: var(--brand-dark);
+
+    border-color:
+      rgba(210, 176, 142, 0.68);
+
+    background:
+      rgba(255, 255, 255, 0.58);
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      0 16px 40px rgba(31, 29, 24, 0.11);
+
+    transform:
+      translateY(-2px);
+  }
+
+  .allLink:hover .linkIcon {
+    border-color:
+      var(--brand-dark);
+
+    color: #ffffff;
+
+    background:
+      var(--brand-dark);
+
+    transform:
+      translateX(3px);
+  }
 }
 
-.allLink:hover > span:first-child::after {
-  background: var(--brand-dark);
-  transform: scaleX(0.65);
-}
 
-.allLink:hover .linkIcon {
-  border-color: var(--brand-dark);
-  color: #ffffff;
-  background: var(--brand-dark);
-  transform: translateX(3px);
-}
+/* =========================================================
+   FOCUS
+   ========================================================= */
 
 .allLink:focus-visible {
-  outline: 2px solid var(--brand-dark);
-  outline-offset: 6px;
+  outline:
+    2px solid var(--brand-dark);
+
+  outline-offset:
+    5px;
 }
 
-/* Kleinere Desktop- und Tabletansicht */
+
+/* =========================================================
+   SMALL DESKTOP / TABLET
+   ========================================================= */
 
 @media (max-width: 1100px) {
   .grid {
@@ -119,18 +291,72 @@
   .grid > * {
     grid-column: span 6;
   }
+
+  .section::before {
+    width: 380px;
+    height: 380px;
+  }
+
+  .section::after {
+    width: 420px;
+    height: 420px;
+  }
 }
 
-/* Handy */
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 680px) {
+  .section {
+    background:
+      radial-gradient(
+        circle at 8% 14%,
+        rgba(210, 176, 142, 0.19),
+        transparent 38%
+      ),
+      radial-gradient(
+        circle at 94% 72%,
+        rgba(167, 122, 79, 0.11),
+        transparent 36%
+      ),
+      linear-gradient(
+        180deg,
+        #f7f4ee 0%,
+        #eee8df 52%,
+        #f5f1ea 100%
+      );
+  }
+
+  .section::before {
+    top: -100px;
+    left: -140px;
+
+    width: 330px;
+    height: 330px;
+
+    filter: blur(70px);
+  }
+
+  .section::after {
+    right: -150px;
+    bottom: -100px;
+
+    width: 350px;
+    height: 350px;
+
+    filter: blur(75px);
+  }
+
   .heading {
     margin-bottom: 42px;
   }
 
   .grid {
     grid-template-columns: 1fr;
-    row-gap: 48px;
+
+    row-gap: 34px;
   }
 
   .grid > * {
@@ -138,8 +364,13 @@
   }
 
   .allLink {
-    gap: 11px;
-    font-size: 0.64rem;
+    min-height: 46px;
+
+    gap: 10px;
+
+    padding-left: 15px;
+
+    font-size: 0.61rem;
   }
 
   .linkIcon {
@@ -148,17 +379,40 @@
   }
 }
 
-/* Sehr kleine Handys */
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
 
 @media (max-width: 420px) {
   .grid {
-    row-gap: 42px;
+    row-gap: 30px;
   }
 }
 
+
+/* =========================================================
+   BACKDROP FILTER FALLBACK
+   ========================================================= */
+
+@supports not (
+  (backdrop-filter: blur(1px))
+  or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .allLink {
+    background:
+      rgba(250, 248, 243, 0.94);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
   .allLink,
-  .allLink > span:first-child::after,
   .linkIcon {
     transition: none;
   }
