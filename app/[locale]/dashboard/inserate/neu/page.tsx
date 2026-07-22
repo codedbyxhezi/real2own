@@ -1,22 +1,22 @@
 import { redirect } from "next/navigation";
 
-type InternationalPageProps = {
+type NewListingPageProps = {
   params: Promise<{
     locale: string;
   }>;
 };
 
-export default async function InternationalPage({
+export default async function NewListingPage({
   params,
-}: InternationalPageProps) {
+}: NewListingPageProps) {
   const { locale } = await params;
 
-  const prefix =
+  const localePrefix =
     locale === "de"
       ? ""
       : `/${locale}`;
 
   redirect(
-    `${prefix}/immobilien`
+    `${localePrefix}/dashboard`
   );
 }

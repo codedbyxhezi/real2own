@@ -1,21 +1,40 @@
 {
   "Header": {
-    "buy": "Kaufen",
-    "rent": "Mieten",
-    "land": "Grundstücke",
-    "developments": "Neubauprojekte",
-    "constructionPartners": "Baupartner",
-    "international": "International",
-    "login": "Anmelden",
-    "listProperty": "Inserieren",
-    "listPropertyLong": "Immobilie inserieren",
-    "openMenu": "Menü öffnen",
-    "closeMenu": "Menü schließen",
-    "mainNavigation": "Hauptnavigation",
-    "mobileNavigation": "Mobile Navigation",
-    "languageSelection": "Sprache auswählen",
-    "currentLanguage": "Aktuelle Sprache: {language}"
-  },
+  "mainNavigation": "Hauptnavigation",
+  "mobileNavigation": "Mobile Navigation",
+
+  "propertiesMenu": "Immobilien",
+  "offerMenu": "Vermarkten",
+  "partnersMenu": "Partner",
+  "companyMenu": "Unternehmen",
+
+  "buy": "Kaufen",
+  "rent": "Mieten",
+  "land": "Grundstücke",
+  "developments": "Neubauprojekte",
+  "international": "International",
+
+  "offerProperty": "Immobilie verkaufen",
+  "presentProject": "Projekt präsentieren",
+
+  "constructionPartners": "Baupartner finden",
+  "becomePartner": "Partner werden",
+
+  "about": "Über uns",
+  "contact": "Kontakt",
+
+  "login": "Anmelden",
+  "listProperty": "Inserieren",
+  "listPropertyLong": "Verkaufen oder vermieten",
+
+  "currentLanguage": "Aktuelle Sprache: {language}",
+  "languageSelection": "Sprache auswählen",
+  "closeMenu": "Menü schließen",
+  "openMenu": "Menü öffnen",
+
+  "sell": "Verkaufen",
+  "rentOut": "Vermieten"
+},
   "Footer": {
     "homeAria": "Real2Own Startseite",
     "statement": "Immobilien, Grundstücke und Projektpartner auf einer internationalen Plattform.",
@@ -45,7 +64,10 @@
     "platform": "Internationale Immobilienplattform",
     "legalAria": "Rechtliche Informationen",
     "privacy": "Datenschutz",
-    "cookies": "Cookie-Hinweise"
+    "cookies": "Cookie-Hinweise",
+    "allProperties": "Alle Immobilien",
+    "platformTitle": "Plattform",
+    "login": "Anmelden"
   },
   "Hero": {
   "eyebrow": "Internationale Immobilienplattform",
@@ -88,6 +110,56 @@
   "title": "Orte, die mehr aus deinem Leben machen.",
   "description": "Entdecke kuratierte Wohn- und Investmentobjekte – transparent aufbereitet, international vergleichbar und bereit für den nächsten Schritt.",
   "viewAll": "Alle Immobilien"
+},
+"PropertiesPage": {
+  "metadata": {
+    "title": "Immobilien entdecken | Real2Own",
+    "description": "Finden Sie Immobilien zum Kauf und zur Miete, Grundstücke und Neubauprojekte auf Real2Own."
+  },
+  "eyebrow": "Ausgewählte Immobilien",
+  "title": "Immobilien, die zu Ihrem Leben passen.",
+  "description": "Durchsuchen Sie ausgewählte Kauf- und Mietangebote, Grundstücke sowie Neubauprojekte an internationalen Standorten.",
+  "resultTitle": "Alle Immobilien"
+},
+"PropertyMarketplace": {
+  "categoryNavigation": "Angebotskategorien",
+  "categories": {
+    "all": "Alle",
+    "buy": "Kaufen",
+    "rent": "Mieten",
+    "land": "Grundstücke",
+    "development": "Neubau"
+  },
+  "locationLabel": "Ort",
+  "locationPlaceholder": "Stadt, Region oder Land",
+  "propertyTypeLabel": "Objektart",
+  "allPropertyTypes": "Alle Objektarten",
+  "maximumPriceLabel": "Maximalpreis",
+  "maximumPricePlaceholder": "Kein Limit",
+  "minimumRoomsLabel": "Zimmer",
+  "anyRooms": "Beliebig",
+  "roomOption": "Ab {count} Zimmer",
+  "search": "Immobilien suchen",
+  "resetFilters": "Filter zurücksetzen",
+  "resultCount": "{count, plural, =0 {Keine Immobilien} =1 {Eine Immobilie} other {# Immobilien}}",
+  "resultsEyebrow": "Aktuelle Auswahl",
+  "sortLabel": "Sortieren",
+  "sortOptions": {
+    "recommended": "Empfohlen",
+    "priceAscending": "Preis aufsteigend",
+    "priceDescending": "Preis absteigend",
+    "areaDescending": "Größte Fläche"
+  },
+  "facts": {
+    "type": "Objektart",
+    "area": "Fläche",
+    "rooms": "Zimmer"
+  },
+  "details": "Details",
+  "viewProperty": "{title} ansehen",
+  "loadMore": "Weitere Immobilien",
+  "emptyTitle": "Keine passenden Immobilien gefunden.",
+  "emptyDescription": "Ändern Sie Ihre Suchkriterien oder setzen Sie die Filter zurück."
 },
 "PropertyCard": {
   "imageAlt": "{title} in {location}",
@@ -363,18 +435,60 @@
     "title": "Keine passenden Angebote gefunden.",
     "description": "Ändere den Standort, den Preis oder die Objektart, um weitere Ergebnisse zu sehen.",
     "reset": "Alle Filter zurücksetzen"
-  }
+  },
+  "categoryLabel": "Kategorie",
+  "allCategories": "Alle Angebote",
+  "categories": {
+  "buy": "Kaufen",
+  "rent": "Mieten",
+  "land": "Grundstücke",
+  "development": "Neubau"
+}
 },
 "LoginForm": {
-  "emailLabel": "E-Mail-Adresse",
+  "usernameLabel": "Benutzername",
+  "usernamePlaceholder": "Benutzername eingeben",
   "passwordLabel": "Passwort",
-  "passwordPlaceholder": "Dein Passwort",
+  "passwordPlaceholder": "Passwort eingeben",
   "remember": "Angemeldet bleiben",
   "forgotPassword": "Passwort vergessen?",
-  "submit": "Anmeldung folgt",
-  "status": "Der sichere Kundenlogin wird zusammen mit dem Backend aktiviert.",
+  "submit": "Anmelden",
+  "submitting": "Anmeldung läuft …",
+  "demoHint": "Demo-Zugang: admin / 123456",
   "noAccount": "Noch kein Konto?",
-  "register": "Jetzt registrieren"
+  "register": "Konto erstellen",
+  "errors": {
+    "invalidCredentials": "Benutzername oder Passwort ist nicht korrekt.",
+    "configuration": "Der Demo-Zugang wurde noch nicht vollständig konfiguriert.",
+    "generic": "Die Anmeldung konnte nicht durchgeführt werden. Bitte erneut versuchen."
+  }
+},
+"Dashboard": {
+  "metadata": {
+    "title": "Dashboard | Real2Own",
+    "description": "Geschützter Demo-Kontobereich von Real2Own."
+  },
+  "demoBadge": "Demo-Konto",
+  "logout": "Abmelden",
+  "eyebrow": "Persönlicher Bereich",
+  "welcome": "Willkommen, {name}.",
+  "description": "Hier entsteht Ihr zentraler Bereich für Immobilien, Inserate und persönliche Kontoeinstellungen.",
+  "accountTitle": "Kontoinformationen",
+  "username": "Benutzername",
+  "role": "Rolle",
+  "roleValue": "Administrator",
+  "status": "Status",
+  "statusValue": "Demo aktiv",
+  "listingsTitle": "Ihre Inserate",
+  "listingsText": "Aktuell wurden noch keine Immobilien eingestellt.",
+  "newListing": "Neues Inserat",
+  "newListingHint": "Der Inseratsassistent wird im nächsten Schritt verbunden.",
+  "navigationEyebrow": "Navigation",
+  "quickActions": "Schnellzugriff",
+  "browseProperties": "Immobilien ansehen",
+  "contact": "Kontakt",
+  "homepage": "Zur Startseite",
+  "demoNotice": "Dieses Demo-Konto enthält keine echten Kunden- oder Immobiliendaten."
 },
 "ListingPage": {
   "ctaAria": "Persönliche Immobiliensuche",
@@ -1363,5 +1477,14 @@
     "moreInformation": "Bitte senden Sie mir weitere Informationen.",
     "closing": "Freundliche Grüße"
   }
-}
+},
+"propertiesMenu": "Immobilien",
+"offerMenu": "Anbieten",
+"partnersMenu": "Partner",
+"companyMenu": "Unternehmen",
+"offerProperty": "Immobilie anbieten",
+"presentProject": "Projekt präsentieren",
+"becomePartner": "Partner werden",
+"about": "Über uns",
+"contact": "Kontakt"
 }

@@ -1,21 +1,39 @@
 {
   "Header": {
-    "buy": "Buy",
-    "rent": "Rent",
-    "land": "Land",
-    "developments": "New developments",
-    "constructionPartners": "Building partners",
-    "international": "International",
-    "login": "Sign in",
-    "listProperty": "List property",
-    "listPropertyLong": "List your property",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "mainNavigation": "Main navigation",
-    "mobileNavigation": "Mobile navigation",
-    "languageSelection": "Select language",
-    "currentLanguage": "Current language: {language}"
-  },
+  "mainNavigation": "Main navigation",
+  "mobileNavigation": "Mobile navigation",
+
+  "propertiesMenu": "Properties",
+  "offerMenu": "Market",
+  "partnersMenu": "Partners",
+  "companyMenu": "Company",
+
+  "buy": "Buy",
+  "sell": "Sell",
+  "rent": "Rent",
+  "rentOut": "Rent out",
+  "land": "Land",
+  "developments": "New developments",
+  "international": "International",
+
+  "offerProperty": "Sell a property",
+  "presentProject": "Present a project",
+
+  "constructionPartners": "Find building partners",
+  "becomePartner": "Become a partner",
+
+  "about": "About us",
+  "contact": "Contact",
+
+  "login": "Sign in",
+  "listProperty": "List property",
+  "listPropertyLong": "Sell or rent out",
+
+  "currentLanguage": "Current language: {language}",
+  "languageSelection": "Select language",
+  "closeMenu": "Close menu",
+  "openMenu": "Open menu"
+},
   "Footer": {
     "homeAria": "Real2Own home page",
     "statement": "Real estate, land and project partners on one international platform.",
@@ -45,7 +63,10 @@
     "platform": "International Real Estate Platform",
     "legalAria": "Legal information",
     "privacy": "Privacy policy",
-    "cookies": "Cookie information"
+    "cookies": "Cookie information",
+    "allProperties": "All properties",
+    "platformTitle": "Platform",
+    "login": "Sign in"
   },
   "Hero": {
   "eyebrow": "International real estate platform",
@@ -88,6 +109,56 @@
   "title": "Places that add more to your life.",
   "description": "Discover curated residential and investment properties – presented transparently, internationally comparable and ready for your next step.",
   "viewAll": "View all properties"
+},
+"PropertiesPage": {
+  "metadata": {
+    "title": "Discover properties | Real2Own",
+    "description": "Find properties for sale and rent, land and new developments on Real2Own."
+  },
+  "eyebrow": "Selected properties",
+  "title": "Properties designed around your life.",
+  "description": "Explore selected homes for sale and rent, plots of land and new developments in international locations.",
+  "resultTitle": "All properties"
+},
+"PropertyMarketplace": {
+  "categoryNavigation": "Listing categories",
+  "categories": {
+    "all": "All",
+    "buy": "Buy",
+    "rent": "Rent",
+    "land": "Land",
+    "development": "New developments"
+  },
+  "locationLabel": "Location",
+  "locationPlaceholder": "City, region or country",
+  "propertyTypeLabel": "Property type",
+  "allPropertyTypes": "All property types",
+  "maximumPriceLabel": "Maximum price",
+  "maximumPricePlaceholder": "No limit",
+  "minimumRoomsLabel": "Rooms",
+  "anyRooms": "Any",
+  "roomOption": "{count}+ rooms",
+  "search": "Search properties",
+  "resetFilters": "Reset filters",
+  "resultCount": "{count, plural, =0 {No properties} =1 {One property} other {# properties}}",
+  "resultsEyebrow": "Current selection",
+  "sortLabel": "Sort by",
+  "sortOptions": {
+    "recommended": "Recommended",
+    "priceAscending": "Lowest price",
+    "priceDescending": "Highest price",
+    "areaDescending": "Largest area"
+  },
+  "facts": {
+    "type": "Property type",
+    "area": "Area",
+    "rooms": "Rooms"
+  },
+  "details": "Details",
+  "viewProperty": "View {title}",
+  "loadMore": "More properties",
+  "emptyTitle": "No matching properties found.",
+  "emptyDescription": "Change your search criteria or reset the filters."
 },
 "PropertyCard": {
   "imageAlt": "{title} in {location}",
@@ -331,6 +402,14 @@
   "status": "Secure password reset emails will be enabled once the backend is connected."
 },
 "ListingExplorer": {
+  "categoryLabel": "Category",
+  "allCategories": "All listings",
+  "categories": {
+    "buy": "For sale",
+    "rent": "For rent",
+    "land": "Land",
+    "development": "New developments"
+  },
   "filterAria": "Filter properties",
   "locationLabel": "Location",
   "locationPlaceholder": "City, region or country",
@@ -366,15 +445,49 @@
   }
 },
 "LoginForm": {
-  "emailLabel": "Email address",
+  "usernameLabel": "Username",
+  "usernamePlaceholder": "Enter username",
   "passwordLabel": "Password",
-  "passwordPlaceholder": "Your password",
+  "passwordPlaceholder": "Enter password",
   "remember": "Keep me signed in",
-  "forgotPassword": "Forgot your password?",
-  "submit": "Sign-in coming soon",
-  "status": "Secure customer sign-in will be enabled once the backend is connected.",
-  "noAccount": "Don't have an account yet?",
-  "register": "Create an account"
+  "forgotPassword": "Forgot password?",
+  "submit": "Sign in",
+  "submitting": "Signing in …",
+  "demoHint": "Demo access: admin / 123456",
+  "noAccount": "No account yet?",
+  "register": "Create account",
+  "errors": {
+    "invalidCredentials": "The username or password is incorrect.",
+    "configuration": "The demo access has not been fully configured.",
+    "generic": "Sign-in could not be completed. Please try again."
+  }
+},
+"Dashboard": {
+  "metadata": {
+    "title": "Dashboard | Real2Own",
+    "description": "Protected Real2Own demo account area."
+  },
+  "demoBadge": "Demo account",
+  "logout": "Sign out",
+  "eyebrow": "Personal area",
+  "welcome": "Welcome, {name}.",
+  "description": "This is becoming your central area for properties, listings and personal account settings.",
+  "accountTitle": "Account information",
+  "username": "Username",
+  "role": "Role",
+  "roleValue": "Administrator",
+  "status": "Status",
+  "statusValue": "Demo active",
+  "listingsTitle": "Your listings",
+  "listingsText": "No properties have been listed yet.",
+  "newListing": "New listing",
+  "newListingHint": "The listing assistant will be connected in the next step.",
+  "navigationEyebrow": "Navigation",
+  "quickActions": "Quick access",
+  "browseProperties": "Browse properties",
+  "contact": "Contact",
+  "homepage": "Go to homepage",
+  "demoNotice": "This demo account contains no real customer or property data."
 },
 "ListingPage": {
   "ctaAria": "Personal property search",
@@ -1363,5 +1476,14 @@
     "moreInformation": "Please send me further information.",
     "closing": "Kind regards"
   }
-}
+},
+"propertiesMenu": "Properties",
+"offerMenu": "List",
+"partnersMenu": "Partners",
+"companyMenu": "Company",
+"offerProperty": "List a property",
+"presentProject": "Present a project",
+"becomePartner": "Become a partner",
+"about": "About us",
+"contact": "Contact"
 }

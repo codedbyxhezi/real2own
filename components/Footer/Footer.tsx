@@ -9,41 +9,37 @@ const navigation = [
     titleKey: "propertiesTitle",
     links: [
       {
+        labelKey: "allProperties",
+        href: "/immobilien",
+      },
+      {
         labelKey: "buyProperties",
-        href: "/immobilien/kaufen",
+        href: "/immobilien?category=buy",
       },
       {
         labelKey: "rentProperties",
-        href: "/immobilien/mieten",
+        href: "/immobilien?category=rent",
       },
       {
         labelKey: "land",
-        href: "/grundstuecke",
+        href: "/immobilien?category=land",
       },
       {
         labelKey: "developments",
-        href: "/neubauprojekte",
+        href: "/immobilien?category=development",
       },
     ],
   },
   {
-    titleKey: "ownersPartnersTitle",
+    titleKey: "platformTitle",
     links: [
-      {
-        labelKey: "offerProperty",
-        href: "/immobilie-anbieten",
-      },
       {
         labelKey: "findBuildingPartners",
         href: "/baupartner",
       },
       {
-        labelKey: "presentProject",
-        href: "/projekt-praesentieren",
-      },
-      {
-        labelKey: "becomePartner",
-        href: "/partner-werden",
+        labelKey: "login",
+        href: "/anmelden",
       },
     ],
   },
@@ -53,10 +49,6 @@ const navigation = [
       {
         labelKey: "about",
         href: "/ueber-uns",
-      },
-      {
-        labelKey: "internationalMarkets",
-        href: "/international",
       },
       {
         labelKey: "contact",
@@ -156,9 +148,7 @@ export function Footer() {
                 className={styles.column}
                 key={column.titleKey}
               >
-                <h3>
-                  {t(column.titleKey)}
-                </h3>
+                <h3>{t(column.titleKey)}</h3>
 
                 <div className={styles.links}>
                   {column.links.map((link) => (

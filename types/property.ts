@@ -1,3 +1,9 @@
+export type ListingCategoryKey =
+  | "buy"
+  | "rent"
+  | "land"
+  | "development";
+
 export type ListingProperty = {
   id: number;
   title: string;
@@ -8,4 +14,5 @@ export type ListingProperty = {
   rooms: string;
   image: string;
   label?: string;
+  categoryKey?: ListingCategoryKey;
 };

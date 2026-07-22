@@ -855,6 +855,17 @@
   }
 }
 
+@media (min-width: 1021px) {
+  .searchGrid {
+    grid-template-columns:
+      minmax(210px, 1.25fr)
+      repeat(
+        4,
+        minmax(130px, 0.72fr)
+      );
+  }
+}
+
 
 /* MOBILE */
 

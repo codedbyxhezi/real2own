@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { redirect } from "next/navigation";
+import {
+  getTranslations,
+} from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LoginForm } from "@/components/LoginForm/LoginForm";
+import { getDemoSession } from "@/lib/demoAuth";
 import styles from "./Anmelden.module.css";
 
 type AnmeldenPageProps = {
   params: Promise<{
     locale: string;
+  }>;
+
+  searchParams: Promise<{
+    returnTo?:
+      | string
+      | string[];
   }>;
 };
 
@@ -23,12 +33,53 @@ export async function generateMetadata({
 
   return {
     title: t("metadata.title"),
-    description: t("metadata.description"),
+    description: t(
+      "metadata.description"
+    ),
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }
 
-export default async function AnmeldenPage() {
-  const t = await getTranslations("LoginPage");
+export default async function AnmeldenPage({
+  params,
+  searchParams,
+}: AnmeldenPageProps) {
+  const [
+    { locale },
+    query,
+    session,
+  ] = await Promise.all([
+    params,
+    searchParams,
+    getDemoSession(),
+  ]);
+
+  const localePrefix =
+    locale === "de"
+      ? ""
+      : `/${locale}`;
+
+  if (session) {
+    redirect(
+      `${localePrefix}/dashboard`
+    );
+  }
+
+  const t = await getTranslations({
+    locale,
+    namespace: "LoginPage",
+  });
+
+  const rawReturnTo =
+    query.returnTo;
+
+  const returnTo =
+    Array.isArray(rawReturnTo)
+      ? rawReturnTo[0]
+      : rawReturnTo;
 
   return (
     <main className={styles.page}>
@@ -38,11 +89,15 @@ export default async function AnmeldenPage() {
         fill
         priority
         sizes="100vw"
-        className={styles.backgroundImage}
+        className={
+          styles.backgroundImage
+        }
       />
 
       <div
-        className={styles.backgroundOverlay}
+        className={
+          styles.backgroundOverlay
+        }
         aria-hidden="true"
       />
 
@@ -51,7 +106,10 @@ export default async function AnmeldenPage() {
         href="/"
         aria-label={t("backAria")}
       >
-        <span aria-hidden="true">←</span>
+        <span aria-hidden="true">
+          ←
+        </span>
+
         {t("back")}
       </Link>
 
@@ -73,8 +131,16 @@ export default async function AnmeldenPage() {
           />
         </Link>
 
-        <div className={styles.heading}>
-          <p className={styles.eyebrow}>
+        <div
+          className={
+            styles.heading
+          }
+        >
+          <p
+            className={
+              styles.eyebrow
+            }
+          >
             {t("eyebrow")}
           </p>
 
@@ -87,9 +153,13 @@ export default async function AnmeldenPage() {
           </p>
         </div>
 
-        <LoginForm />
+        <LoginForm
+          returnTo={returnTo}
+        />
 
-        <p className={styles.legal}>
+        <p
+          className={styles.legal}
+        >
           {t("legalBefore")}{" "}
 
           <Link href="/datenschutz">
@@ -100,8 +170,13 @@ export default async function AnmeldenPage() {
         </p>
       </section>
 
-      <span className={styles.copyright}>
-        © {new Date().getFullYear()} Real2Own
+      <span
+        className={
+          styles.copyright
+        }
+      >
+        © {new Date().getFullYear()}{" "}
+        Real2Own
       </span>
     </main>
   );

@@ -18,11 +18,27 @@ const tabs = [
 
 type Tab = (typeof tabs)[number];
 
-const tabRoutes: Record<Tab, string> = {
-  buy: "/immobilien/kaufen",
-  rent: "/immobilien/mieten",
-  land: "/grundstuecke",
-  build: "/neubauprojekte",
+type PropertyType =
+  | "all"
+  | "house"
+  | "apartment"
+  | "land"
+  | "commercial";
+
+type MaximumPrice =
+  | "any"
+  | "250000"
+  | "500000"
+  | "1000000";
+
+const tabCategories: Record<
+  Tab,
+  "buy" | "rent" | "land" | "development"
+> = {
+  buy: "buy",
+  rent: "rent",
+  land: "land",
+  build: "development",
 };
 
 const popularLocations = [
@@ -42,25 +58,46 @@ export function SearchPanel() {
   const [location, setLocation] =
     useState("");
 
+  const [
+    propertyType,
+    setPropertyType,
+  ] = useState<PropertyType>("all");
+
+  const [
+    maximumPrice,
+    setMaximumPrice,
+  ] = useState<MaximumPrice>("any");
+
+  function handleTabChange(
+    tab: Tab
+  ) {
+    setActiveTab(tab);
+
+    if (tab === "land") {
+      setPropertyType("land");
+      return;
+    }
+
+    if (
+      activeTab === "land" &&
+      propertyType === "land"
+    ) {
+      setPropertyType("all");
+    }
+  }
+
   function handleSubmit(
     event: FormEvent<HTMLFormElement>
   ) {
     event.preventDefault();
 
-    const formData = new FormData(
-      event.currentTarget
-    );
-
-    const type = String(
-      formData.get("type") ?? ""
-    );
-
-    const budget = String(
-      formData.get("budget") ?? ""
-    );
-
     const searchParams =
       new URLSearchParams();
+
+    searchParams.set(
+      "category",
+      tabCategories[activeTab]
+    );
 
     if (location.trim()) {
       searchParams.set(
@@ -69,25 +106,26 @@ export function SearchPanel() {
       );
     }
 
-    if (type && type !== "all") {
-      searchParams.set("type", type);
+    if (propertyType !== "all") {
+      searchParams.set(
+        "type",
+        propertyType
+      );
     }
 
-    if (budget && budget !== "any") {
+    if (maximumPrice !== "any") {
       searchParams.set(
-        "budget",
-        budget
+        "maxPrice",
+        maximumPrice
       );
     }
 
     const query =
       searchParams.toString();
 
-    const destination = `${
-      tabRoutes[activeTab]
-    }${query ? `?${query}` : ""}`;
-
-    router.push(destination);
+    router.push(
+      `/immobilien?${query}`
+    );
   }
 
   return (
@@ -97,26 +135,29 @@ export function SearchPanel() {
         role="tablist"
         aria-label={t("tabsAria")}
       >
-        {tabs.map((tab) => (
-          <button
-            className={
-              activeTab === tab
-                ? styles.activeTab
-                : ""
-            }
-            key={tab}
-            type="button"
-            role="tab"
-            aria-selected={
-              activeTab === tab
-            }
-            onClick={() =>
-              setActiveTab(tab)
-            }
-          >
-            {t(`tabs.${tab}`)}
-          </button>
-        ))}
+        {tabs.map((tab) => {
+          const active =
+            activeTab === tab;
+
+          return (
+            <button
+              className={
+                active
+                  ? styles.activeTab
+                  : ""
+              }
+              key={tab}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() =>
+                handleTabChange(tab)
+              }
+            >
+              {t(`tabs.${tab}`)}
+            </button>
+          );
+        })}
       </div>
 
       <form
@@ -137,7 +178,8 @@ export function SearchPanel() {
             />
 
             <input
-              name="property-location"
+              name="location"
+              type="search"
               value={location}
               placeholder={t(
                 "locationPlaceholder"
@@ -170,7 +212,13 @@ export function SearchPanel() {
 
             <select
               name="type"
-              defaultValue="all"
+              value={propertyType}
+              onChange={(event) =>
+                setPropertyType(
+                  event.target
+                    .value as PropertyType
+                )
+              }
             >
               <option value="all">
                 {t(
@@ -215,35 +263,40 @@ export function SearchPanel() {
           >
             <span
               className={styles.currency}
+              aria-hidden="true"
             >
               €
             </span>
 
             <select
-              name="budget"
-              defaultValue="any"
+              name="maxPrice"
+              value={maximumPrice}
+              onChange={(event) =>
+                setMaximumPrice(
+                  event.target
+                    .value as MaximumPrice
+                )
+              }
             >
               <option value="any">
                 {t("budgets.any")}
               </option>
 
               <option value="250000">
-                {t("budgets.upTo250")}
+                {t(
+                  "budgets.upTo250"
+                )}
               </option>
 
               <option value="500000">
-                {t("budgets.upTo500")}
+                {t(
+                  "budgets.upTo500"
+                )}
               </option>
 
               <option value="1000000">
                 {t(
                   "budgets.upToMillion"
-                )}
-              </option>
-
-              <option value="luxury">
-                {t(
-                  "budgets.fromMillion"
                 )}
               </option>
             </select>

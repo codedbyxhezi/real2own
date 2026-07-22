@@ -1,21 +1,39 @@
 {
   "Header": {
-    "buy": "Comprar",
-    "rent": "Alquilar",
-    "land": "Terrenos",
-    "developments": "Obra nueva",
-    "constructionPartners": "Socios de construcción",
-    "international": "Internacional",
-    "login": "Iniciar sesión",
-    "listProperty": "Publicar",
-    "listPropertyLong": "Publicar inmueble",
-    "openMenu": "Abrir menú",
-    "closeMenu": "Cerrar menú",
-    "mainNavigation": "Navegación principal",
-    "mobileNavigation": "Navegación móvil",
-    "languageSelection": "Seleccionar idioma",
-    "currentLanguage": "Idioma actual: {language}"
-  },
+  "mainNavigation": "Navegación principal",
+  "mobileNavigation": "Navegación móvil",
+
+  "propertiesMenu": "Inmuebles",
+  "offerMenu": "Comercializar",
+  "partnersMenu": "Socios",
+  "companyMenu": "Empresa",
+
+  "buy": "Comprar",
+  "sell": "Vender",
+  "rent": "Alquilar",
+  "rentOut": "Alquilar",
+  "land": "Terrenos",
+  "developments": "Obra nueva",
+  "international": "Internacional",
+
+  "offerProperty": "Vender inmueble",
+  "presentProject": "Presentar proyecto",
+
+  "constructionPartners": "Socios de construcción",
+  "becomePartner": "Hacerse socio",
+
+  "about": "Sobre nosotros",
+  "contact": "Contacto",
+
+  "login": "Iniciar sesión",
+  "listProperty": "Publicar",
+  "listPropertyLong": "Vender o alquilar",
+
+  "currentLanguage": "Idioma actual: {language}",
+  "languageSelection": "Seleccionar idioma",
+  "closeMenu": "Cerrar menú",
+  "openMenu": "Abrir menú"
+},
   "Footer": {
     "homeAria": "Página de inicio de Real2Own",
     "statement": "Inmuebles, terrenos y socios de proyectos en una plataforma internacional.",
@@ -45,7 +63,10 @@
     "platform": "Plataforma inmobiliaria internacional",
     "legalAria": "Información legal",
     "privacy": "Política de privacidad",
-    "cookies": "Información sobre cookies"
+    "cookies": "Información sobre cookies",
+    "allProperties": "Todos los inmuebles",
+    "platformTitle": "Plataforma",
+    "login": "Iniciar sesión"
   },
   "Hero": {
   "eyebrow": "Plataforma inmobiliaria internacional",
@@ -81,6 +102,56 @@
   },
   "search": "Buscar",
   "popular": "Popular:"
+},
+"PropertiesPage": {
+  "metadata": {
+    "title": "Descubrir inmuebles | Real2Own",
+    "description": "Encuentre inmuebles en venta y alquiler, terrenos y promociones de obra nueva en Real2Own."
+  },
+  "eyebrow": "Inmuebles seleccionados",
+  "title": "Inmuebles que se adaptan a su vida.",
+  "description": "Explore viviendas seleccionadas en venta y alquiler, terrenos y promociones de obra nueva en ubicaciones internacionales.",
+  "resultTitle": "Todos los inmuebles"
+},
+"PropertyMarketplace": {
+  "categoryNavigation": "Categorías de inmuebles",
+  "categories": {
+    "all": "Todos",
+    "buy": "Comprar",
+    "rent": "Alquilar",
+    "land": "Terrenos",
+    "development": "Obra nueva"
+  },
+  "locationLabel": "Ubicación",
+  "locationPlaceholder": "Ciudad, región o país",
+  "propertyTypeLabel": "Tipo de inmueble",
+  "allPropertyTypes": "Todos los tipos",
+  "maximumPriceLabel": "Precio máximo",
+  "maximumPricePlaceholder": "Sin límite",
+  "minimumRoomsLabel": "Habitaciones",
+  "anyRooms": "Cualquiera",
+  "roomOption": "Desde {count} habitaciones",
+  "search": "Buscar inmuebles",
+  "resetFilters": "Restablecer filtros",
+  "resultCount": "{count, plural, =0 {Ningún inmueble} =1 {Un inmueble} other {# inmuebles}}",
+  "resultsEyebrow": "Selección actual",
+  "sortLabel": "Ordenar",
+  "sortOptions": {
+    "recommended": "Recomendados",
+    "priceAscending": "Precio más bajo",
+    "priceDescending": "Precio más alto",
+    "areaDescending": "Mayor superficie"
+  },
+  "facts": {
+    "type": "Tipo",
+    "area": "Superficie",
+    "rooms": "Habitaciones"
+  },
+  "details": "Detalles",
+  "viewProperty": "Ver {title}",
+  "loadMore": "Más inmuebles",
+  "emptyTitle": "No se encontraron inmuebles.",
+  "emptyDescription": "Modifique los criterios de búsqueda o restablezca los filtros."
 },
 "PropertyShowcase": {
   "ariaLabel": "Inmuebles seleccionados",
@@ -331,6 +402,14 @@
   "status": "El envío seguro del enlace de restablecimiento se activará cuando el backend esté conectado."
 },
 "ListingExplorer": {
+  "categoryLabel": "Categoría",
+  "allCategories": "Todas las ofertas",
+  "categories": {
+    "buy": "Comprar",
+    "rent": "Alquilar",
+    "land": "Terrenos",
+    "development": "Obra nueva"
+  },
   "filterAria": "Filtrar inmuebles",
   "locationLabel": "Ubicación",
   "locationPlaceholder": "Ciudad, región o país",
@@ -366,15 +445,49 @@
   }
 },
 "LoginForm": {
-  "emailLabel": "Correo electrónico",
+  "usernameLabel": "Nombre de usuario",
+  "usernamePlaceholder": "Introducir nombre de usuario",
   "passwordLabel": "Contraseña",
-  "passwordPlaceholder": "Tu contraseña",
+  "passwordPlaceholder": "Introducir contraseña",
   "remember": "Mantener la sesión iniciada",
-  "forgotPassword": "¿Has olvidado tu contraseña?",
-  "submit": "Inicio de sesión disponible próximamente",
-  "status": "El acceso seguro para clientes se activará cuando el backend esté conectado.",
-  "noAccount": "¿Aún no tienes una cuenta?",
-  "register": "Crear una cuenta"
+  "forgotPassword": "¿Ha olvidado la contraseña?",
+  "submit": "Iniciar sesión",
+  "submitting": "Iniciando sesión …",
+  "demoHint": "Acceso demo: admin / 123456",
+  "noAccount": "¿Aún no tiene cuenta?",
+  "register": "Crear cuenta",
+  "errors": {
+    "invalidCredentials": "El nombre de usuario o la contraseña no son correctos.",
+    "configuration": "El acceso demo todavía no está configurado completamente.",
+    "generic": "No se pudo iniciar sesión. Inténtelo de nuevo."
+  }
+},
+"Dashboard": {
+  "metadata": {
+    "title": "Panel | Real2Own",
+    "description": "Área protegida de la cuenta demo de Real2Own."
+  },
+  "demoBadge": "Cuenta demo",
+  "logout": "Cerrar sesión",
+  "eyebrow": "Área personal",
+  "welcome": "Bienvenido, {name}.",
+  "description": "Aquí se está creando su área central para inmuebles, anuncios y ajustes personales.",
+  "accountTitle": "Información de la cuenta",
+  "username": "Nombre de usuario",
+  "role": "Rol",
+  "roleValue": "Administrador",
+  "status": "Estado",
+  "statusValue": "Demo activa",
+  "listingsTitle": "Sus anuncios",
+  "listingsText": "Todavía no se ha publicado ningún inmueble.",
+  "newListing": "Nuevo anuncio",
+  "newListingHint": "El asistente de publicación se conectará en el siguiente paso.",
+  "navigationEyebrow": "Navegación",
+  "quickActions": "Acceso rápido",
+  "browseProperties": "Ver inmuebles",
+  "contact": "Contacto",
+  "homepage": "Ir a la página principal",
+  "demoNotice": "Esta cuenta demo no contiene datos reales de clientes ni de inmuebles."
 },
 "ListingPage": {
   "ctaAria": "Búsqueda inmobiliaria personalizada",
@@ -1363,5 +1476,14 @@
     "moreInformation": "Por favor, envíenme más información.",
     "closing": "Un cordial saludo"
   }
-}
+},
+"propertiesMenu": "Inmuebles",
+"offerMenu": "Publicar",
+"partnersMenu": "Socios",
+"companyMenu": "Empresa",
+"offerProperty": "Publicar inmueble",
+"presentProject": "Presentar proyecto",
+"becomePartner": "Hacerse socio",
+"about": "Sobre nosotros",
+"contact": "Contacto"
 }

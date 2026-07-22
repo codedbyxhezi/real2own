@@ -3,36 +3,45 @@
 import {
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
+import type { FormEvent } from "react";
 import Image from "next/image";
 import {
   useLocale,
   useTranslations,
 } from "next-intl";
 import { useSearchParams } from "next/navigation";
-import { Link } from "@/i18n/navigation";
+import {
+  Link,
+  usePathname,
+  useRouter,
+} from "@/i18n/navigation";
 import { Icon } from "@/components/Icon/Icon";
 import type {
   ListingCategoryKey,
   ListingProperty,
 } from "@/types/property";
-import styles from "./ListingExplorer.module.css";
+import styles from "./PropertyMarketplace.module.css";
 
-type ListingExplorerProps = {
-  resultLabel: string;
+type PropertyMarketplaceProps = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  resultTitle: string;
   properties: ListingProperty[];
 };
+
+type CategoryFilter =
+  | "all"
+  | ListingCategoryKey;
 
 type SortOption =
   | "recommended"
   | "price-ascending"
   | "price-descending"
   | "area-descending";
-
-type CategoryFilter =
-  | ""
-  | ListingCategoryKey;
 
 type ListingImageProps = {
   src: string;
@@ -43,7 +52,8 @@ type ListingImageProps = {
 const FALLBACK_IMAGE =
   "/images/hero/luxusvilla-mittelmeer-meerblick-sonnenuntergang.webp";
 
-const categories: ListingCategoryKey[] = [
+const categoryOptions: CategoryFilter[] = [
+  "all",
   "buy",
   "rent",
   "land",
@@ -88,102 +98,16 @@ const categoryAliases: Record<
   development: [
     "development",
     "developments",
-    "new development",
-    "new developments",
     "newbuild",
     "new build",
+    "new development",
+    "new developments",
     "neubau",
     "neubauprojekt",
     "neubauprojekte",
     "obra nueva",
   ],
 };
-
-const propertyTypeAliases = [
-  [
-    "apartment",
-    "apartments",
-    "wohnung",
-    "wohnungen",
-    "apartamento",
-    "apartamentos",
-    "neubauwohnungen",
-    "new-build apartments",
-    "viviendas de obra nueva",
-  ],
-  [
-    "house",
-    "houses",
-    "haus",
-    "hauser",
-    "häuser",
-    "stadthaus",
-    "townhouse",
-    "casa",
-    "casas",
-    "casa urbana",
-  ],
-  [
-    "villa",
-    "villas",
-    "villen",
-    "villenprojekt",
-    "villa development",
-    "proyecto de villas",
-  ],
-  [
-    "penthouse",
-    "penthouses",
-    "atico",
-    "áticos",
-    "aticos",
-  ],
-  [
-    "loft",
-    "lofts",
-    "loftwohnung",
-  ],
-  [
-    "land",
-    "plot",
-    "plots",
-    "grundstuck",
-    "grundstucke",
-    "grundstück",
-    "grundstücke",
-    "baugrundstuck",
-    "baugrundstück",
-    "parcela",
-    "parcelas",
-    "terreno",
-    "terrenos",
-    "development site",
-    "entwicklungsflache",
-    "entwicklungsfläche",
-    "terreno de desarrollo",
-    "project site",
-    "projektgrundstuck",
-    "projektgrundstück",
-    "terreno para proyecto",
-  ],
-  [
-    "development",
-    "developments",
-    "new development",
-    "new developments",
-    "neubauprojekt",
-    "neubauprojekte",
-    "wohnprojekt",
-    "residential project",
-    "proyecto residencial",
-    "wohnquartier",
-    "residential district",
-    "barrio residencial",
-    "residences",
-    "residenzen",
-    "residencias",
-  ],
-];
 
 function ListingImage({
   src,
@@ -203,9 +127,9 @@ function ListingImage({
       alt={alt}
       width={1200}
       height={900}
-      sizes="(max-width: 680px) 100vw, (max-width: 1020px) 50vw, 33vw"
+      sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw"
       priority={priority}
-      className={styles.image}
+      className={styles.cardImage}
       onError={() => {
         if (imageSrc !== FALLBACK_IMAGE) {
           setImageSrc(FALLBACK_IMAGE);
@@ -213,44 +137,6 @@ function ListingImage({
       }}
     />
   );
-}
-
-function extractNumber(value: string) {
-  const match = value.match(
-    /\d[\d.,]*/
-  );
-
-  if (!match) {
-    return 0;
-  }
-
-  const token = match[0];
-  const parts = token.split(/[.,]/);
-
-  if (parts.length === 1) {
-    return Number(parts[0]);
-  }
-
-  const looksLikeThousands = parts
-    .slice(1)
-    .every(
-      (part) => part.length === 3
-    );
-
-  if (looksLikeThousands) {
-    return Number(parts.join(""));
-  }
-
-  if (
-    parts.length === 2 &&
-    parts[1].length <= 2
-  ) {
-    return Number(
-      `${parts[0]}.${parts[1]}`
-    );
-  }
-
-  return Number(parts.join(""));
 }
 
 function normalizeText(
@@ -266,12 +152,62 @@ function normalizeText(
     );
 }
 
+function extractNumber(value: string) {
+  const normalizedValue = value
+    .replace(/[^\d.,]/g, "")
+    .trim();
+
+  if (!normalizedValue) {
+    return 0;
+  }
+
+  const lastComma =
+    normalizedValue.lastIndexOf(",");
+
+  const lastDot =
+    normalizedValue.lastIndexOf(".");
+
+  const decimalSeparator =
+    lastComma > lastDot ? "," : ".";
+
+  const parts =
+    normalizedValue.split(
+      decimalSeparator
+    );
+
+  const finalPart =
+    parts[parts.length - 1];
+
+  const hasDecimalPart =
+    parts.length > 1 &&
+    finalPart.length <= 2;
+
+  if (hasDecimalPart) {
+    parts.pop();
+
+    const wholeNumber = parts
+      .join("")
+      .replace(/[.,]/g, "");
+
+    return Number(
+      `${wholeNumber}.${finalPart}`
+    );
+  }
+
+  return Number(
+    normalizedValue.replace(
+      /[.,]/g,
+      ""
+    )
+  );
+}
+
 function resolveCategory(
   value: string | null,
   locale: string
 ): CategoryFilter {
   if (!value) {
-    return "";
+    return "all";
   }
 
   const normalizedValue =
@@ -289,130 +225,85 @@ function resolveCategory(
       "todas",
     ].includes(normalizedValue)
   ) {
-    return "";
+    return "all";
   }
 
-  const match = categories.find(
-    (category) =>
-      categoryAliases[category].some(
-        (alias) =>
-          normalizeText(
-            alias,
-            locale
-          ) === normalizedValue
-      )
-  );
+  const categoryKeys =
+    Object.keys(
+      categoryAliases
+    ) as ListingCategoryKey[];
 
-  return match ?? "";
-}
-
-function resolvePropertyType(
-  queryValue: string,
-  propertyTypes: string[],
-  locale: string
-) {
-  const normalizedQuery =
-    normalizeText(
-      queryValue.trim(),
-      locale
-    );
-
-  if (
-    !normalizedQuery ||
-    [
-      "all",
-      "alle",
-      "any",
-      "todos",
-      "todas",
-    ].includes(normalizedQuery)
-  ) {
-    return "";
-  }
-
-  const exactMatch =
-    propertyTypes.find(
-      (type) =>
-        normalizeText(
-          type,
-          locale
-        ) === normalizedQuery
-    );
-
-  if (exactMatch) {
-    return exactMatch;
-  }
-
-  const singularPluralMatch =
-    propertyTypes.find((type) => {
-      const normalizedType =
-        normalizeText(
-          type,
-          locale
-        );
-
-      return (
-        normalizedType ===
-          `${normalizedQuery}s` ||
-        `${normalizedType}s` ===
-          normalizedQuery
-      );
-    });
-
-  if (singularPluralMatch) {
-    return singularPluralMatch;
-  }
-
-  const matchingAliasGroup =
-    propertyTypeAliases.find(
-      (group) =>
-        group.some(
+  const category =
+    categoryKeys.find(
+      (categoryKey) =>
+        categoryAliases[
+          categoryKey
+        ].some(
           (alias) =>
             normalizeText(
               alias,
               locale
-            ) === normalizedQuery
+            ) === normalizedValue
         )
     );
 
-  if (!matchingAliasGroup) {
+  return category ?? "all";
+}
+
+function resolvePropertyType(
+  value: string | null,
+  propertyTypes: string[],
+  locale: string
+) {
+  if (!value) {
     return "";
   }
 
+  const normalizedValue =
+    normalizeText(
+      value.trim(),
+      locale
+    );
+
   return (
-    propertyTypes.find((type) =>
-      matchingAliasGroup.some(
-        (alias) =>
-          normalizeText(
-            alias,
-            locale
-          ) ===
-          normalizeText(
-            type,
-            locale
-          )
-      )
+    propertyTypes.find(
+      (propertyType) =>
+        normalizeText(
+          propertyType,
+          locale
+        ) === normalizedValue
     ) ?? ""
   );
 }
 
-export function ListingExplorer({
-  resultLabel,
+export function PropertyMarketplace({
+  eyebrow,
+  title,
+  description,
+  resultTitle,
   properties,
-}: ListingExplorerProps) {
+}: PropertyMarketplaceProps) {
   const t = useTranslations(
-    "ListingExplorer"
+    "PropertyMarketplace"
   );
 
   const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+
   const searchParams =
     useSearchParams();
 
-  const [location, setLocation] =
-    useState("");
+  const resultsRef =
+    useRef<HTMLElement>(null);
 
   const [category, setCategory] =
-    useState<CategoryFilter>("");
+    useState<CategoryFilter>(
+      "all"
+    );
+
+  const [location, setLocation] =
+    useState("");
 
   const [
     propertyType,
@@ -437,85 +328,139 @@ export function ListingExplorer({
   const [
     visibleCount,
     setVisibleCount,
-  ] = useState(6);
+  ] = useState(9);
 
-  const propertyTypes = useMemo(
-    () =>
-      Array.from(
+  const searchQuery =
+    searchParams.toString();
+
+  const allPropertyTypes =
+    useMemo(() => {
+      return Array.from(
         new Set(
           properties.map(
             (property) =>
               property.type
           )
         )
-      ).sort((first, second) =>
-        first.localeCompare(
-          second,
-          locale
-        )
-      ),
-    [locale, properties]
-  );
+      ).sort(
+        (first, second) =>
+          first.localeCompare(
+            second,
+            locale
+          )
+      );
+    }, [locale, properties]);
 
   useEffect(() => {
-    const locationParameter =
-      searchParams.get("location");
-
-    const categoryParameter =
-      searchParams.get("category") ??
-      searchParams.get("angebot");
-
-    const typeParameter =
-      searchParams.get("type") ??
-      searchParams.get("typ");
-
-    const budgetParameter =
-      searchParams.get("budget") ??
-      searchParams.get("maxPrice");
-
-    const categoryFromParameter =
-      resolveCategory(
-        categoryParameter,
-        locale
+    const params =
+      new URLSearchParams(
+        searchQuery
       );
 
-    const categoryFromType =
+    const categoryParameter =
+      params.get("category") ??
+      params.get("angebot");
+
+    const typeParameter =
+      params.get("type") ??
+      params.get("typ");
+
+    const typeCategory =
       resolveCategory(
         typeParameter,
         locale
       );
 
+    const nextCategory =
+      categoryParameter
+        ? resolveCategory(
+            categoryParameter,
+            locale
+          )
+        : typeCategory;
+
+    const nextPropertyType =
+      typeCategory !== "all"
+        ? ""
+        : resolvePropertyType(
+            typeParameter,
+            allPropertyTypes,
+            locale
+          );
+
+    setCategory(nextCategory);
+
     setLocation(
-      locationParameter ?? ""
-    );
-
-    setCategory(
-      categoryFromParameter ||
-        categoryFromType
-    );
-
-    setMaximumPrice(
-      budgetParameter ?? ""
+      params.get("location") ??
+        ""
     );
 
     setPropertyType(
-      typeParameter &&
-        !categoryFromType
-        ? resolvePropertyType(
-            typeParameter,
-            propertyTypes,
-            locale
-          )
-        : ""
+      nextPropertyType
     );
 
-    setMinimumRooms("");
+    setMaximumPrice(
+      params.get("maxPrice") ??
+        params.get("budget") ??
+        ""
+    );
+
+    setMinimumRooms(
+      params.get("rooms") ??
+        ""
+    );
+
     setSort("recommended");
-    setVisibleCount(6);
+    setVisibleCount(9);
   }, [
+    allPropertyTypes,
     locale,
-    propertyTypes,
-    searchParams,
+    searchQuery,
+  ]);
+
+  const availablePropertyTypes =
+    useMemo(() => {
+      const relevantProperties =
+        category === "all"
+          ? properties
+          : properties.filter(
+              (property) =>
+                property.categoryKey ===
+                category
+            );
+
+      return Array.from(
+        new Set(
+          relevantProperties.map(
+            (property) =>
+              property.type
+          )
+        )
+      ).sort(
+        (first, second) =>
+          first.localeCompare(
+            second,
+            locale
+          )
+      );
+    }, [
+      category,
+      locale,
+      properties,
+    ]);
+
+  useEffect(() => {
+    if (
+      propertyType &&
+      !availablePropertyTypes.includes(
+        propertyType
+      )
+    ) {
+      setPropertyType("");
+    }
+  }, [
+    availablePropertyTypes,
+    propertyType,
   ]);
 
   const filteredProperties =
@@ -527,7 +472,9 @@ export function ListingExplorer({
         );
 
       const maximumPriceNumber =
-        extractNumber(maximumPrice);
+        extractNumber(
+          maximumPrice
+        );
 
       const minimumRoomsNumber =
         Number(minimumRooms);
@@ -535,25 +482,31 @@ export function ListingExplorer({
       const filtered =
         properties.filter(
           (property) => {
-            const matchesLocation =
-              !normalizedLocation ||
+            const matchesCategory =
+              category === "all" ||
+              property.categoryKey ===
+                category;
+
+            const normalizedPropertyLocation =
               normalizeText(
                 property.location,
                 locale
-              ).includes(
-                normalizedLocation
-              ) ||
+              );
+
+            const normalizedTitle =
               normalizeText(
                 property.title,
                 locale
-              ).includes(
-                normalizedLocation
               );
 
-            const matchesCategory =
-              !category ||
-              property.categoryKey ===
-                category;
+            const matchesLocation =
+              !normalizedLocation ||
+              normalizedPropertyLocation.includes(
+                normalizedLocation
+              ) ||
+              normalizedTitle.includes(
+                normalizedLocation
+              );
 
             const matchesType =
               !propertyType ||
@@ -584,8 +537,8 @@ export function ListingExplorer({
               );
 
             return (
-              matchesLocation &&
               matchesCategory &&
+              matchesLocation &&
               matchesType &&
               matchesPrice &&
               matchesRooms
@@ -658,246 +611,373 @@ export function ListingExplorer({
     );
 
   const hasActiveFilters =
+    category !== "all" ||
     Boolean(
       location ||
-      category ||
       propertyType ||
       maximumPrice ||
-      minimumRooms ||
-      sort !== "recommended"
+      minimumRooms
     );
 
+  function updateUrl() {
+    const params =
+      new URLSearchParams();
+
+    if (category !== "all") {
+      params.set(
+        "category",
+        category
+      );
+    }
+
+    if (location.trim()) {
+      params.set(
+        "location",
+        location.trim()
+      );
+    }
+
+    if (propertyType) {
+      params.set(
+        "type",
+        propertyType
+      );
+    }
+
+    if (maximumPrice.trim()) {
+      params.set(
+        "maxPrice",
+        maximumPrice.trim()
+      );
+    }
+
+    if (minimumRooms) {
+      params.set(
+        "rooms",
+        minimumRooms
+      );
+    }
+
+    const query =
+      params.toString();
+
+    const destination =
+      query.length > 0
+        ? `${pathname}?${query}`
+        : pathname;
+
+    router.replace(destination, {
+      scroll: false,
+    });
+  }
+
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>
+  ) {
+    event.preventDefault();
+
+    setVisibleCount(9);
+    updateUrl();
+
+    window.setTimeout(() => {
+      resultsRef.current?.scrollIntoView(
+        {
+          behavior: "smooth",
+          block: "start",
+        }
+      );
+    }, 50);
+  }
+
   function resetFilters() {
+    setCategory("all");
     setLocation("");
-    setCategory("");
     setPropertyType("");
     setMaximumPrice("");
     setMinimumRooms("");
     setSort("recommended");
-    setVisibleCount(6);
-  }
+    setVisibleCount(9);
 
-  function handleFilterChange() {
-    setVisibleCount(6);
+    router.replace(pathname, {
+      scroll: false,
+    });
   }
 
   return (
     <>
       <section
-        className={
-          styles.searchSection
-        }
-        aria-label={t(
-          "filterAria"
-        )}
+        className={styles.hero}
+        aria-label={description}
       >
         <div
-          className={`container ${styles.searchContainer}`}
+          className={`container ${styles.heroInner}`}
         >
           <div
             className={
-              styles.searchGrid
+              styles.searchIntro
             }
           >
-            <label
-              className={styles.field}
+            <p
+              className={
+                styles.eyebrow
+              }
             >
-              <span>
-                {t("locationLabel")}
-              </span>
-
-              <input
-                type="search"
-                value={location}
-                placeholder={t(
-                  "locationPlaceholder"
-                )}
-                onChange={(event) => {
-                  setLocation(
-                    event.target.value
-                  );
-
-                  handleFilterChange();
-                }}
-              />
-            </label>
-
-            <label
-              className={styles.field}
-            >
-              <span>
-                {t("categoryLabel")}
-              </span>
-
-              <select
-                value={category}
-                onChange={(event) => {
-                  setCategory(
-                    event.target
-                      .value as CategoryFilter
-                  );
-
-                  handleFilterChange();
-                }}
-              >
-                <option value="">
-                  {t("allCategories")}
-                </option>
-
-                {categories.map(
-                  (categoryOption) => (
-                    <option
-                      value={
-                        categoryOption
-                      }
-                      key={
-                        categoryOption
-                      }
-                    >
-                      {t(
-                        `categories.${categoryOption}`
-                      )}
-                    </option>
-                  )
-                )}
-              </select>
-            </label>
-
-            <label
-              className={styles.field}
-            >
-              <span>
-                {t(
-                  "propertyTypeLabel"
-                )}
-              </span>
-
-              <select
-                value={propertyType}
-                onChange={(event) => {
-                  setPropertyType(
-                    event.target.value
-                  );
-
-                  handleFilterChange();
-                }}
-              >
-                <option value="">
-                  {t(
-                    "allPropertyTypes"
-                  )}
-                </option>
-
-                {propertyTypes.map(
-                  (type) => (
-                    <option
-                      value={type}
-                      key={type}
-                    >
-                      {type}
-                    </option>
-                  )
-                )}
-              </select>
-            </label>
-
-            <label
-              className={styles.field}
-            >
-              <span>
-                {t(
-                  "maximumPriceLabel"
-                )}
-              </span>
-
-              <input
-                type="text"
-                value={maximumPrice}
-                placeholder={t(
-                  "maximumPricePlaceholder"
-                )}
-                inputMode="numeric"
-                onChange={(event) => {
-                  setMaximumPrice(
-                    event.target.value
-                  );
-
-                  handleFilterChange();
-                }}
-              />
-            </label>
-
-            <label
-              className={styles.field}
-            >
-              <span>
-                {t(
-                  "minimumRoomsLabel"
-                )}
-              </span>
-
-              <select
-                value={minimumRooms}
-                onChange={(event) => {
-                  setMinimumRooms(
-                    event.target.value
-                  );
-
-                  handleFilterChange();
-                }}
-              >
-                <option value="">
-                  {t("anyRooms")}
-                </option>
-
-                {[1, 2, 3, 4, 5, 6].map(
-                  (count) => (
-                    <option
-                      value={count}
-                      key={count}
-                    >
-                      {t(
-                        "roomOption",
-                        { count }
-                      )}
-                    </option>
-                  )
-                )}
-              </select>
-            </label>
-          </div>
-
-          <div
-            className={
-              styles.searchFooter
-            }
-          >
-            <p aria-live="polite">
-              {t("resultCount", {
-                count:
-                  filteredProperties.length,
-              })}
+              {eyebrow}
             </p>
 
-            {hasActiveFilters && (
-              <button
-                type="button"
-                onClick={resetFilters}
-              >
-                {t("resetFilters")}
-
-                <span aria-hidden="true">
-                  ×
-                </span>
-              </button>
-            )}
+            <h1>{title}</h1>
           </div>
+
+          <form
+            className={
+              styles.searchPanel
+            }
+            onSubmit={handleSubmit}
+          >
+            <div
+              className={
+                styles.categoryTabs
+              }
+              aria-label={t(
+                "categoryNavigation"
+              )}
+            >
+              {categoryOptions.map(
+                (option) => {
+                  const active =
+                    category === option;
+
+                  return (
+                    <button
+                      className={[
+                        styles.categoryTab,
+                        active
+                          ? styles.categoryTabActive
+                          : "",
+                      ]
+                        .filter(Boolean)
+                        .join(" ")}
+                      type="button"
+                      aria-pressed={
+                        active
+                      }
+                      key={option}
+                      onClick={() => {
+                        setCategory(
+                          option
+                        );
+
+                        setVisibleCount(
+                          9
+                        );
+                      }}
+                    >
+                      {t(
+                        `categories.${option}`
+                      )}
+                    </button>
+                  );
+                }
+              )}
+            </div>
+
+            <div
+              className={
+                styles.searchGrid
+              }
+            >
+              <label
+                className={
+                  styles.searchField
+                }
+              >
+                <span>
+                  {t(
+                    "locationLabel"
+                  )}
+                </span>
+
+                <input
+                  type="search"
+                  value={location}
+                  placeholder={t(
+                    "locationPlaceholder"
+                  )}
+                  onChange={(event) => {
+                    setLocation(
+                      event.target.value
+                    );
+
+                    setVisibleCount(9);
+                  }}
+                />
+              </label>
+
+              <label
+                className={
+                  styles.searchField
+                }
+              >
+                <span>
+                  {t(
+                    "propertyTypeLabel"
+                  )}
+                </span>
+
+                <select
+                  value={propertyType}
+                  onChange={(event) => {
+                    setPropertyType(
+                      event.target.value
+                    );
+
+                    setVisibleCount(9);
+                  }}
+                >
+                  <option value="">
+                    {t(
+                      "allPropertyTypes"
+                    )}
+                  </option>
+
+                  {availablePropertyTypes.map(
+                    (type) => (
+                      <option
+                        value={type}
+                        key={type}
+                      >
+                        {type}
+                      </option>
+                    )
+                  )}
+                </select>
+              </label>
+
+              <label
+                className={
+                  styles.searchField
+                }
+              >
+                <span>
+                  {t(
+                    "maximumPriceLabel"
+                  )}
+                </span>
+
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  value={
+                    maximumPrice
+                  }
+                  placeholder={t(
+                    "maximumPricePlaceholder"
+                  )}
+                  onChange={(event) => {
+                    setMaximumPrice(
+                      event.target.value
+                    );
+
+                    setVisibleCount(9);
+                  }}
+                />
+              </label>
+
+              <label
+                className={
+                  styles.searchField
+                }
+              >
+                <span>
+                  {t(
+                    "minimumRoomsLabel"
+                  )}
+                </span>
+
+                <select
+                  value={
+                    minimumRooms
+                  }
+                  onChange={(event) => {
+                    setMinimumRooms(
+                      event.target.value
+                    );
+
+                    setVisibleCount(9);
+                  }}
+                >
+                  <option value="">
+                    {t("anyRooms")}
+                  </option>
+
+                  {[1, 2, 3, 4, 5, 6].map(
+                    (count) => (
+                      <option
+                        value={count}
+                        key={count}
+                      >
+                        {t(
+                          "roomOption",
+                          {
+                            count,
+                          }
+                        )}
+                      </option>
+                    )
+                  )}
+                </select>
+              </label>
+
+              <button
+                className={
+                  styles.searchButton
+                }
+                type="submit"
+              >
+                <span>
+                  {t("search")}
+                </span>
+
+                <Icon
+                  name="arrow"
+                  size={17}
+                />
+              </button>
+            </div>
+
+            <div
+              className={
+                styles.searchMeta
+              }
+            >
+              <span aria-live="polite">
+                {t("resultCount", {
+                  count:
+                    filteredProperties.length,
+                })}
+              </span>
+
+              {hasActiveFilters && (
+                <button
+                  type="button"
+                  onClick={
+                    resetFilters
+                  }
+                >
+                  {t(
+                    "resetFilters"
+                  )}
+                </button>
+              )}
+            </div>
+          </form>
         </div>
       </section>
 
       <section
+        ref={resultsRef}
         className={styles.results}
-        aria-labelledby="listing-results-title"
+        aria-labelledby="property-results-title"
       >
         <div className="container">
           <div
@@ -908,17 +988,24 @@ export function ListingExplorer({
             <div>
               <p
                 className={
-                  styles.eyebrow
+                  styles.resultsEyebrow
                 }
               >
                 {t(
-                  "currentSelection"
+                  "resultsEyebrow"
                 )}
               </p>
 
-              <h2 id="listing-results-title">
-                {resultLabel}
+              <h2 id="property-results-title">
+                {resultTitle}
               </h2>
+
+              <p>
+                {t("resultCount", {
+                  count:
+                    filteredProperties.length,
+                })}
+              </p>
             </div>
 
             <label
@@ -930,12 +1017,12 @@ export function ListingExplorer({
 
               <select
                 value={sort}
-                onChange={(event) =>
+                onChange={(event) => {
                   setSort(
                     event.target
                       .value as SortOption
-                  )
-                }
+                  );
+                }}
               >
                 <option value="recommended">
                   {t(
@@ -969,7 +1056,7 @@ export function ListingExplorer({
             <>
               <div
                 className={
-                  styles.grid
+                  styles.propertyGrid
                 }
               >
                 {visibleProperties.map(
@@ -989,7 +1076,7 @@ export function ListingExplorer({
                         }
                         href={`/immobilien/${property.id}`}
                         aria-label={t(
-                          "viewPropertyAria",
+                          "viewProperty",
                           {
                             title:
                               property.title,
@@ -1004,20 +1091,20 @@ export function ListingExplorer({
                             property.title
                           }
                           priority={
-                            index < 2
+                            index < 3
                           }
                         />
 
-                        <div
+                        <span
                           className={
-                            styles.imageOverlay
+                            styles.imageShade
                           }
                         />
 
                         {property.label && (
                           <span
                             className={
-                              styles.label
+                              styles.cardLabel
                             }
                           >
                             {
@@ -1044,7 +1131,7 @@ export function ListingExplorer({
                           styles.cardContent
                         }
                       >
-                        <div
+                        <p
                           className={
                             styles.cardLocation
                           }
@@ -1052,7 +1139,7 @@ export function ListingExplorer({
                           {
                             property.location
                           }
-                        </div>
+                        </p>
 
                         <h3>
                           <Link
@@ -1066,13 +1153,13 @@ export function ListingExplorer({
 
                         <dl
                           className={
-                            styles.cardFacts
+                            styles.facts
                           }
                         >
                           <div>
                             <dt>
                               {t(
-                                "facts.propertyType"
+                                "facts.type"
                               )}
                             </dt>
 
@@ -1149,12 +1236,12 @@ export function ListingExplorer({
                 >
                   <button
                     type="button"
-                    onClick={() =>
+                    onClick={() => {
                       setVisibleCount(
-                        (count) =>
-                          count + 6
-                      )
-                    }
+                        (current) =>
+                          current + 9
+                      );
+                    }}
                   >
                     {t("loadMore")}
 
@@ -1171,35 +1258,28 @@ export function ListingExplorer({
             <div
               className={styles.empty}
             >
-              <span
-                className={
-                  styles.emptyNumber
-                }
-              >
-                00
-              </span>
+              <span>00</span>
 
               <div>
                 <h3>
-                  {t("empty.title")}
+                  {t("emptyTitle")}
                 </h3>
 
                 <p>
                   {t(
-                    "empty.description"
+                    "emptyDescription"
                   )}
                 </p>
 
                 <button
                   type="button"
-                  onClick={resetFilters}
+                  onClick={
+                    resetFilters
+                  }
                 >
-                  {t("empty.reset")}
-
-                  <Icon
-                    name="arrow"
-                    size={15}
-                  />
+                  {t(
+                    "resetFilters"
+                  )}
                 </button>
               </div>
             </div>
